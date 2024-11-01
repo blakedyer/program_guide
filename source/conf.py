@@ -146,7 +146,7 @@ html_theme_options = {
     "icon_links": [
         {
             "name": "GitHub",
-            "url": "https://github.com/blakedyer/program_guide_EOS",
+            "url": "https://github.com/blakedyer/program_guide",
             "icon": "fab fa-github-square",
         },
         {
