@@ -5,6 +5,6 @@ Major Programs
   :maxdepth: 2
   :glob:
 
-  EOS*
+  PR_*
 
 

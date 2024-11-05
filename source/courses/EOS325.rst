@@ -2,14 +2,14 @@
 |course_short|: |course_long|
 ===============================
 
-.. image:: graphs/EOS240.svg
+.. image:: graphs/EOS325.svg
   :align: center
   :width: 98%
   
 Circled numbers indicate the number of pre-reqs required from the set of arrows coming from the left for the course on the right.
 
-.. |course_short| replace:: EOS240
-.. |course_long| replace:: Geochemistry
+.. |course_short| replace:: EOS325
+.. |course_long| replace:: Earth System Modeling
 
 
     
