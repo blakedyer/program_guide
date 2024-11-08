@@ -1,6 +1,7 @@
 program_code,program_name
-MNR-ESC,"Earth Sciences (Minor)"
-BSC-EOSM,"Earth Sciences"
-BSC-BESC,"Biology and Earth Sciences"
-BSC-CGSC,"Chemistry and Earth Sciences"
-BSC-PESC,"Physics and Earth Sciences (Geophysics)"
+MNR-ESC,Earth Sciences (Minor)
+BSC-EOSM,Earth Sciences
+BSC-BESC,Biology and Earth Sciences
+BSC-CGSC,Chemistry and Earth Sciences
+BSC-PESC,Physics and Earth Sciences (Geophysics)
+BSC-GOSC,Physical Geography and Earth and Ocean Sciences

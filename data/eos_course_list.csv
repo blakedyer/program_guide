@@ -1,34 +1,43 @@
 course_code,course_name
-EOS110,"Oceans and Atmosphere"
-EOS120,"The Dynamic Earth"
-EOS130,"Climate Change"
+EOS110,Oceans and Atmosphere
+EOS120,The Dynamic Earth
+EOS130,Climate Change
+EOS170,Natural Hazards
 EOS201,Sedimentology
-EOS202,"Structural Geology"
+EOS202,Structural Geology
 EOS205,Mineralogy
-EOS210,"Introductory Geophysics"
+EOS210,Introductory Geophysics
+EOS220,Weather and Climate
+EOS230,Introduction to Environmental Data Analysis
 EOS240,Geochemistry
-EOS261,"The Climate System"
-EOS300,"Earth Science Field School"
-EOS311,"Biological Oceanography"
-EOS312,"Introductory Chemical Oceanography"
-EOS313,"Introductory Geological Oceanography"
-EOS314,"Descriptive Physical Oceanography"
-EOS316,"Igneous and Metamorphic Geology"
-EOS321,"Earth History"
-EOS325,"Earth System Modeling"
+EOS261,The Climate System
+EOS300,Earth Science Field School
+EOS311,Biological Oceanography
+EOS312,Introductory Chemical Oceanography
+EOS313,Introductory Geological Oceanography
+EOS314,Descriptive Physical Oceanography
+EOS316,Igneous and Metamorphic Geology
+EOS321,Earth History
+EOS325,Earth System Modeling
 EOS330,Paleobiology
-EOS335,"Isotopes in Natural Sciences"
-EOS340,"Atmospheric Physics"
-EOS400,"Advanced Field Geology"
-EOS401,"Oceanographic Field School"
-EOS403,"Global Biogeochemical Cycles"
-EOS408,"Marine Geology"
-EOS410,"Global Tectonics"
-EOS416,"High Temperature Petrology"
-EOS420,"Resource Geology"
-EOS423,"Advanced Sedimentology and Stratigraphy"
-EOS425,"Aqueous Chemistry in the Earth and Ocean"
-EOS431,"Physical Oceanography"
+EOS335,Isotopes in Natural Sciences
+EOS340,Atmospheric Physics
+EOS350,Understanding the Oceans
+EOS365,Climate and Society
+EOS400,Advanced Field Geology
+EOS401,Oceanographic Field School
+EOS403,Global Biogeochemical Cycles
+EOS408,Marine Geology
+EOS410,Global Tectonics
+EOS416,High Temperature Petrology
+EOS420,Resource Geology
+EOS423,Advanced Sedimentology and Stratigraphy
+EOS425,Aqueous Chemistry in the Earth and Ocean
+EOS427,Geophysics
+EOS431,Physical Oceanography
+EOS433,Physics of Climate
 EOS440,Hydrogeology
-EOS450,"Quaternary Geology"
-EOS460,"Earth System Science"
+EOS450,Quaternary Geology
+EOS451,Introductory Dynamic Meteorology
+EOS460,Earth System Science
+EOS480,Applied Geophysics
