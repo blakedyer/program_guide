@@ -1,0 +1,15 @@
+===============================
+|course_short|: |course_long|
+===============================
+
+.. image:: graphs/EOS335.svg
+  :align: center
+  :width: 98%
+  
+Circular nodes that have a numbered label indicate the number of courses required for the course on the right from the set of courses on the left. 
+
+.. |course_short| replace:: EOS335
+.. |course_long| replace:: Isotopes in Natural Sciences
+
+
+    
