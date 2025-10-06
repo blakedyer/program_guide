@@ -6,7 +6,7 @@
   :align: center
   :width: 98%
   
-Circled numbers indicate the number of pre-reqs required from the set of arrows coming from the left for the course on the right.
+Circular nodes that have a numbered label indicate the number of courses required for the course on the right from the set of courses on the left. 
 
 .. |course_short| replace:: EOS110
 .. |course_long| replace:: Oceans and Atmosphere

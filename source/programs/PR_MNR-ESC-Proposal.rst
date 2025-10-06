@@ -23,6 +23,8 @@ Current Minor
   :align: center
   :width: 98%
 
+Circular nodes that have a numbered label indicate the number of courses required for the course on the right from the set of courses on the left. 
+
 
 Current Minor showing accessible upper level courses
 --------------------------------------------------------
@@ -35,6 +37,13 @@ Current Minor showing accessible upper level courses
 Proposed changes to the minor
 --------------------------------------
 
+The proposed changes are:
+
+* remove: CHEM245, EOS110
+* decrease upper level requirements from 9 units to 4.5 units
+* Only 2 of EOS201, EOS202, and EOS240 are required
+
+
 .. image:: graphs/MNR-ESC_proposed.svg
   :align: center
   :width: 98%
@@ -42,21 +51,21 @@ Proposed changes to the minor
 Proposed Minor showing accessible upper level courses
 --------------------------------------------------------
 
-Option: EOS202, EOS205, EOS240 
+Option: EOS201, EOS240
 *********************************
 
 .. image:: graphs/ESMINOR_UPPER_proposed_0.svg
   :align: center
   :width: 98%
 
-Option: EOS205, EOS201, EOS240 
+Option: EOS201, EOS202
 *********************************
 
 .. image:: graphs/ESMINOR_UPPER_proposed_1.svg
   :align: center
   :width: 98%
 
-Option: EOS201, EOS202, EOS205
+Option: EOS202, EOS240
 *********************************
 
 .. image:: graphs/ESMINOR_UPPER_proposed_2.svg

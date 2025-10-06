@@ -10,143 +10,143 @@
 <title>unix</title>
 <polygon fill="white" stroke="transparent" points="-4,4 -4,-188 519,-188 519,4 -4,4"/>
 <text text-anchor="middle" x="257.5" y="-168.8" font-family="Times,serif" font-size="14.00">EOS313: Introductory Geological Oceanography</text>
-<!-- MATH120 -->
-<g id="node1" class="node">
-<title>MATH120</title>
-<path fill="#f5edc9" stroke="#030a10" d="M62,-161C62,-161 7,-161 7,-161 3.5,-161 0,-157.5 0,-154 0,-154 0,-147 0,-147 0,-143.5 3.5,-140 7,-140 7,-140 62,-140 62,-140 65.5,-140 69,-143.5 69,-147 69,-147 69,-154 69,-154 69,-157.5 65.5,-161 62,-161"/>
-<text text-anchor="middle" x="34.5" y="-147.4" font-family="Times,serif" font-size="12.00">MATH120</text>
-</g>
 <!-- CHEM101 -->
-<g id="node6" class="node">
+<g id="node1" class="node">
 <title>CHEM101</title>
-<path fill="#e7a79b" stroke="#030a10" d="M168,-161C168,-161 112,-161 112,-161 108.5,-161 105,-157.5 105,-154 105,-154 105,-147 105,-147 105,-143.5 108.5,-140 112,-140 112,-140 168,-140 168,-140 171.5,-140 175,-143.5 175,-147 175,-147 175,-154 175,-154 175,-157.5 171.5,-161 168,-161"/>
-<text text-anchor="middle" x="140" y="-147.4" font-family="Times,serif" font-size="12.00">CHEM101</text>
+<path fill="#e7a79b" stroke="#030a10" d="M168,-21C168,-21 112,-21 112,-21 108.5,-21 105,-17.5 105,-14 105,-14 105,-7 105,-7 105,-3.5 108.5,0 112,0 112,0 168,0 168,0 171.5,0 175,-3.5 175,-7 175,-7 175,-14 175,-14 175,-17.5 171.5,-21 168,-21"/>
+<text text-anchor="middle" x="140" y="-7.4" font-family="Times,serif" font-size="12.00">CHEM101</text>
 </g>
-<!-- MATH120&#45;&gt;CHEM101 -->
-<g id="edge11" class="edge">
-<title>MATH120&#45;&gt;CHEM101</title>
-<path fill="none" stroke="black" d="M69.1,-150.5C78.85,-150.5 89.59,-150.5 99.66,-150.5"/>
-<polygon fill="black" stroke="black" points="99.86,-152.25 104.86,-150.5 99.86,-148.75 99.86,-152.25"/>
+<!-- 1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;] -->
+<g id="node7" class="node">
+<title>1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;]</title>
+<ellipse fill="#dfe6e9" stroke="#030a10" cx="240" cy="-24.5" rx="11" ry="11"/>
+<text text-anchor="middle" x="240" y="-21.4" font-family="Times,serif" font-size="12.00">1</text>
+</g>
+<!-- CHEM101&#45;&gt;1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;] -->
+<g id="edge4" class="edge">
+<title>CHEM101&#45;&gt;1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;]</title>
+<path fill="none" stroke="black" d="M175,-15.36C191.64,-17.73 210.83,-20.48 223.83,-22.33"/>
+<polygon fill="black" stroke="black" points="223.8,-24.1 228.99,-23.07 224.29,-20.63 223.8,-24.1"/>
 </g>
 <!-- CHEM150 -->
 <g id="node2" class="node">
 <title>CHEM150</title>
-<path fill="#e7a79b" stroke="#030a10" d="M168,-133C168,-133 112,-133 112,-133 108.5,-133 105,-129.5 105,-126 105,-126 105,-119 105,-119 105,-115.5 108.5,-112 112,-112 112,-112 168,-112 168,-112 171.5,-112 175,-115.5 175,-119 175,-119 175,-126 175,-126 175,-129.5 171.5,-133 168,-133"/>
-<text text-anchor="middle" x="140" y="-119.4" font-family="Times,serif" font-size="12.00">CHEM150</text>
-</g>
-<!-- 1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;] -->
-<g id="node12" class="node">
-<title>1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;]</title>
-<ellipse fill="#e9dbd0" stroke="#030a10" cx="240" cy="-136.5" rx="11" ry="11"/>
-<text text-anchor="middle" x="240" y="-133.4" font-family="Times,serif" font-size="12.00">1</text>
+<path fill="#e7a79b" stroke="#030a10" d="M168,-49C168,-49 112,-49 112,-49 108.5,-49 105,-45.5 105,-42 105,-42 105,-35 105,-35 105,-31.5 108.5,-28 112,-28 112,-28 168,-28 168,-28 171.5,-28 175,-31.5 175,-35 175,-35 175,-42 175,-42 175,-45.5 171.5,-49 168,-49"/>
+<text text-anchor="middle" x="140" y="-35.4" font-family="Times,serif" font-size="12.00">CHEM150</text>
 </g>
 <!-- CHEM150&#45;&gt;1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;] -->
-<g id="edge10" class="edge">
+<g id="edge5" class="edge">
 <title>CHEM150&#45;&gt;1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;]</title>
-<path fill="none" stroke="black" d="M175,-127.36C191.64,-129.73 210.83,-132.48 223.83,-134.33"/>
-<polygon fill="black" stroke="black" points="223.8,-136.1 228.99,-135.07 224.29,-132.63 223.8,-136.1"/>
-</g>
-<!-- EOS401 -->
-<g id="node3" class="node">
-<title>EOS401</title>
-<path fill="#e7a79b" stroke="#030a10" d="M508,-77C508,-77 464,-77 464,-77 460.5,-77 457,-73.5 457,-70 457,-70 457,-63 457,-63 457,-59.5 460.5,-56 464,-56 464,-56 508,-56 508,-56 511.5,-56 515,-59.5 515,-63 515,-63 515,-70 515,-70 515,-73.5 511.5,-77 508,-77"/>
-<text text-anchor="middle" x="486" y="-63.4" font-family="Times,serif" font-size="12.00">EOS401</text>
+<path fill="none" stroke="black" d="M175,-33.64C191.64,-31.27 210.83,-28.52 223.83,-26.67"/>
+<polygon fill="black" stroke="black" points="224.29,-28.37 228.99,-25.93 223.8,-24.9 224.29,-28.37"/>
 </g>
 <!-- EOS313 -->
-<g id="node4" class="node">
+<g id="node3" class="node">
 <title>EOS313</title>
-<path fill="#9fa7be" stroke="#030a10" d="M356,-133C356,-133 312,-133 312,-133 308.5,-133 305,-129.5 305,-126 305,-126 305,-119 305,-119 305,-115.5 308.5,-112 312,-112 312,-112 356,-112 356,-112 359.5,-112 363,-115.5 363,-119 363,-119 363,-126 363,-126 363,-129.5 359.5,-133 356,-133"/>
-<text text-anchor="middle" x="334" y="-119.4" font-family="Times,serif" font-size="12.00">EOS313</text>
+<path fill="#9fa7be" stroke="#030a10" d="M356,-49C356,-49 312,-49 312,-49 308.5,-49 305,-45.5 305,-42 305,-42 305,-35 305,-35 305,-31.5 308.5,-28 312,-28 312,-28 356,-28 356,-28 359.5,-28 363,-31.5 363,-35 363,-35 363,-42 363,-42 363,-45.5 359.5,-49 356,-49"/>
+<text text-anchor="middle" x="334" y="-35.4" font-family="Times,serif" font-size="12.00">EOS313</text>
 </g>
 <!-- 3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
-<g id="node7" class="node">
+<g id="node8" class="node">
 <title>3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
-<ellipse fill="#ad8152" stroke="#030a10" cx="410" cy="-66.5" rx="11" ry="11"/>
-<text text-anchor="middle" x="410" y="-63.4" font-family="Times,serif" font-size="12.00">3</text>
+<ellipse fill="#636e72" stroke="#030a10" cx="410" cy="-94.5" rx="11" ry="11"/>
+<text text-anchor="middle" x="410" y="-91.4" font-family="Times,serif" font-size="12.00">3</text>
 </g>
 <!-- EOS313&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
-<g id="edge2" class="edge">
+<g id="edge7" class="edge">
 <title>EOS313&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
-<path fill="none" stroke="black" d="M357.63,-111.88C359.48,-110.8 361.3,-109.67 363,-108.5 376.1,-99.5 389.33,-86.99 398.21,-77.96"/>
-<polygon fill="black" stroke="black" points="399.51,-79.14 401.74,-74.33 397,-76.7 399.51,-79.14"/>
+<path fill="none" stroke="black" d="M356.12,-49.11C358.49,-50.51 360.83,-51.98 363,-53.5 375.89,-62.51 389.14,-74.69 398.09,-83.43"/>
+<polygon fill="black" stroke="black" points="396.87,-84.68 401.65,-86.95 399.33,-82.19 396.87,-84.68"/>
+</g>
+<!-- EOS401 -->
+<g id="node4" class="node">
+<title>EOS401</title>
+<path fill="#e7a79b" stroke="#030a10" d="M508,-105C508,-105 464,-105 464,-105 460.5,-105 457,-101.5 457,-98 457,-98 457,-91 457,-91 457,-87.5 460.5,-84 464,-84 464,-84 508,-84 508,-84 511.5,-84 515,-87.5 515,-91 515,-91 515,-98 515,-98 515,-101.5 511.5,-105 508,-105"/>
+<text text-anchor="middle" x="486" y="-91.4" font-family="Times,serif" font-size="12.00">EOS401</text>
+</g>
+<!-- MATH120 -->
+<g id="node5" class="node">
+<title>MATH120</title>
+<path fill="#f5edc9" stroke="#030a10" d="M62,-21C62,-21 7,-21 7,-21 3.5,-21 0,-17.5 0,-14 0,-14 0,-7 0,-7 0,-3.5 3.5,0 7,0 7,0 62,0 62,0 65.5,0 69,-3.5 69,-7 69,-7 69,-14 69,-14 69,-17.5 65.5,-21 62,-21"/>
+<text text-anchor="middle" x="34.5" y="-7.4" font-family="Times,serif" font-size="12.00">MATH120</text>
+</g>
+<!-- MATH120&#45;&gt;CHEM101 -->
+<g id="edge1" class="edge">
+<title>MATH120&#45;&gt;CHEM101</title>
+<path fill="none" stroke="black" d="M69.1,-10.5C78.85,-10.5 89.59,-10.5 99.66,-10.5"/>
+<polygon fill="black" stroke="black" points="99.86,-12.25 104.86,-10.5 99.86,-8.75 99.86,-12.25"/>
 </g>
 <!-- EOS120 -->
-<g id="node5" class="node">
+<g id="node6" class="node">
 <title>EOS120</title>
-<path fill="#e7a79b" stroke="#030a10" d="M262,-118C262,-118 218,-118 218,-118 214.5,-118 211,-114.5 211,-111 211,-111 211,-104 211,-104 211,-100.5 214.5,-97 218,-97 218,-97 262,-97 262,-97 265.5,-97 269,-100.5 269,-104 269,-104 269,-111 269,-111 269,-114.5 265.5,-118 262,-118"/>
-<text text-anchor="middle" x="240" y="-104.4" font-family="Times,serif" font-size="12.00">EOS120</text>
+<path fill="#e7a79b" stroke="#030a10" d="M262,-64C262,-64 218,-64 218,-64 214.5,-64 211,-60.5 211,-57 211,-57 211,-50 211,-50 211,-46.5 214.5,-43 218,-43 218,-43 262,-43 262,-43 265.5,-43 269,-46.5 269,-50 269,-50 269,-57 269,-57 269,-60.5 265.5,-64 262,-64"/>
+<text text-anchor="middle" x="240" y="-50.4" font-family="Times,serif" font-size="12.00">EOS120</text>
 </g>
 <!-- EOS120&#45;&gt;EOS313 -->
-<g id="edge7" class="edge">
+<g id="edge2" class="edge">
 <title>EOS120&#45;&gt;EOS313</title>
-<path fill="none" stroke="black" d="M269.1,-112.08C278.73,-113.65 289.6,-115.42 299.61,-117.06"/>
-<polygon fill="black" stroke="black" points="299.54,-118.82 304.75,-117.89 300.1,-115.36 299.54,-118.82"/>
-</g>
-<!-- CHEM101&#45;&gt;1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;] -->
-<g id="edge9" class="edge">
-<title>CHEM101&#45;&gt;1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;]</title>
-<path fill="none" stroke="black" d="M175,-145.64C191.64,-143.27 210.83,-140.52 223.83,-138.67"/>
-<polygon fill="black" stroke="black" points="224.29,-140.37 228.99,-137.93 223.8,-136.9 224.29,-140.37"/>
-</g>
-<!-- 3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]&#45;&gt;EOS401 -->
-<g id="edge1" class="edge">
-<title>3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]&#45;&gt;EOS401</title>
-<path fill="none" stroke="black" d="M421.29,-66.5C429.28,-66.5 440.83,-66.5 451.9,-66.5"/>
-<polygon fill="black" stroke="black" points="451.94,-68.25 456.94,-66.5 451.94,-64.75 451.94,-68.25"/>
-</g>
-<!-- EOS314 -->
-<g id="node8" class="node">
-<title>EOS314</title>
-<path fill="#f5edc9" stroke="#030a10" d="M356,-105C356,-105 312,-105 312,-105 308.5,-105 305,-101.5 305,-98 305,-98 305,-91 305,-91 305,-87.5 308.5,-84 312,-84 312,-84 356,-84 356,-84 359.5,-84 363,-87.5 363,-91 363,-91 363,-98 363,-98 363,-101.5 359.5,-105 356,-105"/>
-<text text-anchor="middle" x="334" y="-91.4" font-family="Times,serif" font-size="12.00">EOS314</text>
-</g>
-<!-- EOS314&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
-<g id="edge3" class="edge">
-<title>EOS314&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
-<path fill="none" stroke="black" d="M362.98,-83.91C373.65,-79.88 385.39,-75.43 394.34,-72.05"/>
-<polygon fill="black" stroke="black" points="395.21,-73.59 399.26,-70.18 393.97,-70.32 395.21,-73.59"/>
-</g>
-<!-- EOS431 -->
-<g id="node9" class="node">
-<title>EOS431</title>
-<path fill="#f5edc9" stroke="#030a10" d="M356,-77C356,-77 312,-77 312,-77 308.5,-77 305,-73.5 305,-70 305,-70 305,-63 305,-63 305,-59.5 308.5,-56 312,-56 312,-56 356,-56 356,-56 359.5,-56 363,-59.5 363,-63 363,-63 363,-70 363,-70 363,-73.5 359.5,-77 356,-77"/>
-<text text-anchor="middle" x="334" y="-63.4" font-family="Times,serif" font-size="12.00">EOS431</text>
-</g>
-<!-- EOS431&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
-<g id="edge4" class="edge">
-<title>EOS431&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
-<path fill="none" stroke="black" d="M363.4,-66.5C373.66,-66.5 384.85,-66.5 393.58,-66.5"/>
-<polygon fill="black" stroke="black" points="393.67,-68.25 398.67,-66.5 393.67,-64.75 393.67,-68.25"/>
-</g>
-<!-- EOS312 -->
-<g id="node10" class="node">
-<title>EOS312</title>
-<path fill="#f5edc9" stroke="#030a10" d="M356,-49C356,-49 312,-49 312,-49 308.5,-49 305,-45.5 305,-42 305,-42 305,-35 305,-35 305,-31.5 308.5,-28 312,-28 312,-28 356,-28 356,-28 359.5,-28 363,-31.5 363,-35 363,-35 363,-42 363,-42 363,-45.5 359.5,-49 356,-49"/>
-<text text-anchor="middle" x="334" y="-35.4" font-family="Times,serif" font-size="12.00">EOS312</text>
-</g>
-<!-- EOS312&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
-<g id="edge5" class="edge">
-<title>EOS312&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
-<path fill="none" stroke="black" d="M362.98,-49.09C373.65,-53.12 385.39,-57.57 394.34,-60.95"/>
-<polygon fill="black" stroke="black" points="393.97,-62.68 399.26,-62.82 395.21,-59.41 393.97,-62.68"/>
-</g>
-<!-- EOS311 -->
-<g id="node11" class="node">
-<title>EOS311</title>
-<path fill="#f5edc9" stroke="#030a10" d="M356,-21C356,-21 312,-21 312,-21 308.5,-21 305,-17.5 305,-14 305,-14 305,-7 305,-7 305,-3.5 308.5,0 312,0 312,0 356,0 356,0 359.5,0 363,-3.5 363,-7 363,-7 363,-14 363,-14 363,-17.5 359.5,-21 356,-21"/>
-<text text-anchor="middle" x="334" y="-7.4" font-family="Times,serif" font-size="12.00">EOS311</text>
-</g>
-<!-- EOS311&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
-<g id="edge6" class="edge">
-<title>EOS311&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
-<path fill="none" stroke="black" d="M357.63,-21.12C359.48,-22.2 361.3,-23.33 363,-24.5 376.1,-33.5 389.33,-46.01 398.21,-55.04"/>
-<polygon fill="black" stroke="black" points="397,-56.3 401.74,-58.67 399.51,-53.86 397,-56.3"/>
+<path fill="none" stroke="black" d="M269.1,-48.92C278.73,-47.35 289.6,-45.58 299.61,-43.94"/>
+<polygon fill="black" stroke="black" points="300.1,-45.64 304.75,-43.11 299.54,-42.18 300.1,-45.64"/>
 </g>
 <!-- 1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;]&#45;&gt;EOS313 -->
-<g id="edge8" class="edge">
+<g id="edge3" class="edge">
 <title>1 of [&#39;CHEM101&#39;, &#39;CHEM150&#39;]&#45;&gt;EOS313</title>
-<path fill="none" stroke="black" d="M251.2,-134.95C262.81,-133.18 282.4,-130.2 299.5,-127.6"/>
-<polygon fill="black" stroke="black" points="300.04,-129.29 304.71,-126.8 299.51,-125.83 300.04,-129.29"/>
+<path fill="none" stroke="black" d="M251.2,-26.05C262.81,-27.82 282.4,-30.8 299.5,-33.4"/>
+<polygon fill="black" stroke="black" points="299.51,-35.17 304.71,-34.2 300.04,-31.71 299.51,-35.17"/>
+</g>
+<!-- 3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]&#45;&gt;EOS401 -->
+<g id="edge6" class="edge">
+<title>3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]&#45;&gt;EOS401</title>
+<path fill="none" stroke="black" d="M421.29,-94.5C429.28,-94.5 440.83,-94.5 451.9,-94.5"/>
+<polygon fill="black" stroke="black" points="451.94,-96.25 456.94,-94.5 451.94,-92.75 451.94,-96.25"/>
+</g>
+<!-- EOS314 -->
+<g id="node9" class="node">
+<title>EOS314</title>
+<path fill="#f5edc9" stroke="#030a10" d="M356,-161C356,-161 312,-161 312,-161 308.5,-161 305,-157.5 305,-154 305,-154 305,-147 305,-147 305,-143.5 308.5,-140 312,-140 312,-140 356,-140 356,-140 359.5,-140 363,-143.5 363,-147 363,-147 363,-154 363,-154 363,-157.5 359.5,-161 356,-161"/>
+<text text-anchor="middle" x="334" y="-147.4" font-family="Times,serif" font-size="12.00">EOS314</text>
+</g>
+<!-- EOS314&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
+<g id="edge8" class="edge">
+<title>EOS314&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
+<path fill="none" stroke="black" d="M357.63,-139.88C359.48,-138.8 361.3,-137.67 363,-136.5 376.1,-127.5 389.33,-114.99 398.21,-105.96"/>
+<polygon fill="black" stroke="black" points="399.51,-107.14 401.74,-102.33 397,-104.7 399.51,-107.14"/>
+</g>
+<!-- EOS431 -->
+<g id="node10" class="node">
+<title>EOS431</title>
+<path fill="#f5edc9" stroke="#030a10" d="M356,-133C356,-133 312,-133 312,-133 308.5,-133 305,-129.5 305,-126 305,-126 305,-119 305,-119 305,-115.5 308.5,-112 312,-112 312,-112 356,-112 356,-112 359.5,-112 363,-115.5 363,-119 363,-119 363,-126 363,-126 363,-129.5 359.5,-133 356,-133"/>
+<text text-anchor="middle" x="334" y="-119.4" font-family="Times,serif" font-size="12.00">EOS431</text>
+</g>
+<!-- EOS431&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
+<g id="edge9" class="edge">
+<title>EOS431&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
+<path fill="none" stroke="black" d="M362.98,-111.91C373.65,-107.88 385.39,-103.43 394.34,-100.05"/>
+<polygon fill="black" stroke="black" points="395.21,-101.59 399.26,-98.18 393.97,-98.32 395.21,-101.59"/>
+</g>
+<!-- EOS312 -->
+<g id="node11" class="node">
+<title>EOS312</title>
+<path fill="#f5edc9" stroke="#030a10" d="M356,-105C356,-105 312,-105 312,-105 308.5,-105 305,-101.5 305,-98 305,-98 305,-91 305,-91 305,-87.5 308.5,-84 312,-84 312,-84 356,-84 356,-84 359.5,-84 363,-87.5 363,-91 363,-91 363,-98 363,-98 363,-101.5 359.5,-105 356,-105"/>
+<text text-anchor="middle" x="334" y="-91.4" font-family="Times,serif" font-size="12.00">EOS312</text>
+</g>
+<!-- EOS312&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
+<g id="edge10" class="edge">
+<title>EOS312&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
+<path fill="none" stroke="black" d="M363.4,-94.5C373.66,-94.5 384.85,-94.5 393.58,-94.5"/>
+<polygon fill="black" stroke="black" points="393.67,-96.25 398.67,-94.5 393.67,-92.75 393.67,-96.25"/>
+</g>
+<!-- EOS311 -->
+<g id="node12" class="node">
+<title>EOS311</title>
+<path fill="#f5edc9" stroke="#030a10" d="M356,-77C356,-77 312,-77 312,-77 308.5,-77 305,-73.5 305,-70 305,-70 305,-63 305,-63 305,-59.5 308.5,-56 312,-56 312,-56 356,-56 356,-56 359.5,-56 363,-59.5 363,-63 363,-63 363,-70 363,-70 363,-73.5 359.5,-77 356,-77"/>
+<text text-anchor="middle" x="334" y="-63.4" font-family="Times,serif" font-size="12.00">EOS311</text>
+</g>
+<!-- EOS311&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;] -->
+<g id="edge11" class="edge">
+<title>EOS311&#45;&gt;3 of [&#39;EOS313&#39;, &#39;EOS314&#39;, &#39;EOS431&#39;, &#39;EOS312&#39;, &#39;EOS311&#39;]</title>
+<path fill="none" stroke="black" d="M362.98,-77.09C373.65,-81.12 385.39,-85.57 394.34,-88.95"/>
+<polygon fill="black" stroke="black" points="393.97,-90.68 399.26,-90.82 395.21,-87.41 393.97,-90.68"/>
 </g>
 </g>
 </svg>

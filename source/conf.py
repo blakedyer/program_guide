@@ -42,11 +42,11 @@ release = "0.0.1"
 extensions = [
     "matplotlib.sphinxext.plot_directive",
     "sphinx.ext.autodoc",
+    # 'sphinx.ext.imgconverter',
     "sphinx.ext.autosummary",
     "sphinx.ext.viewcode",
     "sphinx.ext.coverage",
     "sphinx.ext.mathjax",
-    "sphinx_inline_tabs",
     "sphinx.ext.todo",
     "sphinx.ext.intersphinx",
     "numpydoc",
@@ -57,6 +57,7 @@ extensions = [
     "myst_nb",
     "sphinx_design",
     "sphinx.ext.githubpages",
+    'sphinx_tabs.tabs'
 ]
 
 numpydoc_show_class_members = False
