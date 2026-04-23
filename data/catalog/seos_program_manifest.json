@@ -1,0 +1,173 @@
+[
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/S1qLaQCf4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/S1qLaQCf4",
+    "id": "677874e02740d9c323c76892",
+    "pid": "S1qLaQCf4",
+    "program_code": "BSC-BESC",
+    "program_name": "Biology and Earth Sciences",
+    "program_title": "Biology and Earth Sciences (Bachelor of Science - Combined Major)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/S1qLpX0MV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/S1qLpX0MV",
+    "id": "677875953076810114a74ea2",
+    "pid": "S1qLpX0MV",
+    "program_code": "BSC-BESD",
+    "program_name": "Biology and Earth Sciences (Honours)",
+    "program_title": "Biology and Earth Sciences (Bachelor of Science - Combined Honours)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/Hy6Ia7CGN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/Hy6Ia7CGN",
+    "id": "6778746b660e11c9a58a2cad",
+    "pid": "Hy6Ia7CGN",
+    "program_code": "BSC-CGSC",
+    "program_name": "Chemistry and Earth Sciences",
+    "program_title": "Chemistry and Earth Sciences (Bachelor of Science - Combined Major)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/B1aUamCGV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/B1aUamCGV",
+    "id": "677873b3736dc92f95e5981f",
+    "pid": "B1aUamCGV",
+    "program_code": "BSC-CGSD",
+    "program_name": "Chemistry and Earth Sciences (Honours)",
+    "program_title": "Chemistry and Earth Sciences (Bachelor of Science - Combined Honours)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/HJ1xpFYIH",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/HJ1xpFYIH",
+    "id": "677c2334cc729861363ca8af",
+    "pid": "HJ1xpFYIH",
+    "program_code": "BSC-CSSC",
+    "program_name": "Chemistry and Ocean Sciences",
+    "program_title": "Chemistry and Ocean Sciences (Bachelor of Science - Combined Major)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/Skmk6dt8r",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/Skmk6dt8r",
+    "id": "677c24cc616e670f1826a290",
+    "pid": "Skmk6dt8r",
+    "program_code": "BSC-CSSD",
+    "program_name": "Chemistry and Ocean Sciences (Honours)",
+    "program_title": "Chemistry and Ocean Sciences (Bachelor of Science - Combined Honours)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/Hk0--QRAP",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/Hk0--QRAP",
+    "id": "64a742f71b3317315e26ae98",
+    "pid": "Hk0--QRAP",
+    "program_code": "BSC-CLSC",
+    "program_name": "Climate Science",
+    "program_title": "Climate Science (Bachelor of Science - Combined Major)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/H1dHTmAAP",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/H1dHTmAAP",
+    "id": "64a742f91822a8b004067912",
+    "pid": "H1dHTmAAP",
+    "program_code": "BSC-CLSD",
+    "program_name": "Climate Science (Honours)",
+    "program_title": "Climate Science (Bachelor of Science - Combined Honours)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/SkxTLa7AfV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/SkxTLa7AfV",
+    "id": "67787afa40d36eb000a539c8",
+    "pid": "SkxTLa7AfV",
+    "program_code": "BSC-EOSM",
+    "program_name": "Earth Sciences",
+    "program_title": "Earth Sciences (Bachelor of Science - Major)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/Hkxyq67AzE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/Hkxyq67AzE",
+    "id": "6781a708736dc92f952705c9",
+    "pid": "Hkxyq67AzE",
+    "program_code": "MNR-ESC",
+    "program_name": "Earth Sciences (General)",
+    "program_title": "Earth Sciences (General)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/Hk08T7RG4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/Hk08T7RG4",
+    "id": "677845b06669eebb0f735f09",
+    "pid": "Hk08T7RG4",
+    "program_code": "BSC-EOSH",
+    "program_name": "Earth Sciences (Honours)",
+    "program_title": "Earth Sciences (Bachelor of Science - Honours)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/Sk0wHXyDJl",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/Sk0wHXyDJl",
+    "id": "6781a5665f11e9c2f8ee413b",
+    "pid": "Sk0wHXyDJl",
+    "program_code": "MNR-ESCX",
+    "program_name": "Earth Sciences (Minor)",
+    "program_title": "Earth Sciences (Minor)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/Hk1caX0zV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/Hk1caX0zV",
+    "id": "61e05eaf560b8d3084b19651",
+    "pid": "Hk1caX0zV",
+    "program_code": "MNR-OSC",
+    "program_name": "Ocean Sciences (Minor)",
+    "program_title": "Ocean Sciences (Minor)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/SkMPTX0M4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/SkMPTX0M4",
+    "id": "6781b3d58109d94a5dfb0207",
+    "pid": "SkMPTX0M4",
+    "program_code": "BSC-GOSC",
+    "program_name": "Physical Geography and Earth and Ocean Sciences",
+    "program_title": "Physical Geography and Earth and Ocean Sciences (Bachelor of Science - Combined Major)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/H1QwamAzE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/H1QwamAzE",
+    "id": "6781b4f78109d94a5dfb0cd6",
+    "pid": "H1QwamAzE",
+    "program_code": "BSC-GOSD",
+    "program_name": "Physical Geography and Earth and Ocean Sciences (Honours)",
+    "program_title": "Physical Geography and Earth and Ocean Sciences (Bachelor of Science - Combined Honours)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/rylJwpXCME",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/rylJwpXCME",
+    "id": "67787b842740d9c323c79df6",
+    "pid": "rylJwpXCME",
+    "program_code": "BSC-PESC",
+    "program_name": "Physics and Earth Sciences (Geophysics)",
+    "program_title": "Physics and Earth Sciences (Geophysics) (Bachelor of Science - Combined Major)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/B1kw6QAfV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/B1kw6QAfV",
+    "id": "677878e66669eebb0f750885",
+    "pid": "B1kw6QAfV",
+    "program_code": "BSC-PESD",
+    "program_name": "Physics and Earth Sciences (Geophysics) (Honours)",
+    "program_title": "Physics and Earth Sciences (Geophysics) (Bachelor of Science - Combined Honours)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/BygDaXAfV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/BygDaXAfV",
+    "id": "677c25c2771b972378c3503d",
+    "pid": "BygDaXAfV",
+    "program_code": "BSC-OPSC",
+    "program_name": "Physics and Ocean-Atmosphere Sciences",
+    "program_title": "Physics and Ocean-Atmosphere Sciences (Bachelor of Science - Combined Major)"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/program/{catalog_id}/S1evaXCzE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/programs/S1evaXCzE",
+    "id": "67787c712740d9c323c7a394",
+    "pid": "S1evaXCzE",
+    "program_code": "BSC-OPSD",
+    "program_name": "Physics and Ocean-Atmosphere Sciences (Honours)",
+    "program_title": "Physics and Ocean-Atmosphere Sciences (Bachelor of Science - Combined Honours)"
+  }
+]

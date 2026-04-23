@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workflow | SEOS Curriculum Atlas</title>
+  <meta name="description" content="Maintenance workflow for the SEOS Curriculum Atlas static site and graph regeneration pipeline.">
+  <meta name="theme-color" content="#f4f1eb">
+  <link rel="stylesheet" href="program-guide.css">
+  <script defer src="program-guide.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="site-mark" href="index.html">SEOS Curriculum Atlas</a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="index.html">Home</a><a href="programs/overview.html">Programs</a><a href="courses/overview.html">Courses</a><a class="is-active" href="curriculum_workflow.html">Workflow</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero hero--guide">
+      <div class="hero__content">
+        <p class="hero__eyebrow">Workflow</p>
+        <h1 class="hero__title hero__title--wide">Static build workflow for the curriculum atlas.</h1>
+        <p class="hero__lede">Sync the catalog data, regenerate every graph and page, then publish the output without relying on Sphinx.</p>
+        <div class="hero__actions"><a class="button" href="index.html">Guide home</a><a class="button button--ghost" href="programs/overview.html">Programs</a><a class="button button--ghost" href="courses/overview.html">Courses</a></div>
+      </div>
+    </section>
+    
+    <section class="section">
+      <div class="split-callout">
+        <div>
+          <p class="section-kicker">Build Model</p>
+          <h2>Scripted static generation rather than notebook and Sphinx maintenance.</h2>
+          <p>This guide is now built as static HTML and SVG from the synced catalog JSON. The intended workflow is a data pull, a full graph and page rebuild, and then a publish step. That keeps the visual design aligned with the curriculum pages while removing the old manual `.rst` and notebook bottleneck.</p>
+        </div>
+        <div>
+          <p class="section-kicker">Last updated</p>
+          <p class="panel-note">April 22, 2026 | 19 programs | 47 EOS courses | 130 supporting courses</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">
+        <article class="command-card">
+          <p class="detail-card__eyebrow">Update data and rebuild</p>
+          <h3>Recommended maintenance command</h3>
+          <div class="code-block"><code>python3 scripts/update_program_guide.py</code></div>
+          <p class="meta-line">Runs the UVic catalog sync, then regenerates every graph and every static page into <code>build/html</code>.</p>
+        </article>
+        <article class="command-card">
+          <p class="detail-card__eyebrow">Rebuild only</p>
+          <h3>When the snapshot is already current</h3>
+          <div class="code-block"><code>python3 scripts/build_static_site.py</code></div>
+          <p class="meta-line">Useful after local styling or page-template edits when the data files themselves have not changed.</p>
+        </article>
+        <article class="command-card">
+          <p class="detail-card__eyebrow">Publish</p>
+          <h3>Push the generated site</h3>
+          <div class="code-block"><code>./push_docs.sh</code></div>
+          <p class="meta-line">Publishes the freshly generated <code>build/html</code> output to the repository’s <code>gh-pages</code> branch.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">
+        <article class="detail-card">
+          <p class="detail-card__eyebrow">Scope</p>
+          <h3>What gets regenerated</h3>
+          <div class="rich-text">
+            <ul>
+              <li>Guide home page and workflow page</li>
+              <li>Program overview plus one page and one SVG graph for every SEOS program in the synced set</li>
+              <li>Course overview plus one page and one SVG graph for every EOS and partner-department course with detail data</li>
+            </ul>
+          </div>
+        </article>
+        <article class="detail-card">
+          <p class="detail-card__eyebrow">Known Gaps</p>
+          <h3>Referenced codes missing from the live snapshot</h3>
+          <div class="pill-row"><span class="course-pill course-pill--ghost">BIOL311B</span><span class="course-pill course-pill--ghost">CHEM400</span><span class="course-pill course-pill--ghost">CHEM498</span><span class="course-pill course-pill--ghost">EOS100</span><span class="course-pill course-pill--ghost">EOS101</span><span class="course-pill course-pill--ghost">EOS225</span><span class="course-pill course-pill--ghost">EOS260</span><span class="course-pill course-pill--ghost">EOS310</span><span class="course-pill course-pill--ghost">EOS320</span><span class="course-pill course-pill--ghost">EOS360</span><span class="course-pill course-pill--ghost">EOS370</span><span class="course-pill course-pill--ghost">EOS422</span><span class="course-pill course-pill--ghost">EOS430</span><span class="course-pill course-pill--ghost">EOS499</span><span class="course-pill course-pill--ghost">GEOG110</span><span class="course-pill course-pill--ghost">GEOG120</span><span class="course-pill course-pill--ghost">GEOG203A</span><span class="course-pill course-pill--ghost">GEOG203B</span><span class="course-pill course-pill--ghost">GEOG213</span><span class="course-pill course-pill--ghost">GEOG216</span><span class="course-pill course-pill--ghost">GEOG217</span><span class="course-pill course-pill--ghost">MRNE300</span><span class="course-pill course-pill--ghost">PHYS102</span><span class="course-pill course-pill--ghost">PHYS112</span><span class="course-pill course-pill--ghost">PHYS300</span></div>
+        </article>
+      </div>
+    </section>
+    
+  </main>
+
+  <footer>
+    <div class="footer-shell">
+      <div>
+        <p class="footer-brand">SEOS Curriculum Atlas</p>
+        <p class="footer-copy">Static curriculum maps generated from current UVic undergraduate calendar data. Pages and graphs are rebuilt together so the published site stays aligned with the catalog snapshot.</p>
+      </div>
+      <div class="footer-links">
+        <a href="programs/overview.html">Programs</a>
+        <a href="courses/overview.html">Courses</a>
+        <a href="curriculum_workflow.html">Workflow</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

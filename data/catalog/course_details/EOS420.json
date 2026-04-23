@@ -1,0 +1,35 @@
+{
+  "__catalogCourseId": "EOS420",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>A geological study of the major types of economically important metallic and nonmetallic minerals and other earth resources, basic processes of ore formation, exploration and mining techniques. The impacts of these activities on the environment are also considered.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3691afed2d200010da13f",
+    "name": "School of Earth and Ocean Sciences"
+  },
+  "hoursCatalogText": "3-3-0",
+  "id": "5d1f722394e82e2400a2373e",
+  "pid": "rJkpQOpXV",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f6e62d2bc1524008cb067\" target=\"_blank\">EOS201</a> <!-- -->-<!-- --> <!-- -->Sedimentary Geology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></div></div></div>",
+  "preOrCorequisites": "<div><div><div><ul><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\">Completed or concurrently enrolled in all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f6b0689944f24002acff3\" target=\"_blank\">EOS316</a> <!-- -->-<!-- --> <!-- -->Igneous and Metamorphic Geology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-C\"><div data-test=\"ruleView-C-result\"><div>or permission of the school.</div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Earth and Ocean Sciences (EOS)",
+    "id": "5c13fb3b42504f2400e645d8",
+    "linkedGroup": "5be3691afed2d200010da13f",
+    "name": "EOS"
+  },
+  "supplementalNotes": "<ul> <li>Normally alternates with EOS 422. Students are advised to consult with the department to determine when this is offered.</li> </ul>",
+  "title": "Resource Geology"
+}

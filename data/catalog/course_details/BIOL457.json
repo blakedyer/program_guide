@@ -1,0 +1,35 @@
+{
+  "__catalogCourseId": "BIOL457",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2020-05-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-09-01",
+  "description": "<p>Fundamental principles of paleoecology with emphasis on species, community and ecosystem responses to environmental change over the past 2 million years. Topics include: using fossil remains to infer ecological dynamics and climate change since the last glaciation; ice age megafaunal extinctions; role of paleoecology in conservation.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bb51eae8d88df000194e9c2",
+    "name": "Department of Biology"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5df1371e9c4ef42500f710af",
+  "pid": "ByNDCDaX4",
+  "preAndCorequisites": "<div><div><div><ul><div><span class=\"rules_groupHeader_37\"></span><li><span>Complete <!-- -->all<!-- --> of the following</span><ul><li data-test=\"ruleView-A.1\"><div data-test=\"ruleView-A.1-result\">Complete <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f6ea3d2bc1524008cb091\" target=\"_blank\">BIOL215</a> <!-- -->-<!-- --> <!-- -->Principles of Ecology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/63911b5c30114c1cdac5f3ee\" target=\"_blank\">EOS330</a> <!-- -->-<!-- --> <!-- -->Paleobiology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-A.2\"><div data-test=\"ruleView-A.2-result\"><div>minimum third-year standing</div></div></li></ul></li></div><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\"><div>or permission of the department.</div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "recommendations": "<ul><li> BIOL 324 recommended prior to BIOL 457.</li></ul>",
+  "subjectCode": {
+    "description": "Biology (BIOL)",
+    "id": "5bb6513b65a8732e00a173d9",
+    "linkedGroup": "5bb51eae8d88df000194e9c2",
+    "name": "BIOL"
+  },
+  "supplementalNotes": "<ul> <li>Credit will be granted for only one of BIOL 457, BIOL 557.</li> </ul>",
+  "title": "Paleoecology and Environmental Change"
+}

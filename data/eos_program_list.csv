@@ -1,7 +1,20 @@
 program_code,program_name
-MNR-ESC,Earth Sciences (Minor)
-BSC-EOSM,Earth Sciences
 BSC-BESC,Biology and Earth Sciences
+BSC-BESD,Biology and Earth Sciences (Honours)
 BSC-CGSC,Chemistry and Earth Sciences
-BSC-PESC,Physics and Earth Sciences (Geophysics)
+BSC-CGSD,Chemistry and Earth Sciences (Honours)
+BSC-CSSC,Chemistry and Ocean Sciences
+BSC-CSSD,Chemistry and Ocean Sciences (Honours)
+BSC-CLSC,Climate Science
+BSC-CLSD,Climate Science (Honours)
+BSC-EOSM,Earth Sciences
+MNR-ESC,Earth Sciences (General)
+BSC-EOSH,Earth Sciences (Honours)
+MNR-ESCX,Earth Sciences (Minor)
+MNR-OSC,Ocean Sciences (Minor)
 BSC-GOSC,Physical Geography and Earth and Ocean Sciences
+BSC-GOSD,Physical Geography and Earth and Ocean Sciences (Honours)
+BSC-PESC,Physics and Earth Sciences (Geophysics)
+BSC-PESD,Physics and Earth Sciences (Geophysics) (Honours)
+BSC-OPSC,Physics and Ocean-Atmosphere Sciences
+BSC-OPSD,Physics and Ocean-Atmosphere Sciences (Honours)

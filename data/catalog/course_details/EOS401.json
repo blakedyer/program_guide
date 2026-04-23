@@ -1,0 +1,32 @@
+{
+  "__catalogCourseId": "EOS401",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>Methods of data acquisition, study and analysis required for solving oceanographic problems. Includes a field component held at Bamfield Marine Sciences Centre. Focus is on planning, implementing and analyzing a field data set, elucidating the biological, chemical, geological and physical dynamics of coastal waters.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3691afed2d200010da13f",
+    "name": "School of Earth and Ocean Sciences"
+  },
+  "id": "60075fce0247a50027e7bfdc",
+  "pid": "S1oIB9G_N",
+  "preAndCorequisites": "<div><div><div><ul><li><span>Complete <!-- -->3<!-- --> of the following</span><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d8168d3a3a3a624000770d2\" target=\"_blank\">EOS311</a> <!-- -->-<!-- --> <!-- -->Biological Oceanography<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f6edfd2bc1524008cb0bc\" target=\"_blank\">EOS312</a> <!-- -->-<!-- --> <!-- -->Introductory Chemical Oceanography<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-C\"><div data-test=\"ruleView-C-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f715cfb68f3240022d38f\" target=\"_blank\">EOS313</a> <!-- -->-<!-- --> <!-- -->Introductory Geological Oceanography<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-D\"><div data-test=\"ruleView-D-result\">Complete <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/6686cd20516b11d275078958\" target=\"_blank\">EOS314</a> <!-- -->-<!-- --> <!-- -->Descriptive Physical Oceanography<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/6686d936f56b5f3a754f3d73\" target=\"_blank\">EOS431</a> <!-- -->-<!-- --> <!-- -->Physical Oceanography<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Earth and Ocean Sciences (EOS)",
+    "id": "5c13fb3b42504f2400e645d8",
+    "linkedGroup": "5be3691afed2d200010da13f",
+    "name": "EOS"
+  },
+  "title": "Oceanographic Field School"
+}

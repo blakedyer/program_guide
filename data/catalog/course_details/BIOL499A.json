@@ -1,0 +1,38 @@
+{
+  "__catalogCourseId": "BIOL499A",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "allGradingTypes": {
+    "inp": true,
+    "standard": true
+  },
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>The first stage of a research project conducted under the direction of a faculty member.</p>",
+  "formerlyNotesText": "part of BIOL 499",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bb51eae8d88df000194e9c2",
+    "name": "Department of Biology"
+  },
+  "id": "5d1f714dd2bc1524008cb272",
+  "pid": "SJZuRvamN",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\"><div>Permission of the department.</div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Biology (BIOL)",
+    "id": "5bb6513b65a8732e00a173d9",
+    "linkedGroup": "5bb51eae8d88df000194e9c2",
+    "name": "BIOL"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of BIOL 499A, BIOL 499.</li><li>Open to Honours students only. BIOL 499A and BIOL 499B are &quot;tied&quot; courses and must be taken in consecutive terms except with permission of the department. Credit and final grade for BIOL 499A will be assigned only upon successful completion of BIOL 499B; if BIOL 499B is not completed, a grade equivalent to N will be assigned to BIOL 499A.</li></ul>",
+  "title": "Honours Thesis I"
+}

@@ -1,0 +1,425 @@
+[
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkMnQ_a7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkMnQ_a7V",
+    "course_code": "EOS110",
+    "course_name": "Oceans and Atmosphere",
+    "id": "5d1f7c4389944f24002adb12",
+    "pid": "BkMnQ_a7V",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HyGhmO67E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HyGhmO67E",
+    "course_code": "EOS120",
+    "course_name": "The Dynamic Earth",
+    "id": "5d1f6b5889944f24002ad041",
+    "pid": "HyGhmO67E",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B128DL80w",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B128DL80w",
+    "course_code": "EOS130",
+    "course_name": "Climate Change",
+    "id": "5ff8d754100d1e00282bc041",
+    "pid": "B128DL80w",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkQnQu67N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkQnQu67N",
+    "course_code": "EOS170",
+    "course_name": "Natural Hazards",
+    "id": "5d7bdc197666772400882a56",
+    "pid": "HkQnQu67N",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJ7hXOaQ4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJ7hXOaQ4",
+    "course_code": "EOS201",
+    "course_name": "Sedimentary Geology",
+    "id": "5d1f6e62d2bc1524008cb067",
+    "pid": "BJ7hXOaQ4",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1V3XuTX4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1V3XuTX4",
+    "course_code": "EOS202",
+    "course_name": "Structural Geology",
+    "id": "5d1f6a1494e82e2400a23140",
+    "pid": "H1V3XuTX4",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJB27uaXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJB27uaXN",
+    "course_code": "EOS205",
+    "course_name": "Mineralogy",
+    "id": "5e583939b72ef32500f34d2c",
+    "pid": "HJB27uaXN",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1ern7_Tm4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1ern7_Tm4",
+    "course_code": "EOS210",
+    "course_name": "Introductory Geophysics",
+    "id": "5faf0c6cf5dbad0026c052ed",
+    "pid": "S1ern7_Tm4",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HydeKwLCP",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HydeKwLCP",
+    "course_code": "EOS220",
+    "course_name": "Weather and Climate",
+    "id": "5ff8e8e89937180027b3608b",
+    "pid": "HydeKwLCP",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ByR84_80P",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByR84_80P",
+    "course_code": "EOS230",
+    "course_name": "Introduction to Environmental Data Analysis",
+    "id": "65a1935c7dbc90ea2f22223b",
+    "pid": "ByR84_80P",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1UnQuTXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1UnQuTXN",
+    "course_code": "EOS240",
+    "course_name": "Geochemistry",
+    "id": "667f1fcdc1d1429420bd2bc2",
+    "pid": "S1UnQuTXN",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BknoD5ykd",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BknoD5ykd",
+    "course_code": "EOS261",
+    "course_name": "The Climate System",
+    "id": "61ae8336846c7828419e7e5b",
+    "pid": "BknoD5ykd",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Sy8n7_a74",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Sy8n7_a74",
+    "course_code": "EOS300",
+    "course_name": "Earth Science Field School",
+    "id": "5e5839c07120522500518b65",
+    "pid": "Sy8n7_a74",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkdhQ_pQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkdhQ_pQV",
+    "course_code": "EOS311",
+    "course_name": "Biological Oceanography",
+    "id": "5d8168d3a3a3a624000770d2",
+    "pid": "BkdhQ_pQV",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Syuhm_TmE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Syuhm_TmE",
+    "course_code": "EOS312",
+    "course_name": "Introductory Chemical Oceanography",
+    "id": "5d1f6edfd2bc1524008cb0bc",
+    "pid": "Syuhm_TmE",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1dh7_T7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1dh7_T7V",
+    "course_code": "EOS313",
+    "course_name": "Introductory Geological Oceanography",
+    "id": "5d1f715cfb68f3240022d38f",
+    "pid": "B1dh7_T7V",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1tn7d6QE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1tn7d6QE",
+    "course_code": "EOS314",
+    "course_name": "Descriptive Physical Oceanography",
+    "id": "6686cd20516b11d275078958",
+    "pid": "S1tn7d6QE",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1937dT7E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1937dT7E",
+    "course_code": "EOS316",
+    "course_name": "Igneous and Metamorphic Geology",
+    "id": "5d1f6b0689944f24002acff3",
+    "pid": "B1937dT7E",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkEo5kjKw",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkEo5kjKw",
+    "course_code": "EOS321",
+    "course_name": "Earth History",
+    "id": "667f23c1c53c17371e0cb1fc",
+    "pid": "SkEo5kjKw",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Hk9nQOp7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hk9nQOp7V",
+    "course_code": "EOS325",
+    "course_name": "Earth System Modelling",
+    "id": "6686d0e2516b11339407896b",
+    "pid": "Hk9nQOp7V",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Byo37Oam4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Byo37Oam4",
+    "course_code": "EOS330",
+    "course_name": "Paleobiology",
+    "id": "63911b5c30114c1cdac5f3ee",
+    "pid": "Byo37Oam4",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1xs2m_a7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1xs2m_a7V",
+    "course_code": "EOS335",
+    "course_name": "Isotopes in Natural Sciences",
+    "id": "5d1f7355d2bc1524008cb3ef",
+    "pid": "S1xs2m_a7V",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJs3Qu6QN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJs3Qu6QN",
+    "course_code": "EOS340",
+    "course_name": "Atmospheric Physics",
+    "id": "667f21ef07ae35617cfa3e71",
+    "pid": "rJs3Qu6QN",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ryhhmOaQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ryhhmOaQV",
+    "course_code": "EOS350",
+    "course_name": "Understanding the Oceans",
+    "id": "614ba345b22f75455f424bdc",
+    "pid": "ryhhmOaQV",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1T3QOaQE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1T3QOaQE",
+    "course_code": "EOS365",
+    "course_name": "Climate and Society",
+    "id": "5e583a8f7120522500518b77",
+    "pid": "r1T3QOaQE",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJgphQu6m4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJgphQu6m4",
+    "course_code": "EOS400",
+    "course_name": "Advanced Field Geology",
+    "id": "63911c673af2a2f897d1d833",
+    "pid": "HJgphQu6m4",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1oIB9G_N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1oIB9G_N",
+    "course_code": "EOS401",
+    "course_name": "Oceanographic Field School",
+    "id": "60075fce0247a50027e7bfdc",
+    "pid": "S1oIB9G_N",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJAhmuaQE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJAhmuaQE",
+    "course_code": "EOS403",
+    "course_name": "Global Biogeochemical Cycles",
+    "id": "6686d425516b110ce607897c",
+    "pid": "BJAhmuaQE",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1lA2m_aXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1lA2m_aXN",
+    "course_code": "EOS408",
+    "course_name": "Marine Geology",
+    "id": "6686d545c53c177e410f4dcb",
+    "pid": "r1lA2m_aXN",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkCnXOpmV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkCnXOpmV",
+    "course_code": "EOS410",
+    "course_name": "Global Tectonics",
+    "id": "5e583ace2beb4c25001539f8",
+    "pid": "HkCnXOpmV",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkbA27OamV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkbA27OamV",
+    "course_code": "EOS416",
+    "course_name": "High Temperature Petrology",
+    "id": "667f2cbbc53c170e3f0cb23e",
+    "pid": "BkbA27OamV",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJkpQOpXV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJkpQOpXV",
+    "course_code": "EOS420",
+    "course_name": "Resource Geology",
+    "id": "5d1f722394e82e2400a2373e",
+    "pid": "rJkpQOpXV",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJ-mjQi5U",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJ-mjQi5U",
+    "course_code": "EOS423",
+    "course_name": "Advanced Sedimentology and Stratigraphy",
+    "id": "63911d47ecde9a0c1f71ae75",
+    "pid": "HJ-mjQi5U",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJeTmdamV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJeTmdamV",
+    "course_code": "EOS425",
+    "course_name": "Aqueous Chemistry in the Earth and Ocean",
+    "id": "6686d77d848b0513cf921372",
+    "pid": "SJeTmdamV",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1xamu6m4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1xamu6m4",
+    "course_code": "EOS427",
+    "course_name": "Geophysics",
+    "id": "5d1f6ddefb68f3240022d101",
+    "pid": "r1xamu6m4",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ryWamu67N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ryWamu67N",
+    "course_code": "EOS431",
+    "course_name": "Physical Oceanography",
+    "id": "6686d936f56b5f3a754f3d73",
+    "pid": "ryWamu67N",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HyG67_aQN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HyG67_aQN",
+    "course_code": "EOS433",
+    "course_name": "The Physics of Climate",
+    "id": "631b5ff487576eca2181f59a",
+    "pid": "HyG67_aQN",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1mp7daQ4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1mp7daQ4",
+    "course_code": "EOS440",
+    "course_name": "Hydrogeology",
+    "id": "5d1f722dd2bc1524008cb307",
+    "pid": "B1mp7daQ4",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Hy7p7daX4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hy7p7daX4",
+    "course_code": "EOS450",
+    "course_name": "Quaternary Geology",
+    "id": "5d1f722e89944f24002ad592",
+    "pid": "Hy7p7daX4",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1ujbt6mV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1ujbt6mV",
+    "course_code": "EOS451",
+    "course_name": "Introductory Dynamic Meteorology",
+    "id": "5d1f680afb68f3240022cc7e",
+    "pid": "H1ujbt6mV",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ryVTQu6QE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ryVTQu6QE",
+    "course_code": "EOS460",
+    "course_name": "Earth System Science",
+    "id": "6393bacf0f9d60f874466e9c",
+    "pid": "ryVTQu6QE",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJVTXu6mV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJVTXu6mV",
+    "course_code": "EOS480",
+    "course_name": "Applied Geophysics",
+    "id": "5eed09662ed00e00281f8915",
+    "pid": "SJVTXu6mV",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJrp7d67E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJrp7d67E",
+    "course_code": "EOS490",
+    "course_name": "Directed Studies in Earth and Ocean Sciences",
+    "id": "5c4ff3bc7ec31124000cf344",
+    "pid": "rJrp7d67E",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkeB6XupmN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkeB6XupmN",
+    "course_code": "EOS491",
+    "course_name": "Advanced Topics in Earth and Ocean Sciences",
+    "id": "5c4ff3bd7ec31124000cf346",
+    "pid": "SkeB6XupmN",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1I67u67E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1I67u67E",
+    "course_code": "EOS492",
+    "course_name": "Advanced Laboratory Topics in Earth and Ocean Sciences",
+    "id": "5c4ff3bdbb9b5e2400811717",
+    "pid": "S1I67u67E",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1ITQ_aQN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1ITQ_aQN",
+    "course_code": "EOS499A",
+    "course_name": "Honours Thesis I",
+    "id": "5d1f723394e82e2400a23749",
+    "pid": "r1ITQ_aQN",
+    "subject": "EOS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rywpXu6X4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rywpXu6X4",
+    "course_code": "EOS499B",
+    "course_name": "Honours Thesis II",
+    "id": "5d1f7234d2bc1524008cb30b",
+    "pid": "rywpXu6X4",
+    "subject": "EOS"
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "__catalogCourseId": "BIOL461",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>An examination of the basic principles of fisheries ecology and population dynamics and how these are used as the basis for stock assessment and fisheries management. Topics include: current issues in BC, Canadian and global fisheries; growth, mortality, reproduction and recruitment; stock-recruitment and age-structured fisheries models; fisheries management tactics and strategies.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bb51eae8d88df000194e9c2",
+    "name": "Department of Biology"
+  },
+  "hoursCatalogText": "3-0-1",
+  "id": "5d1f6fb289944f24002ad3a3",
+  "pid": "HyDv0vaQ4",
+  "preOrCorequisites": "<div><div><div><ul><li><span>Complete <!-- -->1<!-- --> of the following</span><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Completed or concurrently enrolled in <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/61c9478d5cba7e826212eaef\" target=\"_blank\">BIOL330</a> <!-- -->-<!-- --> <!-- -->Study Design and Data Analysis<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/614fa85e7286f1442fca6db7\" target=\"_blank\">BIOL370</a> <!-- -->-<!-- --> <!-- -->Conservation Biology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/5d1f72d089944f24002ad617\" target=\"_blank\">ES320</a> <!-- -->-<!-- --> <!-- -->Conservation Biology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/6227fe20601e842c1baae432\" target=\"_blank\">ES344</a> <!-- -->-<!-- --> <!-- -->Design and Analysis for Environmental Science<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\"><div>or permission of the department.</div></div></li></ul></li></ul></div></div></div>",
+  "proForma": "no",
+  "recommendations": "<ul><li> BIOL 335 recommended prior to BIOL 461.</li></ul>",
+  "subjectCode": {
+    "description": "Biology (BIOL)",
+    "id": "5bb6513b65a8732e00a173d9",
+    "linkedGroup": "5bb51eae8d88df000194e9c2",
+    "name": "BIOL"
+  },
+  "supplementalNotes": "",
+  "title": "Fisheries Ecology and Management"
+}

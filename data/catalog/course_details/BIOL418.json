@@ -1,0 +1,35 @@
+{
+  "__catalogCourseId": "BIOL418",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>Structure and function of forest ecosystems at the tree, stand and landscape scale, including: effects of the environment upon plant abundance, distribution and diversity; nutrient, carbon and water cycles; population and community ecology; disturbance; forest conservation; climate change and global forests.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bb51eae8d88df000194e9c2",
+    "name": "Department of Biology"
+  },
+  "hoursCatalogText": "3-3-0",
+  "id": "5d1f6ad194e82e2400a231bb",
+  "pid": "SJl8RPamN",
+  "preAndCorequisites": "<div><div><div><ul><li><span>Complete <!-- -->all<!-- --> of the following</span><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f6ea3d2bc1524008cb091\" target=\"_blank\">BIOL215</a> <!-- -->-<!-- --> <!-- -->Principles of Ecology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\"><div>minimum third year standing.</div></div></li></ul></li></ul></div></div></div>",
+  "proForma": "no",
+  "recommendations": "<ul><li> BIOL 324 recommended prior to BIOL 418.</li></ul>",
+  "subjectCode": {
+    "description": "Biology (BIOL)",
+    "id": "5bb6513b65a8732e00a173d9",
+    "linkedGroup": "5bb51eae8d88df000194e9c2",
+    "name": "BIOL"
+  },
+  "supplementalNotes": "",
+  "title": "Forest Ecology"
+}

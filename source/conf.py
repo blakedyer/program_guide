@@ -14,9 +14,29 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import importlib.util
 import warnings
 
 warnings.filterwarnings("ignore")
+
+
+def maybe_add_extension(extensions_list, extension_name, import_name=None):
+    """Add a Sphinx extension only when it imports cleanly."""
+
+    module_name = import_name or extension_name
+    try:
+        spec = importlib.util.find_spec(module_name)
+    except ModuleNotFoundError:
+        spec = None
+    if spec is None:
+        warnings.warn(f"Skipping {extension_name}: {module_name} is not installed.")
+        return
+    try:
+        __import__(module_name)
+    except Exception as exc:  # pragma: no cover - build-env dependent
+        warnings.warn(f"Skipping {extension_name}: {exc}")
+        return
+    extensions_list.append(extension_name)
 
 # -- Project information -----------------------------------------------------
 
@@ -49,16 +69,17 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.todo",
     "sphinx.ext.intersphinx",
-    "numpydoc",
     "IPython.sphinxext.ipython_console_highlighting",
     "IPython.sphinxext.ipython_directive",
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.napoleon",
-    "myst_nb",
-    "sphinx_design",
     "sphinx.ext.githubpages",
-    'sphinx_tabs.tabs'
 ]
+
+maybe_add_extension(extensions, "numpydoc")
+maybe_add_extension(extensions, "sphinx_design")
+maybe_add_extension(extensions, "sphinx_tabs.tabs", import_name="sphinx_tabs.tabs")
+maybe_add_extension(extensions, "myst_nb")
 
 numpydoc_show_class_members = False
 nb_execution_mode = "off"
@@ -116,12 +137,17 @@ intersphinx_mapping = {
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 
-html_theme = "pydata_sphinx_theme"
-html_theme_options = {
-    "github_url": "https://github.com/numpy/numpydoc",
-    "show_prev_next": False,
-    "navbar_end": ["search-field.html", "navbar-icon-links.html"],
-}
+if importlib.util.find_spec("pydata_sphinx_theme") is not None:
+    html_theme = "pydata_sphinx_theme"
+    html_theme_options = {
+        "github_url": "https://github.com/numpy/numpydoc",
+        "show_prev_next": False,
+        "navbar_end": ["search-field.html", "navbar-icon-links.html"],
+    }
+else:  # pragma: no cover - build-env dependent
+    warnings.warn("Falling back to alabaster because pydata_sphinx_theme is not installed.")
+    html_theme = "alabaster"
+    html_theme_options = {}
 
 
 html_title = "%s v%s Manual" % (project, version)
@@ -137,42 +163,42 @@ html_static_path = []  # ['_static']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "pydata_sphinx_theme"
-
-# Theme options are theme-specific and customize the look and feel of a theme
-# further.  For a list of options available for each theme, see the
-# documentation.
-#
-html_theme_options = {
-    "icon_links": [
-        {
-            "name": "GitHub",
-            "url": "https://github.com/blakedyer/program_guide",
-            "icon": "fab fa-github-square",
-        },
-        {
-            "name": "Twitter",
-            "url": "https://twitter.com/uvicseos",
-            "icon": "fab fa-twitter-square",
-        },
-    ],
-    "show_prev_next": False,
-    "navbar_start": ["navbar-logo"],
-    "navbar_end": ["search-field.html", "navbar-icon-links.html"],
-    "search_bar_text": "Search...",
-    # "use_edit_page_button": False,  # TODO: see how to skip of fix for generated pages
-    # "google_analytics_id": "UA-176578023-1",
-}
+if html_theme == "pydata_sphinx_theme":
+    # Theme options are theme-specific and customize the look and feel of a theme
+    # further. For a list of options available for each theme, see the documentation.
+    html_theme_options = {
+        "icon_links": [
+            {
+                "name": "GitHub",
+                "url": "https://github.com/blakedyer/program_guide",
+                "icon": "fab fa-github-square",
+            },
+            {
+                "name": "Twitter",
+                "url": "https://twitter.com/uvicseos",
+                "icon": "fab fa-twitter-square",
+            },
+        ],
+        "show_prev_next": False,
+        "navbar_start": ["navbar-logo"],
+        "navbar_end": ["search-field.html", "navbar-icon-links.html"],
+        "search_bar_text": "Search...",
+        # "use_edit_page_button": False,  # TODO: see how to skip of fix for generated pages
+        # "google_analytics_id": "UA-176578023-1",
+    }
 html_context = {
     "github_user": "blakedyer",
-    "github_repo": "program_guide_EOS",
+    "github_repo": "program_guide",
     "github_version": "main",
     # "doc_path": "docs/source/",
 }
 
-html_sidebars = {
-    "**": ["sidebar-nav-bs.html"],
-}
+if html_theme == "pydata_sphinx_theme":
+    html_sidebars = {
+        "**": ["sidebar-nav-bs.html"],
+    }
+else:  # pragma: no cover - build-env dependent
+    html_sidebars = {}
 
 html_title = f"{project} v{release} Manual"
 html_last_updated_fmt = "%b %d, %Y"

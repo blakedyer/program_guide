@@ -1,0 +1,34 @@
+{
+  "__catalogCourseId": "GEOG477",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>The nature of scientific research in physical geography is examined through field and laboratory techniques. Includes a week-long field camp where basic approaches, methodologies and techniques are used to prepare a series of reports based on field data and collected samples. A field trip fee may be applied.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3699cfed2d200010da148",
+    "name": "Department of Geography"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5d1f73be94e82e2400a23854",
+  "pid": "By-wSupXE",
+  "preAndCorequisites": "<div><div><div><ul><li><span>Complete <!-- -->all<!-- --> of the following</span><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f674089944f24002acc9e\" target=\"_blank\">GEOG358</a> <!-- -->-<!-- --> <!-- -->Landscape Ecology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/657a4023f8b722df70dbf7cb\" target=\"_blank\">GEOG370</a> <!-- -->-<!-- --> <!-- -->Methods in Hydrology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/5dbb425af99831240039c76f\" target=\"_blank\">GEOG373</a> <!-- -->-<!-- --> <!-- -->Applied Climatology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/657cb1092d647d752957f909\" target=\"_blank\">GEOG376</a> <!-- -->-<!-- --> <!-- -->Process Geomorphology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\"><div>permission of the department.</div></div></li></ul></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Geography (GEOG)",
+    "id": "5be1fc782ce2be2e0030172e",
+    "linkedGroup": "5be3699cfed2d200010da148",
+    "name": "GEOG"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of GEOG 477, GEOG 471D.</li><li>Permission of the department must be acquired by 15 March of previous Winter Session.</li></ul>",
+  "title": "Field Studies in Physical Geography"
+}

@@ -1,0 +1,35 @@
+{
+  "__catalogCourseId": "CHEM363",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2023-05-01",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2023-05-03",
+  "description": "<p>Emphasizes organic synthesis and the relationship between spectra, structure and reactivity of synthesized materials.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bb65cedee95370001de0ca0",
+    "name": "Department of Chemistry"
+  },
+  "hoursCatalogText": "0-6-0",
+  "id": "631cdea4f7f5ca478051e5d0",
+  "pid": "H1N11dTmE",
+  "preAndCorequisites": "<div><div><div><ul><li><span>Complete <!-- -->1<!-- --> of the following</span><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d7818d57108752400bcc496\" target=\"_blank\">CHEM213</a> <!-- -->-<!-- --> <!-- -->Practical Spectroscopy<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/631ce62f3e0e0c874ce98408\" target=\"_blank\">CHEM232</a> <!-- -->-<!-- --> <!-- -->Organic Chemistry with Biological Applications with Laboratory<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5e1f680100547c25005dc721\" target=\"_blank\">CHEM234</a> <!-- -->-<!-- --> <!-- -->Organic Chemistry with Biological Applications<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/5e1f6a3dd3233b25000fba82\" target=\"_blank\">CHEM260</a> <!-- -->-<!-- --> <!-- -->Synthetic Chemistry Laboratory<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></li></ul></div></div></div>",
+  "proForma": "no",
+  "repeatableCatalogText": "",
+  "subjectCode": {
+    "description": "Chemistry (CHEM)",
+    "id": "5bbec2f9dd74d22e00571e83",
+    "linkedGroup": "5bb65cedee95370001de0ca0",
+    "name": "CHEM"
+  },
+  "supplementalNotes": "<ul><li>A total of 1.5 units of credit will be granted for only one of CHEM 363, CHEM 335, CHEM 338 (if taken prior to September 2001).</li></ul>",
+  "title": "Organic Chemistry Laboratory"
+}

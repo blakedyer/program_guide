@@ -1,0 +1,38 @@
+{
+  "__catalogCourseId": "BIOL460",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "allGradingTypes": {
+    "com": true,
+    "f": true,
+    "n": true
+  },
+  "catalogActivationDate": "2021-05-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "0",
+      "min": "0"
+    },
+    "value": "0"
+  },
+  "dateStart": "2021-09-02",
+  "description": "<p>Participation in seminars as arranged by the department and the Honours Coordinator. Required of all Honours students in their fourth-year of studies.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bb51eae8d88df000194e9c2",
+    "name": "Department of Biology"
+  },
+  "hoursCatalogText": "1-0-0",
+  "id": "5f62e1dd7d1a9b00260869ae",
+  "pid": "BkUv0PpXE",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Biology (BIOL)",
+    "id": "5bb6513b65a8732e00a173d9",
+    "linkedGroup": "5bb51eae8d88df000194e9c2",
+    "name": "BIOL"
+  },
+  "supplementalNotes": "",
+  "title": "Honours Seminar"
+}

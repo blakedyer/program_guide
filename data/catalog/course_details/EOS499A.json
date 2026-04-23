@@ -1,0 +1,38 @@
+{
+  "__catalogCourseId": "EOS499A",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "allGradingTypes": {
+    "inp": true,
+    "standard": true
+  },
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>The first stage of a research project conducted under the direction of a faculty member.</p>",
+  "formerlyNotesText": "part of EOS 499",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3691afed2d200010da13f",
+    "name": "School of Earth and Ocean Sciences"
+  },
+  "id": "5d1f723394e82e2400a23749",
+  "pid": "r1ITQ_aQN",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\"><div>Permission of the department.</div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Earth and Ocean Sciences (EOS)",
+    "id": "5c13fb3b42504f2400e645d8",
+    "linkedGroup": "5be3691afed2d200010da13f",
+    "name": "EOS"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of EOS 499A, EOS 499, EOS 499B.</li><li>Open to Honours students only. EOS 499A and EOS 499B are &quot;tied&quot; courses and must be taken in consecutive terms except with permission of the department. Credit and final grade for EOS 499A will be assigned only upon successful completion of EOS 499B; if EOS 499B is not completed, a grade equivalent to N will be assigned to EOS 499A.</li></ul>",
+  "title": "Honours Thesis I"
+}

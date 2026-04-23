@@ -1,0 +1,39 @@
+{
+  "__catalogCourseId": "PHYS460A",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "allGradingTypes": {
+    "com": true,
+    "f": true,
+    "n": true
+  },
+  "catalogActivationDate": "2018-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "0",
+      "min": "0"
+    },
+    "value": "0"
+  },
+  "dateStart": "2017-05-03",
+  "description": "<p>Weekly physics and astronomy colloquium.</p>",
+  "formerlyNotesText": "part of PHYS 460",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bbfc6626d73970001701e45",
+    "name": "Department of Physics and Astronomy"
+  },
+  "hoursCatalogText": "2-0-0",
+  "id": "5c4ffe971a3fd924005f02d8",
+  "pid": "H1ei0OaXN",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Physics (PHYS)",
+    "id": "5bbfc647a6762c2e00837c2a",
+    "linkedGroup": "5bbfc6626d73970001701e45",
+    "name": "PHYS"
+  },
+  "supplementalNotes": "",
+  "title": "Colloquium I"
+}

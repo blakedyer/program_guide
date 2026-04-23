@@ -1,0 +1,35 @@
+{
+  "__catalogCourseId": "CHEM499A",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2020-02-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-05-02",
+  "description": "<p>The first stage of a research project conducted under the direction of a faculty member.</p>",
+  "formerlyNotesText": "part of CHEM 499",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bb65cedee95370001de0ca0",
+    "name": "Department of Chemistry"
+  },
+  "hoursCatalogText": "0-6-0",
+  "id": "5d7817547108752400bcc460",
+  "pid": "Hywx1uamN",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\"><div>Declared Honours in  one of the Chemistry programs.</div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Chemistry (CHEM)",
+    "id": "5bbec2f9dd74d22e00571e83",
+    "linkedGroup": "5bb65cedee95370001de0ca0",
+    "name": "CHEM"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of CHEM 499A, CHEM 498A, CHEM 499.</li><li>Enrollment in 499A and 499B does not automatically confer Honours program status. Students are advised to make arrangements for 499 projects as early as possible. Ideally, projects should be discussed with potential supervisors before the semester in which the research will be undertaken. Interested students should contact the course coordinator by the first week of classes. CHEM 499A and CHEM 499B are &quot;tied&quot; courses and must be taken in consecutive terms except with permission of the department. Credit for CHEM 499A will be assigned only upon successful completion of CHEM 499B.</li></ul>",
+  "title": "Honours Thesis I"
+}

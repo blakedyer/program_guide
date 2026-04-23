@@ -1,0 +1,42 @@
+{
+  "__catalogCourseId": "PHYS427",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2018-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "crossListedCourses": [
+    {
+      "__catalogCourseId": "EOS427",
+      "pid": "r1xamu6m4",
+      "title": "Geophysics"
+    }
+  ],
+  "dateStart": "1973-01-01",
+  "description": "<p>Principles of seismology, gravity, geomagnetism, heat flow, and how they contribute to our understanding of whole Earth structure and plate tectonics.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bbfc6626d73970001701e45",
+    "name": "Department of Physics and Astronomy"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5c4ffe934afbf82400f7adf0",
+  "pid": "rks50O6XE",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/64dd5c23014e5324314b5789\" target=\"_blank\">PHYS321A</a> <!-- -->-<!-- --> <!-- -->Classical Mechanics I<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/64dd5ee66a7fcb090d2bb536\" target=\"_blank\">PHYS326</a> <!-- -->-<!-- --> <!-- -->Electricity and Magnetism<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></div></div></div>",
+  "preOrCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Completed or concurrently enrolled in all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f67c094e82e2400a22f85\" target=\"_blank\">MATH346</a> <!-- -->-<!-- --> <!-- -->Introduction to Partial Differential Equations<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Physics (PHYS)",
+    "id": "5bbfc647a6762c2e00837c2a",
+    "linkedGroup": "5bbfc6626d73970001701e45",
+    "name": "PHYS"
+  },
+  "supplementalNotes": "<ul> <li>Credit will be granted for only one of PHYS 427, EOS 427.</li> <li>Normally offered in alternate years.</li> <li>Students are advised to consult with the department to determine when the course is offered.</li> </ul>",
+  "title": "Geophysics"
+}

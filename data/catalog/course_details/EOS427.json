@@ -1,0 +1,42 @@
+{
+  "__catalogCourseId": "EOS427",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "crossListedCourses": [
+    {
+      "__catalogCourseId": "PHYS427",
+      "pid": "rks50O6XE",
+      "title": "Geophysics"
+    }
+  ],
+  "dateStart": "2020-01-01",
+  "description": "<p>Principles of seismology, gravity, geomagnetism, heat flow, and how they contribute to our understanding of whole Earth structure and plate tectonics.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3691afed2d200010da13f",
+    "name": "School of Earth and Ocean Sciences"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5d1f6ddefb68f3240022d101",
+  "pid": "r1xamu6m4",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/64dd5c23014e5324314b5789\" target=\"_blank\">PHYS321A</a> <!-- -->-<!-- --> <!-- -->Classical Mechanics I<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/64dd5ee66a7fcb090d2bb536\" target=\"_blank\">PHYS326</a> <!-- -->-<!-- --> <!-- -->Electricity and Magnetism<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></div></div></div>",
+  "preOrCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Completed or concurrently enrolled in all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f67c094e82e2400a22f85\" target=\"_blank\">MATH346</a> <!-- -->-<!-- --> <!-- -->Introduction to Partial Differential Equations<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Earth and Ocean Sciences (EOS)",
+    "id": "5c13fb3b42504f2400e645d8",
+    "linkedGroup": "5be3691afed2d200010da13f",
+    "name": "EOS"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of EOS 427, PHYS 427.</li><li>Normally offered in alternate years. Students are advised to consult with the department to determine when this course is offered.</li></ul>",
+  "title": "Geophysics"
+}

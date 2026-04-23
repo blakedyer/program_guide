@@ -1,0 +1,39 @@
+{
+  "__catalogCourseId": "GEOG499A",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "allGradingTypes": {
+    "inp": true,
+    "standard": true
+  },
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>Students prepare the first part of an honours thesis under the direction of a faculty member from the department.</p>",
+  "formerlyNotesText": "part of GEOG 499",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3699cfed2d200010da148",
+    "name": "Department of Geography"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5e5946336737b12500c22ef1",
+  "pid": "HyDwHupQV",
+  "preAndCorequisites": "<div><div><div><ul><li><span>Complete <!-- -->all<!-- --> of the following</span><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\"><div>Minimum fourth-year standing</div></div></li><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\"><div>declared Honours in Geography.</div></div></li></ul></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Geography (GEOG)",
+    "id": "5be1fc782ce2be2e0030172e",
+    "linkedGroup": "5be3699cfed2d200010da148",
+    "name": "GEOG"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of GEOG 499A, GEOG 499, GEOG 499B.</li><li>GEOG 499A and B are &quot;tied&quot; courses and must be taken in consecutive terms except with permission of the department. Credit and final grade for GEOG 499B will be assigned only upon completion of both courses; if 499B is not completed, a grade equivalent to N will be assigned to 499A.</li></ul>",
+  "title": "Honours Thesis"
+}

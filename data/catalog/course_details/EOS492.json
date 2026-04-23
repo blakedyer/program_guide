@@ -1,0 +1,38 @@
+{
+  "__catalogCourseId": "EOS492",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2018-11-15",
+  "credits": {
+    "chosen": "range",
+    "credits": {
+      "max": "3",
+      "min": "1.5"
+    },
+    "value": {
+      "max": "3",
+      "min": "1.5"
+    }
+  },
+  "dateStart": "2018-05-03",
+  "description": "<p>Examination of a specific topic in Earth and Ocean Sciences, including a laboratory component.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3691afed2d200010da13f",
+    "name": "School of Earth and Ocean Sciences"
+  },
+  "hoursCatalogText": "3-3-0",
+  "id": "5c4ff3bdbb9b5e2400811717",
+  "pid": "S1I67u67E",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\"><div>Permission of the school.</div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "repeatableCatalogText": "May be taken more than once for credit in different topics.",
+  "subjectCode": {
+    "description": "Earth and Ocean Sciences (EOS)",
+    "id": "5c13fb3b42504f2400e645d8",
+    "linkedGroup": "5be3691afed2d200010da13f",
+    "name": "EOS"
+  },
+  "supplementalNotes": "",
+  "title": "Advanced Laboratory Topics in Earth and Ocean Sciences"
+}

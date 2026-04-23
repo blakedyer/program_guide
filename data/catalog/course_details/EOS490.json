@@ -1,0 +1,36 @@
+{
+  "__catalogCourseId": "EOS490",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2018-11-15",
+  "credits": {
+    "chosen": "multiple",
+    "credits": {
+      "max": "3",
+      "min": "1.5"
+    },
+    "value": [
+      "1.5",
+      "3"
+    ]
+  },
+  "dateStart": "1991-09-02",
+  "description": "<p>With the consent of the School and the faculty member concerned, a student may be permitted to pursue a course of directed studies.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3691afed2d200010da13f",
+    "name": "School of Earth and Ocean Sciences"
+  },
+  "id": "5c4ff3bc7ec31124000cf344",
+  "pid": "rJrp7d67E",
+  "proForma": "no",
+  "repeatableCatalogText": "May be taken more than once for credit to a maximum of 3 units.",
+  "subjectCode": {
+    "description": "Earth and Ocean Sciences (EOS)",
+    "id": "5c13fb3b42504f2400e645d8",
+    "linkedGroup": "5be3691afed2d200010da13f",
+    "name": "EOS"
+  },
+  "supplementalNotes": "<ul> <li>Students may not take more than 3 units of EOS 490 studies.</li> </ul>",
+  "title": "Directed Studies in Earth and Ocean Sciences"
+}

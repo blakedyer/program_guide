@@ -1,0 +1,3515 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+
+import csv
+import html
+import json
+import re
+import shutil
+import textwrap
+from collections import deque
+from dataclasses import dataclass, field
+from datetime import datetime
+from pathlib import Path
+from typing import Iterable
+
+from bs4 import BeautifulSoup
+from graphviz import Digraph
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT / "data" / "catalog"
+BUILD_DIR = ROOT / "build" / "html"
+STYLE_SOURCE = ROOT / "site_assets" / "program-guide.css"
+SCRIPT_SOURCE = ROOT / "site_assets" / "program-guide.js"
+PROGRAM_GRAPH_DIR = BUILD_DIR / "assets" / "graphs" / "programs"
+COURSE_GRAPH_DIR = BUILD_DIR / "assets" / "graphs" / "courses"
+SITE_NAME = "SEOS Curriculum Atlas"
+
+SUBJECT_NAMES = {
+    "EOS": "Earth and Ocean Sciences",
+    "BIOL": "Biology",
+    "BIOC": "Biochemistry",
+    "CHEM": "Chemistry",
+    "CSC": "Computer Science",
+    "GEOG": "Geography",
+    "MATH": "Mathematics",
+    "PHYS": "Physics",
+    "STAT": "Statistics",
+}
+
+SUBJECT_COLORS = {
+    "EOS": "#d7e9ef",
+    "BIOL": "#dbe8d2",
+    "BIOC": "#e2e8d5",
+    "CHEM": "#ead9b8",
+    "CSC": "#e7ddec",
+    "GEOG": "#e7e2d8",
+    "MATH": "#dfe3f4",
+    "PHYS": "#efd8cf",
+    "STAT": "#e6dde9",
+}
+
+PROGRAM_REQUIRED_STYLE = {
+    "fillcolor": "#d7e9ef",
+    "color": "#1f4f66",
+    "fontcolor": "#17232b",
+    "penwidth": "1.6",
+}
+
+PROGRAM_SUPPORT_STYLE = {
+    "fillcolor": "#f9f9f9",
+    "color": "#363636",
+    "fontcolor": "#363636",
+    "penwidth": "1.0",
+}
+
+PROGRAM_OPTION_STYLES = [
+    {"fillcolor": "#ead9b8", "color": "#8f6a3b", "fontcolor": "#3f3120", "penwidth": "1.3"},
+    {"fillcolor": "#dbe8d2", "color": "#567447", "fontcolor": "#24311e", "penwidth": "1.3"},
+    {"fillcolor": "#efd8cf", "color": "#8f5945", "fontcolor": "#3f251d", "penwidth": "1.3"},
+    {"fillcolor": "#e2deef", "color": "#665683", "fontcolor": "#2f2741", "penwidth": "1.3"},
+    {"fillcolor": "#e7e2d8", "color": "#746554", "fontcolor": "#342d25", "penwidth": "1.3"},
+    {"fillcolor": "#dfe3f4", "color": "#576989", "fontcolor": "#263246", "penwidth": "1.3"},
+]
+
+SIMPLIFIED_ROLE_GROUPS = (
+    {
+        "label": "Programming I",
+        "codes": ("CSC110", "CSC111"),
+    },
+    {
+        "label": "Intro biology",
+        "codes": ("BIOL150A", "BIOL184"),
+    },
+    {
+        "label": "Calculus I",
+        "codes": ("MATH100", "MATH102", "MATH109"),
+    },
+    {
+        "label": "Physics I",
+        "codes": ("PHYS102A", "PHYS110", "PHYS120", "PHYS122"),
+    },
+    {
+        "label": "Physics II",
+        "codes": ("PHYS102B", "PHYS111", "PHYS130", "PHYS125"),
+    },
+    {
+        "label": "Intro statistics",
+        "codes": ("STAT255", "STAT260"),
+    },
+    {
+        "label": "Intro geophysics",
+        "codes": ("EOS210", "PHYS210"),
+    },
+)
+
+PROGRAM_CATEGORY_LABELS = {
+    "seos-only": "SEOS only",
+    "honours": "Honours",
+    "major": "Major",
+    "minor": "Minor",
+    "general": "General",
+    "combined": "Combined",
+}
+
+SIMPLIFIED_BLOCK_LABELS = {
+    frozenset({"BIOL150A", "BIOL186"}): "Intro biology",
+    frozenset({"CSC110", "CSC111"}): "Programming I",
+    frozenset({"CHEM101", "CHEM150"}): "Chemistry I",
+    frozenset({"GEOG328", "GEOG329"}): "GIS",
+    frozenset({"BIOL150A", "BIOL184"}): "Intro biology",
+    frozenset({"MATH100", "MATH102", "MATH109"}): "Calculus I",
+    frozenset({"MATH100", "MATH109"}): "Calculus I",
+    frozenset({"MATH100", "MATH101", "MATH102", "MATH109", "MATH151"}): "First-year calculus",
+    frozenset({"MATH100", "MATH101", "MATH102", "MATH109"}): "First-year calculus",
+    frozenset({"MATH100", "MATH101", "MATH109"}): "First-year calculus",
+    frozenset({"MATH110", "MATH211"}): "Linear algebra I",
+    frozenset({"MATH200", "MATH202", "MATH204"}): "Second-year calculus",
+    frozenset({"MATH202", "MATH204"}): "Advanced calculus",
+    frozenset({"MATH200", "MATH204"}): "Calculus III-IV",
+    frozenset({"MATH248", "PHYS248"}): "Computational methods",
+    frozenset({"EOS325", "MATH204"}): "Modelling or calculus",
+    frozenset({"STAT255", "STAT260"}): "Intro statistics",
+    frozenset({"STAT254", "STAT255", "STAT260"}): "Intro statistics",
+    frozenset({"EOS210", "PHYS210"}): "Intro geophysics",
+    frozenset({"PHYS110", "PHYS120"}): "Physics I",
+    frozenset({"PHYS102A", "PHYS110", "PHYS120"}): "Physics I",
+    frozenset({"PHYS102B", "PHYS111", "PHYS130"}): "Physics II",
+    frozenset({"PHYS102A", "PHYS102B", "PHYS110", "PHYS111", "PHYS120", "PHYS130"}): "First-year physics",
+    frozenset({"PHYS110", "PHYS111", "PHYS120", "PHYS130"}): "First-year physics",
+}
+
+DEPARTMENT_LABELS = {
+    "seos": "SEOS",
+    "bioc": "Biochemistry",
+    "biol": "Biology",
+    "chem": "Chemistry",
+    "csc": "Computer Science",
+    "geog": "Geography",
+    "math": "Mathematics",
+    "phys": "Physics",
+    "stat": "Statistics",
+}
+
+COURSE_THEME_RULES = (
+    ("field", "Field", ("field school", "field course", "field trip", "field component", "fieldwork", "field work", "mapping", "expedition", "outcrop")),
+    ("climate", "Climate", ("climate", "weather", "atmospher", "meteorolog", "cryospher")),
+    ("ocean", "Ocean", ("ocean", "marine", "oceanograph", "hydrospher", "coast")),
+    ("earth", "Earth", ("earth", "geolog", "tecton", "mineral", "sediment", "stratigraph", "petrolog", "rock", "geomorph")),
+    ("geophysics", "Geophysics", ("geophys", "seism", "gravity", "geomagnet", "paleomagnet", "heat flow")),
+    ("chemistry", "Chemistry", ("chemistry", "chemical", "geochem", "isotope", "aqueous", "ore", "mining")),
+    ("biology", "Biology", ("biology", "biological", "ecolog", "ecosystem", "biodivers", "organism")),
+    ("programming", "Programming", ("program", "coding", "software", "algorithm")),
+    ("data", "Data and Modelling", ("data", "model", "modelling", "numerical", "statistic", "analysis", "comput", "gis", "remote sensing")),
+    ("environment", "Environment and Resources", ("environment", "environmental", "hazard", "sustainab", "resource", "pollution")),
+    ("physics", "Physics", ("physics", "mechanic", "dynamics", "thermodynam", "optics", "quantum", "fluid")),
+)
+
+
+@dataclass
+class CourseRecord:
+    code: str
+    name: str
+    catalog_url: str
+    detail: dict
+    rule_nodes: list[dict]
+    prereq_codes: list[str]
+    placeholder: bool = False
+    used_by_programs: set[str] = field(default_factory=set)
+    dependents: set[str] = field(default_factory=set)
+
+    @property
+    def subject(self) -> str:
+        return subject_from_code(self.code)
+
+
+@dataclass
+class ProgramRecord:
+    code: str
+    name: str
+    title: str
+    catalog_url: str
+    detail: dict
+    sections: list[dict]
+    explicit_course_codes: list[str]
+    text_requirements: list[str]
+    section_course_map: dict[str, str]
+    streams: list["ProgramStreamRecord"] = field(default_factory=list)
+    support_codes: list[str] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class CourseGroupRecord:
+    primary_code: str
+    codes: tuple[str, ...]
+    label: str
+    tooltip: str
+
+
+@dataclass
+class ProgramStreamRecord:
+    slug: str
+    title: str
+    description: str
+    sections: list[dict]
+    explicit_course_codes: list[str]
+    text_requirements: list[str]
+    section_course_map: dict[str, str]
+    support_codes: list[str] = field(default_factory=list)
+
+
+COURSE_CODE_PATTERN = re.compile(r"\b([A-Z]{2,5})\s*([0-9]{3}[A-Z]?)\b")
+CREDIT_ONLY_ONE_OF_PATTERN = re.compile(
+    r"Credit will be granted for only one of ([^.]+)\.",
+    re.IGNORECASE,
+)
+
+
+def e(text: str | None) -> str:
+    return html.escape(text or "")
+
+
+def normalize_text(text: str | None) -> str:
+    return re.sub(r"\s+", " ", text or "").strip(" :\n\t")
+
+
+def unique_ordered(values: Iterable[str]) -> list[str]:
+    seen: set[str] = set()
+    ordered: list[str] = []
+    for value in values:
+        if value and value not in seen:
+            seen.add(value)
+            ordered.append(value)
+    return ordered
+
+
+def read_json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def read_csv_rows(path: Path) -> list[dict]:
+    with path.open(newline="", encoding="utf-8") as handle:
+        return list(csv.DictReader(handle))
+
+
+def subject_from_code(code: str) -> str:
+    match = re.match(r"[A-Z]+", code)
+    return match.group(0) if match else "OTHER"
+
+
+def subject_name(code: str) -> str:
+    return SUBJECT_NAMES.get(subject_from_code(code), subject_from_code(code))
+
+
+def subject_color(code: str, *, missing: bool = False) -> str:
+    if missing:
+        return "#f6efe5"
+    return SUBJECT_COLORS.get(subject_from_code(code), "#f2ece3")
+
+
+def normalize_course_code(code: str | None) -> str:
+    return re.sub(r"\s+", "", (code or "").upper())
+
+
+def extract_course_codes_from_text(text: str | None) -> list[str]:
+    plain_text = BeautifulSoup(text or "", "html.parser").get_text(" ", strip=True)
+    return unique_ordered(
+        f"{match.group(1).upper()}{match.group(2).upper()}"
+        for match in COURSE_CODE_PATTERN.finditer(plain_text)
+    )
+
+
+def slugify_token(text: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def strip_course_title_from_rule(text: str, code: str) -> str:
+    cleaned = normalize_text(text)
+    cleaned = re.sub(rf"^{re.escape(code)}\s*[-:]\s*", "", cleaned)
+    cleaned = re.sub(r"\s*\([0-9.]+\)\s*$", "", cleaned)
+    return cleaned or code
+
+
+def iter_program_course_entries(nodes: list[dict]) -> Iterable[tuple[str, str]]:
+    for node in nodes:
+        if node["kind"] == "course":
+            yield node["code"], strip_course_title_from_rule(node.get("text") or node["code"], node["code"])
+            continue
+        if node["kind"] == "group":
+            yield from iter_program_course_entries(node["children"])
+
+
+def program_named_codes(program: ProgramRecord, stream: ProgramStreamRecord | None = None) -> list[str]:
+    if stream is not None:
+        return unique_ordered(program.explicit_course_codes + stream.explicit_course_codes)
+    if not program.streams:
+        return list(program.explicit_course_codes)
+    return unique_ordered(
+        program.explicit_course_codes
+        + [code for current_stream in program.streams for code in current_stream.explicit_course_codes]
+    )
+
+
+def program_section_lookup(program: ProgramRecord, stream: ProgramStreamRecord | None = None) -> dict[str, str]:
+    mapping = dict(program.section_course_map)
+    if stream is not None:
+        for code, title in stream.section_course_map.items():
+            mapping.setdefault(code, title)
+        return mapping
+    for current_stream in program.streams:
+        for code, title in current_stream.section_course_map.items():
+            mapping.setdefault(code, title)
+    return mapping
+
+
+def program_support_codes(program: ProgramRecord, stream: ProgramStreamRecord | None = None) -> list[str]:
+    return stream.support_codes if stream is not None else program.support_codes
+
+
+def program_graph_sections(program: ProgramRecord, stream: ProgramStreamRecord | None = None) -> list[dict]:
+    return program.sections + (stream.sections if stream is not None else [])
+
+
+def stream_asset_stem(program: ProgramRecord, stream: ProgramStreamRecord) -> str:
+    return f"{program.code}--{stream.slug}"
+
+
+def program_graph_note_lines(program: ProgramRecord, stream: ProgramStreamRecord | None = None) -> list[str]:
+    lines = unique_ordered(
+        note
+        for section in program_graph_sections(program, stream)
+        for note in collect_graph_note_lines(section["rules"])
+    )
+    return condense_graph_note_lines(lines)
+
+
+def build_program_option_sets(
+    sections: list[dict],
+    *,
+    explicit_groups: set[str],
+    course_group_lookup: dict[str, str],
+) -> tuple[set[str], list[dict]]:
+    required_groups: set[str] = set()
+    raw_option_sets: list[dict] = []
+    section_option_totals: dict[str, int] = {}
+
+    def visible_groups(node: dict) -> set[str]:
+        if node["kind"] == "course":
+            group_code = course_group_lookup.get(node["code"], node["code"])
+            return {group_code} if group_code in explicit_groups else set()
+        if node["kind"] != "group":
+            return set()
+        groups: set[str] = set()
+        for child in node["children"]:
+            groups.update(visible_groups(child))
+        return groups
+
+    def walk(node: dict, section_title: str, *, inside_choice: bool = False) -> None:
+        if node["kind"] == "course":
+            group_code = course_group_lookup.get(node["code"], node["code"])
+            if inside_choice or group_code not in explicit_groups:
+                return
+            required_groups.add(group_code)
+            return
+
+        if node["kind"] != "group":
+            return
+
+        kind, count = requirement_group_kind(node["label"])
+        if kind == "choose":
+            raw_option_sets.append(
+                {
+                    "section": section_title,
+                    "count": count,
+                    "branches": [],
+                }
+            )
+            section_option_totals[section_title] = section_option_totals.get(section_title, 0) + 1
+            option_index = len(raw_option_sets) - 1
+            for child in node["children"]:
+                branch_groups = visible_groups(child)
+                if branch_groups:
+                    raw_option_sets[option_index]["branches"].append(branch_groups)
+                walk(child, section_title, inside_choice=True)
+            return
+
+        for child in node["children"]:
+            walk(child, section_title, inside_choice=inside_choice)
+
+    for section in sections:
+        for rule in section["rules"]:
+            walk(rule, section["title"])
+
+    section_seen: dict[str, int] = {}
+    cleaned_option_sets: list[dict] = []
+    for option_set in raw_option_sets:
+        branches = [set(branch) - required_groups for branch in option_set["branches"] if branch]
+        branches = [branch for branch in branches if branch]
+        if not branches:
+            continue
+
+        common_groups = set.intersection(*branches) if branches else set()
+        if common_groups:
+            required_groups.update(common_groups)
+            branches = [branch - common_groups for branch in branches]
+            branches = [branch for branch in branches if branch]
+
+        if not branches:
+            continue
+
+        unique_branches: list[tuple[str, ...]] = []
+        seen_signatures: set[tuple[str, ...]] = set()
+        for branch in branches:
+            signature = tuple(sorted(branch, key=course_sort_key))
+            if signature in seen_signatures:
+                continue
+            seen_signatures.add(signature)
+            unique_branches.append(signature)
+
+        if not unique_branches:
+            continue
+
+        if len(unique_branches) == 1:
+            required_groups.update(unique_branches[0])
+            continue
+
+        groups = sorted({code for branch in unique_branches for code in branch}, key=course_sort_key)
+        section_title = option_set["section"]
+        section_seen[section_title] = section_seen.get(section_title, 0) + 1
+        if section_option_totals.get(section_title, 0) > 1:
+            label = f"{section_title} option {chr(64 + section_seen[section_title])}"
+        else:
+            label = f"{section_title} options"
+        if option_set["count"]:
+            label = f"{label} (choose {option_set['count']})"
+        cleaned_option_sets.append(
+            {
+                "label": label,
+                "groups": groups,
+            }
+        )
+
+    return required_groups, cleaned_option_sets
+
+
+def build_program_node_styles(
+    program: ProgramRecord,
+    stream: ProgramStreamRecord | None,
+    *,
+    course_group_lookup: dict[str, str],
+) -> tuple[dict[str, dict[str, str]], list[tuple[str, dict[str, str]]]]:
+    explicit_groups = {
+        course_group_lookup.get(code, code)
+        for code in program_named_codes(program, stream)
+    }
+    support_groups = {
+        course_group_lookup.get(code, code)
+        for code in program_support_codes(program, stream)
+    }
+    required_groups, option_sets = build_program_option_sets(
+        program_graph_sections(program, stream),
+        explicit_groups=explicit_groups,
+        course_group_lookup=course_group_lookup,
+    )
+
+    style_map: dict[str, dict[str, str]] = {}
+    for group_code in explicit_groups:
+        style_map[group_code] = dict(PROGRAM_REQUIRED_STYLE)
+
+    legend_items: list[tuple[str, dict[str, str]]] = [
+        ("Required program course", PROGRAM_REQUIRED_STYLE),
+        ("Related prerequisite course", PROGRAM_SUPPORT_STYLE),
+    ]
+
+    for index, option_set in enumerate(option_sets):
+        option_style = PROGRAM_OPTION_STYLES[index % len(PROGRAM_OPTION_STYLES)]
+        legend_items.append((option_set["label"], option_style))
+        for group_code in option_set["groups"]:
+            if group_code in required_groups:
+                continue
+            style_map[group_code] = dict(option_style)
+
+    for group_code in support_groups - explicit_groups:
+        style_map[group_code] = dict(PROGRAM_SUPPORT_STYLE)
+
+    return style_map, legend_items
+
+
+def course_sort_key(code: str) -> tuple:
+    prefix = subject_from_code(code)
+    digits = re.findall(r"\d+", code)
+    number = int(digits[0]) if digits else 0
+    return (prefix, number, code)
+
+
+def format_date_label(raw_iso: str) -> str:
+    dt = datetime.fromisoformat(raw_iso)
+    return f"{dt.strftime('%B')} {dt.day}, {dt.year}"
+
+
+def child_list_items(ul_tag) -> list:
+    items = []
+    for child in ul_tag.children:
+        if not getattr(child, "name", None):
+            continue
+        if child.name == "li":
+            items.append(child)
+        else:
+            items.extend(child.find_all("li", recursive=False))
+    return items
+
+
+def parse_rule_item(li_tag) -> dict:
+    nested_ul = li_tag.find("ul")
+    if nested_ul is None:
+        anchor = li_tag.find("a")
+        if anchor:
+            code = normalize_text(anchor.get_text(" ", strip=True))
+            return {
+                "kind": "course",
+                "code": code,
+                "text": normalize_text(li_tag.get_text(" ", strip=True)),
+            }
+        return {"kind": "text", "text": normalize_text(li_tag.get_text(" ", strip=True))}
+
+    clone = BeautifulSoup(str(li_tag), "html.parser").find("li")
+    for nested in clone.find_all("ul"):
+        nested.decompose()
+    label = normalize_text(clone.get_text(" ", strip=True))
+    return {
+        "kind": "group",
+        "label": label,
+        "children": [parse_rule_item(child) for child in child_list_items(nested_ul)],
+    }
+
+
+def parse_rule_fragment(fragment: str | None) -> list[dict]:
+    soup = BeautifulSoup(fragment or "", "html.parser")
+    root_ul = soup.find("ul")
+    if root_ul is None:
+        text = normalize_text(soup.get_text(" ", strip=True))
+        return [{"kind": "text", "text": text}] if text else []
+    return [parse_rule_item(li_tag) for li_tag in child_list_items(root_ul)]
+
+
+def parse_course_requirement_nodes(detail: dict) -> list[dict]:
+    nodes: list[dict] = []
+    for field_name in ("preAndCorequisites", "preOrCorequisites", "corequisites"):
+        nodes.extend(parse_rule_fragment(detail.get(field_name)))
+    return nodes
+
+
+def parse_program_sections(fragment: str | None) -> list[dict]:
+    soup = BeautifulSoup(fragment or "", "html.parser")
+    sections = [section for section in soup.find_all("section") if section.find_parent("section") is None]
+    if not sections:
+        rules = parse_rule_fragment(fragment)
+        return [{"title": "Program requirements", "rules": rules}] if rules else []
+
+    parsed_sections = []
+    for section in sections:
+        heading = section.find("h2")
+        title = normalize_text(heading.get_text(" ", strip=True)) if heading else "Program requirements"
+        if not title:
+            title = "Program requirements"
+        rules = parse_rule_fragment(str(section))
+        parsed_sections.append({"title": title, "rules": rules})
+    return parsed_sections
+
+
+def summarize_program_sections(sections: list[dict]) -> tuple[list[str], list[str], dict[str, str]]:
+    explicit_codes: list[str] = []
+    text_requirements: list[str] = []
+    section_course_map: dict[str, str] = {}
+    for section in sections:
+        section_codes = collect_course_codes(section["rules"])
+        explicit_codes.extend(section_codes)
+        text_requirements.extend(collect_text_requirements(section["rules"]))
+        for course_code in section_codes:
+            section_course_map.setdefault(course_code, section["title"])
+    return (
+        unique_ordered(explicit_codes),
+        unique_ordered(text_requirements),
+        section_course_map,
+    )
+
+
+def parse_program_streams(detail: dict) -> list["ProgramStreamRecord"]:
+    streams: list[ProgramStreamRecord] = []
+    for stream_detail in detail.get("specializations") or []:
+        stream_title = normalize_text(stream_detail.get("title")) or "Stream"
+        stream_sections = parse_program_sections(
+            stream_detail.get("requirements") or stream_detail.get("programRequirements")
+        )
+        stream_codes, stream_notes, stream_section_map = summarize_program_sections(stream_sections)
+        stream_description = (
+            normalize_text(
+                BeautifulSoup(
+                    stream_detail.get("description")
+                    or stream_detail.get("programRequirements")
+                    or "",
+                    "html.parser",
+                ).get_text(" ", strip=True)
+            )
+            if stream_detail.get("description") or stream_detail.get("programRequirements")
+            else ""
+        )
+        streams.append(
+            ProgramStreamRecord(
+                slug=slugify_token(stream_title),
+                title=stream_title,
+                description=stream_description,
+                sections=stream_sections,
+                explicit_course_codes=stream_codes,
+                text_requirements=stream_notes,
+                section_course_map=stream_section_map,
+            )
+        )
+    return streams
+
+
+def iter_rule_nodes(nodes: list[dict]) -> Iterable[dict]:
+    for node in nodes:
+        yield node
+        if node["kind"] == "group":
+            yield from iter_rule_nodes(node["children"])
+
+
+def collect_course_codes(nodes: list[dict]) -> list[str]:
+    return unique_ordered(
+        node["code"] for node in iter_rule_nodes(nodes) if node["kind"] == "course"
+    )
+
+
+def collect_text_requirements(nodes: list[dict]) -> list[str]:
+    notes = []
+    for node in iter_rule_nodes(nodes):
+        if node["kind"] == "text" and node["text"]:
+            notes.append(node["text"])
+    return unique_ordered(notes)
+
+
+def requirement_group_kind(label: str) -> tuple[str, str | None]:
+    cleaned = clean_requirement_label(label)
+    lower = cleaned.lower()
+    choice_match = re.search(r"([0-9.]+)\s+of", lower)
+    if choice_match:
+        return ("choose", choice_match.group(1))
+    if "all of" in lower:
+        return ("all", None)
+    return ("other", None)
+
+
+def clean_requirement_label(label: str) -> str:
+    cleaned = normalize_text(label)
+    if cleaned.startswith("Complete "):
+        cleaned = cleaned[len("Complete ") :]
+    return cleaned
+
+
+def format_note_label(title: str, lines: list[str], *, width: int = 42) -> str:
+    formatted = [title]
+    for line in lines:
+        wrapped = textwrap.wrap(line, width=width) or [line]
+        formatted.extend(wrapped)
+    return "\\l".join(formatted) + "\\l"
+
+
+def format_unit_count(value: float) -> str:
+    rounded = round(value, 2)
+    if abs(rounded - int(rounded)) < 1e-9:
+        return str(int(rounded))
+    return f"{rounded:.2f}".rstrip("0").rstrip(".")
+
+
+def condense_graph_note_lines(lines: list[str]) -> list[str]:
+    grouped_units: dict[str, float] = {}
+    grouped_order: list[str] = []
+    passthrough: list[str] = []
+    pattern = re.compile(r"^Complete\s+([0-9.]+)\s+units?\s+(.+)$", re.IGNORECASE)
+
+    for line in lines:
+        cleaned = normalize_text(line).rstrip(".")
+        match = pattern.match(cleaned)
+        if not match:
+            passthrough.append(cleaned)
+            continue
+        remainder = normalize_text(match.group(2))
+        if remainder not in grouped_units:
+            grouped_units[remainder] = 0.0
+            grouped_order.append(remainder)
+        grouped_units[remainder] += float(match.group(1))
+
+    combined = [
+        f"Complete {format_unit_count(grouped_units[remainder])} units {remainder}"
+        for remainder in grouped_order
+    ]
+    return unique_ordered(combined + passthrough)
+
+
+def summarize_nonflow_rule(node: dict) -> str | None:
+    if node["kind"] == "text":
+        return node["text"]
+
+    if node["kind"] != "group":
+        return None
+
+    cleaned = clean_requirement_label(node["label"])
+    lower = cleaned.lower()
+    kind, _ = requirement_group_kind(node["label"])
+    if kind == "other" or "elective" in lower or "permission" in lower:
+        return cleaned or None
+    return None
+
+
+def collect_graph_note_lines(nodes: list[dict]) -> list[str]:
+    notes: list[str] = []
+    for node in nodes:
+        if node["kind"] == "text":
+            if node["text"]:
+                notes.append(node["text"])
+            continue
+
+        if node["kind"] != "group":
+            continue
+
+        summary = summarize_nonflow_rule(node)
+        if summary:
+            notes.append(summary)
+        notes.extend(collect_graph_note_lines(node["children"]))
+
+    return unique_ordered(notes)
+
+
+def choose_group_primary(codes: Iterable[str]) -> str:
+    ordered_codes = sorted(unique_ordered(codes), key=course_sort_key)
+    eos_codes = [code for code in ordered_codes if subject_from_code(code) == "EOS"]
+    if eos_codes:
+        return eos_codes[0]
+    return ordered_codes[0]
+
+
+def format_course_group_label(codes: Iterable[str]) -> str:
+    ordered_codes = sorted(unique_ordered(codes), key=course_sort_key)
+    if len(ordered_codes) == 1:
+        return ordered_codes[0]
+    rows = [
+        " / ".join(ordered_codes[index : index + 2])
+        for index in range(0, len(ordered_codes), 2)
+    ]
+    return "\\n".join(rows)
+
+
+def build_course_groups(
+    courses: dict[str, CourseRecord],
+    *,
+    aggressive: bool = False,
+) -> tuple[dict[str, CourseGroupRecord], dict[str, str]]:
+    adjacency: dict[str, set[str]] = {code: {code} for code in courses}
+    custom_labels: dict[str, str] = {}
+
+    for code, course in courses.items():
+        for entry in course.detail.get("crossListedCourses") or []:
+            other_code = normalize_course_code(entry.get("__catalogCourseId"))
+            if other_code in courses:
+                adjacency[code].add(other_code)
+                adjacency[other_code].add(code)
+
+        for match in CREDIT_ONLY_ONE_OF_PATTERN.finditer(course.detail.get("supplementalNotes") or ""):
+            codes_in_note = [
+                note_code
+                for note_code in extract_course_codes_from_text(match.group(1))
+                if note_code in courses
+            ]
+            for left_code in codes_in_note:
+                adjacency.setdefault(left_code, {left_code})
+                for right_code in codes_in_note:
+                    adjacency[left_code].add(right_code)
+
+    if aggressive:
+        for group in SIMPLIFIED_ROLE_GROUPS:
+            existing_codes = [code for code in group["codes"] if code in courses]
+            if len(existing_codes) < 2:
+                continue
+            for left_code in existing_codes:
+                custom_labels[left_code] = group["label"]
+                adjacency.setdefault(left_code, {left_code})
+                for right_code in existing_codes:
+                    adjacency[left_code].add(right_code)
+
+    visited: set[str] = set()
+    groups: dict[str, CourseGroupRecord] = {}
+    code_to_group: dict[str, str] = {}
+
+    for code in sorted(courses, key=course_sort_key):
+        if code in visited:
+            continue
+        stack = [code]
+        component: set[str] = set()
+        while stack:
+            current = stack.pop()
+            if current in visited:
+                continue
+            visited.add(current)
+            component.add(current)
+            stack.extend(adjacency.get(current, set()) - visited)
+
+        primary_code = choose_group_primary(component)
+        ordered_codes = tuple(sorted(component, key=course_sort_key))
+        tooltip_rows = [f"{group_code}: {courses[group_code].name}" for group_code in ordered_codes]
+        label = format_course_group_label(ordered_codes)
+        custom_label = next((custom_labels[group_code] for group_code in ordered_codes if group_code in custom_labels), None)
+        if custom_label:
+            label = custom_label
+        tooltip = " | ".join(tooltip_rows)
+        if len(ordered_codes) > 1:
+            tooltip = (
+                "Collapsed in simplified view: " + tooltip
+                if custom_label
+                else "Equivalent or cross-listed: " + tooltip
+            )
+        group_record = CourseGroupRecord(
+            primary_code=primary_code,
+            codes=ordered_codes,
+            label=label,
+            tooltip=tooltip,
+        )
+        groups[primary_code] = group_record
+        for group_code in ordered_codes:
+            code_to_group[group_code] = primary_code
+
+    return groups, code_to_group
+
+
+def compute_dependency_depths(codes: set[str], courses: dict[str, CourseRecord]) -> dict[str, int]:
+    memo: dict[str, int] = {}
+    visiting: set[str] = set()
+
+    def depth(code: str) -> int:
+        if code in memo:
+            return memo[code]
+        if code in visiting:
+            return 0
+        visiting.add(code)
+        prereqs = [
+            prereq
+            for prereq in courses.get(code, CourseRecord(code, code, "", {}, [], [])).prereq_codes
+            if prereq in codes
+        ]
+        value = 0 if not prereqs else 1 + max(depth(prereq) for prereq in prereqs)
+        visiting.remove(code)
+        memo[code] = value
+        return value
+
+    for code in codes:
+        if code in courses:
+            depth(code)
+
+    return memo
+
+
+def course_level_index(code: str) -> int:
+    digits = re.findall(r"\d+", code)
+    if not digits:
+        return 0
+    return max(0, (int(digits[0]) // 100) - 1)
+
+
+def infer_support_stage(
+    support_code: str,
+    *,
+    dependent_stage_indexes: list[int],
+    max_stage_index: int,
+) -> int:
+    if not dependent_stage_indexes:
+        return 0
+    earliest_dependent = min(dependent_stage_indexes)
+    level_stage = min(course_level_index(support_code), max_stage_index)
+    return max(0, min(earliest_dependent, level_stage))
+
+
+def program_course_label(code: str, courses: dict[str, CourseRecord]) -> str:
+    return code
+
+
+def add_program_course_node(
+    graph: Digraph,
+    code: str,
+    courses: dict[str, CourseRecord],
+    *,
+    emphasis: bool,
+) -> None:
+    node_kwargs = {
+        "label": program_course_label(code, courses),
+        "fillcolor": subject_color(code, missing=code not in courses),
+        "tooltip": courses[code].name if code in courses else code,
+        "penwidth": "1.6" if emphasis else "1.0",
+        "style": "filled,rounded" if emphasis else "filled,rounded,dashed",
+        "fontsize": "10" if emphasis else "9",
+        "fontcolor": "#17232b" if emphasis else "#41515b",
+    }
+    svg_href = svg_course_href(code, courses)
+    if svg_href:
+        node_kwargs["URL"] = svg_href
+        node_kwargs["target"] = "_top"
+    graph.node(code, **node_kwargs)
+
+
+def ordered_codes_for_column(
+    codes: list[str],
+    depth_map: dict[str, int],
+) -> list[str]:
+    return sorted(
+        unique_ordered(codes),
+        key=lambda code: (depth_map.get(code, 0), subject_from_code(code), course_sort_key(code)),
+    )
+
+
+def collect_ancestor_codes(code: str, courses: dict[str, CourseRecord], seen: set[str] | None = None) -> set[str]:
+    seen = set() if seen is None else seen
+    if code not in courses:
+        return seen
+    for prereq in courses[code].prereq_codes:
+        if prereq in courses and prereq not in seen:
+            seen.add(prereq)
+            collect_ancestor_codes(prereq, courses, seen)
+    return seen
+
+
+def collect_descendant_codes(code: str, courses: dict[str, CourseRecord], seen: set[str] | None = None) -> set[str]:
+    seen = set() if seen is None else seen
+    if code not in courses:
+        return seen
+    for dependent in courses[code].dependents:
+        if dependent in courses and dependent not in seen:
+            seen.add(dependent)
+            collect_descendant_codes(dependent, courses, seen)
+    return seen
+
+
+def compute_relative_course_depths(code: str, courses: dict[str, CourseRecord]) -> dict[str, int]:
+    depths = {code: 0}
+    active_up: set[str] = set()
+    active_down: set[str] = set()
+
+    def walk_up(current: str, depth: int) -> None:
+        if current not in courses or current in active_up:
+            return
+        active_up.add(current)
+        for prereq in courses[current].prereq_codes:
+            if prereq not in courses:
+                continue
+            next_depth = depth - 1
+            if prereq not in depths or next_depth < depths[prereq]:
+                depths[prereq] = next_depth
+                walk_up(prereq, next_depth)
+        active_up.remove(current)
+
+    def walk_down(current: str, depth: int) -> None:
+        if current not in courses or current in active_down:
+            return
+        active_down.add(current)
+        for dependent in courses[current].dependents:
+            if dependent not in courses:
+                continue
+            next_depth = depth + 1
+            if dependent not in depths or next_depth > depths[dependent]:
+                depths[dependent] = next_depth
+                walk_down(dependent, next_depth)
+        active_down.remove(current)
+
+    walk_up(code, 0)
+    walk_down(code, 0)
+    return depths
+
+
+def course_group_id(primary_code: str) -> str:
+    return f"course__{primary_code}"
+
+
+def course_group_href(
+    primary_code: str,
+    course_groups: dict[str, CourseGroupRecord],
+    *,
+    preferred_code: str | None = None,
+) -> str:
+    target_code = preferred_code if preferred_code in course_groups[primary_code].codes else primary_code
+    return f"../../../courses/{target_code}.html"
+
+
+def add_course_group_node(
+    graph: Digraph,
+    primary_code: str,
+    course_groups: dict[str, CourseGroupRecord],
+    courses: dict[str, CourseRecord],
+    *,
+    emphasis: bool,
+    focus: bool = False,
+    focus_name: str | None = None,
+    preferred_code: str | None = None,
+    style_overrides: dict[str, str] | None = None,
+) -> None:
+    group = course_groups[primary_code]
+    label = group.label
+    if focus and focus_name:
+        label = f"{group.label}\\n{focus_name}"
+    node_kwargs = {
+        "label": label,
+        "fillcolor": subject_color(primary_code, missing=primary_code not in courses),
+        "tooltip": group.tooltip,
+        "penwidth": "2.0" if focus else ("1.6" if emphasis else "1.0"),
+        "style": "filled,rounded",
+        "fontsize": "10" if emphasis or focus else "9",
+        "fontcolor": "#17232b" if emphasis or focus else "#41515b",
+        "color": "#1f4f66" if focus else ("#1b2730" if emphasis else "#7e8d96"),
+        "URL": course_group_href(primary_code, course_groups, preferred_code=preferred_code),
+        "target": "_top",
+    }
+    if style_overrides:
+        node_kwargs.update(style_overrides)
+    graph.node(course_group_id(primary_code), **node_kwargs)
+
+
+def build_group_dependency_maps(
+    visible_codes: set[str],
+    courses: dict[str, CourseRecord],
+    course_group_lookup: dict[str, str],
+) -> tuple[dict[str, set[str]], dict[str, set[str]]]:
+    prereq_map: dict[str, set[str]] = {}
+    dependent_map: dict[str, set[str]] = {}
+
+    for raw_code in visible_codes:
+        if raw_code not in courses:
+            continue
+        group_code = course_group_lookup.get(raw_code, raw_code)
+        prereq_map.setdefault(group_code, set())
+        dependent_map.setdefault(group_code, set())
+
+    for raw_target in visible_codes:
+        if raw_target not in courses:
+            continue
+        target_group = course_group_lookup.get(raw_target, raw_target)
+        for raw_prereq in courses[raw_target].prereq_codes:
+            if raw_prereq not in visible_codes or raw_prereq not in courses:
+                continue
+            prereq_group = course_group_lookup.get(raw_prereq, raw_prereq)
+            if prereq_group == target_group:
+                continue
+            prereq_map.setdefault(target_group, set()).add(prereq_group)
+            prereq_map.setdefault(prereq_group, set())
+            dependent_map.setdefault(prereq_group, set()).add(target_group)
+            dependent_map.setdefault(target_group, set())
+
+    return prereq_map, dependent_map
+
+
+def compute_group_prereq_closure(prereq_map: dict[str, set[str]]) -> dict[str, set[str]]:
+    memo: dict[str, set[str]] = {}
+    visiting: set[str] = set()
+
+    def closure(group_code: str) -> set[str]:
+        if group_code in memo:
+            return memo[group_code]
+        if group_code in visiting:
+            return set()
+        visiting.add(group_code)
+        reachable: set[str] = set()
+        for prereq_group in prereq_map.get(group_code, set()):
+            reachable.add(prereq_group)
+            reachable.update(closure(prereq_group))
+        visiting.remove(group_code)
+        memo[group_code] = reachable
+        return reachable
+
+    for group_code in prereq_map:
+        closure(group_code)
+
+    return memo
+
+
+def compute_group_depths(prereq_map: dict[str, set[str]]) -> dict[str, int]:
+    memo: dict[str, int] = {}
+    visiting: set[str] = set()
+
+    def depth(node: str) -> int:
+        if node in memo:
+            return memo[node]
+        if node in visiting:
+            return 0
+        visiting.add(node)
+        prereqs = prereq_map.get(node, set())
+        value = 0 if not prereqs else 1 + max(depth(prereq) for prereq in prereqs)
+        visiting.remove(node)
+        memo[node] = value
+        return value
+
+    for node in prereq_map:
+        depth(node)
+
+    return memo
+
+
+def compute_relative_group_depths(
+    focus_group: str,
+    prereq_map: dict[str, set[str]],
+    dependent_map: dict[str, set[str]],
+) -> dict[str, int]:
+    depths = {focus_group: 0}
+    active_up: set[str] = set()
+    active_down: set[str] = set()
+
+    def walk_up(node: str, depth: int) -> None:
+        if node in active_up:
+            return
+        active_up.add(node)
+        for prereq in prereq_map.get(node, set()):
+            next_depth = depth - 1
+            if prereq not in depths or next_depth < depths[prereq]:
+                depths[prereq] = next_depth
+                walk_up(prereq, next_depth)
+        active_up.remove(node)
+
+    def walk_down(node: str, depth: int) -> None:
+        if node in active_down:
+            return
+        active_down.add(node)
+        for dependent in dependent_map.get(node, set()):
+            next_depth = depth + 1
+            if dependent not in depths or next_depth > depths[dependent]:
+                depths[dependent] = next_depth
+                walk_down(dependent, next_depth)
+        active_down.remove(node)
+
+    walk_up(focus_group, 0)
+    walk_down(focus_group, 0)
+    return depths
+
+
+def collect_related_groups(
+    start_group: str,
+    adjacency_map: dict[str, set[str]],
+    max_depth: int | None,
+) -> set[str]:
+    visited = {start_group}
+    queue = deque([(start_group, 0)])
+
+    while queue:
+        current_group, depth = queue.popleft()
+        if max_depth is not None and depth >= max_depth:
+            continue
+        for next_group in adjacency_map.get(current_group, set()):
+            if next_group in visited:
+                continue
+            visited.add(next_group)
+            queue.append((next_group, depth + 1))
+
+    visited.discard(start_group)
+    return visited
+
+
+def visible_codes_for_groups(
+    groups: set[str],
+    course_groups: dict[str, CourseGroupRecord],
+) -> set[str]:
+    return {
+        code
+        for group_code in groups
+        for code in course_groups[group_code].codes
+    }
+
+
+def infer_simplified_block_label(codes: Iterable[str], courses: dict[str, CourseRecord]) -> str | None:
+    code_set = frozenset(code for code in unique_ordered(codes) if code in courses)
+    if len(code_set) < 2:
+        return None
+    if code_set in SIMPLIFIED_BLOCK_LABELS:
+        return SIMPLIFIED_BLOCK_LABELS[code_set]
+
+    subjects = {subject_from_code(code) for code in code_set}
+    allowed_subjects = {"BIOL", "CSC", "EOS", "MATH", "PHYS", "STAT"}
+    if not subjects.issubset(allowed_subjects):
+        return None
+    if len(subjects) != 1:
+        return None
+
+    numeric_levels = [
+        int(level)
+        for code in code_set
+        for level in [course_level_token(code)]
+        if level.isdigit()
+    ]
+    if not numeric_levels:
+        return None
+    max_level = max(numeric_levels)
+    if max_level > 200 and not (subjects == {"STAT"} and max_level <= 300):
+        return None
+
+    text = normalize_text(
+        " ".join(
+            f"{courses[code].name} {BeautifulSoup(courses[code].detail.get('description') or '', 'html.parser').get_text(' ', strip=True)}"
+            for code in sorted(code_set, key=course_sort_key)
+        )
+    ).lower()
+    per_course_text = {
+        code: normalize_text(
+            f"{courses[code].name} {BeautifulSoup(courses[code].detail.get('description') or '', 'html.parser').get_text(' ', strip=True)}"
+        ).lower()
+        for code in code_set
+    }
+
+    def all_courses_match(*keywords: str) -> bool:
+        return all(
+            any(theme_keyword_hits(per_course_text[code], keyword) for keyword in keywords)
+            for code in code_set
+        )
+
+    subject = next(iter(subjects))
+    if subject == "CSC" and max_level <= 100:
+        return "Programming I" if all_courses_match("program", "comput") else None
+    if subject == "EOS" and max_level <= 200 and any(theme_keyword_hits(text, keyword) for keyword in ("geophys", "seism", "geomagnet", "heat flow")):
+        return "Intro geophysics"
+    if subject == "MATH" and all_courses_match("matrix algebra", "linear algebra"):
+        return "Linear algebra I"
+    if subject == "MATH" and all_courses_match("calculus"):
+        if max_level <= 100:
+            return "Calculus I"
+        if max_level <= 200:
+            return "Second-year calculus"
+        return "Calculus path"
+    if subject == "STAT" and max_level <= 200 and all_courses_match("statistics", "probability"):
+        return "Intro statistics"
+    if subject == "PHYS" and max_level <= 100 and all_courses_match("physics"):
+        return "First-year physics"
+    if subject == "BIOL" and max_level <= 100 and all_courses_match("biology", "evolution", "ecology"):
+        return "Intro biology"
+    return None
+
+
+def canonical_requirement_signature(
+    node: dict,
+    *,
+    visible_codes: set[str],
+    courses: dict[str, CourseRecord],
+    course_group_lookup: dict[str, str],
+    target_group: str,
+) -> tuple | None:
+    if node.get("kind") == "text":
+        return None
+
+    if node.get("kind") == "course":
+        course_code = node.get("code")
+        if course_code not in visible_codes or course_code not in courses:
+            return None
+        group_code = course_group_lookup.get(course_code, course_code)
+        if group_code == target_group:
+            return None
+        return ("course", group_code)
+
+    kind, count = requirement_group_kind(node.get("label", ""))
+    child_signatures = [
+        signature
+        for child in node.get("children", [])
+        for signature in [
+            canonical_requirement_signature(
+                child,
+                visible_codes=visible_codes,
+                courses=courses,
+                course_group_lookup=course_group_lookup,
+                target_group=target_group,
+            )
+        ]
+        if signature is not None
+    ]
+    if not child_signatures:
+        return None
+
+    ordered_children = tuple(sorted(child_signatures, key=repr))
+    if kind == "choose" and count is not None:
+        return ("choose", count, ordered_children)
+    if kind == "all":
+        return ("all", ordered_children)
+    return ("group", ordered_children)
+
+
+def dedupe_requirement_nodes(
+    rule_nodes: Iterable[dict],
+    *,
+    visible_codes: set[str],
+    courses: dict[str, CourseRecord],
+    course_group_lookup: dict[str, str],
+    target_group: str,
+) -> list[dict]:
+    unique_nodes: list[dict] = []
+    seen_signatures: set[tuple] = set()
+
+    for node in rule_nodes:
+        signature = canonical_requirement_signature(
+            node,
+            visible_codes=visible_codes,
+            courses=courses,
+            course_group_lookup=course_group_lookup,
+            target_group=target_group,
+        )
+        if signature is None or signature in seen_signatures:
+            continue
+        seen_signatures.add(signature)
+        unique_nodes.append(node)
+
+    return unique_nodes
+
+
+def simplified_block_tooltip(label: str, codes: Iterable[str], courses: dict[str, CourseRecord]) -> str:
+    rows = [
+        f"{code}: {courses[code].name}"
+        for code in sorted(unique_ordered(code for code in codes if code in courses), key=course_sort_key)
+    ]
+    return "Collapsed in simplified program view: " + label + " | " + " | ".join(rows)
+
+
+def add_simplified_requirement_flow(
+    graph: Digraph,
+    *,
+    target_code: str,
+    rule_nodes: list[dict],
+    visible_codes: set[str],
+    courses: dict[str, CourseRecord],
+    course_groups: dict[str, CourseGroupRecord],
+    course_group_lookup: dict[str, str],
+    drawn_edges: set[tuple[str, str, str]],
+    created_aux_nodes: set[str],
+    summaries_enabled: bool = False,
+    bundle_registry: dict[tuple[tuple[str, str], ...], str] | None = None,
+    choice_registry: dict[tuple[str, tuple[tuple[str, str], ...]], str] | None = None,
+    group_prereq_closure: dict[str, set[str]] | None = None,
+) -> None:
+    if target_code not in courses:
+        return
+
+    target_group = course_group_lookup.get(target_code, target_code)
+    target_id = course_group_id(target_group)
+    summary_metadata: dict[str, tuple[str, tuple[str, ...]]] = {}
+
+    def add_edge(source_id: str, target_id: str, *, style_key: str, **kwargs: str) -> None:
+        edge_key = (source_id, target_id, style_key)
+        if edge_key in drawn_edges:
+            return
+        drawn_edges.add(edge_key)
+        graph.edge(source_id, target_id, **kwargs)
+
+    def ensure_choice_node(node_id: str, count: str, source_ids: Iterable[str] | None = None) -> str:
+        if choice_registry is not None and source_ids is not None:
+            signature = tuple(sorted(anchor_semantic_key(source_id) for source_id in source_ids))
+            existing_id = choice_registry.get((count, signature))
+            if existing_id is not None:
+                return existing_id
+        if node_id not in created_aux_nodes:
+            created_aux_nodes.add(node_id)
+            graph.node(
+                node_id,
+                label=f"{count} of",
+                shape="box",
+                style="filled,rounded",
+                fillcolor="#fff7ee",
+                color="#b7793f",
+                fontsize="9",
+                margin="0.06,0.04",
+            )
+        if choice_registry is not None and source_ids is not None:
+            signature = tuple(sorted(anchor_semantic_key(source_id) for source_id in source_ids))
+            choice_registry[(count, signature)] = node_id
+        return node_id
+
+    def ensure_bundle_node(node_id: str, anchor_ids: Iterable[str] | None = None) -> str:
+        if bundle_registry is not None and anchor_ids is not None:
+            signature = tuple(sorted(anchor_semantic_key(anchor_id) for anchor_id in anchor_ids))
+            existing_id = bundle_registry.get(signature)
+            if existing_id is not None:
+                return existing_id
+        if node_id not in created_aux_nodes:
+            created_aux_nodes.add(node_id)
+            graph.node(
+                node_id,
+                label="",
+                shape="circle",
+                style="filled",
+                fillcolor="#7a8790",
+                color="#667780",
+                width="0.16",
+                height="0.16",
+                fixedsize="true",
+                penwidth="1.0",
+                tooltip="Grouped requirement junction",
+            )
+        if bundle_registry is not None and anchor_ids is not None:
+            signature = tuple(sorted(anchor_semantic_key(anchor_id) for anchor_id in anchor_ids))
+            bundle_registry[signature] = node_id
+        return node_id
+
+    def ensure_summary_node(node_id: str, label: str, tooltip: str, codes: Iterable[str]) -> str:
+        summary_codes = tuple(sorted(unique_ordered(code for code in codes if code in courses), key=course_sort_key))
+        summary_metadata[node_id] = (label, summary_codes)
+        if node_id not in created_aux_nodes:
+            created_aux_nodes.add(node_id)
+            graph.node(
+                node_id,
+                label=label,
+                shape="box",
+                style="filled,rounded",
+                fillcolor="#f6efe5",
+                color="#8f6a3b",
+                fontsize="9",
+                margin="0.08,0.05",
+                tooltip=tooltip,
+            )
+        return node_id
+
+    def anchor_codes(anchor_ids: list[str]) -> list[str]:
+        codes: list[str] = []
+        for anchor_id in anchor_ids:
+            if not anchor_id.startswith("course__"):
+                if anchor_id in summary_metadata:
+                    codes.extend(summary_metadata[anchor_id][1])
+                continue
+            group_code = anchor_id[len("course__") :]
+            if group_code in course_groups:
+                codes.extend(course_groups[group_code].codes)
+        return unique_ordered(codes)
+
+    def anchor_semantic_key(anchor_id: str) -> tuple[str, str]:
+        if anchor_id in summary_metadata:
+            return ("summary", summary_metadata[anchor_id][0])
+        if anchor_id.startswith("course__"):
+            return ("course", anchor_id[len("course__") :])
+        return ("aux", anchor_id)
+
+    def prune_redundant_anchor_ids(anchor_ids: list[str]) -> list[str]:
+        if not group_prereq_closure:
+            return unique_ordered(anchor_ids)
+
+        ordered_anchor_ids = unique_ordered(anchor_ids)
+        pruned: list[str] = []
+        for anchor_id in ordered_anchor_ids:
+            if not anchor_id.startswith("course__"):
+                pruned.append(anchor_id)
+                continue
+
+            group_code = anchor_id[len("course__") :]
+            redundant = False
+            for other_anchor_id in ordered_anchor_ids:
+                if other_anchor_id == anchor_id or not other_anchor_id.startswith("course__"):
+                    continue
+                other_group = other_anchor_id[len("course__") :]
+                if group_code in group_prereq_closure.get(other_group, set()):
+                    redundant = True
+                    break
+            if not redundant:
+                pruned.append(anchor_id)
+        return pruned
+
+    def subtree_visible_codes(node: dict) -> list[str]:
+        if node["kind"] == "text":
+            return []
+        if node["kind"] == "course":
+            course_code = node["code"]
+            if course_code not in visible_codes or course_code not in courses:
+                return []
+            group_code = course_group_lookup.get(course_code, course_code)
+            if group_code == target_group:
+                return []
+            if group_code in course_groups:
+                return list(course_groups[group_code].codes)
+            return [course_code]
+
+        codes: list[str] = []
+        for child in node.get("children", []):
+            codes.extend(subtree_visible_codes(child))
+        return unique_ordered(codes)
+
+    def branch_anchors(node: dict, namespace: str, *, collapse_all: bool) -> list[str]:
+        if node["kind"] == "text":
+            return []
+
+        if node["kind"] == "course":
+            course_code = node["code"]
+            if course_code not in visible_codes or course_code not in courses:
+                return []
+            group_code = course_group_lookup.get(course_code, course_code)
+            if group_code == target_group:
+                return []
+            return [course_group_id(group_code)]
+
+        kind, count = requirement_group_kind(node["label"])
+
+        if kind == "choose" and count is not None:
+            if summaries_enabled:
+                flattened_codes = unique_ordered(
+                    code
+                    for child in node["children"]
+                    for code in subtree_visible_codes(child)
+                )
+                summary_label = infer_simplified_block_label(flattened_codes, courses)
+                if summary_label:
+                    return [
+                        ensure_summary_node(
+                            f"summary_{namespace}",
+                            summary_label,
+                            simplified_block_tooltip(summary_label, flattened_codes, courses),
+                            flattened_codes,
+                        )
+                    ]
+
+            option_anchor_sets: list[list[str]] = []
+            seen_option_signatures: set[tuple] = set()
+            for child_index, child in enumerate(node["children"]):
+                option_signature = canonical_requirement_signature(
+                    child,
+                    visible_codes=visible_codes,
+                    courses=courses,
+                    course_group_lookup=course_group_lookup,
+                    target_group=target_group,
+                )
+                if option_signature is None or option_signature in seen_option_signatures:
+                    continue
+                seen_option_signatures.add(option_signature)
+                child_anchors = unique_ordered(
+                    branch_anchors(
+                        child,
+                        f"{namespace}_{child_index}",
+                        collapse_all=True,
+                    )
+                )
+                child_anchors = prune_redundant_anchor_ids(child_anchors)
+                if not child_anchors:
+                    continue
+                option_anchor_sets.append(child_anchors)
+
+            if not option_anchor_sets:
+                return []
+
+            if summaries_enabled:
+                flattened_codes = unique_ordered(
+                    code
+                    for anchors in option_anchor_sets
+                    for code in anchor_codes(anchors)
+                )
+                summary_label = infer_simplified_block_label(flattened_codes, courses)
+                if summary_label:
+                    summary_id = ensure_summary_node(
+                        f"summary_{namespace}",
+                        summary_label,
+                        simplified_block_tooltip(summary_label, flattened_codes, courses),
+                        flattened_codes,
+                    )
+                    return [summary_id]
+
+            option_sources: list[str] = []
+            seen_option_anchor_signatures: set[tuple[str, ...]] = set()
+            seen_option_semantics: set[tuple[str, str]] = set()
+            for child_index, child_anchors in enumerate(option_anchor_sets):
+                signature = tuple(sorted(child_anchors))
+                if signature in seen_option_anchor_signatures:
+                    continue
+                seen_option_anchor_signatures.add(signature)
+
+                if len(child_anchors) == 1:
+                    semantic_key = anchor_semantic_key(child_anchors[0])
+                    if semantic_key in seen_option_semantics:
+                        continue
+                    seen_option_semantics.add(semantic_key)
+                    option_sources.append(child_anchors[0])
+                    continue
+
+                child_codes = anchor_codes(child_anchors)
+                if summaries_enabled:
+                    summary_label = infer_simplified_block_label(child_codes, courses)
+                    if summary_label:
+                        semantic_key = ("summary", summary_label)
+                        if semantic_key in seen_option_semantics:
+                            continue
+                        seen_option_semantics.add(semantic_key)
+                        option_sources.append(
+                            ensure_summary_node(
+                                f"summary_{namespace}_{child_index}",
+                                summary_label,
+                                simplified_block_tooltip(summary_label, child_codes, courses),
+                                child_codes,
+                            )
+                        )
+                        continue
+
+                bundle_id = ensure_bundle_node(
+                    f"bundle_{namespace}_{child_index}",
+                    child_anchors,
+                )
+                for anchor_id in child_anchors:
+                    add_edge(
+                        anchor_id,
+                        bundle_id,
+                        style_key=f"{anchor_id}:{bundle_id}:bundle",
+                        color="#7a8389",
+                        penwidth="1.0",
+                    )
+                option_sources.append(bundle_id)
+
+            option_sources = unique_ordered(option_sources)
+            if not option_sources:
+                return []
+            if len(option_sources) == 1:
+                return option_sources
+
+            choice_id = ensure_choice_node(
+                f"choice_{namespace}",
+                count,
+                option_sources,
+            )
+            for source_id in option_sources:
+                add_edge(
+                    source_id,
+                    choice_id,
+                    style_key=f"{source_id}:{choice_id}:choice",
+                    color="#7a8389",
+                    penwidth="1.0",
+                )
+            return [choice_id]
+
+        child_anchors: list[str] = []
+        if summaries_enabled and collapse_all:
+            child_codes = unique_ordered(
+                code
+                for child in node.get("children", [])
+                for code in subtree_visible_codes(child)
+            )
+            summary_label = infer_simplified_block_label(child_codes, courses)
+            if summary_label:
+                return [
+                    ensure_summary_node(
+                        f"summary_{namespace}",
+                        summary_label,
+                        simplified_block_tooltip(summary_label, child_codes, courses),
+                        child_codes,
+                    )
+                ]
+        for child_index, child in enumerate(node.get("children", [])):
+            child_anchors.extend(
+                branch_anchors(
+                    child,
+                    f"{namespace}_{child_index}",
+                    collapse_all=False,
+                )
+            )
+
+        child_anchors = unique_ordered(child_anchors)
+        child_anchors = prune_redundant_anchor_ids(child_anchors)
+        if not child_anchors:
+            return []
+        if collapse_all and len(child_anchors) > 1:
+            child_codes = anchor_codes(child_anchors)
+            if summaries_enabled:
+                summary_label = infer_simplified_block_label(child_codes, courses)
+                if summary_label:
+                    return [
+                        ensure_summary_node(
+                            f"summary_{namespace}",
+                            summary_label,
+                            simplified_block_tooltip(summary_label, child_codes, courses),
+                            child_codes,
+                        )
+                    ]
+            bundle_id = ensure_bundle_node(
+                f"bundle_{namespace}",
+                child_anchors,
+            )
+            for anchor_id in child_anchors:
+                add_edge(
+                    anchor_id,
+                    bundle_id,
+                    style_key=f"{anchor_id}:{bundle_id}:bundle",
+                    color="#7a8389",
+                    penwidth="1.0",
+                )
+            return [bundle_id]
+        return child_anchors
+
+    for index, rule_node in enumerate(rule_nodes):
+        for anchor_id in unique_ordered(
+            branch_anchors(
+                rule_node,
+                f"{target_code}_{index}",
+                collapse_all=False,
+            )
+        ):
+            add_edge(
+                anchor_id,
+                target_id,
+                style_key=f"{anchor_id}:{target_id}:target",
+                color="#5d6972",
+                penwidth="1.2",
+            )
+
+
+def short_group_label(label: str) -> str:
+    cleaned = normalize_text(label)
+    lower = cleaned.lower()
+    match = re.search(r"complete ([0-9.]+) of", lower)
+    if match:
+        return f"{match.group(1)} of"
+    if "complete all" in lower:
+        return "All"
+    match = re.search(r"complete ([0-9.]+) units? of electives?", lower)
+    if match:
+        return f"{match.group(1)} units"
+    if "permission" in lower:
+        return "Permission"
+    if "elective" in lower:
+        return "Electives"
+    return cleaned[:14] if len(cleaned) > 14 else cleaned
+
+
+def display_group_label(label: str) -> str:
+    cleaned = normalize_text(label)
+    if not cleaned:
+        return "Requirement"
+    return cleaned if cleaned.endswith(".") else f"{cleaned}."
+
+
+def course_page_href(prefix: str, code: str, courses: dict[str, CourseRecord]) -> str | None:
+    if code not in courses:
+        return None
+    return f"{prefix}{code}.html"
+
+
+def program_page_href(prefix: str, code: str) -> str:
+    return f"{prefix}PR_{code}.html"
+
+
+def svg_course_href(code: str, courses: dict[str, CourseRecord]) -> str | None:
+    if code not in courses:
+        return None
+    return f"../../../courses/{code}.html"
+
+
+def render_subject_pill(code: str) -> str:
+    return (
+        f'<span class="subject-pill" style="--pill-color: {subject_color(code)}">'
+        f"{e(subject_name(code))}</span>"
+    )
+
+
+def render_course_chip(code: str, prefix: str, courses: dict[str, CourseRecord]) -> str:
+    title = courses.get(code).name if code in courses else "Not found in the last updated dataset"
+    href = course_page_href(prefix, code, courses)
+    classes = "course-pill" if href else "course-pill course-pill--ghost"
+    if href:
+        return f'<a class="{classes}" href="{href}" title="{e(title)}">{e(code)}</a>'
+    return f'<span class="{classes}" title="{e(title)}">{e(code)}</span>'
+
+
+def render_rule_node_html(node: dict, prefix: str, courses: dict[str, CourseRecord]) -> str:
+    if node["kind"] == "course":
+        return render_course_chip(node["code"], prefix, courses)
+
+    if node["kind"] == "text":
+        return f'<div class="rule-note">{e(node["text"])}</div>'
+
+    child_courses = all(child["kind"] == "course" for child in node["children"])
+    if child_courses:
+        body = (
+            '<div class="pill-row">'
+            + "".join(render_rule_node_html(child, prefix, courses) for child in node["children"])
+            + "</div>"
+        )
+    else:
+        body = (
+            '<div class="rule-group__body">'
+            + "".join(render_rule_node_html(child, prefix, courses) for child in node["children"])
+            + "</div>"
+        )
+    return (
+        '<details class="rule-group" open>'
+        f"<summary>{e(display_group_label(node['label']))}</summary>"
+        f"{body}"
+        "</details>"
+    )
+
+
+def rewrite_catalog_fragment(fragment: str, prefix: str, courses: dict[str, CourseRecord]) -> str:
+    soup = BeautifulSoup(fragment, "html.parser")
+    pid_lookup = {
+        course.detail.get("pid"): course.code
+        for course in courses.values()
+        if course.detail.get("pid")
+    }
+    for anchor in soup.find_all("a"):
+        href = anchor.get("href", "")
+        if href.startswith("#/courses/"):
+            pid = href.rsplit("/", 1)[-1]
+            course_code = pid_lookup.get(pid)
+            if course_code and course_code in courses:
+                anchor["href"] = course_page_href(prefix, course_code, courses) or "#"
+            else:
+                anchor.unwrap()
+            continue
+        if href.startswith("#/"):
+            anchor.unwrap()
+            continue
+        anchor["target"] = "_blank"
+        anchor["rel"] = "noreferrer"
+    return str(soup)
+
+
+def render_rich_text(fragment: str | None, prefix: str, courses: dict[str, CourseRecord]) -> str:
+    if not fragment:
+        return '<p class="empty-state">Nothing published for this field in the current snapshot.</p>'
+    return f'<div class="rich-text">{rewrite_catalog_fragment(fragment, prefix, courses)}</div>'
+
+
+def build_course_lookup() -> dict[str, CourseRecord]:
+    manifest_rows = {}
+    for manifest_name in ("eos_course_manifest.csv", "support_course_manifest.csv"):
+        manifest_path = DATA_DIR / manifest_name
+        if not manifest_path.exists():
+            continue
+        for row in read_csv_rows(manifest_path):
+            manifest_rows[row["course_code"]] = row
+
+    courses = {}
+    course_detail_dir = DATA_DIR / "course_details"
+    for path in sorted(course_detail_dir.glob("*.json"), key=lambda item: course_sort_key(item.stem)):
+        code = path.stem
+        detail = read_json(path)
+        manifest = manifest_rows.get(code, {})
+        requirement_nodes = parse_course_requirement_nodes(detail)
+        courses[code] = CourseRecord(
+            code=code,
+            name=manifest.get("course_name") or detail.get("title") or code,
+            catalog_url=manifest.get("catalog_url", ""),
+            detail=detail,
+            rule_nodes=requirement_nodes,
+            prereq_codes=collect_course_codes(requirement_nodes),
+        )
+    return courses
+
+
+def build_program_lookup() -> dict[str, ProgramRecord]:
+    manifest_rows = {
+        row["program_code"]: row for row in read_csv_rows(DATA_DIR / "seos_program_manifest.csv")
+    }
+    programs = {}
+    detail_dir = DATA_DIR / "program_details"
+    for path in sorted(detail_dir.glob("*.json"), key=lambda item: item.stem):
+        code = path.stem
+        detail = read_json(path)
+        manifest = manifest_rows.get(code, {})
+        sections = parse_program_sections(detail.get("programRequirements"))
+        explicit_codes, text_requirements, section_course_map = summarize_program_sections(sections)
+        streams = parse_program_streams(detail)
+        programs[code] = ProgramRecord(
+            code=code,
+            name=manifest.get("program_name") or detail.get("title") or code,
+            title=manifest.get("program_title") or detail.get("title") or code,
+            catalog_url=manifest.get("catalog_url", ""),
+            detail=detail,
+            sections=sections,
+            explicit_course_codes=explicit_codes,
+            text_requirements=text_requirements,
+            section_course_map=section_course_map,
+            streams=streams,
+        )
+    return programs
+
+
+def augment_courses_with_program_placeholders(
+    courses: dict[str, CourseRecord],
+    programs: dict[str, ProgramRecord],
+) -> None:
+    discovered_names: dict[str, str] = {}
+    for program in programs.values():
+        for section in program_graph_sections(program):
+            for code, title in iter_program_course_entries(section["rules"]):
+                discovered_names.setdefault(code, title)
+        for stream in program.streams:
+            for section in stream.sections:
+                for code, title in iter_program_course_entries(section["rules"]):
+                    discovered_names.setdefault(code, title)
+
+    for code, name in discovered_names.items():
+        if code in courses:
+            continue
+        courses[code] = CourseRecord(
+            code=code,
+            name=name,
+            catalog_url="",
+            detail={"description": ""},
+            rule_nodes=[],
+            prereq_codes=[],
+            placeholder=True,
+        )
+
+
+def enrich_relationships(programs: dict[str, ProgramRecord], courses: dict[str, CourseRecord]) -> None:
+    for program in programs.values():
+        named_codes = program_named_codes(program)
+        section_lookup = program_section_lookup(program)
+        for code in named_codes:
+            if code in courses:
+                courses[code].used_by_programs.add(program.code)
+
+        support_codes: list[str] = []
+        for code in named_codes:
+            if code not in courses:
+                continue
+            for prereq_code in courses[code].prereq_codes:
+                if prereq_code not in section_lookup:
+                    support_codes.append(prereq_code)
+        program.support_codes = sorted(unique_ordered(support_codes), key=course_sort_key)
+
+        for stream in program.streams:
+            stream_named_codes = program_named_codes(program, stream)
+            stream_section_lookup = program_section_lookup(program, stream)
+            stream_support_codes: list[str] = []
+            for code in stream_named_codes:
+                if code not in courses:
+                    continue
+                for prereq_code in courses[code].prereq_codes:
+                    if prereq_code not in stream_section_lookup:
+                        stream_support_codes.append(prereq_code)
+            stream.support_codes = sorted(unique_ordered(stream_support_codes), key=course_sort_key)
+
+    for course in courses.values():
+        for prereq_code in course.prereq_codes:
+            if prereq_code in courses:
+                courses[prereq_code].dependents.add(course.code)
+
+
+def prepare_output_directory() -> None:
+    if BUILD_DIR.exists():
+        shutil.rmtree(BUILD_DIR)
+    PROGRAM_GRAPH_DIR.mkdir(parents=True, exist_ok=True)
+    COURSE_GRAPH_DIR.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(STYLE_SOURCE, BUILD_DIR / "program-guide.css")
+    shutil.copy2(SCRIPT_SOURCE, BUILD_DIR / "program-guide.js")
+    (BUILD_DIR / ".nojekyll").write_text("", encoding="utf-8")
+
+
+def graph_base(name: str) -> Digraph:
+    graph = Digraph(name=name, format="svg")
+    graph.attr(
+        rankdir="LR",
+        bgcolor="transparent",
+        splines="spline",
+        nodesep="0.28",
+        ranksep="0.85",
+        pad="0.3",
+        fontname="Avenir Next",
+    )
+    graph.attr(
+        "node",
+        shape="box",
+        style="filled,rounded",
+        color="#1b2730",
+        penwidth="1.1",
+        fontname="Avenir Next",
+        fontsize="10",
+        margin="0.11,0.08",
+    )
+    graph.attr(
+        "edge",
+        color="#5d6972",
+        penwidth="1.1",
+        arrowsize="0.7",
+        fontname="Avenir Next",
+        fontsize="9",
+    )
+    return graph
+
+
+def add_graph_rule_tree(
+    graph: Digraph,
+    node: dict,
+    parent_id: str,
+    namespace: str,
+    courses: dict[str, CourseRecord],
+    explicit_codes: set[str],
+    seen_nodes: set[str],
+) -> None:
+    if node["kind"] == "course":
+        code = node["code"]
+        if code not in seen_nodes:
+            node_kwargs = {
+                "label": code,
+                "fillcolor": subject_color(code, missing=code not in courses),
+                "tooltip": courses[code].name if code in courses else code,
+            }
+            svg_href = svg_course_href(code, courses)
+            if svg_href:
+                node_kwargs["URL"] = svg_href
+                node_kwargs["target"] = "_top"
+            graph.node(code, **node_kwargs)
+            seen_nodes.add(code)
+        graph.edge(parent_id, code, color="#7a8389")
+        return
+
+    if node["kind"] == "text":
+        note_id = f"note_{namespace}"
+        graph.node(
+            note_id,
+            label=node["text"],
+            shape="note",
+            fillcolor="#fff3e4",
+            color="#b7793f",
+        )
+        graph.edge(parent_id, note_id, color="#b7793f")
+        return
+
+    rule_id = f"rule_{namespace}"
+    graph.node(
+        rule_id,
+        label=short_group_label(node["label"]),
+        shape="circle",
+        width="0.82",
+        height="0.82",
+        fillcolor="#fffdf8",
+        color="#1f4f66",
+        fontsize="9",
+    )
+    graph.edge(parent_id, rule_id, color="#1f4f66")
+    for index, child in enumerate(node["children"]):
+        add_graph_rule_tree(
+            graph,
+            child,
+            rule_id,
+            f"{namespace}_{index}",
+            courses,
+            explicit_codes,
+            seen_nodes,
+        )
+
+
+def write_program_graph(
+    program: ProgramRecord,
+    courses: dict[str, CourseRecord],
+    course_groups: dict[str, CourseGroupRecord],
+    course_group_lookup: dict[str, str],
+    *,
+    simplified: bool,
+    stream: ProgramStreamRecord | None = None,
+) -> None:
+    graph_id = stream_asset_stem(program, stream) if stream is not None else program.code
+    graph = graph_base(graph_id)
+    if simplified:
+        graph.attr(nodesep="0.18", ranksep="0.58", pad="0.16")
+    explicit_codes = {code for code in program_named_codes(program, stream) if code in courses}
+    visible_codes = explicit_codes | {code for code in program_support_codes(program, stream) if code in courses}
+    node_styles, _legend_items = build_program_node_styles(
+        program,
+        stream,
+        course_group_lookup=course_group_lookup,
+    )
+    prereq_map, _ = build_group_dependency_maps(visible_codes, courses, course_group_lookup)
+    prereq_closure = compute_group_prereq_closure(prereq_map)
+    depth_map = compute_group_depths(prereq_map)
+    visible_groups = sorted(
+        prereq_map,
+        key=lambda group_code: (
+            depth_map.get(group_code, 0),
+            0 if group_code in {course_group_lookup.get(code, code) for code in explicit_codes} else 1,
+            subject_from_code(group_code),
+            course_sort_key(group_code),
+        ),
+    )
+    explicit_groups = {course_group_lookup.get(code, code) for code in explicit_codes}
+
+    for group_code in visible_groups:
+        add_course_group_node(
+            graph,
+            group_code,
+            course_groups,
+            courses,
+            emphasis=group_code in explicit_groups,
+            style_overrides=node_styles.get(group_code),
+        )
+
+    depth_groups: dict[int, list[str]] = {}
+    for group_code in visible_groups:
+        depth_groups.setdefault(depth_map.get(group_code, 0), []).append(group_code)
+
+    for depth in sorted(depth_groups):
+        rank_nodes = [course_group_id(group_code) for group_code in depth_groups[depth]]
+        with graph.subgraph(name=f"rank_program_depth_{depth}") as rank_subgraph:
+            rank_subgraph.attr(rank="same")
+            for node_id in rank_nodes:
+                rank_subgraph.node(node_id)
+
+    drawn_edges: set[tuple[str, str, str]] = set()
+    created_aux_nodes: set[str] = set()
+    bundle_registry: dict[tuple[tuple[str, str], ...], str] | None = {} if simplified else None
+    choice_registry: dict[tuple[str, tuple[tuple[str, str], ...]], str] | None = {} if simplified else None
+    for target_group in sorted(visible_groups, key=course_sort_key):
+        target_rule_nodes = dedupe_requirement_nodes(
+            (
+                rule_node
+                for target_code in course_groups[target_group].codes
+                if target_code in courses
+                for rule_node in courses[target_code].rule_nodes
+            ),
+            visible_codes=visible_codes,
+            courses=courses,
+            course_group_lookup=course_group_lookup,
+            target_group=target_group,
+        )
+        if not target_rule_nodes:
+            continue
+        add_simplified_requirement_flow(
+            graph,
+            target_code=target_group,
+            rule_nodes=target_rule_nodes,
+            visible_codes=visible_codes,
+            courses=courses,
+            course_groups=course_groups,
+            course_group_lookup=course_group_lookup,
+            drawn_edges=drawn_edges,
+            created_aux_nodes=created_aux_nodes,
+            summaries_enabled=False,
+            bundle_registry=bundle_registry,
+            choice_registry=choice_registry,
+            group_prereq_closure=prereq_closure,
+        )
+
+    svg_bytes = graph.pipe(format="svg")
+    suffix = "--simplified" if simplified else ""
+    (PROGRAM_GRAPH_DIR / f"{graph_id}{suffix}.svg").write_bytes(svg_bytes)
+
+
+def write_course_graph(
+    course: CourseRecord,
+    courses: dict[str, CourseRecord],
+    course_groups: dict[str, CourseGroupRecord],
+    course_group_lookup: dict[str, str],
+    *,
+    simplified: bool,
+) -> None:
+    graph = graph_base(course.code)
+    focus_group = course_group_lookup.get(course.code, course.code)
+    focus_codes = {code for code in course_groups[focus_group].codes if code in courses}
+    all_codes = set(courses)
+    all_prereq_map, all_dependent_map = build_group_dependency_maps(
+        all_codes,
+        courses,
+        course_group_lookup,
+    )
+    if simplified:
+        visible_groups = {focus_group}
+        visible_groups.update(collect_related_groups(focus_group, all_prereq_map, 1))
+        visible_groups.update(collect_related_groups(focus_group, all_dependent_map, 1))
+    else:
+        visible_groups = {focus_group}
+        visible_groups.update(collect_related_groups(focus_group, all_prereq_map, None))
+        visible_groups.update(collect_related_groups(focus_group, all_dependent_map, None))
+
+    visible_codes = visible_codes_for_groups(visible_groups, course_groups)
+    prereq_map, dependent_map = build_group_dependency_maps(visible_codes, courses, course_group_lookup)
+    prereq_closure = compute_group_prereq_closure(prereq_map)
+    relative_depths = compute_relative_group_depths(focus_group, prereq_map, dependent_map)
+    ordered_visible_groups = sorted(
+        prereq_map,
+        key=lambda group_code: (
+            relative_depths.get(group_code, 0),
+            0 if group_code == focus_group else 1,
+            subject_from_code(group_code),
+            course_sort_key(group_code),
+        ),
+    )
+    focus_prereqs = prereq_map.get(focus_group, set())
+    focus_dependents = dependent_map.get(focus_group, set())
+    note_lines = unique_ordered(
+        note
+        for group_code in focus_codes
+        for note in collect_graph_note_lines(courses[group_code].rule_nodes)
+    )
+    note_lines = condense_graph_note_lines(note_lines)
+    note_id = f"{course.code}_notes" if note_lines else None
+
+    for group_code in ordered_visible_groups:
+        add_course_group_node(
+            graph,
+            group_code,
+            course_groups,
+            courses,
+            emphasis=group_code in focus_prereqs or group_code in focus_dependents,
+            focus=group_code == focus_group,
+            focus_name=course.name if group_code == focus_group else None,
+            preferred_code=course.code if group_code == focus_group else None,
+        )
+
+    if note_id:
+        graph.node(
+            note_id,
+            label=format_note_label("Published notes", note_lines, width=48),
+            shape="note",
+            fillcolor="#fff7ee",
+            color="#b7793f",
+            fontsize="12",
+            margin="0.18,0.14",
+        )
+        with graph.subgraph(name=f"rank_{course.code}_notes") as note_subgraph:
+            note_subgraph.attr(rank="source")
+            note_subgraph.node(note_id)
+
+    depth_groups: dict[int, list[str]] = {}
+    for group_code in ordered_visible_groups:
+        depth_groups.setdefault(relative_depths.get(group_code, 0), []).append(group_code)
+
+    for depth in sorted(depth_groups):
+        rank_nodes = [course_group_id(group_code) for group_code in depth_groups[depth]]
+        with graph.subgraph(name=f"rank_course_depth_{depth}") as rank_subgraph:
+            rank_subgraph.attr(rank="same")
+            for node_id in rank_nodes:
+                rank_subgraph.node(node_id)
+
+    if note_id:
+        graph.edge(
+            note_id,
+            course_group_id(focus_group),
+            style="invis",
+            arrowhead="none",
+            minlen="2",
+        )
+
+    drawn_edges: set[tuple[str, str, str]] = set()
+    created_aux_nodes: set[str] = set()
+    for target_group in sorted(visible_groups, key=course_sort_key):
+        target_rule_nodes = dedupe_requirement_nodes(
+            (
+                rule_node
+                for target_code in course_groups[target_group].codes
+                if target_code in courses
+                for rule_node in courses[target_code].rule_nodes
+            ),
+            visible_codes=visible_codes,
+            courses=courses,
+            course_group_lookup=course_group_lookup,
+            target_group=target_group,
+        )
+        if not target_rule_nodes:
+            continue
+        add_simplified_requirement_flow(
+            graph,
+            target_code=target_group,
+            rule_nodes=target_rule_nodes,
+            visible_codes=visible_codes,
+            courses=courses,
+            course_groups=course_groups,
+            course_group_lookup=course_group_lookup,
+            drawn_edges=drawn_edges,
+            created_aux_nodes=created_aux_nodes,
+            summaries_enabled=False,
+            bundle_registry=None,
+            choice_registry=None,
+            group_prereq_closure=prereq_closure,
+        )
+
+    svg_bytes = graph.pipe(format="svg")
+    suffix = "--simplified" if simplified else ""
+    (COURSE_GRAPH_DIR / f"{course.code}{suffix}.svg").write_bytes(svg_bytes)
+
+
+def render_nav(base: str, active: str) -> str:
+    items = [
+        ("Home", f"{base}index.html", "home"),
+        ("Programs", f"{base}programs/overview.html", "programs"),
+        ("Courses", f"{base}courses/overview.html", "courses"),
+        ("Workflow", f"{base}curriculum_workflow.html", "workflow"),
+    ]
+    links = []
+    for label, href, key in items:
+        class_attr = ' class="is-active"' if key == active else ""
+        links.append(f"<a{class_attr} href=\"{href}\">{e(label)}</a>")
+    return "".join(links)
+
+
+def render_layout(
+    *,
+    base: str,
+    active: str,
+    title: str,
+    description: str,
+    eyebrow: str,
+    hero_title: str,
+    hero_lede: str,
+    hero_actions: str,
+    content: str,
+) -> str:
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{e(title)}</title>
+  <meta name="description" content="{e(description)}">
+  <meta name="theme-color" content="#f4f1eb">
+  <link rel="stylesheet" href="{base}program-guide.css">
+  <script defer src="{base}program-guide.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="site-mark" href="{base}index.html">{e(SITE_NAME)}</a>
+      <nav class="site-nav" aria-label="Sections">
+        {render_nav(base, active)}
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero hero--guide">
+      <div class="hero__content">
+        <p class="hero__eyebrow">{e(eyebrow)}</p>
+        <h1 class="hero__title hero__title--wide">{e(hero_title)}</h1>
+        <p class="hero__lede">{e(hero_lede)}</p>
+        {hero_actions}
+      </div>
+    </section>
+    {content}
+  </main>
+
+  <footer>
+    <div class="footer-shell">
+      <div>
+        <p class="footer-brand">{e(SITE_NAME)}</p>
+        <p class="footer-copy">Static curriculum maps generated from current UVic undergraduate calendar data. Pages and graphs are rebuilt together so the published site stays aligned with the catalog snapshot.</p>
+      </div>
+      <div class="footer-links">
+        <a href="{base}programs/overview.html">Programs</a>
+        <a href="{base}courses/overview.html">Courses</a>
+        <a href="{base}curriculum_workflow.html">Workflow</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+"""
+
+
+def render_metric_card(value: str, label: str) -> str:
+    return (
+        '<article class="metric-card">'
+        f'<p class="metric-card__value">{value}</p>'
+        f'<p class="metric-card__label">{e(label)}</p>'
+        "</article>"
+    )
+
+
+def render_graph_key_item(title: str, body: str, sample: str) -> str:
+    return (
+        '<article class="graph-key__item">'
+        f'{sample}'
+        '<div>'
+        f'<p class="graph-key__title">{e(title)}</p>'
+        f'<p class="graph-key__copy">{e(body)}</p>'
+        '</div>'
+        '</article>'
+    )
+
+
+def render_graph_key_sample(label: str, modifier: str) -> str:
+    contents = e(label) if label else "&nbsp;"
+    return f'<span class="graph-key__sample graph-key__sample--{modifier}">{contents}</span>'
+
+
+def render_program_graph_key() -> str:
+    items = [
+        render_graph_key_item(
+            "Choice point",
+            "A shared published requirement such as choose 1 of, 2 of, or 3 of.",
+            render_graph_key_sample("1 of", "choice"),
+        ),
+        render_graph_key_item(
+            "Grouping junction",
+            "A small circular join keeps shared required branches tidy without repeating full connectors.",
+            render_graph_key_sample("", "junction"),
+        ),
+        render_graph_key_item(
+            "Published notes",
+            "Merged narrative requirements such as electives or standing notes that are useful context but do not form a prerequisite branch.",
+            render_graph_key_sample("Notes", "support"),
+        ),
+        render_graph_key_item(
+            "Merged course node",
+            "Equivalent or cross-listed courses are collapsed into one shared node.",
+            render_graph_key_sample("EOS431 / PHYS441", "merged"),
+        ),
+    ]
+    return '<div class="graph-key">' + "".join(items) + "</div>"
+
+
+def render_course_graph_key() -> str:
+    items = [
+        render_graph_key_item(
+            "Focus course",
+            "The course page you are viewing.",
+            render_graph_key_sample("EOS311", "focus"),
+        ),
+        render_graph_key_item(
+            "Connected course",
+            "A prerequisite or downstream course included in the current view.",
+            render_graph_key_sample("CHEM102", "named"),
+        ),
+        render_graph_key_item(
+            "Choice point",
+            "A shared requirement such as choose 1 of, 2 of, or 3 of.",
+            render_graph_key_sample("2 of", "choice"),
+        ),
+        render_graph_key_item(
+            "Grouping junction",
+            "A small circular join keeps shared requirement branches tidy.",
+            render_graph_key_sample("", "junction"),
+        ),
+        render_graph_key_item(
+            "Published notes",
+            "Merged narrative requirements such as registration restrictions or program notes that do not form a prerequisite branch.",
+            render_graph_key_sample("Notes", "support"),
+        ),
+        render_graph_key_item(
+            "Merged course node",
+            "Equivalent or cross-listed courses are collapsed into one shared node.",
+            render_graph_key_sample("BIOL311 / EOS311", "merged"),
+        ),
+    ]
+    return '<div class="graph-key">' + "".join(items) + "</div>"
+
+
+def render_subject_legend(codes: Iterable[str]) -> str:
+    return "".join(
+        f'<span class="legend-item"><span class="legend-swatch" style="--swatch-color: {subject_color(code)}"></span>{e(subject_name(code))}</span>'
+        for code in unique_ordered(subject_from_code(course_code) for course_code in codes)[:6]
+        for code in [code]
+    )
+
+
+def render_program_role_legend(items: list[tuple[str, dict[str, str]]]) -> str:
+    return "".join(
+        f'<span class="legend-item"><span class="legend-swatch" style="--swatch-color: {e(style["fillcolor"])}; --swatch-border: {e(style["color"])}"></span>{e(label)}</span>'
+        for label, style in items
+    )
+
+
+def render_graph_guide(
+    *,
+    summary: str,
+    preview_samples: list[tuple[str, str]] | None,
+    legend_html: str,
+    graph_key_html: str,
+    preview_html: str | None = None,
+    title: str = "Graph key and legend",
+) -> str:
+    if preview_html is not None:
+        preview = preview_html
+    else:
+        preview = "".join(render_graph_key_sample(label, modifier) for label, modifier in (preview_samples or []))
+    legend_block = f'<div class="legend">{legend_html}</div>' if legend_html else ""
+    return f"""
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">{e(title)}</span>
+          <span class="graph-guide__caption">{e(summary)}</span>
+        </span>
+        <span class="graph-guide__preview">{preview}</span>
+      </summary>
+      <div class="graph-guide__body">
+        {legend_block}
+        {graph_key_html}
+      </div>
+    </details>
+    """
+
+
+def render_graph_preview(
+    *,
+    title: str,
+    summary: str,
+    preview_html: str,
+) -> str:
+    return f"""
+    <div class="graph-guide graph-guide--static">
+      <div class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">{e(title)}</span>
+          <span class="graph-guide__caption">{e(summary)}</span>
+        </span>
+        <span class="graph-guide__preview">{preview_html}</span>
+      </div>
+    </div>
+    """
+
+
+def render_additional_requirements(note_lines: list[str]) -> str:
+    if not note_lines:
+        return ""
+    items = "".join(f"<li>{e(line)}</li>" for line in note_lines)
+    return f"""
+    <div class="graph-followup">
+      <p class="detail-card__eyebrow">Additional program requirements</p>
+      <ul class="graph-followup__list">{items}</ul>
+    </div>
+    """
+
+
+def render_graph_shell(
+    *,
+    shell_id: str,
+    section_kicker: str,
+    heading: str,
+    note: str,
+    simplified_svg: str,
+    full_svg: str,
+    aria_label: str,
+    guide_html: str,
+    simplified_copy: str,
+    full_copy: str,
+    footer_html: str = "",
+) -> str:
+    return f"""
+    <div class="graph-shell" id="{e(shell_id)}" data-graph-switcher>
+      <p class="section-kicker">{e(section_kicker)}</p>
+      <h2>{e(heading)}</h2>
+      <p class="graph-note">{e(note)}</p>
+      <div class="graph-toolbar">
+        <div class="segmented-control" role="group" aria-label="{e(heading)} graph mode">
+          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="{simplified_svg}" data-graph-download="{simplified_svg}" data-graph-copy="{e(simplified_copy)}">Simplified view</button>
+          <button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="{full_svg}" data-graph-download="{full_svg}" data-graph-copy="{e(full_copy)}">Full view</button>
+        </div>
+        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>{e(simplified_copy)}</p>
+      </div>
+      {guide_html}
+      <div class="graph-frame">
+        <object data="{simplified_svg}" data-graph-object type="image/svg+xml" aria-label="{e(aria_label)}">
+          <img src="{simplified_svg}" data-graph-fallback alt="{e(aria_label)}">
+        </object>
+      </div>
+      <p class="graph-actions"><a class="text-link" data-graph-link href="{simplified_svg}">Open current SVG</a></p>
+      {footer_html}
+    </div>
+    """
+
+
+def filter_token_string(values: Iterable[str]) -> str:
+    return " ".join(unique_ordered(value for value in values if value))
+
+
+def subject_department_token(subject_code: str) -> str | None:
+    mapping = {
+        "EOS": "seos",
+        "BIOC": "bioc",
+        "BIOL": "biol",
+        "CHEM": "chem",
+        "CSC": "csc",
+        "GEOG": "geog",
+        "MATH": "math",
+        "PHYS": "phys",
+        "STAT": "stat",
+    }
+    return mapping.get(subject_code)
+
+
+def department_label_from_token(token: str) -> str:
+    return DEPARTMENT_LABELS.get(token, token.replace("-", " ").title())
+
+
+def program_category_tokens(program: ProgramRecord) -> list[str]:
+    lower_text = f"{program.name} {program.title}".lower()
+    if "minor" in lower_text:
+        tokens = ["minor"]
+    elif "general" in lower_text:
+        tokens = ["general"]
+    elif "honours" in lower_text:
+        tokens = ["honours"]
+    else:
+        tokens = ["major"]
+    if "combined" in lower_text:
+        tokens.append("combined")
+    else:
+        tokens.append("seos-only")
+    return tokens
+
+
+def program_primary_category_label(program: ProgramRecord) -> str:
+    tokens = program_category_tokens(program)
+    if "combined" in tokens and "honours" in tokens:
+        return "Combined Honours"
+    if "combined" in tokens and "major" in tokens:
+        return "Combined Major"
+    if "honours" in tokens:
+        return "Honours"
+    if "minor" in tokens:
+        return "Minor"
+    if "general" in tokens:
+        return "General"
+    return "Major"
+
+
+def program_department_tokens(program: ProgramRecord, courses: dict[str, CourseRecord]) -> list[str]:
+    tokens = {"seos"}
+    visible_codes = unique_ordered(program.explicit_course_codes + program.support_codes)
+    for code in visible_codes:
+        subject_code = subject_from_code(code)
+        token = subject_department_token(subject_code)
+        if token and token != "seos":
+            tokens.add(token)
+    return sorted(tokens)
+
+
+def course_level_token(code: str) -> str:
+    digits = re.findall(r"\d+", code)
+    if not digits:
+        return "other"
+    number = int(digits[0])
+    return str((number // 100) * 100)
+
+
+def course_level_label(code: str) -> str:
+    level = course_level_token(code)
+    return f"{level}-level" if level != "other" else "Other level"
+
+
+def theme_keyword_hits(text: str, keyword: str) -> int:
+    normalized_keyword = keyword.lower()
+    if " " in normalized_keyword:
+        parts = [re.escape(part) + r"\w*" for part in normalized_keyword.split()]
+        pattern = r"\b" + r"\s+".join(parts) + r"\b"
+    elif normalized_keyword.isalpha() and len(normalized_keyword) <= 3:
+        pattern = rf"\b{re.escape(normalized_keyword)}\b"
+    else:
+        pattern = rf"\b{re.escape(normalized_keyword)}\w*\b"
+    return len(re.findall(pattern, text))
+
+
+def course_theme_scores(course: CourseRecord) -> list[tuple[str, int]]:
+    plain_description = BeautifulSoup(course.detail.get("description") or "", "html.parser").get_text(" ", strip=True)
+    text = normalize_text(f"{course.name} {plain_description}").lower()
+    scored: list[tuple[str, int, int]] = []
+    for index, (token, _label, keywords) in enumerate(COURSE_THEME_RULES):
+        score = sum(theme_keyword_hits(text, keyword) for keyword in keywords)
+        if score > 0:
+            scored.append((token, score, index))
+    scored.sort(key=lambda item: (-item[1], item[2]))
+    return [(token, score) for token, score, _index in scored]
+
+
+def course_theme_tokens(course: CourseRecord) -> list[str]:
+    return [token for token, _score in course_theme_scores(course)]
+
+
+def course_theme_labels(course: CourseRecord) -> list[str]:
+    token_to_label = {token: label for token, label, _ in COURSE_THEME_RULES}
+    return [token_to_label[token] for token in course_theme_tokens(course)]
+
+
+def render_filter_button(label: str, *, group: str, value: str, active: bool = False) -> str:
+    class_name = "filter-chip is-active" if active else "filter-chip"
+    return (
+        f'<button class="{class_name}" type="button" data-filter-group="{e(group)}" '
+        f'data-filter-value="{e(value)}">{e(label)}</button>'
+    )
+
+
+def render_filter_group(title: str, buttons: list[str]) -> str:
+    return (
+        '<div class="filter-group">'
+        f'<p class="detail-card__eyebrow">{e(title)}</p>'
+        '<div class="filter-chip-row">'
+        + "".join(buttons)
+        + "</div></div>"
+    )
+
+
+def render_program_card(program: ProgramRecord, base: str, courses: dict[str, CourseRecord]) -> str:
+    named_codes = program_named_codes(program)
+    eos_count = sum(1 for code in named_codes if subject_from_code(code) == "EOS")
+    partner_prereq_count = len(program.support_codes)
+    category = program_primary_category_label(program)
+    category_tokens = program_category_tokens(program)
+    metadata_pills = "".join(
+        f'<span class="meta-pill">{e(label)}</span>'
+        for label in [category]
+    )
+    official_link = (
+        f'<a class="text-link" href="{e(program.catalog_url)}">Official calendar</a>'
+        if program.catalog_url
+        else ""
+    )
+    return (
+        '<article class="directory-card"'
+        f' data-filter-category="{e(filter_token_string(category_tokens))}">'
+        f'<p class="directory-card__eyebrow">{e(program.code)} | {e(category)}</p>'
+        f'<h3><a href="{program_page_href(base, program.code)}">{e(program.name)}</a></h3>'
+        f'<p>{e(program.title)}</p>'
+        f'<p class="meta-line">{len(named_codes)} named courses | {eos_count} EOS | {partner_prereq_count} related prerequisite courses outside the named list</p>'
+        f'<div class="pill-row">{metadata_pills}</div>'
+        '<div class="link-row">'
+        f'<a class="text-link" href="{program_page_href(base, program.code)}">Open guide page</a>'
+        f'{official_link}'
+        "</div>"
+        "</article>"
+    )
+
+
+def render_course_card(course: CourseRecord, base: str, *, support: bool = False) -> str:
+    card_type = "Partner-department course" if support else "EOS course"
+    level_label = course_level_label(course.code)
+    theme_labels = course_theme_labels(course)
+    search_text = " ".join(unique_ordered([course.code, course.name, subject_name(course.code), *theme_labels]))
+    official_link = (
+        f'<a class="text-link" href="{e(course.catalog_url)}">Official calendar</a>'
+        if course.catalog_url
+        else ""
+    )
+    tag_pills = "".join(
+        f'<span class="meta-pill">{e(label)}</span>'
+        for label in [level_label] + theme_labels[:3]
+    )
+    return (
+        '<article class="directory-card"'
+        f' data-filter-track="{e("support" if support else "eos")}"'
+        f' data-filter-subject="{e(subject_from_code(course.code).lower())}"'
+        f' data-filter-level="{e(course_level_token(course.code))}"'
+        f' data-filter-theme="{e(filter_token_string(course_theme_tokens(course)))}"'
+        f' data-filter-search="{e(search_text.lower())}">'
+        f'<p class="directory-card__eyebrow">{e(card_type)} | {e(course.code)}</p>'
+        f'<h3><a href="{base}{course.code}.html">{e(course.name)}</a></h3>'
+        f'<p class="meta-line">{e(subject_name(course.code))}</p>'
+        f'<p class="meta-line">{len(course.prereq_codes)} prerequisite links | {len(course.used_by_programs)} programs | {len(course.dependents)} downstream courses</p>'
+        f'<div class="pill-row">{render_subject_pill(course.code)}{tag_pills}</div>'
+        '<div class="link-row">'
+        f'<a class="text-link" href="{base}{course.code}.html">Open course page</a>'
+        f'{official_link}'
+        "</div>"
+        "</article>"
+    )
+
+
+def render_program_section(section: dict, courses: dict[str, CourseRecord]) -> str:
+    course_codes = collect_course_codes(section["rules"])
+    stats = f"{len(course_codes)} named courses" if course_codes else "Narrative guidance only"
+    body = "".join(render_rule_node_html(rule, "../courses/", courses) for rule in section["rules"])
+    if not body:
+        body = '<p class="empty-state">No structured rule data captured for this section.</p>'
+    return (
+        '<article class="section-block">'
+        '<div class="section-block__head">'
+        f"<h3>{e(section['title'])}</h3>"
+        f'<p class="meta-line">{e(stats)}</p>'
+        "</div>"
+        f'<div class="rule-stack">{body}</div>'
+        "</article>"
+    )
+
+
+def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]) -> str:
+    named_codes = program_named_codes(program)
+    metric_items = [
+        render_metric_card(program_primary_category_label(program), "Program type"),
+        render_metric_card(str(len(named_codes)), "Named courses in the published structure"),
+        render_metric_card(str(len(program.support_codes)), "Related prerequisite courses outside the named list"),
+    ]
+    if program.streams:
+        metric_items.append(render_metric_card(str(len(program.streams)), "Named stream pathways"))
+    else:
+        metric_items.append(
+            render_metric_card(
+                str(sum(1 for code in named_codes if subject_from_code(code) == "EOS")),
+                "EOS courses named directly in the program",
+            )
+        )
+    metric_cards = "".join(metric_items)
+
+    details_cards = [
+        (
+            "Official Source",
+            "Calendar entry",
+            (
+                f'<p><a class="text-link" href="{e(program.catalog_url)}">Open the UVic calendar entry</a></p>'
+                if program.catalog_url
+                else '<p class="empty-state">Official calendar link not available in the current snapshot.</p>'
+            ),
+        ),
+        (
+            "Published Description",
+            "Catalog text",
+            render_rich_text(program.detail.get("description"), "../courses/", courses),
+        ),
+    ]
+    if program.detail.get("programNotes"):
+        details_cards.append(
+            (
+                "Program Notes",
+                "Catalog notes",
+                render_rich_text(program.detail.get("programNotes"), "../courses/", courses),
+            )
+        )
+
+    detail_html = "".join(
+        '<article class="detail-card">'
+        f'<p class="detail-card__eyebrow">{e(eyebrow)}</p>'
+        f"<h3>{e(title)}</h3>"
+        f"{body}"
+        "</article>"
+        for eyebrow, title, body in details_cards
+    )
+
+    support_body = (
+        '<div class="pill-row">'
+        + "".join(render_course_chip(code, "../courses/", courses) for code in program.support_codes)
+        + "</div>"
+        if program.support_codes
+        else '<p class="empty-state">No additional prerequisite courses fall outside the named program structure in this snapshot.</p>'
+    )
+
+    graph_key_html = render_program_graph_key()
+    simplified_program_group_lookup = build_course_groups(courses, aggressive=True)[1]
+    simplified_copy = (
+        "Simplified view: collapse recurring early-sequence options and keep the prerequisite flow readable."
+    )
+    full_copy = (
+        "Full view: keep the complete prerequisite structure and the separate course variants named in the last updated dataset."
+    )
+    if program.streams:
+        graph_intro = (
+            '<div class="section-heading">'
+            '<p class="section-kicker">Program Graphs</p>'
+            '<h2>Shared program core plus stream-specific pathway maps.</h2>'
+            '<p>Climate Science is published with a shared core and two stream-specific pathways. Each map below combines the shared program requirements with one stream so the Year 2 to Year 4 structure stays readable.</p>'
+            '</div>'
+        )
+        graph_shells = []
+        for stream in program.streams:
+            _stream_node_styles, stream_legend_items = build_program_node_styles(
+                program,
+                stream,
+                course_group_lookup=simplified_program_group_lookup,
+            )
+            guide_html = render_graph_preview(
+                title="Program legend",
+                summary=f"Node colours show required courses, related prerequisites, and distinct option sets used in the {stream.title.lower()} map.",
+                preview_html=render_program_role_legend(stream_legend_items),
+            )
+            stream_heading = stream.title
+            if stream.description:
+                stream_note = stream.description
+            else:
+                stream_note = "This map combines the shared program structure with the published requirements for this stream."
+            asset_stem = stream_asset_stem(program, stream)
+            additional_requirements_html = render_additional_requirements(
+                program_graph_note_lines(program, stream)
+            )
+            graph_shells.append(
+                render_graph_shell(
+                    shell_id=f"program-graph-{stream.slug}",
+                    section_kicker="Stream Map",
+                    heading=stream_heading,
+                    note=stream_note,
+                    simplified_svg=f"../assets/graphs/programs/{asset_stem}--simplified.svg",
+                    full_svg=f"../assets/graphs/programs/{asset_stem}.svg",
+                    aria_label=f"{program.name} {stream.title} graph",
+                    guide_html=guide_html,
+                    simplified_copy=simplified_copy,
+                    full_copy=full_copy,
+                    footer_html=additional_requirements_html,
+                )
+            )
+        graphs_html = (
+            f'{graph_intro}<div class="section-stack" id="program-streams">{"".join(graph_shells)}</div>'
+        )
+        graph_anchor = "#program-streams"
+    else:
+        _program_node_styles, program_legend_items = build_program_node_styles(
+            program,
+            None,
+            course_group_lookup=simplified_program_group_lookup,
+        )
+        guide_html = render_graph_preview(
+            title="Program legend",
+            summary="Node colours show required courses, related prerequisites, and distinct option sets used in the program map.",
+            preview_html=render_program_role_legend(program_legend_items),
+        )
+        additional_requirements_html = render_additional_requirements(
+            program_graph_note_lines(program, None)
+        )
+        graphs_html = render_graph_shell(
+            shell_id="program-graph",
+            section_kicker="Program Graph",
+            heading="Program requirements arranged by prerequisite flow.",
+            note="The graph is driven by prerequisite flow rather than year buckets. The simplified view keeps the sequence readable while the full view keeps the finer-grained structure.",
+            simplified_svg=f"../assets/graphs/programs/{program.code}--simplified.svg",
+            full_svg=f"../assets/graphs/programs/{program.code}.svg",
+            aria_label=f"{program.name} program graph",
+            guide_html=guide_html,
+            simplified_copy=simplified_copy,
+            full_copy=full_copy,
+            footer_html=additional_requirements_html,
+        )
+        graph_anchor = "#program-graph"
+
+    content = f"""
+    <section class="section section--tight">
+      <div class="metric-grid">{metric_cards}</div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">{detail_html}</div>
+    </section>
+
+    <section class="section">
+      {graphs_html}
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="section-kicker">Related Courses</p>
+        <h2>Prerequisite courses outside the named program list.</h2>
+        <p>These courses are not listed directly in the published program requirements, but they appear in the prerequisite chains that make the flow map readable.</p>
+      </div>
+      <div class="section-block">{support_body}</div>
+    </section>
+    """
+
+    official_calendar_button = (
+        f'<a class="button button--ghost" href="{e(program.catalog_url)}">Official calendar</a>'
+        if program.catalog_url
+        else ""
+    )
+    hero_actions = (
+        '<div class="hero__actions">'
+        f'<a class="button" href="{graph_anchor}">Graph</a>'
+        '<a class="button button--ghost" href="overview.html">Back to programs</a>'
+        f'{official_calendar_button}'
+        "</div>"
+    )
+
+    return render_layout(
+        base="../",
+        active="programs",
+        title=f"{program.name} | {SITE_NAME}",
+        description=f"Published program map for {program.name} at UVic, with regenerated prerequisite-flow graphs.",
+        eyebrow=f"Programs | {program.code}",
+        hero_title=program.name,
+        hero_lede=(
+            "Published program structure, rebuilt as a static map with stream-aware prerequisite graphs."
+            if program.streams
+            else "Published program structure, rebuilt as a static map with regenerated prerequisite-flow graphs."
+        ),
+        hero_actions=hero_actions,
+        content=content,
+    )
+
+
+def render_course_page(course: CourseRecord, courses: dict[str, CourseRecord], programs: dict[str, ProgramRecord]) -> str:
+    metric_cards = "".join(
+        [
+            render_metric_card(e(subject_name(course.code)), "Subject area"),
+            render_metric_card(course_level_label(course.code), "Course level"),
+            render_metric_card(str(len(course.used_by_programs)), "Programs that name this course"),
+            render_metric_card(str(len(course.prereq_codes)), "Published prerequisite links"),
+        ]
+    )
+
+    used_by_body = (
+        '<div class="pill-row">'
+        + "".join(
+            f'<a class="course-pill" href="{program_page_href("../programs/", program_code)}">{e(programs[program_code].name if program_code in programs else program_code)}</a>'
+            for program_code in sorted(
+                course.used_by_programs,
+                key=lambda item: programs[item].name if item in programs else item,
+            )
+        )
+        + "</div>"
+        if course.used_by_programs
+        else '<p class="empty-state">This course is not named directly in the current SEOS program set.</p>'
+    )
+
+    detail_cards = [
+        (
+            "Official Source",
+            "Calendar entry",
+            (
+                f'<p><a class="text-link" href="{e(course.catalog_url)}">Open the UVic calendar entry</a></p>'
+                if course.catalog_url
+                else '<p class="empty-state">Detailed catalog link not available in the current snapshot.</p>'
+            ),
+        ),
+        (
+            "Description",
+            "Catalog description",
+            render_rich_text(course.detail.get("description"), "", courses),
+        ),
+    ]
+    if course.detail.get("supplementalNotes"):
+        detail_cards.append(
+            (
+                "Supplemental Notes",
+                "Catalog notes",
+                render_rich_text(course.detail.get("supplementalNotes"), "", courses),
+            )
+        )
+    if course.detail.get("restrictions"):
+        detail_cards.append(
+            (
+                "Restrictions",
+                "Catalog text",
+                render_rich_text(course.detail.get("restrictions"), "", courses),
+            )
+        )
+
+    details_html = "".join(
+        '<article class="detail-card">'
+        f'<p class="detail-card__eyebrow">{e(eyebrow)}</p>'
+        f"<h3>{e(title)}</h3>"
+        f"{body}"
+        "</article>"
+        for eyebrow, title, body in detail_cards
+    )
+    graph_key_html = render_course_graph_key()
+    guide_html = render_graph_guide(
+        summary="Expand for department colours, choice nodes, and merged-course labels used in the course map.",
+        preview_samples=[(course.code, "focus"), ("1 of", "choice"), ("", "junction"), ("Merged", "merged")],
+        legend_html=render_subject_pill(course.code),
+        graph_key_html=graph_key_html,
+        title="Graph key and legend",
+    )
+    graph_html = render_graph_shell(
+        shell_id="course-graph",
+        section_kicker="Course Graph",
+        heading="Prerequisite flow into the course, and downstream links out from it.",
+        note="Choice rules are rendered as compact connector nodes, co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one downstream level below it.",
+        simplified_svg=f"../assets/graphs/courses/{course.code}--simplified.svg",
+        full_svg=f"../assets/graphs/courses/{course.code}.svg",
+        aria_label=f"{course.code} course graph",
+        guide_html=guide_html,
+        simplified_copy="Simplified view: direct prerequisites above the course, then one downstream level below it.",
+        full_copy="Full view: the entire connected prerequisite and downstream pathway captured in the last updated dataset.",
+    )
+
+    content = f"""
+    <section class="section section--tight">
+      <div class="metric-grid">{metric_cards}</div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">{details_html}</div>
+    </section>
+
+    <section class="section">
+      {graph_html}
+    </section>
+
+    <section class="section">
+      <div class="detail-grid detail-grid--single">
+        <article class="detail-card">
+          <p class="detail-card__eyebrow">Program Use</p>
+          <h3>Programs that name this course</h3>
+          {used_by_body}
+        </article>
+      </div>
+    </section>
+    """
+
+    official_calendar_button = (
+        f'<a class="button button--ghost" href="{e(course.catalog_url)}">Official calendar</a>'
+        if course.catalog_url
+        else ""
+    )
+    hero_actions = (
+        '<div class="hero__actions">'
+        '<a class="button" href="#course-graph">Graph</a>'
+        '<a class="button button--ghost" href="overview.html">Back to courses</a>'
+        f'{official_calendar_button}'
+        "</div>"
+    )
+
+    return render_layout(
+        base="../",
+        active="courses",
+        title=f"{course.code} | {SITE_NAME}",
+        description=f"Published course map for {course.code} at UVic, with regenerated prerequisite and downstream graphs.",
+        eyebrow=f"Courses | {course.code}",
+        hero_title=f"{course.code}: {course.name}",
+        hero_lede=(
+            "Course page generated from current catalog data and related program references."
+            if course.placeholder
+            else "Published course information, regenerated as a static page and SVG graph."
+        ),
+        hero_actions=hero_actions,
+        content=content,
+    )
+
+
+def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[str, CourseRecord], generated_at: str) -> str:
+    cards = "".join(
+        render_program_card(program, "", courses)
+        for program in sorted(programs.values(), key=lambda item: item.name)
+    )
+    metric_cards = "".join(
+        [
+            render_metric_card(str(len(programs)), "Programs in the SEOS set"),
+            render_metric_card(str(sum(1 for program in programs.values() if "Honours" in program.name)), "Honours and combined honours variants"),
+            render_metric_card(str(sum(1 for program in programs.values() if "Minor" in program.name)), "Minor pathways"),
+            render_metric_card(e(generated_at), "Last updated"),
+        ]
+    )
+    category_filters = render_filter_group(
+        "Category",
+        [
+            render_filter_button("All", group="category", value="all", active=True),
+            render_filter_button("SEOS only", group="category", value="seos-only"),
+            render_filter_button("Honours", group="category", value="honours"),
+            render_filter_button("Major", group="category", value="major"),
+            render_filter_button("Minor", group="category", value="minor"),
+            render_filter_button("General", group="category", value="general"),
+            render_filter_button("Combined", group="category", value="combined"),
+        ],
+    )
+    content = f"""
+    <section class="section section--tight">
+      <div class="metric-grid">{metric_cards}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="section-kicker">Program Directory</p>
+        <h2>Published SEOS and related program structures.</h2>
+        <p>Each page turns the published program structure into a clearer prerequisite-flow map, with stream-specific views where the calendar splits into distinct pathways.</p>
+      </div>
+      <div class="filter-panel" data-card-filter>
+        <div class="filter-panel__groups">
+          {category_filters}
+        </div>
+      </div>
+      <div class="directory-grid" data-filter-grid>{cards}</div>
+      <p class="empty-state empty-state--filtered is-hidden" data-filter-empty>No programs match the current filters.</p>
+      </section>
+    """
+    hero_actions = (
+        '<div class="hero__actions">'
+        '<a class="button" href="../index.html">Guide home</a>'
+        '<a class="button button--ghost" href="../curriculum_workflow.html">Build workflow</a>'
+        "</div>"
+    )
+    return render_layout(
+        base="../",
+        active="programs",
+        title=f"Programs | {SITE_NAME}",
+        description="Published SEOS and related program structures at UVic, regenerated as static curriculum maps with node graphs.",
+        eyebrow="Programs",
+        hero_title="SEOS programs and combined programs.",
+        hero_lede="Current published structures, rebuilt as static pages and SVG graphs from the catalog snapshot.",
+        hero_actions=hero_actions,
+        content=content,
+    )
+
+
+def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) -> str:
+    eos_courses = [
+        course
+        for course in courses.values()
+        if subject_from_code(course.code) == "EOS" and not course.placeholder
+    ]
+    support_courses = [
+        course
+        for course in courses.values()
+        if subject_from_code(course.code) != "EOS" and not course.placeholder
+    ]
+
+    eos_cards = "".join(render_course_card(course, "", support=False) for course in sorted(eos_courses, key=lambda item: course_sort_key(item.code)))
+    support_cards = "".join(render_course_card(course, "", support=True) for course in sorted(support_courses, key=lambda item: course_sort_key(item.code)))
+
+    metric_cards = "".join(
+        [
+            render_metric_card(str(len(eos_courses)), "EOS courses with detail pages"),
+            render_metric_card(str(len(support_courses)), "Partner-department course pages"),
+            render_metric_card(str(sum(len(course.dependents) for course in eos_courses)), "Direct downstream links across EOS courses"),
+            render_metric_card(e(generated_at), "Last updated"),
+        ]
+    )
+    department_codes = unique_ordered(
+        subject_from_code(course.code)
+        for course in sorted(eos_courses + support_courses, key=lambda item: course_sort_key(item.code))
+    )
+    department_filters = render_filter_group(
+        "Department",
+        [render_filter_button("All", group="subject", value="all", active=True)]
+        + [
+            render_filter_button(subject_name(code), group="subject", value=code.lower())
+            for code in department_codes
+        ],
+    )
+    level_filters = render_filter_group(
+        "Level",
+        [
+            render_filter_button("All", group="level", value="all", active=True),
+            render_filter_button("100-level", group="level", value="100"),
+            render_filter_button("200-level", group="level", value="200"),
+            render_filter_button("300-level", group="level", value="300"),
+            render_filter_button("400-level", group="level", value="400"),
+        ],
+    )
+    theme_filters = render_filter_group(
+        "Theme",
+        [render_filter_button("All", group="theme", value="all", active=True)]
+        + [
+            render_filter_button(label, group="theme", value=token)
+            for token, label, _ in COURSE_THEME_RULES
+        ],
+    )
+
+    content = f"""
+    <section class="section section--tight">
+      <div class="metric-grid">{metric_cards}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="section-kicker">Course Directory</p>
+        <h2>EOS courses and partner-department prerequisites.</h2>
+        <p>Use the quick filters to narrow by level and by broad course theme.</p>
+      </div>
+      <div class="filter-panel" data-card-filter>
+        <div class="filter-panel__groups">
+          {department_filters}
+          {level_filters}
+          {theme_filters}
+        </div>
+      </div>
+      <div class="directory-grid" data-filter-grid>{eos_cards}{support_cards}</div>
+      <p class="empty-state empty-state--filtered is-hidden" data-filter-empty>No courses match the current filters.</p>
+    </section>
+    """
+
+    hero_actions = (
+        '<div class="hero__actions">'
+        '<a class="button" href="../index.html">Guide home</a>'
+        '<a class="button button--ghost" href="../programs/overview.html">Programs</a>'
+        "</div>"
+    )
+
+    return render_layout(
+        base="../",
+        active="courses",
+        title=f"Courses | {SITE_NAME}",
+        description="Published SEOS and supporting course structures at UVic, regenerated as static curriculum maps with node graphs.",
+        eyebrow="Courses",
+        hero_title="SEOS courses and supporting pathways.",
+        hero_lede="Published course information, rebuilt as static pages and SVG graphs from the last updated dataset.",
+        hero_actions=hero_actions,
+        content=content,
+    )
+
+
+def render_workflow_page(manifest: dict) -> str:
+    generated_at = format_date_label(manifest["generated_at_utc"])
+    missing_support = "".join(
+        f'<span class="course-pill course-pill--ghost">{e(code)}</span>'
+        for code in manifest.get("missing_support_codes", [])
+    )
+    content = f"""
+    <section class="section">
+      <div class="split-callout">
+        <div>
+          <p class="section-kicker">Build Model</p>
+          <h2>Scripted static generation rather than notebook and Sphinx maintenance.</h2>
+          <p>This guide is now built as static HTML and SVG from the synced catalog JSON. The intended workflow is a data pull, a full graph and page rebuild, and then a publish step. That keeps the visual design aligned with the curriculum pages while removing the old manual `.rst` and notebook bottleneck.</p>
+        </div>
+        <div>
+          <p class="section-kicker">Last updated</p>
+          <p class="panel-note">{e(generated_at)} | {e(str(manifest['counts']['seos_programs']))} programs | {e(str(manifest['counts']['eos_courses']))} EOS courses | {e(str(manifest['counts']['support_courses']))} supporting courses</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">
+        <article class="command-card">
+          <p class="detail-card__eyebrow">Update data and rebuild</p>
+          <h3>Recommended maintenance command</h3>
+          <div class="code-block"><code>python3 scripts/update_program_guide.py</code></div>
+          <p class="meta-line">Runs the UVic catalog sync, then regenerates every graph and every static page into <code>build/html</code>.</p>
+        </article>
+        <article class="command-card">
+          <p class="detail-card__eyebrow">Rebuild only</p>
+          <h3>When the snapshot is already current</h3>
+          <div class="code-block"><code>python3 scripts/build_static_site.py</code></div>
+          <p class="meta-line">Useful after local styling or page-template edits when the data files themselves have not changed.</p>
+        </article>
+        <article class="command-card">
+          <p class="detail-card__eyebrow">Publish</p>
+          <h3>Push the generated site</h3>
+          <div class="code-block"><code>./push_docs.sh</code></div>
+          <p class="meta-line">Publishes the freshly generated <code>build/html</code> output to the repository’s <code>gh-pages</code> branch.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid">
+        <article class="detail-card">
+          <p class="detail-card__eyebrow">Scope</p>
+          <h3>What gets regenerated</h3>
+          <div class="rich-text">
+            <ul>
+              <li>Guide home page and workflow page</li>
+              <li>Program overview plus one page and one SVG graph for every SEOS program in the synced set</li>
+              <li>Course overview plus one page and one SVG graph for every EOS and partner-department course with detail data</li>
+            </ul>
+          </div>
+        </article>
+        <article class="detail-card">
+          <p class="detail-card__eyebrow">Known Gaps</p>
+          <h3>Referenced codes missing from the live snapshot</h3>
+          <div class="pill-row">{missing_support or '<p class="empty-state">No missing referenced partner-department course codes in the current snapshot.</p>'}</div>
+        </article>
+      </div>
+    </section>
+    """
+
+    hero_actions = (
+        '<div class="hero__actions">'
+        '<a class="button" href="index.html">Guide home</a>'
+        '<a class="button button--ghost" href="programs/overview.html">Programs</a>'
+        '<a class="button button--ghost" href="courses/overview.html">Courses</a>'
+        "</div>"
+    )
+
+    return render_layout(
+        base="",
+        active="workflow",
+        title=f"Workflow | {SITE_NAME}",
+        description=f"Maintenance workflow for the {SITE_NAME} static site and graph regeneration pipeline.",
+        eyebrow="Workflow",
+        hero_title="Static build workflow for the curriculum atlas.",
+        hero_lede="Sync the catalog data, regenerate every graph and page, then publish the output without relying on Sphinx.",
+        hero_actions=hero_actions,
+        content=content,
+    )
+
+
+def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, CourseRecord], manifest: dict) -> str:
+    generated_at = format_date_label(manifest["generated_at_utc"])
+    metric_cards = "".join(
+        [
+            render_metric_card(str(manifest["counts"]["seos_programs"]), "Programs in the current SEOS snapshot"),
+            render_metric_card(str(manifest["counts"]["eos_courses"]), "EOS courses with regenerated pages"),
+            render_metric_card(str(manifest["counts"]["support_courses"]), "Partner-department course pages"),
+            render_metric_card(e(generated_at), "Last updated"),
+        ]
+    )
+
+    content = f"""
+    <section class="section section--tight">
+      <div class="metric-grid">{metric_cards}</div>
+    </section>
+
+    <section class="section">
+      <div class="split-callout">
+        <div>
+          <p class="section-kicker">How To Use This Guide</p>
+          <h2>Start with the published structure, then zoom into a program or course page only when you need detail.</h2>
+          <p>This site maps the current approved calendar structure for SEOS programs and related pathways. Start with the <a class="text-link" href="programs/overview.html">program directory</a> when you want to compare published pathways, then use the <a class="text-link" href="courses/overview.html">course directory</a> to trace where specific courses appear across the SEOS program set.</p>
+          <p>Draft revisions, consultation notes, and proposal history still belong on the curriculum site. This guide is the baseline view of what is currently published.</p>
+        </div>
+        <div>
+          <p class="section-kicker">Regeneration</p>
+          <ol class="process-list">
+            <li>Pull the latest UVic catalog data.</li>
+            <li>Rebuild every graph and every page as static HTML and SVG.</li>
+            <li>Publish the generated output to the site branch.</li>
+          </ol>
+          <p class="panel-note"><a class="text-link" href="curriculum_workflow.html">Open the maintenance workflow</a></p>
+        </div>
+      </div>
+    </section>
+    """
+
+    hero_actions = (
+        '<div class="hero__actions">'
+        '<a class="button" href="programs/overview.html">Open program overview</a>'
+        '<a class="button button--ghost" href="courses/overview.html">Open course overview</a>'
+        '<a class="button button--ghost" href="curriculum_workflow.html">Maintenance workflow</a>'
+        "</div>"
+    )
+
+    return render_layout(
+        base="",
+        active="home",
+        title=SITE_NAME,
+        description="Static atlas for the published UVic SEOS curriculum structure, with regenerated program and course node graphs.",
+        eyebrow="School of Earth and Ocean Sciences | UVic",
+        hero_title="SEOS program structure, rebuilt as a static atlas.",
+        hero_lede="Current published programs and course pathways, regenerated into clearer pages and SVG node graphs.",
+        hero_actions=hero_actions,
+        content=content,
+    )
+
+
+def write_site(programs: dict[str, ProgramRecord], courses: dict[str, CourseRecord], manifest: dict) -> None:
+    (BUILD_DIR / "programs").mkdir(parents=True, exist_ok=True)
+    (BUILD_DIR / "courses").mkdir(parents=True, exist_ok=True)
+
+    (BUILD_DIR / "index.html").write_text(
+        render_index_page(programs, courses, manifest),
+        encoding="utf-8",
+    )
+    (BUILD_DIR / "curriculum_workflow.html").write_text(
+        render_workflow_page(manifest),
+        encoding="utf-8",
+    )
+    (BUILD_DIR / "programs" / "overview.html").write_text(
+        render_program_overview(programs, courses, format_date_label(manifest["generated_at_utc"])),
+        encoding="utf-8",
+    )
+    (BUILD_DIR / "courses" / "overview.html").write_text(
+        render_course_overview(courses, format_date_label(manifest["generated_at_utc"])),
+        encoding="utf-8",
+    )
+
+    for program in programs.values():
+        (BUILD_DIR / "programs" / f"PR_{program.code}.html").write_text(
+            render_program_page(program, courses),
+            encoding="utf-8",
+        )
+
+    for course in courses.values():
+        (BUILD_DIR / "courses" / f"{course.code}.html").write_text(
+            render_course_page(course, courses, programs),
+            encoding="utf-8",
+        )
+
+
+def main() -> None:
+    manifest = read_json(DATA_DIR / "manifest.json")
+    courses = build_course_lookup()
+    programs = build_program_lookup()
+    augment_courses_with_program_placeholders(courses, programs)
+    course_groups, course_group_lookup = build_course_groups(courses, aggressive=False)
+    simplified_course_groups, simplified_course_group_lookup = build_course_groups(courses, aggressive=True)
+    enrich_relationships(programs, courses)
+
+    prepare_output_directory()
+
+    for program in programs.values():
+        write_program_graph(
+            program,
+            courses,
+            simplified_course_groups,
+            simplified_course_group_lookup,
+            simplified=True,
+        )
+        write_program_graph(
+            program,
+            courses,
+            course_groups,
+            course_group_lookup,
+            simplified=False,
+        )
+        for stream in program.streams:
+            write_program_graph(
+                program,
+                courses,
+                simplified_course_groups,
+                simplified_course_group_lookup,
+                simplified=True,
+                stream=stream,
+            )
+            write_program_graph(
+                program,
+                courses,
+                course_groups,
+                course_group_lookup,
+                simplified=False,
+                stream=stream,
+            )
+
+    for course in courses.values():
+        write_course_graph(
+            course,
+            courses,
+            simplified_course_groups,
+            simplified_course_group_lookup,
+            simplified=True,
+        )
+        write_course_graph(
+            course,
+            courses,
+            course_groups,
+            course_group_lookup,
+            simplified=False,
+        )
+
+    write_site(programs, courses, manifest)
+
+    print(
+        f"Built static guide with {len(programs)} program pages, {len(courses)} course pages, "
+        f"and regenerated graphs in {BUILD_DIR}"
+    )
+
+
+if __name__ == "__main__":
+    main()

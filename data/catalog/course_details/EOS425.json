@@ -1,0 +1,34 @@
+{
+  "__catalogCourseId": "EOS425",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2025-05-01",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2025-05-03",
+  "description": "<p>Controls on the concentrations of aqueous species in the hydrosphere. Principles of chemical equilibrium and kinetics are applied to the major aspects of the global hydrochemical cycle. Investigates reactions and sources and sinks of elements in oxic and anoxic aquatic systems such as rainwater, rivers, lakes, groundwater, estuaries and oceans; also the application of natural and anthropogenic tracers to geochemical problems within aquatic systems.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3691afed2d200010da13f",
+    "name": "School of Earth and Ocean Sciences"
+  },
+  "hoursCatalogText": "3-3-0",
+  "id": "6686d77d848b0513cf921372",
+  "pid": "SJeTmdamV",
+  "preAndCorequisites": "<div><div><div><ul><li><span>Complete <!-- -->1<!-- --> of the following</span><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5d1f7355d2bc1524008cb3ef\" target=\"_blank\">EOS335</a> <!-- -->-<!-- --> <!-- -->Isotopes in Natural Sciences<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\">Complete <span>1.5</span> units of: <div>300- or 400-level CHEM course</div></div></li><li data-test=\"ruleView-C\"><div data-test=\"ruleView-C-result\"><div>permission of the school.</div></div></li></ul></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Earth and Ocean Sciences (EOS)",
+    "id": "5c13fb3b42504f2400e645d8",
+    "linkedGroup": "5be3691afed2d200010da13f",
+    "name": "EOS"
+  },
+  "supplementalNotes": "<ul> <li>Normally offered in alternate years. Students are advised to consult with the department to determine when this is offered.</li> </ul>",
+  "title": "Aqueous Chemistry in the Earth and Ocean"
+}

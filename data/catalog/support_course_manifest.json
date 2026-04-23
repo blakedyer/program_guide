@@ -1,0 +1,1172 @@
+[
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Hk6-APpQE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hk6-APpQE",
+    "course_code": "BIOC299",
+    "course_name": "Biochemistry for Non-Majors",
+    "id": "5d1f70aa94e82e2400a23628",
+    "pid": "Hk6-APpQE",
+    "subject": "BIOC"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJCZAvpQN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJCZAvpQN",
+    "course_code": "BIOC300A",
+    "course_name": "General Biochemistry I",
+    "id": "5d1f6e32d2bc1524008cb046",
+    "pid": "rJCZAvpQN",
+    "subject": "BIOC"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkE7RwpQ4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkE7RwpQ4",
+    "course_code": "BIOL150A",
+    "course_name": "Modern Biology",
+    "id": "5d1f70b689944f24002ad470",
+    "pid": "SkE7RwpQ4",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1SXRvT74",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1SXRvT74",
+    "course_code": "BIOL184",
+    "course_name": "Evolution and Biodiversity",
+    "id": "613eb4dde872572b8c59a5ae",
+    "pid": "S1SXRvT74",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1UmRDp7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1UmRDp7V",
+    "course_code": "BIOL186",
+    "course_name": "Physiology and Cell Biology",
+    "id": "613ebd3f73306fb87583ddc9",
+    "pid": "B1UmRDp7V",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkKQAv6X4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkKQAv6X4",
+    "course_code": "BIOL215",
+    "course_name": "Principles of Ecology",
+    "id": "5d1f6ea3d2bc1524008cb091",
+    "pid": "BkKQAv6X4",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJxFXRvTXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJxFXRvTXE",
+    "course_code": "BIOL225",
+    "course_name": "Principles of Cell Biology",
+    "id": "5d1f70c9fb68f3240022d32c",
+    "pid": "SJxFXRvTXE",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJqQAwTX4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJqQAwTX4",
+    "course_code": "BIOL230",
+    "course_name": "Principles of Genetics",
+    "id": "5d1f6f68fb68f3240022d231",
+    "pid": "HJqQAwTX4",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ByeEAPTQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByeEAPTQV",
+    "course_code": "BIOL311",
+    "course_name": "Biological Oceanography",
+    "id": "5e500fdbd48ad325008896f8",
+    "pid": "ByeEAPTQV",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ByH4Cv6XE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByH4Cv6XE",
+    "course_code": "BIOL319",
+    "course_name": "Marine Ecology",
+    "id": "5d1f67c889944f24002acd20",
+    "pid": "ByH4Cv6XE",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJI4RD6mV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJI4RD6mV",
+    "course_code": "BIOL321",
+    "course_name": "Survey of Invertebrates",
+    "id": "5d1f6f7a89944f24002ad37c",
+    "pid": "SJI4RD6mV",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1xLN0P6QE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1xLN0P6QE",
+    "course_code": "BIOL322",
+    "course_name": "Biology of Marine Invertebrates",
+    "id": "5e50100a7ea20d2500081c05",
+    "pid": "B1xLN0P6QE",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkdEADp7N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkdEADp7N",
+    "course_code": "BIOL330",
+    "course_name": "Study Design and Data Analysis",
+    "id": "61c9478d5cba7e826212eaef",
+    "pid": "HkdEADp7N",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJo4AD67E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJo4AD67E",
+    "course_code": "BIOL335",
+    "course_name": "Ichthyology",
+    "id": "5d1f70d594e82e2400a2364b",
+    "pid": "HJo4AD67E",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkgBCDa7E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkgBCDa7E",
+    "course_code": "BIOL355",
+    "course_name": "Evolution",
+    "id": "5d1f70e789944f24002ad49a",
+    "pid": "SkgBCDa7E",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Sy4SCwTXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Sy4SCwTXE",
+    "course_code": "BIOL370",
+    "course_name": "Conservation Biology",
+    "id": "614fa85e7286f1442fca6db7",
+    "pid": "Sy4SCwTXE",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJl8RPamN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJl8RPamN",
+    "course_code": "BIOL418",
+    "course_name": "Forest Ecology",
+    "id": "5d1f6ad194e82e2400a231bb",
+    "pid": "SJl8RPamN",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r19IAP67N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r19IAP67N",
+    "course_code": "BIOL435",
+    "course_name": "Molecular Evolution",
+    "id": "6324bf0ed04db11288083474",
+    "pid": "r19IAP67N",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Byes8CD674",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Byes8CD674",
+    "course_code": "BIOL438",
+    "course_name": "Nutrient Cycling and Prokaryotes",
+    "id": "5d1f6ea889944f24002ad2dc",
+    "pid": "Byes8CD674",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkALCwam4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkALCwam4",
+    "course_code": "BIOL446",
+    "course_name": "Advanced Aquatic Ecology",
+    "id": "5d1f717489944f24002ad50a",
+    "pid": "HkALCwam4",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ByNDCDaX4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByNDCDaX4",
+    "course_code": "BIOL457",
+    "course_name": "Paleoecology and Environmental Change",
+    "id": "5df1371e9c4ef42500f710af",
+    "pid": "ByNDCDaX4",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkUv0PpXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkUv0PpXE",
+    "course_code": "BIOL460",
+    "course_name": "Honours Seminar",
+    "id": "5f62e1dd7d1a9b00260869ae",
+    "pid": "BkUv0PpXE",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HyDv0vaQ4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HyDv0vaQ4",
+    "course_code": "BIOL461",
+    "course_name": "Fisheries Ecology and Management",
+    "id": "5d1f6fb289944f24002ad3a3",
+    "pid": "HyDv0vaQ4",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkOPRP6XN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkOPRP6XN",
+    "course_code": "BIOL466",
+    "course_name": "Frontiers in Marine Biology",
+    "id": "5d1f6e9f94e82e2400a23494",
+    "pid": "BkOPRP6XN",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJoDCP6XE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJoDCP6XE",
+    "course_code": "BIOL490D",
+    "course_name": "Directed Studies and Research in Marine Biology",
+    "id": "6228f03bfee955904a03ce7e",
+    "pid": "SJoDCP6XE",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJZuRvamN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJZuRvamN",
+    "course_code": "BIOL499A",
+    "course_name": "Honours Thesis I",
+    "id": "5d1f714dd2bc1524008cb272",
+    "pid": "SJZuRvamN",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1G_0DamE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1G_0DamE",
+    "course_code": "BIOL499B",
+    "course_name": "Honours Thesis II",
+    "id": "5d1f7029d2bc1524008cb1aa",
+    "pid": "S1G_0DamE",
+    "subject": "BIOL"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Hk0p0w6XV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hk0p0w6XV",
+    "course_code": "CHEM091",
+    "course_name": "Introduction to Chemistry",
+    "id": "5e50238ed48ad3250088989f",
+    "pid": "Hk0p0w6XV",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1e06RP6XN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1e06RP6XN",
+    "course_code": "CHEM101",
+    "course_name": "Fundamentals of Chemistry from Atoms to Materials",
+    "id": "5d781350a50c3624007f55c8",
+    "pid": "r1e06RP6XN",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r11A0D6XN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r11A0D6XN",
+    "course_code": "CHEM102",
+    "course_name": "Chemical Reactivity Fundamentals with Environmental Applications",
+    "id": "5f6e45ab4272fc00267b50df",
+    "pid": "r11A0D6XN",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BybRRv6XV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BybRRv6XV",
+    "course_code": "CHEM150",
+    "course_name": "Engineering Chemistry",
+    "id": "5d1f6e3494e82e2400a23437",
+    "pid": "BybRRv6XV",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Syz0CvTmE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Syz0CvTmE",
+    "course_code": "CHEM212",
+    "course_name": "Introduction to Quantitative Analysis",
+    "id": "5d1f73d0fb68f3240022d561",
+    "pid": "Syz0CvTmE",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkxoZYT7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkxoZYT7V",
+    "course_code": "CHEM225",
+    "course_name": "Introduction to Inorganic Chemistry",
+    "id": "5e1f5d3dd3233b25000fb9f4",
+    "pid": "BkxoZYT7V",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkVACvpXV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkVACvpXV",
+    "course_code": "CHEM231",
+    "course_name": "Introduction to Organic Chemistry",
+    "id": "5d1f6e3689944f24002ad28a",
+    "pid": "HkVACvpXV",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJWiWKp7N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJWiWKp7N",
+    "course_code": "CHEM234",
+    "course_name": "Organic Chemistry with Biological Applications",
+    "id": "5e1f680100547c25005dc721",
+    "pid": "HJWiWKp7N",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJrRRvTQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJrRRvTQV",
+    "course_code": "CHEM245",
+    "course_name": "Introduction to Thermodynamics",
+    "id": "5d1f753794e82e2400a2394d",
+    "pid": "rJrRRvTQV",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1biZYam4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1biZYam4",
+    "course_code": "CHEM260",
+    "course_name": "Synthetic Chemistry Laboratory",
+    "id": "5e1f6a3dd3233b25000fba82",
+    "pid": "B1biZYam4",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJiA0PTmN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJiA0PTmN",
+    "course_code": "CHEM318",
+    "course_name": "Instrumental Techniques of Analysis",
+    "id": "5d1f739689944f24002ad6ab",
+    "pid": "SJiA0PTmN",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkQkkOTXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkQkkOTXE",
+    "course_code": "CHEM361",
+    "course_name": "Analytical Chemistry Laboratory",
+    "id": "631cdd1287576ea20482079f",
+    "pid": "BkQkkOTXE",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkXkkOTmE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkXkkOTmE",
+    "course_code": "CHEM362",
+    "course_name": "Inorganic Chemistry Laboratory",
+    "id": "631cde6847f35a5d452e660a",
+    "pid": "rkXkkOTmE",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1N11dTmE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1N11dTmE",
+    "course_code": "CHEM363",
+    "course_name": "Organic Chemistry Laboratory",
+    "id": "631cdea4f7f5ca478051e5d0",
+    "pid": "H1N11dTmE",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Sy4k1O6QV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Sy4k1O6QV",
+    "course_code": "CHEM364",
+    "course_name": "Physical Chemistry Laboratory",
+    "id": "631cdf6147f35a3b9b2e6614",
+    "pid": "Sy4k1O6QV",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Hywx1uamN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hywx1uamN",
+    "course_code": "CHEM499A",
+    "course_name": "Honours Thesis I",
+    "id": "5d7817547108752400bcc460",
+    "pid": "Hywx1uamN",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HklPgkuaXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HklPgkuaXE",
+    "course_code": "CHEM499B",
+    "course_name": "Honours Thesis II",
+    "id": "5d78186f588be52400e9efca",
+    "pid": "HklPgkuaXE",
+    "subject": "CHEM"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkgWq1OpQE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkgWq1OpQE",
+    "course_code": "CSC110",
+    "course_name": "Fundamentals of Programming I",
+    "id": "5cbdf4e356bbef2400c2efcf",
+    "pid": "rkgWq1OpQE",
+    "subject": "CSC"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJGckOp7E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJGckOp7E",
+    "course_code": "CSC111",
+    "course_name": "Fundamentals of Programming with Engineering Applications",
+    "id": "5cbdf4e404ce072400155ec0",
+    "pid": "rJGckOp7E",
+    "subject": "CSC"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJ54E_pXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJ54E_pXN",
+    "course_code": "ES365",
+    "course_name": "Climate and Society",
+    "id": "65adda9abce7bd869a9e71a6",
+    "pid": "HJ54E_pXN",
+    "subject": "ES"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1bzS_67E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1bzS_67E",
+    "course_code": "GEOG101A",
+    "course_name": "Environment, Society and Sustainability",
+    "id": "5d1f7386d2bc1524008cb417",
+    "pid": "H1bzS_67E",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJMzBua7N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJMzBua7N",
+    "course_code": "GEOG103",
+    "course_name": "Our Natural Earth",
+    "id": "654ab4f49d70e6ada910d49b",
+    "pid": "SJMzBua7N",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkUg06FiH",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkUg06FiH",
+    "course_code": "GEOG104",
+    "course_name": "Our Digital Earth",
+    "id": "5f5fde957873070026ccc8a3",
+    "pid": "HkUg06FiH",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkMDtUICD",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkMDtUICD",
+    "course_code": "GEOG130",
+    "course_name": "Climate Change",
+    "id": "5ff8d95afb277900267e8424",
+    "pid": "HkMDtUICD",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJPfS_pXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJPfS_pXN",
+    "course_code": "GEOG209",
+    "course_name": "Environmental Management",
+    "id": "6474ef22c90e02197a2c656b",
+    "pid": "BJPfS_pXN",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJ11EdLRw",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJ11EdLRw",
+    "course_code": "GEOG220",
+    "course_name": "Weather and Climate",
+    "id": "5ff8f3d7100d1e00282dabbd",
+    "pid": "SJ11EdLRw",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJcMHu67V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJcMHu67V",
+    "course_code": "GEOG222",
+    "course_name": "Introduction to GIS",
+    "id": "657a35bb8a5bdc6c8eea9e02",
+    "pid": "rJcMHu67V",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJifB_aXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJifB_aXE",
+    "course_code": "GEOG226",
+    "course_name": "Quantitative Methods in Geography",
+    "id": "654ab82479563116634e774f",
+    "pid": "rJifB_aXE",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkjGruTXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkjGruTXE",
+    "course_code": "GEOG228",
+    "course_name": "Introduction to Remote Sensing",
+    "id": "5e5942c3e62c3f2500a5bc75",
+    "pid": "HkjGruTXE",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJW5SdLRP",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJW5SdLRP",
+    "course_code": "GEOG230",
+    "course_name": "Introduction to Environmental Data Analysis",
+    "id": "65a1a4097dbc907bef22234a",
+    "pid": "rJW5SdLRP",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJe2GH_67E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJe2GH_67E",
+    "course_code": "GEOG272",
+    "course_name": "Climatology and Hydrology",
+    "id": "657a3849548a3d43a571ecb5",
+    "pid": "HJe2GH_67E",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rklMQBupQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rklMQBupQV",
+    "course_code": "GEOG319",
+    "course_name": "Remote Sensing of the Environment using Passive Sensors",
+    "id": "5dbb2231f99831240039c49b",
+    "pid": "rklMQBupQV",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HyVXru6XE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HyVXru6XE",
+    "course_code": "GEOG322",
+    "course_name": "Remote Sensing of the Environment using Active Sensors",
+    "id": "600089db6aecd000268be426",
+    "pid": "HyVXru6XE",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkL7SOamV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkL7SOamV",
+    "course_code": "GEOG328",
+    "course_name": "GIS Analysis",
+    "id": "5d1f67bd89944f24002acd13",
+    "pid": "BkL7SOamV",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1DXr_TQ4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1DXr_TQ4",
+    "course_code": "GEOG329",
+    "course_name": "GIS Applications and Tools",
+    "id": "657cafe8367f266105fa6aa1",
+    "pid": "S1DXr_TQ4",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1cVBupmN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1cVBupmN",
+    "course_code": "GEOG370",
+    "course_name": "Methods in Hydrology",
+    "id": "657a4023f8b722df70dbf7cb",
+    "pid": "H1cVBupmN",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SypNB_a7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SypNB_a7V",
+    "course_code": "GEOG376",
+    "course_name": "Process Geomorphology",
+    "id": "657cb1092d647d752957f909",
+    "pid": "SypNB_a7V",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkxBHHupXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkxBHHupXN",
+    "course_code": "GEOG418",
+    "course_name": "Advanced Spatial Analysis and Geo-statistics",
+    "id": "5d1f73b189944f24002ad6c1",
+    "pid": "SkxBHHupXN",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1ISrOamV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1ISrOamV",
+    "course_code": "GEOG420",
+    "course_name": "Field Studies in Coastal Geomatics",
+    "id": "5d1f723089944f24002ad595",
+    "pid": "r1ISrOamV",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkvHSupmE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkvHSupmE",
+    "course_code": "GEOG422",
+    "course_name": "Advanced Topics in Remote Sensing",
+    "id": "5d1f73b389944f24002ad6c5",
+    "pid": "BkvHSupmE",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1KHB_67N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1KHB_67N",
+    "course_code": "GEOG428",
+    "course_name": "Advanced Topics in Geographic Information Sciences",
+    "id": "65a6de336f1ff2579b4c755a",
+    "pid": "r1KHB_67N",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkZvSupQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkZvSupQV",
+    "course_code": "GEOG476",
+    "course_name": "Advanced Topics in Geomorphology",
+    "id": "657cb206367f2616ecfa6aba",
+    "pid": "SkZvSupQV",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/By-wSupXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/By-wSupXE",
+    "course_code": "GEOG477",
+    "course_name": "Field Studies in Physical Geography",
+    "id": "5d1f73be94e82e2400a23854",
+    "pid": "By-wSupXE",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HyDwHupQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HyDwHupQV",
+    "course_code": "GEOG499A",
+    "course_name": "Honours Thesis",
+    "id": "5e5946336737b12500c22ef1",
+    "pid": "HyDwHupQV",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJdPru674",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJdPru674",
+    "course_code": "GEOG499B",
+    "course_name": "Honours Thesis",
+    "id": "5e5946583a898c2500fbf088",
+    "pid": "BJdPru674",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ByxQ12d6QE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByxQ12d6QE",
+    "course_code": "MATH100",
+    "course_name": "Calculus I",
+    "id": "63168b42bee727d381e640aa",
+    "pid": "ByxQ12d6QE",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1N1hda7E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1N1hda7E",
+    "course_code": "MATH101",
+    "course_name": "Calculus II",
+    "id": "5d1f72acd2bc1524008cb36a",
+    "pid": "r1N1hda7E",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ByNynOT7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByNynOT7V",
+    "course_code": "MATH102",
+    "course_name": "Calculus for Students in the Social and Biological Sciences",
+    "id": "651de9ca8d54b2de78bce62c",
+    "pid": "ByNynOT7V",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1eB12dam4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1eB12dam4",
+    "course_code": "MATH109",
+    "course_name": "Introduction to Calculus",
+    "id": "63168d043e376f0b1f621ffd",
+    "pid": "B1eB12dam4",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SyOk3uTmN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SyOk3uTmN",
+    "course_code": "MATH151",
+    "course_name": "Finite Mathematics",
+    "id": "5f2b422ad8086200271ffe25",
+    "pid": "SyOk3uTmN",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rynJnOpQE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rynJnOpQE",
+    "course_code": "MATH200",
+    "course_name": "Calculus III",
+    "id": "5d1f76e5d2bc1524008cb6b4",
+    "pid": "rynJnOpQE",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Sk6kh_am4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Sk6kh_am4",
+    "course_code": "MATH202",
+    "course_name": "Intermediate Calculus for CSC and EOS",
+    "id": "5d1f6abafb68f3240022ce99",
+    "pid": "Sk6kh_am4",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r16khd6X4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r16khd6X4",
+    "course_code": "MATH204",
+    "course_name": "Calculus IV",
+    "id": "5d1f71b694e82e2400a236df",
+    "pid": "r16khd6X4",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJ1lndpmN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJ1lndpmN",
+    "course_code": "MATH211",
+    "course_name": "Matrix Algebra I",
+    "id": "63168fab578b6df3d6c07ace",
+    "pid": "HJ1lndpmN",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HyVe3daQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HyVe3daQV",
+    "course_code": "MATH248",
+    "course_name": "Computer Assisted Mathematics",
+    "id": "62ba27622434d348954acfef",
+    "pid": "HyVe3daQV",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkLghO6mN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkLghO6mN",
+    "course_code": "MATH301",
+    "course_name": "Complex Variables",
+    "id": "5d1f6e7889944f24002ad2b9",
+    "pid": "HkLghO6mN",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkDlhuT7N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkDlhuT7N",
+    "course_code": "MATH311",
+    "course_name": "Linear Algebra",
+    "id": "5d1f67c494e82e2400a22f89",
+    "pid": "rkDlhuT7N",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ryYhBlKTT",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ryYhBlKTT",
+    "course_code": "MATH341",
+    "course_name": "Nonlinear dynamics and chaos",
+    "id": "65eb75b017ecb24baa1c7e17",
+    "pid": "ryYhBlKTT",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkbW2u6XE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkbW2u6XE",
+    "course_code": "MATH342",
+    "course_name": "Intermediate Ordinary Differential Equations",
+    "id": "5d1f67c194e82e2400a22f87",
+    "pid": "rkbW2u6XE",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Hkfbhda7E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hkfbhda7E",
+    "course_code": "MATH346",
+    "course_name": "Introduction to Partial Differential Equations",
+    "id": "5d1f67c094e82e2400a22f85",
+    "pid": "Hkfbhda7E",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJl5JEpgi",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJl5JEpgi",
+    "course_code": "MATH347",
+    "course_name": "Introduction to Continuous Optimization",
+    "id": "66fc4f95d5fef9b3117cb8b7",
+    "pid": "rJl5JEpgi",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1xG-2_T7E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1xG-2_T7E",
+    "course_code": "MATH348",
+    "course_name": "Numerical Methods",
+    "id": "5fd7df6ee63a160027dc713f",
+    "pid": "B1xG-2_T7E",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S17Z3dTXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S17Z3dTXE",
+    "course_code": "MATH352",
+    "course_name": "Introduction to Probability",
+    "id": "5f514b64be15e20026fac7e3",
+    "pid": "S17Z3dTXE",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1_Wh_TQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1_Wh_TQV",
+    "course_code": "MATH369",
+    "course_name": "Differential Geometry in R3",
+    "id": "66a8092ee9b6443111582bda",
+    "pid": "S1_Wh_TQV",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkqWn_6mV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkqWn_6mV",
+    "course_code": "MATH377",
+    "course_name": "Mathematical Modelling",
+    "id": "5e5981d53f906f2500809cf5",
+    "pid": "HkqWn_6mV",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Bk-z3uamN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Bk-z3uamN",
+    "course_code": "MATH436",
+    "course_name": "Calculus on Manifolds",
+    "id": "66bcefdbbc0ee927a14a5ba9",
+    "pid": "Bk-z3uamN",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkfG2uam4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkfG2uam4",
+    "course_code": "MATH442",
+    "course_name": "Advanced Ordinary Differential Equations",
+    "id": "67d342f6dd1a264fe065d083",
+    "pid": "SkfG2uam4",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SySG2O67N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SySG2O67N",
+    "course_code": "MATH449",
+    "course_name": "Scientific Computing",
+    "id": "5d1f76f9fb68f3240022d7e1",
+    "pid": "SySG2O67N",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkTz2dpXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkTz2dpXN",
+    "course_code": "MATH492",
+    "course_name": "Topics in Applied Mathematics",
+    "id": "5d1f6bf0d2bc1524008caea6",
+    "pid": "HkTz2dpXN",
+    "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkEtC_pm4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkEtC_pm4",
+    "course_code": "PHYS102A",
+    "course_name": "General Physics I",
+    "id": "5c4ffe7b4afbf82400f7adb2",
+    "pid": "rkEtC_pm4",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJVFCOp7N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJVFCOp7N",
+    "course_code": "PHYS102B",
+    "course_name": "General Physics II",
+    "id": "649a10a781f76f47f32e6507",
+    "pid": "BJVFCOp7N",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1SYRd67V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1SYRd67V",
+    "course_code": "PHYS110",
+    "course_name": "Introductory Physics I",
+    "id": "63177170cdd330fd06504399",
+    "pid": "r1SYRd67V",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S18Y0d6mE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S18Y0d6mE",
+    "course_code": "PHYS111",
+    "course_name": "Introductory Physics II",
+    "id": "5c4ffe7d1a3fd924005f028b",
+    "pid": "S18Y0d6mE",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1vtCd6QV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1vtCd6QV",
+    "course_code": "PHYS120",
+    "course_name": "Physics I",
+    "id": "5c4ffe7e4afbf82400f7adb7",
+    "pid": "H1vtCd6QV",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJYtA_TXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJYtA_TXE",
+    "course_code": "PHYS130",
+    "course_name": "Physics II",
+    "id": "5c4ffe804afbf82400f7adba",
+    "pid": "SJYtA_TXE",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJgttC_T7V",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJgttC_T7V",
+    "course_code": "PHYS210",
+    "course_name": "Introductory Geophysics",
+    "id": "5ffc89cbeba94e0026736fe0",
+    "pid": "BJgttC_T7V",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Sy2t0O6m4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Sy2t0O6m4",
+    "course_code": "PHYS215",
+    "course_name": "Introductory Quantum Physics",
+    "id": "672e74702494ee5aaeb60ea6",
+    "pid": "Sy2t0O6m4",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJnKR_T74",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJnKR_T74",
+    "course_code": "PHYS216",
+    "course_name": "Introductory Electricity and Magnetism",
+    "id": "672e72ab5d32637db2de8479",
+    "pid": "SJnKR_T74",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJpKAupXV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJpKAupXV",
+    "course_code": "PHYS217",
+    "course_name": "Introductory Thermodynamics",
+    "id": "672e756d59c3d51f5f823139",
+    "pid": "BJpKAupXV",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1gTYAuamN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1gTYAuamN",
+    "course_code": "PHYS229",
+    "course_name": "Introduction to Experimental Physics",
+    "id": "5c4ffe8536d45224006d156a",
+    "pid": "H1gTYAuamN",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkRt0u67N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkRt0u67N",
+    "course_code": "PHYS248",
+    "course_name": "Computer Assisted Physics",
+    "id": "62fbe3a90a88d51c787648ba",
+    "pid": "HkRt0u67N",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1fq0O6XV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1fq0O6XV",
+    "course_code": "PHYS317",
+    "course_name": "Thermodynamics",
+    "id": "5c4ffe8a4afbf82400f7add2",
+    "pid": "H1fq0O6XV",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1X9R_pX4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1X9R_pX4",
+    "course_code": "PHYS321A",
+    "course_name": "Classical Mechanics I",
+    "id": "64dd5c23014e5324314b5789",
+    "pid": "H1X9R_pX4",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJZIyl-iN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJZIyl-iN",
+    "course_code": "PHYS321B",
+    "course_name": "Classical Mechanics II",
+    "id": "5cc370d4652a942400931175",
+    "pid": "BJZIyl-iN",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Hk45CO6QE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hk45CO6QE",
+    "course_code": "PHYS323",
+    "course_name": "Quantum Mechanics I",
+    "id": "66d222bbe8c0471bec0a6433",
+    "pid": "Hk45CO6QE",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1eNcAupXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1eNcAupXN",
+    "course_code": "PHYS325",
+    "course_name": "Optics",
+    "id": "5c4ffe8c1a3fd924005f02b6",
+    "pid": "r1eNcAupXN",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SyS9AOpQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SyS9AOpQV",
+    "course_code": "PHYS326",
+    "course_name": "Electricity and Magnetism",
+    "id": "64dd5ee66a7fcb090d2bb536",
+    "pid": "SyS9AOpQV",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkUcCO674",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkUcCO674",
+    "course_code": "PHYS340",
+    "course_name": "Atmospheric Physics",
+    "id": "667f257207ae3558c7fa3e8f",
+    "pid": "BkUcCO674",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJU90Oam4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJU90Oam4",
+    "course_code": "PHYS410",
+    "course_name": "Topics in Mathematical Physics I",
+    "id": "5c4ffe8e4afbf82400f7addf",
+    "pid": "rJU90Oam4",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ByvqCuTXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByvqCuTXN",
+    "course_code": "PHYS411",
+    "course_name": "Time Series Analysis",
+    "id": "62fbe724dd3bd4520c457984",
+    "pid": "ByvqCuTXN",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ryo9AupQN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ryo9AupQN",
+    "course_code": "PHYS426",
+    "course_name": "Fluid Mechanics",
+    "id": "6788304fc29e544466d76f3c",
+    "pid": "ryo9AupQN",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rks50O6XE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rks50O6XE",
+    "course_code": "PHYS427",
+    "course_name": "Geophysics",
+    "id": "5c4ffe934afbf82400f7adf0",
+    "pid": "rks50O6XE",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1aq0u6mV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1aq0u6mV",
+    "course_code": "PHYS429A",
+    "course_name": "Honours Laboratory",
+    "id": "5c4ffe941a3fd924005f02ce",
+    "pid": "S1aq0u6mV",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1koCuTQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1koCuTQV",
+    "course_code": "PHYS441",
+    "course_name": "Physical Oceanography",
+    "id": "66ecb089f3c90619a63d14a7",
+    "pid": "H1koCuTQV",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1ei0OaXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1ei0OaXN",
+    "course_code": "PHYS460A",
+    "course_name": "Colloquium I",
+    "id": "5c4ffe971a3fd924005f02d8",
+    "pid": "H1ei0OaXN",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkexiRuTQ4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkexiRuTQ4",
+    "course_code": "PHYS460B",
+    "course_name": "Colloquium II",
+    "id": "5c4ffe981a3fd924005f02da",
+    "pid": "rkexiRuTQ4",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/S1ZiAuTXV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1ZiAuTXV",
+    "course_code": "PHYS499",
+    "course_name": "Honours Thesis",
+    "id": "5c4ffe994afbf82400f7adfd",
+    "pid": "S1ZiAuTXV",
+    "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1x8ClKamE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1x8ClKamE",
+    "course_code": "STAT254",
+    "course_name": "Probability and Statistics for Engineers",
+    "id": "5d1f6895fb68f3240022ccec",
+    "pid": "B1x8ClKamE",
+    "subject": "STAT"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkDAlYam4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkDAlYam4",
+    "course_code": "STAT255",
+    "course_name": "Statistics for Life Sciences I",
+    "id": "5e615df5109f5025006793a7",
+    "pid": "SkDAlYam4",
+    "subject": "STAT"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SyPCgtTQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SyPCgtTQV",
+    "course_code": "STAT260",
+    "course_name": "Introduction to Probability and Statistics I",
+    "id": "5e615e517eb8e0250078b7da",
+    "pid": "SyPCgtTQV",
+    "subject": "STAT"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJedAgF6QN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJedAgF6QN",
+    "course_code": "STAT350",
+    "course_name": "Mathematical Statistics I",
+    "id": "5f514d74caee610026d3b11d",
+    "pid": "rJedAgF6QN",
+    "subject": "STAT"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJYCgt6m4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJYCgt6m4",
+    "course_code": "STAT353",
+    "course_name": "Applied Regression Analysis",
+    "id": "5d1f6bb289944f24002ad088",
+    "pid": "rJYCgt6m4",
+    "subject": "STAT"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJiRltTQE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJiRltTQE",
+    "course_code": "STAT359",
+    "course_name": "Data Analysis",
+    "id": "62ba2b452434d327524ad015",
+    "pid": "rJiRltTQE",
+    "subject": "STAT"
+  }
+]

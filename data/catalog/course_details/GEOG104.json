@@ -1,0 +1,33 @@
+{
+  "__catalogCourseId": "GEOG104",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2021-02-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2021-05-03",
+  "description": "<p>Introduces students to how geospatial technologies influence our daily lives and shape the world around us. Students learn how to collect and utilize location-based data, develop web maps and mobile mapping apps, create technologies to respond to environmental disasters and humanitarian crises, and think spatially in order to improve our understanding of our planet.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3699cfed2d200010da148",
+    "name": "Department of Geography"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5f5fde957873070026ccc8a3",
+  "pid": "HkUg06FiH",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Geography (GEOG)",
+    "id": "5be1fc782ce2be2e0030172e",
+    "linkedGroup": "5be3699cfed2d200010da148",
+    "name": "GEOG"
+  },
+  "supplementalNotes": "<ul> <li>Credit will be granted for only one of GEOG 104, GEOG 100 (if taken in the same topic).</li> </ul>",
+  "title": "Our Digital Earth"
+}

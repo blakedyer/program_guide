@@ -1,0 +1,33 @@
+{
+  "__catalogCourseId": "EOS170",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2020-02-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-05-02",
+  "description": "<p>An overview of natural hazards including earthquakes, volcanoes, tsunami, landslides, flooding, extreme weather, wildfires and space hazards. Particular attention is given to hazards affecting southwestern British Columbia, hazards related to climate change, and important historic natural disasters. This is an introductory-level course that does not require a science/math background.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3691afed2d200010da13f",
+    "name": "School of Earth and Ocean Sciences"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5d7bdc197666772400882a56",
+  "pid": "HkQnQu67N",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Earth and Ocean Sciences (EOS)",
+    "id": "5c13fb3b42504f2400e645d8",
+    "linkedGroup": "5be3691afed2d200010da13f",
+    "name": "EOS"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of EOS 170, EOS 370.</li></ul>",
+  "title": "Natural Hazards"
+}
