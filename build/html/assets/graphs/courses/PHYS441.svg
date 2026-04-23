@@ -644,8 +644,8 @@
 <polyline fill="none" stroke="#b7793f" stroke-width="1.1" points="216,-59 216,-53 "/>
 <polyline fill="none" stroke="#b7793f" stroke-width="1.1" points="222,-53 216,-53 "/>
 <text text-anchor="start" x="13" y="-39.4" font-family="Avenir Next" font-size="12.00">Published notes</text>
-<text text-anchor="start" x="13" y="-26.4" font-family="Avenir Next" font-size="12.00">or permission of the school</text>
-<text text-anchor="start" x="13" y="-13.4" font-family="Avenir Next" font-size="12.00">or permission of the department</text>
+<text text-anchor="start" x="13" y="-26.4" font-family="Avenir Next" font-size="12.00">or permission of the department</text>
+<text text-anchor="start" x="13" y="-13.4" font-family="Avenir Next" font-size="12.00">or permission of the school</text>
 </g>
 <!-- PHYS441_notes&#45;&gt;course__EOS431 -->
 <!-- choice_EOS230_0_1&#45;&gt;course__EOS230 -->

@@ -3302,7 +3302,7 @@ def render_workflow_page(manifest: dict) -> str:
         <article class="command-card">
           <p class="detail-card__eyebrow">Publish</p>
           <h3>Push the generated site</h3>
-          <div class="code-block"><code>./push_docs.sh</code></div>
+          <div class="code-block"><code>git push</code></div>
           <p class="meta-line">Publishes the freshly generated <code>build/html</code> output to the repository’s <code>gh-pages</code> branch.</p>
         </article>
       </div>
@@ -3345,7 +3345,7 @@ def render_workflow_page(manifest: dict) -> str:
         description=f"Maintenance workflow for the {SITE_NAME} static site and graph regeneration pipeline.",
         eyebrow="Workflow",
         hero_title="Static build workflow for the curriculum atlas.",
-        hero_lede="Sync the catalog data, regenerate every graph and page, then publish the output without relying on Sphinx.",
+        hero_lede="Sync the catalog data, regenerate every graph and page, then publish by pushing to the repository.",
         hero_actions=hero_actions,
         content=content,
     )
@@ -3400,10 +3400,10 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
         base="",
         active="home",
         title=SITE_NAME,
-        description="Static atlas for the published UVic SEOS curriculum structure, with regenerated program and course node graphs.",
+        description="Static atlas for the published UVic SEOS curriculum structure, with generated program and course node graphs.",
         eyebrow="School of Earth and Ocean Sciences | UVic",
         hero_title="SEOS program structure, rebuilt as a static atlas.",
-        hero_lede="Current published programs and course pathways, regenerated into clearer pages and SVG node graphs.",
+        hero_lede="Current published programs and course pathways visualized as SVG node graphs.",
         hero_actions=hero_actions,
         content=content,
     )

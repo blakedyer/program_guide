@@ -8,29 +8,29 @@
  viewBox="0.00 0.00 1080.20 258.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 236.6)">
 <title>BIOL225</title>
-<!-- course__BIOL186 -->
-<g id="node1" class="node">
-<title>course__BIOL186</title>
-<g id="a_node1"><a xlink:href="../../../courses/BIOL186.html" xlink:title="BIOL186: Physiology and Cell Biology" target="_top">
-<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M328,-117C328,-117 295,-117 295,-117 289,-117 283,-111 283,-105 283,-105 283,-93 283,-93 283,-87 289,-81 295,-81 295,-81 328,-81 328,-81 334,-81 340,-87 340,-93 340,-93 340,-105 340,-105 340,-111 334,-117 328,-117"/>
-<text text-anchor="middle" x="311.5" y="-96.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL186</text>
-</a>
-</g>
-</g>
 <!-- course__BIOL150A -->
-<g id="node2" class="node">
+<g id="node1" class="node">
 <title>course__BIOL150A</title>
-<g id="a_node2"><a xlink:href="../../../courses/BIOL150A.html" xlink:title="Collapsed in simplified view: BIOL150A: Modern Biology | BIOL184: Evolution and Biodiversity" target="_top">
-<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M467,-117C467,-117 413,-117 413,-117 407,-117 401,-111 401,-105 401,-105 401,-93 401,-93 401,-87 407,-81 413,-81 413,-81 467,-81 467,-81 473,-81 479,-87 479,-93 479,-93 479,-105 479,-105 479,-111 473,-117 467,-117"/>
-<text text-anchor="middle" x="440" y="-96.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intro biology</text>
+<g id="a_node1"><a xlink:href="../../../courses/BIOL150A.html" xlink:title="Collapsed in simplified view: BIOL150A: Modern Biology | BIOL184: Evolution and Biodiversity" target="_top">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M349,-117C349,-117 295,-117 295,-117 289,-117 283,-111 283,-105 283,-105 283,-93 283,-93 283,-87 289,-81 295,-81 295,-81 349,-81 349,-81 355,-81 361,-87 361,-93 361,-93 361,-105 361,-105 361,-111 355,-117 349,-117"/>
+<text text-anchor="middle" x="322" y="-96.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intro biology</text>
 </a>
 </g>
 </g>
-<!-- course__BIOL186&#45;&gt;course__BIOL150A -->
-<g id="edge3" class="edge">
-<title>course__BIOL186&#45;&gt;course__BIOL150A</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M340.26,-92.67C355.79,-91.52 375.54,-91.22 393.28,-91.76"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="393.66,-94.23 400.75,-92.05 393.85,-89.33 393.66,-94.23"/>
+<!-- course__BIOL186 -->
+<g id="node2" class="node">
+<title>course__BIOL186</title>
+<g id="a_node2"><a xlink:href="../../../courses/BIOL186.html" xlink:title="BIOL186: Physiology and Cell Biology" target="_top">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M467,-117C467,-117 434,-117 434,-117 428,-117 422,-111 422,-105 422,-105 422,-93 422,-93 422,-87 428,-81 434,-81 434,-81 467,-81 467,-81 473,-81 479,-87 479,-93 479,-93 479,-105 479,-105 479,-111 473,-117 467,-117"/>
+<text text-anchor="middle" x="450.5" y="-96.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL186</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL150A&#45;&gt;course__BIOL186 -->
+<g id="edge4" class="edge">
+<title>course__BIOL150A&#45;&gt;course__BIOL186</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M361.3,-92.04C378.2,-91.27 397.93,-91.32 414.44,-92.21"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="414.63,-94.67 421.78,-92.67 414.94,-89.78 414.63,-94.67"/>
 </g>
 <!-- course__BIOL225 -->
 <g id="node3" class="node">
@@ -42,23 +42,23 @@
 </a>
 </g>
 </g>
-<!-- course__BIOL186&#45;&gt;course__BIOL225 -->
-<g id="edge5" class="edge">
-<title>course__BIOL186&#45;&gt;course__BIOL225</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M340.27,-110.2C357.45,-116.52 380.14,-123.78 401,-127 446.4,-134.01 497.55,-127.23 537.65,-118.59"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="538.19,-120.98 544.49,-117.07 537.13,-116.19 538.19,-120.98"/>
-</g>
-<!-- course__BIOL150A&#45;&gt;course__BIOL186 -->
-<g id="edge4" class="edge">
-<title>course__BIOL150A&#45;&gt;course__BIOL186</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M400.75,-105.95C383.85,-106.73 364.12,-106.68 347.6,-105.8"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="347.4,-103.33 340.26,-105.33 347.09,-108.22 347.4,-103.33"/>
-</g>
 <!-- course__BIOL150A&#45;&gt;course__BIOL225 -->
 <g id="edge6" class="edge">
 <title>course__BIOL150A&#45;&gt;course__BIOL225</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M479.31,-99C495.13,-99 514.03,-99 532.42,-99"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="532.71,-101.45 539.71,-99 532.71,-96.55 532.71,-101.45"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M361.03,-112.41C379.23,-118.14 401.48,-124.15 422,-127 461.27,-132.45 505.13,-126.43 540.39,-118.6"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="541.04,-120.96 547.32,-117.01 539.95,-116.18 541.04,-120.96"/>
+</g>
+<!-- course__BIOL186&#45;&gt;course__BIOL150A -->
+<g id="edge3" class="edge">
+<title>course__BIOL186&#45;&gt;course__BIOL150A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M421.78,-105.33C406.26,-106.48 386.51,-106.78 368.76,-106.24"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="368.39,-103.77 361.3,-105.96 368.2,-108.67 368.39,-103.77"/>
+</g>
+<!-- course__BIOL186&#45;&gt;course__BIOL225 -->
+<g id="edge5" class="edge">
+<title>course__BIOL186&#45;&gt;course__BIOL225</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M479.12,-99C494.2,-99 513.68,-99 532.91,-99"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="532.97,-101.45 539.97,-99 532.97,-96.55 532.97,-101.45"/>
 </g>
 <!-- course__BIOC300A -->
 <g id="node4" class="node">

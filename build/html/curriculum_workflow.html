@@ -24,7 +24,7 @@
       <div class="hero__content">
         <p class="hero__eyebrow">Workflow</p>
         <h1 class="hero__title hero__title--wide">Static build workflow for the curriculum atlas.</h1>
-        <p class="hero__lede">Sync the catalog data, regenerate every graph and page, then publish the output without relying on Sphinx.</p>
+        <p class="hero__lede">Sync the catalog data, regenerate every graph and page, then publish by pushing to the repository.</p>
         <div class="hero__actions"><a class="button" href="index.html">Guide home</a><a class="button button--ghost" href="programs/overview.html">Programs</a><a class="button button--ghost" href="courses/overview.html">Courses</a></div>
       </div>
     </section>
@@ -60,7 +60,7 @@
         <article class="command-card">
           <p class="detail-card__eyebrow">Publish</p>
           <h3>Push the generated site</h3>
-          <div class="code-block"><code>./push_docs.sh</code></div>
+          <div class="code-block"><code>git push</code></div>
           <p class="meta-line">Publishes the freshly generated <code>build/html</code> output to the repository’s <code>gh-pages</code> branch.</p>
         </article>
       </div>

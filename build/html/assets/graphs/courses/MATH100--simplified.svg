@@ -271,15 +271,15 @@
 <polyline fill="none" stroke="#b7793f" stroke-width="1.1" points="321,-264 321,-258 "/>
 <polyline fill="none" stroke="#b7793f" stroke-width="1.1" points="327,-258 321,-258 "/>
 <text text-anchor="start" x="13" y="-244.4" font-family="Avenir Next" font-size="12.00">Published notes</text>
-<text text-anchor="start" x="13" y="-231.4" font-family="Avenir Next" font-size="12.00">Earn a minimum grade of C in each of the</text>
+<text text-anchor="start" x="13" y="-231.4" font-family="Avenir Next" font-size="12.00">Earn a minimum grade of C+ in each of the</text>
 <text text-anchor="start" x="13" y="-218.4" font-family="Avenir Next" font-size="12.00">following</text>
-<text text-anchor="start" x="13" y="-205.4" font-family="Avenir Next" font-size="12.00">Pre&#45;Calculus 12</text>
-<text text-anchor="start" x="13" y="-192.4" font-family="Avenir Next" font-size="12.00">Earn a minimum grade of C+ in each of the</text>
-<text text-anchor="start" x="13" y="-179.4" font-family="Avenir Next" font-size="12.00">following</text>
-<text text-anchor="start" x="13" y="-166.4" font-family="Avenir Next" font-size="12.00">Completed Pre&#45;Calculus 12 with a minimum grade</text>
-<text text-anchor="start" x="13" y="-153.4" font-family="Avenir Next" font-size="12.00">of B (73%)</text>
-<text text-anchor="start" x="13" y="-140.4" font-family="Avenir Next" font-size="12.00">or permission of the department</text>
-<text text-anchor="start" x="13" y="-127.4" font-family="Avenir Next" font-size="12.00">permission of the department</text>
+<text text-anchor="start" x="13" y="-205.4" font-family="Avenir Next" font-size="12.00">Completed Pre&#45;Calculus 12 with a minimum grade</text>
+<text text-anchor="start" x="13" y="-192.4" font-family="Avenir Next" font-size="12.00">of B (73%)</text>
+<text text-anchor="start" x="13" y="-179.4" font-family="Avenir Next" font-size="12.00">or permission of the department</text>
+<text text-anchor="start" x="13" y="-166.4" font-family="Avenir Next" font-size="12.00">permission of the department</text>
+<text text-anchor="start" x="13" y="-153.4" font-family="Avenir Next" font-size="12.00">Earn a minimum grade of C in each of the</text>
+<text text-anchor="start" x="13" y="-140.4" font-family="Avenir Next" font-size="12.00">following</text>
+<text text-anchor="start" x="13" y="-127.4" font-family="Avenir Next" font-size="12.00">Pre&#45;Calculus 12</text>
 </g>
 <!-- MATH100_notes&#45;&gt;course__MATH100 -->
 <!-- choice_EOS311_0_2&#45;&gt;course__EOS311 -->
