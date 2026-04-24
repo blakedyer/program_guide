@@ -27,7 +27,7 @@ COURSE_GRAPH_DIR = BUILD_DIR / "assets" / "graphs" / "courses"
 HERO_BUILD_DIR = BUILD_DIR / "assets" / "heroes"
 SITE_NAME = "SEOS Curriculum Atlas"
 RESEARCH_SITE_URL = "https://www.blakedyer.com/"
-TEACHING_SITE_URL = "https://blakedyer.github.io/eos-courses/"
+TEACHING_SITE_URL = "https://eos-courses.readthedocs.io/en/latest/"
 ATLAS_SITE_URL = "https://blakedyer.github.io/curriculum_atlas/"
 CURRICULUM_SITE_URL = "https://blakedyer.github.io/seos_curriculum/"
 
@@ -2273,66 +2273,19 @@ def write_course_graph(
 
 def render_nav(base: str, active: str) -> str:
     items = [
-        ("Home", f"{base}index.html", "home"),
-        ("Programs", f"{base}programs/overview.html", "programs"),
-        ("Courses", f"{base}courses/overview.html", "courses"),
-        ("Workflow", f"{base}curriculum_workflow.html", "workflow"),
+        ("Research", RESEARCH_SITE_URL, False),
+        ("Curriculum Atlas", f"{base}index.html", False),
+        ("Curriculum Work", CURRICULUM_SITE_URL, True),
+        ("Teaching", TEACHING_SITE_URL, True),
     ]
     links = []
-    for label, href, key in items:
-        class_attr = ' class="is-active"' if key == active else ""
-        links.append(f"<a{class_attr} href=\"{href}\">{e(label)}</a>")
-    return "".join(links)
-
-
-def ecosystem_items(base: str, active_site: str) -> list[tuple[str, str, str, bool]]:
-    return [
-        (
-            "Research",
-            RESEARCH_SITE_URL,
-            "Group publications, field albums, and people.",
-            active_site == "research",
-        ),
-        (
-            "Teaching",
-            TEACHING_SITE_URL,
-            "Course pages, lecture materials, and assignments.",
-            active_site == "teaching",
-        ),
-        (
-            "Curriculum Atlas",
-            f"{base}index.html" if active_site == "atlas" else ATLAS_SITE_URL,
-            "Published SEOS program and course structure mapped as static graphs.",
-            active_site == "atlas",
-        ),
-        (
-            "Curriculum Work",
-            CURRICULUM_SITE_URL,
-            "Draft proposals, status tracking, and handoff notes.",
-            active_site == "curriculum",
-        ),
-    ]
-
-
-def render_ecosystem_strip(base: str, active_site: str) -> str:
-    links = []
-    for label, href, summary, is_active in ecosystem_items(base, active_site):
-        class_name = "ecosystem-link is-active" if is_active else "ecosystem-link"
+    for label, href, external in items:
+        is_active = label == "Curriculum Atlas"
+        class_attr = ' class="is-active"' if is_active else ""
         current = ' aria-current="page"' if is_active else ""
-        target = "" if is_active else ' target="_blank" rel="noopener"'
-        links.append(
-            f'<a class="{class_name}" href="{href}"{current}{target}>'
-            f'<span class="ecosystem-link__label">{e(label)}</span>'
-            f'<span class="ecosystem-link__summary">{e(summary)}</span>'
-            '</a>'
-        )
-    return (
-        '<div class="ecosystem-strip">'
-        '<div class="ecosystem-shell">'
-        '<p class="ecosystem-strip__eyebrow">SEOS Web Ecosystem</p>'
-        f'{"".join(links)}'
-        "</div></div>"
-    )
+        target = ' target="_blank" rel="noopener"' if external else ""
+        links.append(f"<a{class_attr} href=\"{href}\"{current}{target}>{e(label)}</a>")
+    return "".join(links)
 
 
 def program_hero_image(base: str, program: ProgramRecord) -> str:
@@ -2389,7 +2342,6 @@ def render_layout(
       </nav>
     </div>
   </header>
-  {render_ecosystem_strip(base, active_site)}
 
   <main class="page-shell">
     <section class="{hero_class}"{hero_style}>
