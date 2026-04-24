@@ -343,6 +343,26 @@ def program_graph_note_lines(program: ProgramRecord, stream: ProgramStreamRecord
     return condense_graph_note_lines(lines)
 
 
+def course_graph_note_lines(
+    course: CourseRecord,
+    courses: dict[str, CourseRecord],
+    course_groups: dict[str, CourseGroupRecord],
+    course_group_lookup: dict[str, str],
+) -> list[str]:
+    focus_group = course_group_lookup.get(course.code, course.code)
+    group_record = course_groups.get(focus_group)
+    if group_record is None:
+        return condense_graph_note_lines(collect_graph_note_lines(course.rule_nodes))
+
+    lines = unique_ordered(
+        note
+        for group_code in group_record.codes
+        if group_code in courses
+        for note in collect_graph_note_lines(courses[group_code].rule_nodes)
+    )
+    return condense_graph_note_lines(lines)
+
+
 def build_program_option_sets(
     sections: list[dict],
     *,
@@ -2181,13 +2201,6 @@ def write_course_graph(
     )
     focus_prereqs = prereq_map.get(focus_group, set())
     focus_dependents = dependent_map.get(focus_group, set())
-    note_lines = unique_ordered(
-        note
-        for group_code in focus_codes
-        for note in collect_graph_note_lines(courses[group_code].rule_nodes)
-    )
-    note_lines = condense_graph_note_lines(note_lines)
-    note_id = f"{course.code}_notes" if note_lines else None
 
     for group_code in ordered_visible_groups:
         add_course_group_node(
@@ -2201,20 +2214,6 @@ def write_course_graph(
             preferred_code=course.code if group_code == focus_group else None,
         )
 
-    if note_id:
-        graph.node(
-            note_id,
-            label=format_note_label("Published notes", note_lines, width=48),
-            shape="note",
-            fillcolor="#fff7ee",
-            color="#b7793f",
-            fontsize="12",
-            margin="0.18,0.14",
-        )
-        with graph.subgraph(name=f"rank_{course.code}_notes") as note_subgraph:
-            note_subgraph.attr(rank="source")
-            note_subgraph.node(note_id)
-
     depth_groups: dict[int, list[str]] = {}
     for group_code in ordered_visible_groups:
         depth_groups.setdefault(relative_depths.get(group_code, 0), []).append(group_code)
@@ -2225,15 +2224,6 @@ def write_course_graph(
             rank_subgraph.attr(rank="same")
             for node_id in rank_nodes:
                 rank_subgraph.node(node_id)
-
-    if note_id:
-        graph.edge(
-            note_id,
-            course_group_id(focus_group),
-            style="invis",
-            arrowhead="none",
-            minlen="2",
-        )
 
     drawn_edges: set[tuple[str, str, str]] = set()
     created_aux_nodes: set[str] = set()
@@ -2425,11 +2415,6 @@ def render_course_graph_key() -> str:
             render_graph_key_sample("", "junction"),
         ),
         render_graph_key_item(
-            "Published notes",
-            "Merged narrative requirements such as registration restrictions or program notes that do not form a prerequisite branch.",
-            render_graph_key_sample("Notes", "support"),
-        ),
-        render_graph_key_item(
             "Merged course node",
             "Equivalent or cross-listed courses are collapsed into one shared node.",
             render_graph_key_sample("BIOL311 / EOS311", "merged"),
@@ -2503,13 +2488,13 @@ def render_graph_preview(
     """
 
 
-def render_additional_requirements(note_lines: list[str]) -> str:
+def render_additional_requirements(note_lines: list[str], *, title: str) -> str:
     if not note_lines:
         return ""
     items = "".join(f"<li>{e(line)}</li>" for line in note_lines)
     return f"""
     <div class="graph-followup">
-      <p class="detail-card__eyebrow">Additional program requirements</p>
+      <p class="detail-card__eyebrow">{e(title)}</p>
       <ul class="graph-followup__list">{items}</ul>
     </div>
     """
@@ -2860,7 +2845,8 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
                 stream_note = "This map combines the shared program structure with the published requirements for this stream."
             asset_stem = stream_asset_stem(program, stream)
             additional_requirements_html = render_additional_requirements(
-                program_graph_note_lines(program, stream)
+                program_graph_note_lines(program, stream),
+                title="Additional program requirements",
             )
             graph_shells.append(
                 render_graph_shell(
@@ -2893,7 +2879,8 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
             preview_html=render_program_role_legend(program_legend_items),
         )
         additional_requirements_html = render_additional_requirements(
-            program_graph_note_lines(program, None)
+            program_graph_note_lines(program, None),
+            title="Additional program requirements",
         )
         graphs_html = render_graph_shell(
             shell_id="program-graph",
@@ -2963,7 +2950,13 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
     )
 
 
-def render_course_page(course: CourseRecord, courses: dict[str, CourseRecord], programs: dict[str, ProgramRecord]) -> str:
+def render_course_page(
+    course: CourseRecord,
+    courses: dict[str, CourseRecord],
+    programs: dict[str, ProgramRecord],
+    course_groups: dict[str, CourseGroupRecord],
+    course_group_lookup: dict[str, str],
+) -> str:
     metric_cards = "".join(
         [
             render_metric_card(e(subject_name(course.code)), "Subject area"),
@@ -3028,6 +3021,12 @@ def render_course_page(course: CourseRecord, courses: dict[str, CourseRecord], p
         "</article>"
         for eyebrow, title, body in detail_cards
     )
+    course_note_lines = course_graph_note_lines(
+        course,
+        courses,
+        course_groups,
+        course_group_lookup,
+    )
     graph_key_html = render_course_graph_key()
     guide_html = render_graph_guide(
         summary="Expand for department colours, choice nodes, and merged-course labels used in the course map.",
@@ -3035,6 +3034,10 @@ def render_course_page(course: CourseRecord, courses: dict[str, CourseRecord], p
         legend_html=render_subject_pill(course.code),
         graph_key_html=graph_key_html,
         title="Graph key and legend",
+    )
+    additional_requirements_html = render_additional_requirements(
+        course_note_lines,
+        title="Additional course requirements",
     )
     graph_html = render_graph_shell(
         shell_id="course-graph",
@@ -3047,6 +3050,7 @@ def render_course_page(course: CourseRecord, courses: dict[str, CourseRecord], p
         guide_html=guide_html,
         simplified_copy="Simplified view: direct prerequisites above the course, then one downstream level below it.",
         full_copy="Full view: the entire connected prerequisite and downstream pathway captured in the last updated dataset.",
+        footer_html=additional_requirements_html,
     )
 
     content = f"""
@@ -3409,7 +3413,13 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
     )
 
 
-def write_site(programs: dict[str, ProgramRecord], courses: dict[str, CourseRecord], manifest: dict) -> None:
+def write_site(
+    programs: dict[str, ProgramRecord],
+    courses: dict[str, CourseRecord],
+    manifest: dict,
+    course_groups: dict[str, CourseGroupRecord],
+    course_group_lookup: dict[str, str],
+) -> None:
     (BUILD_DIR / "programs").mkdir(parents=True, exist_ok=True)
     (BUILD_DIR / "courses").mkdir(parents=True, exist_ok=True)
 
@@ -3438,7 +3448,13 @@ def write_site(programs: dict[str, ProgramRecord], courses: dict[str, CourseReco
 
     for course in courses.values():
         (BUILD_DIR / "courses" / f"{course.code}.html").write_text(
-            render_course_page(course, courses, programs),
+            render_course_page(
+                course,
+                courses,
+                programs,
+                course_groups,
+                course_group_lookup,
+            ),
             encoding="utf-8",
         )
 
@@ -3503,7 +3519,13 @@ def main() -> None:
             simplified=False,
         )
 
-    write_site(programs, courses, manifest)
+    write_site(
+        programs,
+        courses,
+        manifest,
+        course_groups,
+        course_group_lookup,
+    )
 
     print(
         f"Built static guide with {len(programs)} program pages, {len(courses)} course pages, "

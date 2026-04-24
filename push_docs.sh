@@ -1,8 +1,17 @@
-python3 scripts/build_static_site.py || exit 1
-git branch -D gh-pages || true
-git checkout -B gh-pages-stage
-touch build/html/.nojekyll
-git add --force build/html
-git commit -m "Doc update" --no-verify
-git push --force origin $(git subtree split --prefix build/html --branch gh-pages):refs/heads/gh-pages
-git checkout -
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$ROOT_DIR"
+
+python3 scripts/build_static_site.py
+
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "There are uncommitted changes. Commit them first, then rerun this script to push the current branch."
+  exit 1
+fi
+
+BRANCH="$(git branch --show-current)"
+git push -u origin "$BRANCH"
+
+echo "Pushed ${BRANCH}. GitHub Actions will rebuild and deploy GitHub Pages from the latest commit."
