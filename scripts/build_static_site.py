@@ -2972,13 +2972,13 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
         active="programs",
         active_site="atlas",
         title=f"{program.name} | {SITE_NAME}",
-        description=f"Published program map for {program.name} at UVic, with regenerated prerequisite-flow graphs.",
+        description=f"Published program map for {program.name} at UVic, with generated prerequisite-flow graphs.",
         eyebrow=f"Programs | {program.code}",
         hero_title=program.name,
         hero_lede=(
             "Published program structure, rebuilt as a static map with stream-aware prerequisite graphs."
             if program.streams
-            else "Published program structure, rebuilt as a static map with regenerated prerequisite-flow graphs."
+            else "Published program structure, rebuilt as a static map with generated prerequisite-flow graphs."
         ),
         hero_actions=hero_actions,
         content=content,
@@ -3131,13 +3131,13 @@ def render_course_page(
         active="courses",
         active_site="atlas",
         title=f"{course.code} | {SITE_NAME}",
-        description=f"Published course map for {course.code} at UVic, with regenerated prerequisite and downstream graphs.",
+        description=f"Published course map for {course.code} at UVic, with generated prerequisite and downstream graphs.",
         eyebrow=f"Courses | {course.code}",
         hero_title=f"{course.code}: {course.name}",
         hero_lede=(
             "Course page generated from current catalog data and related program references."
             if course.placeholder
-            else "Published course information, regenerated as a static page and SVG graph."
+            else "Published course information, generated as a static page and SVG graph."
         ),
         hero_actions=hero_actions,
         content=content,
@@ -3201,7 +3201,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         active="programs",
         active_site="atlas",
         title=f"Programs | {SITE_NAME}",
-        description="Published SEOS and related program structures at UVic, regenerated as static curriculum maps with node graphs.",
+        description="Published SEOS and related program structures at UVic, generated as static curriculum maps with node graphs.",
         eyebrow="Programs",
         hero_title="SEOS programs and combined programs.",
         hero_lede="Current published structures, rebuilt as static pages and SVG graphs from the catalog snapshot.",
@@ -3228,9 +3228,9 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
 
     metric_cards = "".join(
         [
-            render_metric_card(str(len(eos_courses)), "EOS courses with detail pages"),
+            render_metric_card(str(len(eos_courses)), "EOS course pages"),
             render_metric_card(str(len(support_courses)), "Partner-department course pages"),
-            render_metric_card(str(sum(len(course.dependents) for course in eos_courses)), "Direct downstream links across EOS courses"),
+            render_metric_card(str(sum(len(course.dependents) for course in eos_courses)), "Direct dependencies across EOS courses"),
             render_metric_card(e(generated_at), "Last UVic calendar sync"),
         ]
     )
@@ -3300,7 +3300,7 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
         active="courses",
         active_site="atlas",
         title=f"Courses | {SITE_NAME}",
-        description="Published SEOS and supporting course structures at UVic, regenerated as static curriculum maps with node graphs.",
+        description="Published SEOS and supporting course structures at UVic, generated as static curriculum maps with node graphs.",
         eyebrow="Courses",
         hero_title="Courses covered in SEOS programs",
         hero_lede="Published course information, rebuilt as static pages and SVG graphs from the last UVic calendar sync.",
@@ -3389,10 +3389,10 @@ def render_workflow_page(manifest: dict) -> str:
         active="workflow",
         active_site="atlas",
         title=f"Workflow | {SITE_NAME}",
-        description=f"Maintenance workflow for the {SITE_NAME} static site and graph regeneration pipeline.",
+        description=f"Maintenance workflow for the {SITE_NAME} static site and graph generation pipeline.",
         eyebrow="Workflow",
         hero_title="Static build workflow for the curriculum atlas.",
-        hero_lede="Sync the catalog data, regenerate every graph and page, then publish by pushing to the repository.",
+        hero_lede="Sync the catalog data, generate every graph and page, then publish by pushing to the repository.",
         hero_actions=hero_actions,
         content=content,
         hero_image=f"{HERO_ASSET_URL}workflow-overview.jpg",
@@ -3404,7 +3404,7 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
     metric_cards = "".join(
         [
             render_metric_card(str(manifest["counts"]["seos_programs"]), "Programs in the current SEOS snapshot"),
-            render_metric_card(str(manifest["counts"]["eos_courses"]), "EOS courses with regenerated pages"),
+            render_metric_card(str(manifest["counts"]["eos_courses"]), "EOS course pages"),
             render_metric_card(str(manifest["counts"]["support_courses"]), "Partner-department course pages"),
             render_metric_card(e(generated_at), "Last UVic calendar sync"),
         ]
