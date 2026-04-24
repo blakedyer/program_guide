@@ -21,9 +21,15 @@ DATA_DIR = ROOT / "data" / "catalog"
 BUILD_DIR = ROOT / "build" / "html"
 STYLE_SOURCE = ROOT / "site_assets" / "program-guide.css"
 SCRIPT_SOURCE = ROOT / "site_assets" / "program-guide.js"
+HERO_SOURCE_DIR = ROOT / "site_assets" / "heroes"
 PROGRAM_GRAPH_DIR = BUILD_DIR / "assets" / "graphs" / "programs"
 COURSE_GRAPH_DIR = BUILD_DIR / "assets" / "graphs" / "courses"
+HERO_BUILD_DIR = BUILD_DIR / "assets" / "heroes"
 SITE_NAME = "SEOS Curriculum Atlas"
+RESEARCH_SITE_URL = "https://www.blakedyer.com/"
+TEACHING_SITE_URL = "https://blakedyer.github.io/eos-courses/"
+ATLAS_SITE_URL = "https://blakedyer.github.io/curriculum_atlas/"
+CURRICULUM_SITE_URL = "https://blakedyer.github.io/seos_curriculum/"
 
 SUBJECT_NAMES = {
     "EOS": "Earth and Ocean Sciences",
@@ -1968,6 +1974,8 @@ def prepare_output_directory() -> None:
     COURSE_GRAPH_DIR.mkdir(parents=True, exist_ok=True)
     shutil.copy2(STYLE_SOURCE, BUILD_DIR / "program-guide.css")
     shutil.copy2(SCRIPT_SOURCE, BUILD_DIR / "program-guide.js")
+    if HERO_SOURCE_DIR.exists():
+        shutil.copytree(HERO_SOURCE_DIR, HERO_BUILD_DIR)
     (BUILD_DIR / ".nojekyll").write_text("", encoding="utf-8")
 
 
@@ -2277,10 +2285,79 @@ def render_nav(base: str, active: str) -> str:
     return "".join(links)
 
 
+def ecosystem_items(base: str, active_site: str) -> list[tuple[str, str, str, bool]]:
+    return [
+        (
+            "Research",
+            RESEARCH_SITE_URL,
+            "Group publications, field albums, and people.",
+            active_site == "research",
+        ),
+        (
+            "Teaching",
+            TEACHING_SITE_URL,
+            "Course pages, lecture materials, and assignments.",
+            active_site == "teaching",
+        ),
+        (
+            "Curriculum Atlas",
+            f"{base}index.html" if active_site == "atlas" else ATLAS_SITE_URL,
+            "Published SEOS program and course structure mapped as static graphs.",
+            active_site == "atlas",
+        ),
+        (
+            "Curriculum Work",
+            CURRICULUM_SITE_URL,
+            "Draft proposals, status tracking, and handoff notes.",
+            active_site == "curriculum",
+        ),
+    ]
+
+
+def render_ecosystem_strip(base: str, active_site: str) -> str:
+    links = []
+    for label, href, summary, is_active in ecosystem_items(base, active_site):
+        class_name = "ecosystem-link is-active" if is_active else "ecosystem-link"
+        current = ' aria-current="page"' if is_active else ""
+        target = "" if is_active else ' target="_blank" rel="noopener"'
+        links.append(
+            f'<a class="{class_name}" href="{href}"{current}{target}>'
+            f'<span class="ecosystem-link__label">{e(label)}</span>'
+            f'<span class="ecosystem-link__summary">{e(summary)}</span>'
+            '</a>'
+        )
+    return (
+        '<div class="ecosystem-strip">'
+        '<div class="ecosystem-shell">'
+        '<p class="ecosystem-strip__eyebrow">SEOS Web Ecosystem</p>'
+        f'{"".join(links)}'
+        "</div></div>"
+    )
+
+
+def program_hero_image(base: str, program: ProgramRecord) -> str:
+    lower_name = f"{program.code} {program.name} {program.title}".lower()
+    if "climate" in lower_name or "ocean" in lower_name:
+        return f"{base}assets/heroes/waves-course.jpg"
+    if "combined" in lower_name:
+        return f"{base}assets/heroes/cave-program.jpg"
+    return f"{base}assets/heroes/rockies-program.jpg"
+
+
+def course_hero_image(base: str, course: CourseRecord) -> str:
+    subject = subject_from_code(course.code)
+    if subject in {"BIOL", "BIOC", "CHEM"}:
+        return f"{base}assets/heroes/turtle-course.jpg"
+    if subject in {"EOS", "GEOG", "ES"}:
+        return f"{base}assets/heroes/cave-program.jpg"
+    return f"{base}assets/heroes/waves-course.jpg"
+
+
 def render_layout(
     *,
     base: str,
     active: str,
+    active_site: str,
     title: str,
     description: str,
     eyebrow: str,
@@ -2288,7 +2365,10 @@ def render_layout(
     hero_lede: str,
     hero_actions: str,
     content: str,
+    hero_image: str | None = None,
 ) -> str:
+    hero_class = "hero hero--guide hero--photo" if hero_image else "hero hero--guide"
+    hero_style = f' style="--hero-image: url(\'{hero_image}\')"' if hero_image else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -2309,9 +2389,10 @@ def render_layout(
       </nav>
     </div>
   </header>
+  {render_ecosystem_strip(base, active_site)}
 
   <main class="page-shell">
-    <section class="hero hero--guide">
+    <section class="{hero_class}"{hero_style}>
       <div class="hero__content">
         <p class="hero__eyebrow">{e(eyebrow)}</p>
         <h1 class="hero__title hero__title--wide">{e(hero_title)}</h1>
@@ -2332,6 +2413,9 @@ def render_layout(
         <a href="{base}programs/overview.html">Programs</a>
         <a href="{base}courses/overview.html">Courses</a>
         <a href="{base}curriculum_workflow.html">Workflow</a>
+        <a href="{RESEARCH_SITE_URL}" target="_blank" rel="noopener">Research</a>
+        <a href="{TEACHING_SITE_URL}" target="_blank" rel="noopener">Teaching</a>
+        <a href="{CURRICULUM_SITE_URL}" target="_blank" rel="noopener">Curriculum work</a>
       </div>
     </div>
   </footer>
@@ -2936,6 +3020,7 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
     return render_layout(
         base="../",
         active="programs",
+        active_site="atlas",
         title=f"{program.name} | {SITE_NAME}",
         description=f"Published program map for {program.name} at UVic, with regenerated prerequisite-flow graphs.",
         eyebrow=f"Programs | {program.code}",
@@ -2947,6 +3032,7 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
         ),
         hero_actions=hero_actions,
         content=content,
+        hero_image=program_hero_image("../", program),
     )
 
 
@@ -3093,6 +3179,7 @@ def render_course_page(
     return render_layout(
         base="../",
         active="courses",
+        active_site="atlas",
         title=f"{course.code} | {SITE_NAME}",
         description=f"Published course map for {course.code} at UVic, with regenerated prerequisite and downstream graphs.",
         eyebrow=f"Courses | {course.code}",
@@ -3104,6 +3191,7 @@ def render_course_page(
         ),
         hero_actions=hero_actions,
         content=content,
+        hero_image=course_hero_image("../", course),
     )
 
 
@@ -3161,6 +3249,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
     return render_layout(
         base="../",
         active="programs",
+        active_site="atlas",
         title=f"Programs | {SITE_NAME}",
         description="Published SEOS and related program structures at UVic, regenerated as static curriculum maps with node graphs.",
         eyebrow="Programs",
@@ -3168,6 +3257,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         hero_lede="Current published structures, rebuilt as static pages and SVG graphs from the catalog snapshot.",
         hero_actions=hero_actions,
         content=content,
+        hero_image="../assets/heroes/rockies-program.jpg",
     )
 
 
@@ -3258,6 +3348,7 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
     return render_layout(
         base="../",
         active="courses",
+        active_site="atlas",
         title=f"Courses | {SITE_NAME}",
         description="Published SEOS and supporting course structures at UVic, regenerated as static curriculum maps with node graphs.",
         eyebrow="Courses",
@@ -3265,6 +3356,7 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
         hero_lede="Published course information, rebuilt as static pages and SVG graphs from the last updated dataset.",
         hero_actions=hero_actions,
         content=content,
+        hero_image="../assets/heroes/cave-program.jpg",
     )
 
 
@@ -3345,6 +3437,7 @@ def render_workflow_page(manifest: dict) -> str:
     return render_layout(
         base="",
         active="workflow",
+        active_site="atlas",
         title=f"Workflow | {SITE_NAME}",
         description=f"Maintenance workflow for the {SITE_NAME} static site and graph regeneration pipeline.",
         eyebrow="Workflow",
@@ -3352,6 +3445,7 @@ def render_workflow_page(manifest: dict) -> str:
         hero_lede="Sync the catalog data, regenerate every graph and page, then publish by pushing to the repository.",
         hero_actions=hero_actions,
         content=content,
+        hero_image="assets/heroes/waves-course.jpg",
     )
 
 
@@ -3403,6 +3497,7 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
     return render_layout(
         base="",
         active="home",
+        active_site="atlas",
         title=SITE_NAME,
         description="Static atlas for the published UVic SEOS curriculum structure, with generated program and course node graphs.",
         eyebrow="School of Earth and Ocean Sciences | UVic",
@@ -3410,6 +3505,7 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
         hero_lede="Current published programs and course pathways visualized as SVG node graphs.",
         hero_actions=hero_actions,
         content=content,
+        hero_image="assets/heroes/rockies-program.jpg",
     )
 
 
