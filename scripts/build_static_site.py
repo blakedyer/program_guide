@@ -2280,17 +2280,19 @@ def render_nav(base: str, active: str) -> str:
         ("Workflow", f"{base}curriculum_workflow.html", "workflow"),
     ]
     ecosystem_items = [
-        ("Research", RESEARCH_SITE_URL),
+        ("Earth History Research", RESEARCH_SITE_URL),
         ("Curriculum Work", CURRICULUM_SITE_URL),
         ("Teaching", TEACHING_SITE_URL),
     ]
     links = []
+    links.append('<span class="site-nav__label">This site</span>')
     for label, href, key in local_items:
         is_active = key == active
         class_attr = ' class="is-active"' if is_active else ""
         current = ' aria-current="page"' if is_active else ""
         links.append(f"<a{class_attr} href=\"{href}\"{current}>{e(label)}</a>")
     links.append('<span class="nav-divider" aria-hidden="true">|</span>')
+    links.append('<span class="site-nav__label">Other sites</span>')
     for label, href in ecosystem_items:
         links.append(f'<a href="{href}" target="_blank" rel="noopener">{e(label)}</a>')
     return "".join(links)
@@ -2363,7 +2365,7 @@ def render_layout(
         <a href="{base}programs/overview.html">Programs</a>
         <a href="{base}courses/overview.html">Courses</a>
         <a href="{base}curriculum_workflow.html">Workflow</a>
-        <a href="{RESEARCH_SITE_URL}" target="_blank" rel="noopener">Research</a>
+        <a href="{RESEARCH_SITE_URL}" target="_blank" rel="noopener">Earth History Research</a>
         <a href="{TEACHING_SITE_URL}" target="_blank" rel="noopener">Teaching</a>
         <a href="{CURRICULUM_SITE_URL}" target="_blank" rel="noopener">Curriculum work</a>
       </div>
@@ -3321,8 +3323,8 @@ def render_workflow_page(manifest: dict) -> str:
       <div class="split-callout">
         <div>
           <p class="section-kicker">Build Model</p>
-          <h2>Scripted static generation rather than notebook and Sphinx maintenance.</h2>
-          <p>This guide is now built as static HTML and SVG from the synced catalog JSON. The intended workflow is a data pull, a full graph and page rebuild, and then a publish step.</p>
+          <h2>Scripted static generation of HTML.</h2>
+          <p>This guide built as static HTML and SVG from the synced catalog JSON. The intended workflow is a data pull, a full graph and page rebuild, and then a publish step.</p>
         </div>
         <div>
           <p class="section-kicker">Last UVic calendar sync</p>
