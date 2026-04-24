@@ -1783,7 +1783,7 @@ def render_subject_pill(code: str) -> str:
 
 
 def render_course_chip(code: str, prefix: str, courses: dict[str, CourseRecord]) -> str:
-    title = courses.get(code).name if code in courses else "Not found in the last updated dataset"
+    title = courses.get(code).name if code in courses else "Not found in the last UVic calendar sync"
     href = course_page_href(prefix, code, courses)
     classes = "course-pill" if href else "course-pill course-pill--ghost"
     if href:
@@ -2792,7 +2792,7 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
         render_metric_card(str(len(program.support_codes)), "Related prerequisite courses outside the named list"),
     ]
     if program.streams:
-        metric_items.append(render_metric_card(str(len(program.streams)), "Named stream pathways"))
+        metric_items.append(render_metric_card(str(len(program.streams)), "Named stream progressions"))
     else:
         metric_items.append(
             render_metric_card(
@@ -2850,14 +2850,14 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
         "Simplified view: collapse recurring early-sequence options and keep the prerequisite flow readable."
     )
     full_copy = (
-        "Full view: keep the complete prerequisite structure and the separate course variants named in the last updated dataset."
+        "Full view: keep the complete prerequisite structure and the separate course variants named in the last UVic calendar sync."
     )
     if program.streams:
         graph_intro = (
             '<div class="section-heading">'
             '<p class="section-kicker">Program Graphs</p>'
-            '<h2>Shared program core plus stream-specific pathway maps.</h2>'
-            '<p>Climate Science is published with a shared core and two stream-specific pathways. Each map below combines the shared program requirements with one stream so the Year 2 to Year 4 structure stays readable.</p>'
+            '<h2>Shared program core plus stream-specific progression maps.</h2>'
+            '<p>Climate Science is published with a shared core and two stream-specific progressions. Each map below combines the shared program requirements with one stream so the Year 2 to Year 4 structure stays readable.</p>'
             '</div>'
         )
         graph_shells = []
@@ -3085,7 +3085,7 @@ def render_course_page(
         aria_label=f"{course.code} course graph",
         guide_html=guide_html,
         simplified_copy="Simplified view: direct prerequisites above the course, then one downstream level below it.",
-        full_copy="Full view: the entire connected prerequisite and downstream pathway captured in the last updated dataset.",
+        full_copy="Full view: the entire connected prerequisite and downstream progression captured in the last UVic calendar sync.",
         footer_html=additional_requirements_html,
     )
 
@@ -3154,8 +3154,8 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         [
             render_metric_card(str(len(programs)), "Programs in the SEOS set"),
             render_metric_card(str(sum(1 for program in programs.values() if "Honours" in program.name)), "Honours and combined honours variants"),
-            render_metric_card(str(sum(1 for program in programs.values() if "Minor" in program.name)), "Minor pathways"),
-            render_metric_card(e(generated_at), "Last updated"),
+            render_metric_card(str(sum(1 for program in programs.values() if "Minor" in program.name)), "Minor progressions"),
+            render_metric_card(e(generated_at), "Last UVic calendar sync"),
         ]
     )
     category_filters = render_filter_group(
@@ -3179,7 +3179,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
       <div class="section-heading">
         <p class="section-kicker">Program Directory</p>
         <h2>Published SEOS and related program structures.</h2>
-        <p>Each page turns the published program structure into a clearer prerequisite-flow map, with stream-specific views where the calendar splits into distinct pathways.</p>
+        <p>Each page turns the published program structure into a clearer prerequisite-flow map, with stream-specific views where the calendar splits into distinct progressions.</p>
       </div>
       <div class="filter-panel" data-card-filter>
         <div class="filter-panel__groups">
@@ -3231,7 +3231,7 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
             render_metric_card(str(len(eos_courses)), "EOS courses with detail pages"),
             render_metric_card(str(len(support_courses)), "Partner-department course pages"),
             render_metric_card(str(sum(len(course.dependents) for course in eos_courses)), "Direct downstream links across EOS courses"),
-            render_metric_card(e(generated_at), "Last updated"),
+            render_metric_card(e(generated_at), "Last UVic calendar sync"),
         ]
     )
     department_codes = unique_ordered(
@@ -3302,8 +3302,8 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
         title=f"Courses | {SITE_NAME}",
         description="Published SEOS and supporting course structures at UVic, regenerated as static curriculum maps with node graphs.",
         eyebrow="Courses",
-        hero_title="SEOS courses and supporting pathways.",
-        hero_lede="Published course information, rebuilt as static pages and SVG graphs from the last updated dataset.",
+        hero_title="SEOS courses and supporting progressions.",
+        hero_lede="Published course information, rebuilt as static pages and SVG graphs from the last UVic calendar sync.",
         hero_actions=hero_actions,
         content=content,
         hero_image=f"{HERO_ASSET_URL}course-overview.jpg",
@@ -3322,10 +3322,10 @@ def render_workflow_page(manifest: dict) -> str:
         <div>
           <p class="section-kicker">Build Model</p>
           <h2>Scripted static generation rather than notebook and Sphinx maintenance.</h2>
-          <p>This guide is now built as static HTML and SVG from the synced catalog JSON. The intended workflow is a data pull, a full graph and page rebuild, and then a publish step. That keeps the visual design aligned with the curriculum pages while removing the old manual `.rst` and notebook bottleneck.</p>
+          <p>This guide is now built as static HTML and SVG from the synced catalog JSON. The intended workflow is a data pull, a full graph and page rebuild, and then a publish step.</p>
         </div>
         <div>
-          <p class="section-kicker">Last updated</p>
+          <p class="section-kicker">Last UVic calendar sync</p>
           <p class="panel-note">{e(generated_at)} | {e(str(manifest['counts']['seos_programs']))} programs | {e(str(manifest['counts']['eos_courses']))} EOS courses | {e(str(manifest['counts']['support_courses']))} supporting courses</p>
         </div>
       </div>
@@ -3406,7 +3406,7 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
             render_metric_card(str(manifest["counts"]["seos_programs"]), "Programs in the current SEOS snapshot"),
             render_metric_card(str(manifest["counts"]["eos_courses"]), "EOS courses with regenerated pages"),
             render_metric_card(str(manifest["counts"]["support_courses"]), "Partner-department course pages"),
-            render_metric_card(e(generated_at), "Last updated"),
+            render_metric_card(e(generated_at), "Last UVic calendar sync"),
         ]
     )
 
@@ -3420,7 +3420,7 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
         <div>
           <p class="section-kicker">How To Use This Guide</p>
           <h2>Start with the published structure, then zoom into a program or course page only when you need detail.</h2>
-          <p>This site maps the current approved calendar structure for SEOS programs and related pathways. Start with the <a class="text-link" href="programs/overview.html">program directory</a> when you want to compare published pathways, then use the <a class="text-link" href="courses/overview.html">course directory</a> to trace where specific courses appear across the SEOS program set.</p>
+          <p>This site maps the current approved calendar structure for SEOS programs and related progressions. Start with the <a class="text-link" href="programs/overview.html">program directory</a> when you want to compare published progressions, then use the <a class="text-link" href="courses/overview.html">course directory</a> to trace where specific courses appear across the SEOS program set.</p>
           <p>Draft revisions, consultation notes, and proposal history still belong on the curriculum site. This guide is the baseline view of what is currently published.</p>
         </div>
         <div>
@@ -3452,7 +3452,7 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
         description="Static atlas for the published UVic SEOS curriculum structure, with generated program and course node graphs.",
         eyebrow="School of Earth and Ocean Sciences | UVic",
         hero_title="SEOS program structure, rebuilt as a static atlas.",
-        hero_lede="Current published programs and course pathways visualized as SVG node graphs.",
+        hero_lede="Current published programs and course progressions visualized as SVG node graphs.",
         hero_actions=hero_actions,
         content=content,
         hero_image=f"{HERO_ASSET_URL}rockies-program.jpg",
