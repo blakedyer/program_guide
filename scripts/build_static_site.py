@@ -2272,19 +2272,26 @@ def write_course_graph(
 
 
 def render_nav(base: str, active: str) -> str:
-    items = [
-        ("Research", RESEARCH_SITE_URL, False),
-        ("Curriculum Atlas", f"{base}index.html", False),
-        ("Curriculum Work", CURRICULUM_SITE_URL, True),
-        ("Teaching", TEACHING_SITE_URL, True),
+    local_items = [
+        ("Overview", f"{base}index.html", "home"),
+        ("Programs", f"{base}programs/overview.html", "programs"),
+        ("Courses", f"{base}courses/overview.html", "courses"),
+        ("Workflow", f"{base}curriculum_workflow.html", "workflow"),
+    ]
+    ecosystem_items = [
+        ("Research", RESEARCH_SITE_URL),
+        ("Curriculum Work", CURRICULUM_SITE_URL),
+        ("Teaching", TEACHING_SITE_URL),
     ]
     links = []
-    for label, href, external in items:
-        is_active = label == "Curriculum Atlas"
+    for label, href, key in local_items:
+        is_active = key == active
         class_attr = ' class="is-active"' if is_active else ""
         current = ' aria-current="page"' if is_active else ""
-        target = ' target="_blank" rel="noopener"' if external else ""
-        links.append(f"<a{class_attr} href=\"{href}\"{current}{target}>{e(label)}</a>")
+        links.append(f"<a{class_attr} href=\"{href}\"{current}>{e(label)}</a>")
+    links.append('<span class="nav-divider" aria-hidden="true">|</span>')
+    for label, href in ecosystem_items:
+        links.append(f'<a href="{href}" target="_blank" rel="noopener">{e(label)}</a>')
     return "".join(links)
 
 
