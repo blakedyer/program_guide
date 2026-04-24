@@ -30,6 +30,7 @@ RESEARCH_SITE_URL = "https://www.blakedyer.com/"
 TEACHING_SITE_URL = "https://eos-courses.readthedocs.io/en/latest/"
 ATLAS_SITE_URL = "https://blakedyer.github.io/curriculum_atlas/"
 CURRICULUM_SITE_URL = "https://blakedyer.github.io/seos_curriculum/"
+HERO_ASSET_URL = f"{ATLAS_SITE_URL}assets/heroes/"
 
 SUBJECT_NAMES = {
     "EOS": "Earth and Ocean Sciences",
@@ -2296,11 +2297,11 @@ def render_nav(base: str, active: str) -> str:
 
 
 def program_hero_image(base: str, program: ProgramRecord) -> str:
-    return f"{base}assets/heroes/program-overview.jpg"
+    return f"{HERO_ASSET_URL}program-overview.jpg"
 
 
 def course_hero_image(base: str, course: CourseRecord) -> str:
-    return f"{base}assets/heroes/course-overview.jpg"
+    return f"{HERO_ASSET_URL}course-overview.jpg"
 
 
 def render_layout(
@@ -3206,7 +3207,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         hero_lede="Current published structures, rebuilt as static pages and SVG graphs from the catalog snapshot.",
         hero_actions=hero_actions,
         content=content,
-        hero_image="../assets/heroes/program-overview.jpg",
+        hero_image=f"{HERO_ASSET_URL}program-overview.jpg",
     )
 
 
@@ -3305,7 +3306,7 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
         hero_lede="Published course information, rebuilt as static pages and SVG graphs from the last updated dataset.",
         hero_actions=hero_actions,
         content=content,
-        hero_image="../assets/heroes/course-overview.jpg",
+        hero_image=f"{HERO_ASSET_URL}course-overview.jpg",
     )
 
 
@@ -3394,7 +3395,7 @@ def render_workflow_page(manifest: dict) -> str:
         hero_lede="Sync the catalog data, regenerate every graph and page, then publish by pushing to the repository.",
         hero_actions=hero_actions,
         content=content,
-        hero_image="assets/heroes/waves-course.jpg",
+        hero_image=f"{HERO_ASSET_URL}workflow-overview.jpg",
     )
 
 
@@ -3454,7 +3455,7 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
         hero_lede="Current published programs and course pathways visualized as SVG node graphs.",
         hero_actions=hero_actions,
         content=content,
-        hero_image="assets/heroes/rockies-program.jpg",
+        hero_image=f"{HERO_ASSET_URL}rockies-program.jpg",
     )
 
 
