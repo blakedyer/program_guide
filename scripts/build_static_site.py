@@ -2296,21 +2296,11 @@ def render_nav(base: str, active: str) -> str:
 
 
 def program_hero_image(base: str, program: ProgramRecord) -> str:
-    lower_name = f"{program.code} {program.name} {program.title}".lower()
-    if "climate" in lower_name or "ocean" in lower_name:
-        return f"{base}assets/heroes/waves-course.jpg"
-    if "combined" in lower_name:
-        return f"{base}assets/heroes/cave-program.jpg"
-    return f"{base}assets/heroes/rockies-program.jpg"
+    return f"{base}assets/heroes/program-overview.jpg"
 
 
 def course_hero_image(base: str, course: CourseRecord) -> str:
-    subject = subject_from_code(course.code)
-    if subject in {"BIOL", "BIOC", "CHEM"}:
-        return f"{base}assets/heroes/turtle-course.jpg"
-    if subject in {"EOS", "GEOG", "ES"}:
-        return f"{base}assets/heroes/cave-program.jpg"
-    return f"{base}assets/heroes/waves-course.jpg"
+    return f"{base}assets/heroes/course-overview.jpg"
 
 
 def render_layout(
@@ -3216,7 +3206,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         hero_lede="Current published structures, rebuilt as static pages and SVG graphs from the catalog snapshot.",
         hero_actions=hero_actions,
         content=content,
-        hero_image="../assets/heroes/rockies-program.jpg",
+        hero_image="../assets/heroes/program-overview.jpg",
     )
 
 
@@ -3315,7 +3305,7 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
         hero_lede="Published course information, rebuilt as static pages and SVG graphs from the last updated dataset.",
         hero_actions=hero_actions,
         content=content,
-        hero_image="../assets/heroes/cave-program.jpg",
+        hero_image="../assets/heroes/course-overview.jpg",
     )
 
 
