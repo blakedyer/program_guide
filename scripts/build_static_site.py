@@ -3421,9 +3421,8 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
       <div class="split-callout">
         <div>
           <p class="section-kicker">How To Use This Guide</p>
-          <h2>Start with the published structure, then zoom into a program or course page only when you need detail.</h2>
-          <p>This site maps the current approved calendar structure for SEOS programs and related progressions. Start with the <a class="text-link" href="programs/overview.html">program directory</a> when you want to compare published progressions, then use the <a class="text-link" href="courses/overview.html">course directory</a> to trace where specific courses appear across the SEOS program set.</p>
-          <p>Draft revisions, consultation notes, and proposal history still belong on the curriculum site. This guide is the baseline view of what is currently published.</p>
+          <h2>Program and Course pre-requisite graphs, based directly on the UVic Calendar.</h2>
+          <p>This site maps the current calendar structure for SEOS programs and related courses. Start with the <a class="text-link" href="programs/overview.html">program directory</a> when you want to explore programs, then use the <a class="text-link" href="courses/overview.html">course directory</a> to zoom in on specific course requirements.</p>
         </div>
         <div>
           <p class="section-kicker">Regeneration</p>
