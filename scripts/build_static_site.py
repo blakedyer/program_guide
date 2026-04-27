@@ -2858,8 +2858,8 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
         graph_intro = (
             '<div class="section-heading">'
             '<p class="section-kicker">Program Graphs</p>'
-            '<h2>Shared program core plus stream-specific progression maps.</h2>'
-            '<p>Climate Science is published with a shared core and two stream-specific progressions. Each map below combines the shared program requirements with one stream so the Year 2 to Year 4 structure stays readable.</p>'
+            '<h2>Program requirements arranged by prerequisite flow.</h2>'
+            '<p>Climate Science is published with a shared core and two stream-specific progressions. There are separate maps below for each stream. Note that courses with no direct prerequisite links in the database are shown as isolated nodes. Some of these courses may have prerequisites outside the scope of the courses that we pulled from the database.</p>'
             '</div>'
         )
         graph_shells = []
@@ -2922,7 +2922,7 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
             shell_id="program-graph",
             section_kicker="Program Graph",
             heading="Program requirements arranged by prerequisite flow.",
-            note="The graph is driven by prerequisite flow rather than year buckets. The simplified view keeps the sequence readable while the full view keeps the finer-grained structure.",
+            note="The graph is driven by prerequisites from left to right (instead of year suggestions). The simplified view keeps the sequence readable while the full view is closer to the real data structure.",
             simplified_svg=f"../assets/graphs/programs/{program.code}--simplified.svg",
             full_svg=f"../assets/graphs/programs/{program.code}.svg",
             aria_label=f"{program.name} program graph",
@@ -3065,14 +3065,19 @@ def render_course_page(
         course_groups,
         course_group_lookup,
     )
-    graph_key_html = render_course_graph_key()
-    guide_html = render_graph_guide(
-        summary="Expand for department colours, choice nodes, and merged-course labels used in the course map.",
-        preview_samples=[(course.code, "focus"), ("1 of", "choice"), ("", "junction"), ("Merged", "merged")],
-        legend_html=render_subject_pill(course.code),
-        graph_key_html=graph_key_html,
-        title="Graph key and legend",
-    )
+    # graph_key_html = render_course_graph_key() %legend course graph key
+    graph_key_html = ""
+
+    # guide_html = render_graph_guide(
+    #     summary="Expand for department colours, choice nodes, and merged-course labels used in the course map.",
+    #     preview_samples=[(course.code, "focus"), ("1 of", "choice"), ("", "junction"), ("Merged", "merged")],
+    #     legend_html=render_subject_pill(course.code),
+    #     graph_key_html=graph_key_html,
+    #     title="Graph key and legend",
+    # )
+
+    guide_html = "" 
+    
     additional_requirements_html = render_additional_requirements(
         course_note_lines,
         title="Additional course requirements",
@@ -3080,14 +3085,14 @@ def render_course_page(
     graph_html = render_graph_shell(
         shell_id="course-graph",
         section_kicker="Course Graph",
-        heading="Prerequisite flow into the course, and downstream links out from it.",
-        note="Choice rules are rendered as compact connector nodes, co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one downstream level below it.",
+        heading="Prerequisite flow into the course, and dependencies flow out from it.",
+        note="Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.",
         simplified_svg=f"../assets/graphs/courses/{course.code}--simplified.svg",
         full_svg=f"../assets/graphs/courses/{course.code}.svg",
         aria_label=f"{course.code} course graph",
         guide_html=guide_html,
-        simplified_copy="Simplified view: direct prerequisites above the course, then one downstream level below it.",
-        full_copy="Full view: the entire connected prerequisite and downstream progression captured in the last UVic calendar sync.",
+        simplified_copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.",
+        full_copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.",
         footer_html=additional_requirements_html,
     )
 
@@ -3156,7 +3161,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         [
             render_metric_card(str(len(programs)), "Programs in the SEOS set"),
             render_metric_card(str(sum(1 for program in programs.values() if "Honours" in program.name)), "Honours and combined honours variants"),
-            render_metric_card(str(sum(1 for program in programs.values() if "Minor" in program.name)), "Minor progressions"),
+            render_metric_card(str(sum(1 for program in programs.values() if "Minor" in program.name)), "Minors"),
             render_metric_card(e(generated_at), "Last UVic calendar sync"),
         ]
     )
@@ -3181,7 +3186,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
       <div class="section-heading">
         <p class="section-kicker">Program Directory</p>
         <h2>Published SEOS and related program structures.</h2>
-        <p>Each page turns the published program structure into a clearer prerequisite-flow map, with stream-specific views where the calendar splits into distinct progressions.</p>
+        <p>Each page turns the published program structure into a prerequisite-flow map.</p>
       </div>
       <div class="filter-panel" data-card-filter>
         <div class="filter-panel__groups">
