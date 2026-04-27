@@ -1,0 +1,40 @@
+{
+  "__catalogCourseId": "POLI350",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2021-02-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "crossListedCourses": [
+    {
+      "__catalogCourseId": "ADMN311",
+      "pid": "r1F2hDT7E",
+      "title": "Introduction to Public Administration"
+    }
+  ],
+  "dateStart": "2021-05-03",
+  "description": "<p>An exploration of the external factors affecting contemporary public sector management in Canada, the changing structural and value context within which public servants work, the key processes in which they are engaged and how those processes are changing. Focus is primarily on the federal and provincial governments. Includes discussion of municipal administration and Indigenous governance.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be36c4156a15d000126dec3",
+    "name": "Department of Political Science"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5f4d698c9c7aab0026994900",
+  "pid": "rywCROTmV",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Political Science (POLI)",
+    "id": "5be1fd791d17b62e0081993d",
+    "linkedGroup": "5be36c4156a15d000126dec3",
+    "name": "POLI"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of POLI 350, ADMN 311, HSD 404.</li></ul>",
+  "title": "Introduction to Public Administration"
+}

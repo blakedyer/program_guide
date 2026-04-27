@@ -1,0 +1,33 @@
+{
+  "__catalogCourseId": "POLI351",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>A practical approach to the concepts and conduct of public policy analysis, including problem definition and policy design, the application of analytical techniques and issues in public policy implementation.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be36c4156a15d000126dec3",
+    "name": "Department of Political Science"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5d1f69d689944f24002aceeb",
+  "pid": "SyOAR_a74",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Political Science (POLI)",
+    "id": "5be1fd791d17b62e0081993d",
+    "linkedGroup": "5be36c4156a15d000126dec3",
+    "name": "POLI"
+  },
+  "supplementalNotes": "",
+  "title": "Public Policy Analysis"
+}

@@ -63,3 +63,5 @@ source/programs/graphs/.ipynb_checkpoints/ESMINOR_UPPER-checkpoint.svg
 data/programs/.ipynb_checkpoints/BSC-PESC-checkpoint.csv
 __pycache__/
 *.pyc
+.codex
+scripts/.ipynb_checkpoints/build_static_site-checkpoint.py

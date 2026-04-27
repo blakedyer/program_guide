@@ -1,0 +1,34 @@
+{
+  "__catalogCourseId": "ADMN420",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2025-05-01",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2025-05-03",
+  "description": "<p>An introduction to the policy process in the public sector. Includes analysis of current theories of policy-making and examines case studies from Canadian contexts. Topics include: policy formation; the policy communication process; the structural aspects of policy execution; and the human dimensions of implementation and coordination of policies in public sector organizations.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bca4f1d1add8e000113d7b3",
+    "name": "School of Public Administration"
+  },
+  "id": "67ffff36280dd796f4cb6573",
+  "pid": "r1elp2waX4",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/67ffff2c84f6076d6372d72a\" target=\"_blank\">ADMN311</a> <!-- -->-<!-- --> <!-- -->Introduction to Public Administration<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/5f4d698c9c7aab0026994900\" target=\"_blank\">POLI350</a> <!-- -->-<!-- --> <!-- -->Introduction to Public Administration<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "recommendations": "<ul><li> ADMN 310 and/or ADMN 314 recommended prior to ADMN 420.</li></ul>",
+  "subjectCode": {
+    "description": "Public Administration (ADMN)",
+    "id": "5c13f149185fc42400eea048",
+    "linkedGroup": "5bca4f1d1add8e000113d7b3",
+    "name": "ADMN"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of ADMN 420, ADMN 465.</li></ul>",
+  "title": "The Public Policy Process"
+}

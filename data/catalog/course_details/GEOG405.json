@@ -1,0 +1,34 @@
+{
+  "__catalogCourseId": "GEOG405",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2020-05-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2020-09-01",
+  "description": "<p>Explores the dynamics of the four main elements of the Earth's cryosphere - glaciers, snow cover, floating ice and permafrost - in physical, climatological, hydrological and Earth system contexts. A field trip fee may be applied.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3699cfed2d200010da148",
+    "name": "Department of Geography"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5dbc6a80079c5e24006cef10",
+  "pid": "BJKt515cS",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/657a4023f8b722df70dbf7cb\" target=\"_blank\">GEOG370</a> <!-- -->-<!-- --> <!-- -->Methods in Hydrology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/5dbb425af99831240039c76f\" target=\"_blank\">GEOG373</a> <!-- -->-<!-- --> <!-- -->Applied Climatology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/667f21ef07ae35617cfa3e71\" target=\"_blank\">EOS340</a> <!-- -->-<!-- --> <!-- -->Atmospheric Physics<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Geography (GEOG)",
+    "id": "5be1fc782ce2be2e0030172e",
+    "linkedGroup": "5be3699cfed2d200010da148",
+    "name": "GEOG"
+  },
+  "supplementalNotes": "<ul> <li>Credit will be granted for only one of GEOG 405, GEOG 491 (if taken in the same topic).</li> </ul>",
+  "title": "Dynamics of the Cryosphere"
+}

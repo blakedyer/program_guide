@@ -1,0 +1,32 @@
+{
+  "__catalogCourseId": "ADMN316",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2025-05-01",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2025-05-03",
+  "description": "<p>Contemporary communications theory and application with focus on the communication tools in the public and non-profit sectors. Topics include: developing technically and strategically sound written, verbal and interpersonal communication skills for internal and external audiences; basic media relations; creating online/electronic content; synthesizing information for briefing notes, proposals and news releases; and how to engage elected officials and executive, community and stakeholders using effective and inclusive communication processes.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5bca4f1d1add8e000113d7b3",
+    "name": "School of Public Administration"
+  },
+  "id": "67ffff3095e6c3016c25c0bf",
+  "pid": "Bk52hwp74",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Public Administration (ADMN)",
+    "id": "5c13f149185fc42400eea048",
+    "linkedGroup": "5bca4f1d1add8e000113d7b3",
+    "name": "ADMN"
+  },
+  "supplementalNotes": "<ul> <li>Credit will be granted for only one of ADMN 316, ENGL 302, ENSH 304.</li> </ul>",
+  "title": "Public Sector Communications"
+}

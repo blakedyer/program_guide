@@ -1,0 +1,33 @@
+{
+  "__catalogCourseId": "GEOG489",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2023-09-01",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "dateStart": "2023-09-02",
+  "description": "<p>Identification of a specific climate change issue in partnership with community and/or research organization partners, followed by evaluation of climate change vulnerabilities and potential adaptation/mitigation strategies using skills in data processing and knowledge of climate change information. Culminates in oral presentation and written product for community partners.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3699cfed2d200010da148",
+    "name": "Department of Geography"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "6000d45fa1131b002781a335",
+  "pid": "SJdwEI0AD",
+  "preAndCorequisites": "<div><div><div><ul><li><span>Complete <!-- -->all<!-- --> of the following</span><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/65a1a4097dbc907bef22234a\" target=\"_blank\">GEOG230</a> <!-- -->-<!-- --> <!-- -->Introduction to Environmental Data Analysis <!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/65a1935c7dbc90ea2f22223b\" target=\"_blank\">EOS230</a> <!-- -->-<!-- --> <!-- -->Introduction to Environmental Data Analysis <!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\">Complete <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5dbb425af99831240039c76f\" target=\"_blank\">GEOG373</a> <!-- -->-<!-- --> <!-- -->Applied Climatology<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/667f21ef07ae35617cfa3e71\" target=\"_blank\">EOS340</a> <!-- -->-<!-- --> <!-- -->Atmospheric Physics<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/667f257207ae3558c7fa3e8f\" target=\"_blank\">PHYS340</a> <!-- -->-<!-- --> <!-- -->Atmospheric Physics<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li><li data-test=\"ruleView-C\"><div data-test=\"ruleView-C-result\">Complete <span>1</span> of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/627bec098714a6a978f90e46\" target=\"_blank\">GEOG314</a> <!-- -->-<!-- --> <!-- -->Global Environmental Change and Human Response<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li><li><span><a href=\"#/courses/view/5e583a8f7120522500518b77\" target=\"_blank\">EOS365</a> <!-- -->-<!-- --> <!-- -->Climate and Society<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Geography (GEOG)",
+    "id": "5be1fc782ce2be2e0030172e",
+    "linkedGroup": "5be3699cfed2d200010da148",
+    "name": "GEOG"
+  },
+  "title": "Climate Solutions"
+}

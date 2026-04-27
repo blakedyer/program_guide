@@ -1,5 +1,41 @@
 [
   {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1F2hDT7E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1F2hDT7E",
+    "course_code": "ADMN311",
+    "course_name": "Introduction to Public Administration",
+    "id": "67ffff2c84f6076d6372d72a",
+    "pid": "r1F2hDT7E",
+    "subject": "ADMN"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Bk52hwp74",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Bk52hwp74",
+    "course_code": "ADMN316",
+    "course_name": "Public Sector Communications",
+    "id": "67ffff3095e6c3016c25c0bf",
+    "pid": "Bk52hwp74",
+    "subject": "ADMN"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1elp2waX4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1elp2waX4",
+    "course_code": "ADMN420",
+    "course_name": "The Public Policy Process",
+    "id": "67ffff36280dd796f4cb6573",
+    "pid": "r1elp2waX4",
+    "subject": "ADMN"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ByZwpwam4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByZwpwam4",
+    "course_code": "ANTH302",
+    "course_name": "Globalization, Health, and the Environment",
+    "id": "5d1f6ff4d2bc1524008cb17a",
+    "pid": "ByZwpwam4",
+    "subject": "ANTH"
+  },
+  {
     "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Hk6-APpQE",
     "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hk6-APpQE",
     "course_code": "BIOC299",
@@ -396,6 +432,33 @@
     "subject": "CHEM"
   },
   {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkPm1dpXV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkPm1dpXV",
+    "course_code": "CIVE210",
+    "course_name": "Sustainability in Civil Engineering",
+    "id": "5cbdf4a304ce072400155e75",
+    "pid": "rkPm1dpXV",
+    "subject": "CIVE"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/H1sm1_T74",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1sm1_T74",
+    "course_code": "CIVE315",
+    "course_name": "Environmental Policy",
+    "id": "5cbdf4aa04ce072400155e7c",
+    "pid": "H1sm1_T74",
+    "subject": "CIVE"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkJEyOpQV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkJEyOpQV",
+    "course_code": "CIVE411",
+    "course_name": "Resilient Smart Cities",
+    "id": "61bbb290c46bd8e8117f7d7a",
+    "pid": "BkJEyOpQV",
+    "subject": "CIVE"
+  },
+  {
     "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkgWq1OpQE",
     "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkgWq1OpQE",
     "course_code": "CSC110",
@@ -414,12 +477,57 @@
     "subject": "CSC"
   },
   {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Skb0l_amV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Skb0l_amV",
+    "course_code": "ECON383",
+    "course_name": "Climate Economics",
+    "id": "646d5749849b3036dc6587dd",
+    "pid": "Skb0l_amV",
+    "subject": "ECON"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJbVVupXV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJbVVupXV",
+    "course_code": "ES200",
+    "course_name": "Introduction to Environmental Studies",
+    "id": "5e5841f6b72ef32500f34d9e",
+    "pid": "rJbVVupXV",
+    "subject": "ES"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJ7ENOaXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJ7ENOaXE",
+    "course_code": "ES301",
+    "course_name": "Political Ecology",
+    "id": "5d1f6ae289944f24002acfc8",
+    "pid": "rJ7ENOaXE",
+    "subject": "ES"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJSVVOpmE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJSVVOpmE",
+    "course_code": "ES314",
+    "course_name": "Philosophy and the Environment",
+    "id": "5e584297b72ef32500f34dab",
+    "pid": "BJSVVOpmE",
+    "subject": "ES"
+  },
+  {
     "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HJ54E_pXN",
     "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJ54E_pXN",
     "course_code": "ES365",
     "course_name": "Climate and Society",
     "id": "65adda9abce7bd869a9e71a6",
     "pid": "HJ54E_pXN",
+    "subject": "ES"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BkeSVdaXN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkeSVdaXN",
+    "course_code": "ES405",
+    "course_name": "Climate, Energy and Politics",
+    "id": "5d1f75b7d2bc1524008cb5c3",
+    "pid": "BkeSVdaXN",
     "subject": "ES"
   },
   {
@@ -522,6 +630,33 @@
     "subject": "GEOG"
   },
   {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/HkCfrdp7E",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkCfrdp7E",
+    "course_code": "GEOG301",
+    "course_name": "Environmental Impact Assessment",
+    "id": "5e594363e62c3f2500a5bc83",
+    "pid": "HkCfrdp7E",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkagBJc5S",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkagBJc5S",
+    "course_code": "GEOG313",
+    "course_name": "Field Studies in Mountain Meteorology",
+    "id": "5dbc64f57718122400c6f766",
+    "pid": "SkagBJc5S",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ryGXHuTm4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ryGXHuTm4",
+    "course_code": "GEOG314",
+    "course_name": "Global Environmental Change and Human Response",
+    "id": "627bec098714a6a978f90e46",
+    "pid": "ryGXHuTm4",
+    "subject": "GEOG"
+  },
+  {
     "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rklMQBupQV",
     "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rklMQBupQV",
     "course_code": "GEOG319",
@@ -537,6 +672,15 @@
     "course_name": "Remote Sensing of the Environment using Active Sensors",
     "id": "600089db6aecd000268be426",
     "pid": "HyVXru6XE",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJeN7r_aXE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJeN7r_aXE",
+    "course_code": "GEOG323",
+    "course_name": "Digital Mapping",
+    "id": "657a3f9a5fac71800044fd58",
+    "pid": "SJeN7r_aXE",
     "subject": "GEOG"
   },
   {
@@ -567,12 +711,39 @@
     "subject": "GEOG"
   },
   {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Syj4Bd67N",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Syj4Bd67N",
+    "course_code": "GEOG371",
+    "course_name": "Water Resources Management",
+    "id": "66ec6b375e15786f0ae2219e",
+    "pid": "Syj4Bd67N",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/Bk24BupmN",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/Bk24BupmN",
+    "course_code": "GEOG373",
+    "course_name": "Applied Climatology",
+    "id": "5dbb425af99831240039c76f",
+    "pid": "Bk24BupmN",
+    "subject": "GEOG"
+  },
+  {
     "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SypNB_a7V",
     "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SypNB_a7V",
     "course_code": "GEOG376",
     "course_name": "Process Geomorphology",
     "id": "657cb1092d647d752957f909",
     "pid": "SypNB_a7V",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BJKt515cS",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJKt515cS",
+    "course_code": "GEOG405",
+    "course_name": "Dynamics of the Cryosphere",
+    "id": "5dbc6a80079c5e24006cef10",
+    "pid": "BJKt515cS",
     "subject": "GEOG"
   },
   {
@@ -612,6 +783,15 @@
     "subject": "GEOG"
   },
   {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/BylIrO6QE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/BylIrO6QE",
+    "course_code": "GEOG450",
+    "course_name": "Environment and Sustainability in Practice",
+    "id": "66ec83e3f3c90657033d1310",
+    "pid": "BylIrO6QE",
+    "subject": "GEOG"
+  },
+  {
     "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SkZvSupQV",
     "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkZvSupQV",
     "course_code": "GEOG476",
@@ -627,6 +807,24 @@
     "course_name": "Field Studies in Physical Geography",
     "id": "5d1f73be94e82e2400a23854",
     "pid": "By-wSupXE",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/ry4DHdpX4",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/ry4DHdpX4",
+    "course_code": "GEOG484",
+    "course_name": "Advanced Topics in Weather and Climate",
+    "id": "6137bcd6c023d336794b99b2",
+    "pid": "ry4DHdpX4",
+    "subject": "GEOG"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SJdwEI0AD",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJdwEI0AD",
+    "course_code": "GEOG489",
+    "course_name": "Climate Solutions",
+    "id": "6000d45fa1131b002781a335",
+    "pid": "SJdwEI0AD",
     "subject": "GEOG"
   },
   {
@@ -862,6 +1060,15 @@
     "id": "5d1f6bf0d2bc1524008caea6",
     "pid": "HkTz2dpXN",
     "subject": "MATH"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rJWLROT74",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJWLROT74",
+    "course_code": "PHIL333",
+    "course_name": "Philosophy and the Environment",
+    "id": "5de6bbc948545e2400a720fa",
+    "pid": "rJWLROT74",
+    "subject": "PHIL"
   },
   {
     "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rkEtC_pm4",
@@ -1114,6 +1321,33 @@
     "id": "5c4ffe994afbf82400f7adfd",
     "pid": "S1ZiAuTXV",
     "subject": "PHYS"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/rywCROTmV",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/rywCROTmV",
+    "course_code": "POLI350",
+    "course_name": "Introduction to Public Administration",
+    "id": "5f4d698c9c7aab0026994900",
+    "pid": "rywCROTmV",
+    "subject": "POLI"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/SyOAR_a74",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/SyOAR_a74",
+    "course_code": "POLI351",
+    "course_name": "Public Policy Analysis",
+    "id": "5d1f69d689944f24002aceeb",
+    "pid": "SyOAR_a74",
+    "subject": "POLI"
+  },
+  {
+    "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/r1xt00dpQE",
+    "catalog_url": "https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1xt00dpQE",
+    "course_code": "POLI357",
+    "course_name": "Canadian Environmental Politics",
+    "id": "5d1f69d5d2bc1524008cacde",
+    "pid": "r1xt00dpQE",
+    "subject": "POLI"
   },
   {
     "api_url": "https://uvic.kuali.co/api/v1/catalog/course/{catalog_id}/B1x8ClKamE",

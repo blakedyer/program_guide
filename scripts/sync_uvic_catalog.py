@@ -133,6 +133,28 @@ def extract_course_codes(*html_blobs: object) -> set[str]:
     return codes
 
 
+def extract_program_referenced_course_codes(detail: dict) -> set[str]:
+    codes = extract_course_codes(
+        detail.get("description"),
+        detail.get("programRequirements"),
+        detail.get("programRequirementsRtf"),
+        detail.get("programNotes"),
+        detail.get("admissionRequirementsRtf"),
+    )
+    for specialization in detail.get("specializations") or []:
+        if not isinstance(specialization, dict):
+            continue
+        codes.update(
+            extract_course_codes(
+                specialization.get("description"),
+                specialization.get("programRequirements"),
+                specialization.get("requirements"),
+                specialization.get("concentrationProgramNotes"),
+            )
+        )
+    return codes
+
+
 def simplify_program_title(title: str) -> str:
     simplified = title.strip()
     for old, new in TITLE_REPLACEMENTS.items():
@@ -248,15 +270,7 @@ def main() -> None:
     for program in seos_program_summaries:
         detail = fetch_detail(session, "program", meta.catalog_id, program["pid"])
         program_details[program["code"]] = detail
-        referenced_course_codes.update(
-            extract_course_codes(
-                detail.get("description"),
-                detail.get("programRequirements"),
-                detail.get("programRequirementsRtf"),
-                detail.get("programNotes"),
-                detail.get("admissionRequirementsRtf"),
-            )
-        )
+        referenced_course_codes.update(extract_program_referenced_course_codes(detail))
 
     eos_course_details: dict[str, dict] = {}
     for course in eos_course_summaries:

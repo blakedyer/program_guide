@@ -41,30 +41,16 @@
       
     <div class="graph-shell" id="course-graph" data-graph-switcher>
       <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and downstream links out from it.</h2>
-      <p class="graph-note">Choice rules are rendered as compact connector nodes, co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one downstream level below it.</p>
+      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
       <div class="graph-toolbar">
-        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and downstream links out from it. graph mode">
-          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/BIOL490D--simplified.svg" data-graph-download="../assets/graphs/courses/BIOL490D--simplified.svg" data-graph-copy="Simplified view: direct prerequisites above the course, then one downstream level below it.">Simplified view</button>
-          <button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/BIOL490D.svg" data-graph-download="../assets/graphs/courses/BIOL490D.svg" data-graph-copy="Full view: the entire connected prerequisite and downstream progression captured in the last UVic calendar sync.">Full view</button>
+        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
+          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/BIOL490D--simplified.svg" data-graph-download="../assets/graphs/courses/BIOL490D--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button>
+          <button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/BIOL490D.svg" data-graph-download="../assets/graphs/courses/BIOL490D.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
         </div>
-        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites above the course, then one downstream level below it.</p>
+        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
       </div>
       
-    <details class="graph-guide">
-      <summary class="graph-guide__summary">
-        <span class="graph-guide__summary-copy">
-          <span class="graph-guide__title">Graph key and legend</span>
-          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
-        </span>
-        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">BIOL490D</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
-      </summary>
-      <div class="graph-guide__body">
-        <div class="legend"><span class="subject-pill" style="--pill-color: #dbe8d2">Biology</span></div>
-        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
-      </div>
-    </details>
-    
       <div class="graph-frame">
         <object data="../assets/graphs/courses/BIOL490D--simplified.svg" data-graph-object type="image/svg+xml" aria-label="BIOL490D course graph">
           <img src="../assets/graphs/courses/BIOL490D--simplified.svg" data-graph-fallback alt="BIOL490D course graph">

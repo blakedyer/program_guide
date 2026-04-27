@@ -1,4 +1,8 @@
 course_code,course_name,pid,id,catalog_url
+ADMN311,Introduction to Public Administration,r1F2hDT7E,67ffff2c84f6076d6372d72a,https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1F2hDT7E
+ADMN316,Public Sector Communications,Bk52hwp74,67ffff3095e6c3016c25c0bf,https://www.uvic.ca/calendar/undergrad/index.php#/courses/Bk52hwp74
+ADMN420,The Public Policy Process,r1elp2waX4,67ffff36280dd796f4cb6573,https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1elp2waX4
+ANTH302,"Globalization, Health, and the Environment",ByZwpwam4,5d1f6ff4d2bc1524008cb17a,https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByZwpwam4
 BIOC299,Biochemistry for Non-Majors,Hk6-APpQE,5d1f70aa94e82e2400a23628,https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hk6-APpQE
 BIOC300A,General Biochemistry I,rJCZAvpQN,5d1f6e32d2bc1524008cb046,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJCZAvpQN
 BIOL150A,Modern Biology,SkE7RwpQ4,5d1f70b689944f24002ad470,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkE7RwpQ4
@@ -43,9 +47,17 @@ CHEM363,Organic Chemistry Laboratory,H1N11dTmE,631cdea4f7f5ca478051e5d0,https://
 CHEM364,Physical Chemistry Laboratory,Sy4k1O6QV,631cdf6147f35a3b9b2e6614,https://www.uvic.ca/calendar/undergrad/index.php#/courses/Sy4k1O6QV
 CHEM499A,Honours Thesis I,Hywx1uamN,5d7817547108752400bcc460,https://www.uvic.ca/calendar/undergrad/index.php#/courses/Hywx1uamN
 CHEM499B,Honours Thesis II,HklPgkuaXE,5d78186f588be52400e9efca,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HklPgkuaXE
+CIVE210,Sustainability in Civil Engineering,rkPm1dpXV,5cbdf4a304ce072400155e75,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkPm1dpXV
+CIVE315,Environmental Policy,H1sm1_T74,5cbdf4aa04ce072400155e7c,https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1sm1_T74
+CIVE411,Resilient Smart Cities,BkJEyOpQV,61bbb290c46bd8e8117f7d7a,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkJEyOpQV
 CSC110,Fundamentals of Programming I,rkgWq1OpQE,5cbdf4e356bbef2400c2efcf,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkgWq1OpQE
 CSC111,Fundamentals of Programming with Engineering Applications,rJGckOp7E,5cbdf4e404ce072400155ec0,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJGckOp7E
+ECON383,Climate Economics,Skb0l_amV,646d5749849b3036dc6587dd,https://www.uvic.ca/calendar/undergrad/index.php#/courses/Skb0l_amV
+ES200,Introduction to Environmental Studies,rJbVVupXV,5e5841f6b72ef32500f34d9e,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJbVVupXV
+ES301,Political Ecology,rJ7ENOaXE,5d1f6ae289944f24002acfc8,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJ7ENOaXE
+ES314,Philosophy and the Environment,BJSVVOpmE,5e584297b72ef32500f34dab,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJSVVOpmE
 ES365,Climate and Society,HJ54E_pXN,65adda9abce7bd869a9e71a6,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJ54E_pXN
+ES405,"Climate, Energy and Politics",BkeSVdaXN,5d1f75b7d2bc1524008cb5c3,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkeSVdaXN
 GEOG101A,"Environment, Society and Sustainability",H1bzS_67E,5d1f7386d2bc1524008cb417,https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1bzS_67E
 GEOG103,Our Natural Earth,SJMzBua7N,654ab4f49d70e6ada910d49b,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJMzBua7N
 GEOG104,Our Digital Earth,HkUg06FiH,5f5fde957873070026ccc8a3,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkUg06FiH
@@ -57,18 +69,28 @@ GEOG226,Quantitative Methods in Geography,rJifB_aXE,654ab82479563116634e774f,htt
 GEOG228,Introduction to Remote Sensing,HkjGruTXE,5e5942c3e62c3f2500a5bc75,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkjGruTXE
 GEOG230,Introduction to Environmental Data Analysis,rJW5SdLRP,65a1a4097dbc907bef22234a,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJW5SdLRP
 GEOG272,Climatology and Hydrology,HJe2GH_67E,657a3849548a3d43a571ecb5,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJe2GH_67E
+GEOG301,Environmental Impact Assessment,HkCfrdp7E,5e594363e62c3f2500a5bc83,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkCfrdp7E
+GEOG313,Field Studies in Mountain Meteorology,SkagBJc5S,5dbc64f57718122400c6f766,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkagBJc5S
+GEOG314,Global Environmental Change and Human Response,ryGXHuTm4,627bec098714a6a978f90e46,https://www.uvic.ca/calendar/undergrad/index.php#/courses/ryGXHuTm4
 GEOG319,Remote Sensing of the Environment using Passive Sensors,rklMQBupQV,5dbb2231f99831240039c49b,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rklMQBupQV
 GEOG322,Remote Sensing of the Environment using Active Sensors,HyVXru6XE,600089db6aecd000268be426,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HyVXru6XE
+GEOG323,Digital Mapping,SJeN7r_aXE,657a3f9a5fac71800044fd58,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJeN7r_aXE
 GEOG328,GIS Analysis,BkL7SOamV,5d1f67bd89944f24002acd13,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkL7SOamV
 GEOG329,GIS Applications and Tools,S1DXr_TQ4,657cafe8367f266105fa6aa1,https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1DXr_TQ4
 GEOG370,Methods in Hydrology,H1cVBupmN,657a4023f8b722df70dbf7cb,https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1cVBupmN
+GEOG371,Water Resources Management,Syj4Bd67N,66ec6b375e15786f0ae2219e,https://www.uvic.ca/calendar/undergrad/index.php#/courses/Syj4Bd67N
+GEOG373,Applied Climatology,Bk24BupmN,5dbb425af99831240039c76f,https://www.uvic.ca/calendar/undergrad/index.php#/courses/Bk24BupmN
 GEOG376,Process Geomorphology,SypNB_a7V,657cb1092d647d752957f909,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SypNB_a7V
+GEOG405,Dynamics of the Cryosphere,BJKt515cS,5dbc6a80079c5e24006cef10,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJKt515cS
 GEOG418,Advanced Spatial Analysis and Geo-statistics,SkxBHHupXN,5d1f73b189944f24002ad6c1,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkxBHHupXN
 GEOG420,Field Studies in Coastal Geomatics,r1ISrOamV,5d1f723089944f24002ad595,https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1ISrOamV
 GEOG422,Advanced Topics in Remote Sensing,BkvHSupmE,5d1f73b389944f24002ad6c5,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BkvHSupmE
 GEOG428,Advanced Topics in Geographic Information Sciences,r1KHB_67N,65a6de336f1ff2579b4c755a,https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1KHB_67N
+GEOG450,Environment and Sustainability in Practice,BylIrO6QE,66ec83e3f3c90657033d1310,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BylIrO6QE
 GEOG476,Advanced Topics in Geomorphology,SkZvSupQV,657cb206367f2616ecfa6aba,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkZvSupQV
 GEOG477,Field Studies in Physical Geography,By-wSupXE,5d1f73be94e82e2400a23854,https://www.uvic.ca/calendar/undergrad/index.php#/courses/By-wSupXE
+GEOG484,Advanced Topics in Weather and Climate,ry4DHdpX4,6137bcd6c023d336794b99b2,https://www.uvic.ca/calendar/undergrad/index.php#/courses/ry4DHdpX4
+GEOG489,Climate Solutions,SJdwEI0AD,6000d45fa1131b002781a335,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJdwEI0AD
 GEOG499A,Honours Thesis,HyDwHupQV,5e5946336737b12500c22ef1,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HyDwHupQV
 GEOG499B,Honours Thesis,BJdPru674,5e5946583a898c2500fbf088,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJdPru674
 MATH100,Calculus I,ByxQ12d6QE,63168b42bee727d381e640aa,https://www.uvic.ca/calendar/undergrad/index.php#/courses/ByxQ12d6QE
@@ -95,6 +117,7 @@ MATH436,Calculus on Manifolds,Bk-z3uamN,66bcefdbbc0ee927a14a5ba9,https://www.uvi
 MATH442,Advanced Ordinary Differential Equations,SkfG2uam4,67d342f6dd1a264fe065d083,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkfG2uam4
 MATH449,Scientific Computing,SySG2O67N,5d1f76f9fb68f3240022d7e1,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SySG2O67N
 MATH492,Topics in Applied Mathematics,HkTz2dpXN,5d1f6bf0d2bc1524008caea6,https://www.uvic.ca/calendar/undergrad/index.php#/courses/HkTz2dpXN
+PHIL333,Philosophy and the Environment,rJWLROT74,5de6bbc948545e2400a720fa,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rJWLROT74
 PHYS102A,General Physics I,rkEtC_pm4,5c4ffe7b4afbf82400f7adb2,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkEtC_pm4
 PHYS102B,General Physics II,BJVFCOp7N,649a10a781f76f47f32e6507,https://www.uvic.ca/calendar/undergrad/index.php#/courses/BJVFCOp7N
 PHYS110,Introductory Physics I,r1SYRd67V,63177170cdd330fd06504399,https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1SYRd67V
@@ -123,6 +146,9 @@ PHYS441,Physical Oceanography,H1koCuTQV,66ecb089f3c90619a63d14a7,https://www.uvi
 PHYS460A,Colloquium I,H1ei0OaXN,5c4ffe971a3fd924005f02d8,https://www.uvic.ca/calendar/undergrad/index.php#/courses/H1ei0OaXN
 PHYS460B,Colloquium II,rkexiRuTQ4,5c4ffe981a3fd924005f02da,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkexiRuTQ4
 PHYS499,Honours Thesis,S1ZiAuTXV,5c4ffe994afbf82400f7adfd,https://www.uvic.ca/calendar/undergrad/index.php#/courses/S1ZiAuTXV
+POLI350,Introduction to Public Administration,rywCROTmV,5f4d698c9c7aab0026994900,https://www.uvic.ca/calendar/undergrad/index.php#/courses/rywCROTmV
+POLI351,Public Policy Analysis,SyOAR_a74,5d1f69d689944f24002aceeb,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SyOAR_a74
+POLI357,Canadian Environmental Politics,r1xt00dpQE,5d1f69d5d2bc1524008cacde,https://www.uvic.ca/calendar/undergrad/index.php#/courses/r1xt00dpQE
 STAT254,Probability and Statistics for Engineers,B1x8ClKamE,5d1f6895fb68f3240022ccec,https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1x8ClKamE
 STAT255,Statistics for Life Sciences I,SkDAlYam4,5e615df5109f5025006793a7,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SkDAlYam4
 STAT260,Introduction to Probability and Statistics I,SyPCgtTQV,5e615e517eb8e0250078b7da,https://www.uvic.ca/calendar/undergrad/index.php#/courses/SyPCgtTQV

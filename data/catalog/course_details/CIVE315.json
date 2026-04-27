@@ -1,0 +1,34 @@
+{
+  "__catalogCourseId": "CIVE315",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.0",
+      "min": "1.0"
+    },
+    "value": "1.0"
+  },
+  "dateStart": "2020-01-01",
+  "description": "<p>Introduction to environmental policy, law and governance and cultural and sociological implications of sustainable engineering. How policy is formed and changed. Civil engineering development in First Nations.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be3667356a15d000126de91",
+    "name": "Department of Civil Engineering"
+  },
+  "hoursCatalogText": "2-0-1",
+  "id": "5cbdf4aa04ce072400155e7c",
+  "pid": "H1sm1_T74",
+  "preAndCorequisites": "<div><div><div><ul><li data-test=\"ruleView-A\"><div data-test=\"ruleView-A-result\">Complete all of: <div><ul style=\"margin-top:5px;margin-bottom:5px\"><li><span><a href=\"#/courses/view/5cbdf4a304ce072400155e75\" target=\"_blank\">CIVE210</a> <!-- -->-<!-- --> <!-- -->Sustainability in Civil Engineering<!-- --> <span style=\"margin-left:5px\">(1.5)</span></span></li></ul></div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Civil Engineering (CIVE)",
+    "id": "5be1fb482d0dfe2e00ae298e",
+    "linkedGroup": null,
+    "name": "CIVE"
+  },
+  "supplementalNotes": "",
+  "title": "Environmental Policy"
+}

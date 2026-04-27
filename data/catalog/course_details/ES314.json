@@ -1,0 +1,41 @@
+{
+  "__catalogCourseId": "ES314",
+  "__passedCatalogQuery": true,
+  "_score": 1,
+  "catalogActivationDate": "2019-11-15",
+  "credits": {
+    "chosen": "fixed",
+    "credits": {
+      "max": "1.5",
+      "min": "1.5"
+    },
+    "value": "1.5"
+  },
+  "crossListedCourses": [
+    {
+      "__catalogCourseId": "PHIL333",
+      "pid": "rJWLROT74",
+      "title": "Philosophy and the Environment"
+    }
+  ],
+  "dateStart": "2020-01-01",
+  "description": "<p>A philosophical investigation of the moral and conceptual dimensions of environmental problems. Different philosophies of the relation between humans and nature are compared.</p>",
+  "groupFilter1": {
+    "customFields": {},
+    "id": "5be368fb56a15d000126dea6",
+    "name": "School of Environmental Studies"
+  },
+  "hoursCatalogText": "3-0-0",
+  "id": "5e584297b72ef32500f34dab",
+  "pid": "BJSVVOpmE",
+  "preAndCorequisites": "<div><div><div><ul><div><span class=\"rules_groupHeader_37\"></span><li data-test=\"ruleView-A.1\"><div data-test=\"ruleView-A.1-result\"><div>Minimum third-year standing</div></div></li></div><li data-test=\"ruleView-B\"><div data-test=\"ruleView-B-result\"><div>or permission of the school.</div></div></li></ul></div></div></div>",
+  "proForma": "no",
+  "subjectCode": {
+    "description": "Environmental Studies (ES)",
+    "id": "5c13fba53d3a3326007677bd",
+    "linkedGroup": "5be368fb56a15d000126dea6",
+    "name": "ES"
+  },
+  "supplementalNotes": "<ul><li>Credit will be granted for only one of ES 314, PHIL 333.</li><li>May not be counted towards upper-level requirements in Honours or Major programs in Philosophy.</li></ul>",
+  "title": "Philosophy and the Environment"
+}
