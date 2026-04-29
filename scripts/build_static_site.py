@@ -26,7 +26,7 @@ PROGRAM_GRAPH_DIR = BUILD_DIR / "assets" / "graphs" / "programs"
 COURSE_GRAPH_DIR = BUILD_DIR / "assets" / "graphs" / "courses"
 HERO_BUILD_DIR = BUILD_DIR / "assets" / "heroes"
 SITE_NAME = "SEOS Curriculum Atlas"
-RESEARCH_SITE_URL = "https://www.blakedyer.com/"
+RESEARCH_SITE_URL = "https://blakedyer.github.io/"
 TEACHING_SITE_URL = "https://eos-courses.readthedocs.io/en/latest/"
 ATLAS_SITE_URL = "https://blakedyer.github.io/curriculum_atlas/"
 CURRICULUM_SITE_URL = "https://blakedyer.github.io/seos_curriculum/"
@@ -3542,13 +3542,11 @@ def render_contact_overview_cell(paths: list[dict], bucket_key: str) -> str:
 
 
 def render_program_overview_row(program: ProgramRecord, courses: dict[str, CourseRecord]) -> str:
-    named_codes = program_named_codes(program)
-    eos_count = sum(1 for code in named_codes if subject_from_code(code) == "EOS")
     category = program_primary_category_label(program)
     category_tokens = program_category_tokens(program)
     contact_paths = build_program_contact_overview_paths(program, courses)
     official_link = (
-        f'<a class="text-link" href="{e(program.catalog_url)}">Official calendar</a>'
+        f'<a class="text-link" href="{e(program.catalog_url)}">UVic Calendar</a>'
         if program.catalog_url
         else '<span class="meta-line">Official calendar unavailable</span>'
     )
@@ -3557,19 +3555,16 @@ def render_program_overview_row(program: ProgramRecord, courses: dict[str, Cours
         f' data-filter-category="{e(filter_token_string(category_tokens))}">'
         '<td class="program-overview-table__program" data-label="Program">'
         f'<a class="program-overview-table__primary-link" href="{program_page_href("", program.code)}">{e(program.name)}</a>'
-        f'<p class="program-overview-table__subtitle">{e(program.title)}</p>'
-        f'<p class="program-overview-table__meta">{len(named_codes)} named courses | {eos_count} EOS | {len(program.support_codes)} related prerequisites</p>'
         "</td>"
         '<td class="program-overview-table__type" data-label="Type">'
         f'<span class="program-overview-table__type-label">{e(category)}</span>'
-        f'<span class="program-overview-table__code">{e(program.code)}</span>'
         "</td>"
         f'<td class="program-overview-table__hours" data-label="Year 1">{render_contact_overview_cell(contact_paths, "year-1")}</td>'
         f'<td class="program-overview-table__hours" data-label="Year 2">{render_contact_overview_cell(contact_paths, "year-2")}</td>'
         f'<td class="program-overview-table__hours" data-label="Years 3 + 4">{render_contact_overview_cell(contact_paths, "years-3-4")}</td>'
         '<td class="program-overview-table__details" data-label="Details">'
         '<div class="program-overview-table__links">'
-        f'<a class="text-link" href="{program_page_href("", program.code)}">Open program</a>'
+        f'<a class="text-link" href="{program_page_href("", program.code)}">Program Atlas</a>'
         f"{official_link}"
         "</div>"
         "</td>"
@@ -4608,8 +4603,6 @@ def render_course_page(
 def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[str, CourseRecord], generated_at: str) -> str:
     programs_sorted = sorted(programs.values(), key=lambda item: item.name)
     rows = "".join(render_program_overview_row(program, courses) for program in programs_sorted)
-    combined_count = sum(1 for program in programs.values() if "combined" in program_category_tokens(program))
-    seos_only_count = len(programs) - combined_count
     category_filters = render_filter_group(
         "Category",
         [
@@ -4623,19 +4616,10 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         ],
     )
     content = f"""
-    <section class="section section--tight">
-      <div class="overview-strip">
-        <p><strong>{len(programs)}</strong> programs in the current atlas</p>
-        <p><strong>{combined_count}</strong> combined variants and <strong>{seos_only_count}</strong> SEOS-only options</p>
-        <p><strong>Last UVic calendar sync</strong> {e(generated_at)}</p>
-      </div>
-    </section>
-
     <section class="section section--program-overview">
       <div class="section-heading section-heading--compact">
-        <p class="section-kicker">Program Comparison</p>
-        <h2>Compare contact-hour load, then open the guide you want.</h2>
-        <p>Program names are the main links. The table uses the same compact contact-hour summaries shown on the individual program pages.</p>
+        <p class="section-kicker">SEOS Programs</p>
+        <p>Select a program to inspect the pre-requisite graph and detailed contact hour breakdowns.</p>
       </div>
       <div class="filter-panel filter-panel--compact" data-card-filter>
         <div class="filter-panel__groups">
