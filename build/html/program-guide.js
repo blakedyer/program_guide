@@ -1,4 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("[data-contact-toggle]").forEach((shell) => {
+    const button = shell.querySelector(".contact-compact__button");
+    const panel = shell.querySelector(".contact-compact__panel");
+
+    if (!button || !panel) {
+      return;
+    }
+
+    const applyExpanded = (expanded) => {
+      shell.classList.toggle("is-open", expanded);
+      button.setAttribute("aria-expanded", String(expanded));
+      panel.hidden = !expanded;
+    };
+
+    button.addEventListener("click", () => {
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      applyExpanded(!expanded);
+    });
+
+    applyExpanded(false);
+  });
+
   document.querySelectorAll("[data-card-filter]").forEach((panel) => {
     const grid = panel.parentElement?.querySelector("[data-filter-grid]");
     const emptyState = panel.parentElement?.querySelector("[data-filter-empty]");

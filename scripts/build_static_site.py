@@ -3593,6 +3593,201 @@ def format_summer_contact_range(node: dict) -> str:
     return format_contact_hours_range(node["min_summer_hours"], node["max_summer_hours"])
 
 
+def format_compact_contact_range(min_value: float, max_value: float, *, suffix: str = "") -> str:
+    if abs(min_value - max_value) < 1e-9:
+        return f"{format_unit_count(min_value)}{suffix}"
+    return f"{format_unit_count(min_value)}-{format_unit_count(max_value)}{suffix}"
+
+
+def contact_bucket_key(node: dict) -> str | None:
+    reference_key = section_reference_key(node["label"])
+    if reference_key == "year-1":
+        return "year-1"
+    if reference_key == "year-2":
+        return "year-2"
+    if reference_key in {"year-3", "year-4", "years-3-4"}:
+        return "years-3-4"
+
+    levels = sorted(section_year_levels(node["label"]))
+    if not levels:
+        levels = sorted(
+            {
+                level
+                for code in collect_contact_codes(node)
+                if (level := course_level_number(code)) is not None
+            }
+        )
+    if not levels:
+        return None
+    if max(levels) <= 1:
+        return "year-1"
+    if max(levels) == 2:
+        return "year-2"
+    return "years-3-4"
+
+
+def contact_row_pattern(node: dict) -> str:
+    meta = node.get("meta") or {}
+    if node["kind"] == "elective-assumption":
+        return "3-0-0 to 3-3-0"
+    pattern = meta.get("pattern")
+    if pattern:
+        return pattern
+    return format_compact_contact_range(node["min_hours"], node["max_hours"])
+
+
+def contact_row_label(node: dict) -> str:
+    meta = node.get("meta") or {}
+    if node["kind"] == "elective-assumption":
+        required_units = meta.get("required_units")
+        if required_units:
+            return f"Electives ({format_unit_count(required_units)} units)"
+        return "Electives"
+    return meta.get("title") or node["label"]
+
+
+def collect_contact_display_rows(
+    node: dict,
+    *,
+    flags: set[str] | None = None,
+) -> list[dict]:
+    meta = node.get("meta") or {}
+    if node["kind"] in {"course", "elective-assumption"}:
+        row_flags = []
+        if flags:
+            if "min" in flags:
+                row_flags.append("min")
+            if "max" in flags:
+                row_flags.append("max")
+        return [
+            {
+                "key": (
+                    node["kind"],
+                    meta.get("code") or node["label"],
+                    meta.get("season", "regular"),
+                    contact_row_pattern(node),
+                ),
+                "kind": node["kind"],
+                "code": meta.get("code"),
+                "label": contact_row_label(node),
+                "pattern": contact_row_pattern(node),
+                "season": meta.get("season", "regular"),
+                "source": meta.get("source"),
+                "source_note": meta.get("source_note"),
+                "flags": row_flags,
+            }
+        ]
+
+    if node["kind"] == "note":
+        return []
+
+    child_flag_map: dict[int, set[str]] = {}
+    for key, marker in (("min_selected_indices", "min"), ("max_selected_indices", "max")):
+        for index in meta.get(key, []):
+            child_flag_map.setdefault(index, set()).add(marker)
+
+    rows: list[dict] = []
+    for index, child in enumerate(node.get("children", [])):
+        rows.extend(
+            collect_contact_display_rows(
+                child,
+                flags=(child_flag_map.get(index) or flags),
+            )
+        )
+    return rows
+
+
+def merge_contact_display_rows(rows: list[dict]) -> list[dict]:
+    merged: dict[tuple, dict] = {}
+    order: list[tuple] = []
+    for row in rows:
+        key = row["key"]
+        existing = merged.get(key)
+        if existing is None:
+            merged[key] = dict(row)
+            order.append(key)
+            continue
+        for marker in row["flags"]:
+            if marker not in existing["flags"]:
+                existing["flags"].append(marker)
+    return [merged[key] for key in order]
+
+
+def build_contact_year_summaries(
+    path: ContactPathRecord,
+    program: ProgramRecord,
+    courses: dict[str, CourseRecord],
+) -> list[dict]:
+    path_codes = set(program_named_codes(program, path.stream))
+    bucket_nodes: dict[str, list[dict]] = {"year-1": [], "year-2": [], "years-3-4": []}
+
+    for section in path.sections:
+        section_node = evaluate_contact_section(
+            section,
+            program=program,
+            stream=path.stream,
+            courses=courses,
+            path_codes=path_codes,
+        )
+        bucket_key = contact_bucket_key(section_node)
+        if bucket_key is None:
+            continue
+        bucket_nodes[bucket_key].append(section_node)
+
+    summaries = []
+    for bucket_key, bucket_label in (
+        ("year-1", "Year 1"),
+        ("year-2", "Year 2"),
+        ("years-3-4", "Years 3 + 4"),
+    ):
+        nodes = bucket_nodes[bucket_key]
+        if not nodes:
+            continue
+        regular_rows = merge_contact_display_rows(
+            [
+                row
+                for node in nodes
+                for row in collect_contact_display_rows(node)
+                if row["season"] != "summer"
+            ]
+        )
+        field_rows = merge_contact_display_rows(
+            [
+                row
+                for node in nodes
+                for row in collect_contact_display_rows(node)
+                if row["season"] == "summer"
+            ]
+        )
+        term_count = sum(contact_term_count(node) for node in nodes) or 2
+        min_regular = sum(node["min_regular_hours"] for node in nodes)
+        max_regular = sum(node["max_regular_hours"] for node in nodes)
+        min_summer = sum(node["min_summer_hours"] for node in nodes)
+        max_summer = sum(node["max_summer_hours"] for node in nodes)
+        has_field_course = bool(field_rows or max_summer > 0)
+        summaries.append(
+            {
+                "key": bucket_key,
+                "label": bucket_label,
+                "average_range": format_compact_contact_range(
+                    min_regular / term_count,
+                    max_regular / term_count,
+                    suffix=" hrs/wk/term",
+                )
+                + (" (+F)" if has_field_course else ""),
+                "has_field_course": has_field_course,
+                "term_count": term_count,
+                "regular_rows": regular_rows,
+                "field_rows": field_rows,
+                "min_regular_hours": min_regular,
+                "max_regular_hours": max_regular,
+                "min_summer_hours": min_summer,
+                "max_summer_hours": max_summer,
+            }
+        )
+    return summaries
+
+
 def render_contact_selection_flags(flags: set[str] | None) -> str:
     if not flags:
         return ""
@@ -3621,6 +3816,124 @@ def render_contact_source_badge(meta: dict) -> str:
             f'assumed {e(meta.get("pattern"))}</span>'
         )
     return ""
+
+
+def render_contact_compact_row(row: dict, prefix: str, courses: dict[str, CourseRecord]) -> str:
+    code = row.get("code")
+    if code:
+        label_html = (
+            f'{render_course_chip(code, prefix, courses)}'
+            f'<span class="contact-compact-row__name">{e(row["label"])}</span>'
+        )
+    else:
+        label_html = f'<span class="contact-compact-row__name">{e(row["label"])}</span>'
+
+    field_marker = (
+        '<span class="contact-compact-row__marker" aria-label="Summer field course">field</span>'
+        if row.get("season") == "summer"
+        else ""
+    )
+    flag_markers = render_contact_selection_flags(set(row.get("flags") or []))
+    row_classes = "contact-compact-row"
+    if row.get("season") == "summer":
+        row_classes += " contact-compact-row--field"
+    return (
+        f'<div class="{row_classes}">'
+        f'<div class="contact-compact-row__course">{label_html}{field_marker}{flag_markers}</div>'
+        '<div class="contact-compact-row__pattern">'
+        f'<span class="contact-compact-row__pattern-text" title="{e(row.get("source_note"))}">{e(row["pattern"])}</span>'
+        "</div>"
+        "</div>"
+    )
+
+
+def render_contact_compact_column(summary: dict, courses: dict[str, CourseRecord]) -> str:
+    regular_rows_html = "".join(
+        render_contact_compact_row(row, "../courses/", courses) for row in summary["regular_rows"]
+    )
+    field_rows_html = "".join(
+        render_contact_compact_row(row, "../courses/", courses) for row in summary["field_rows"]
+    )
+    return (
+        '<section class="contact-compact-column">'
+        '<div class="contact-compact-column__head">'
+        f'<h3>{e(summary["label"])}</h3>'
+        f'<p>{e(summary["average_range"])}</p>'
+        "</div>"
+        '<div class="contact-compact-column__table" role="table" '
+        f'aria-label="{e(summary["label"])} contact hours">'
+        '<div class="contact-compact-column__labels" role="row">'
+        '<span role="columnheader">Course</span>'
+        '<span role="columnheader">L-L-T</span>'
+        "</div>"
+        f'<div class="contact-compact-column__rows">{regular_rows_html}{field_rows_html}</div>'
+        "</div>"
+        '<div class="contact-compact-column__calc">'
+        '<p><span>Sum</span>'
+        f'<strong>{e(format_compact_contact_range(summary["min_regular_hours"], summary["max_regular_hours"], suffix=" hrs/wk"))}</strong></p>'
+        '<p><span>÷ number of terms</span>'
+        f'<strong>{e(str(summary["term_count"]))}</strong></p>'
+        '<p class="contact-compact-column__average"><span>Average per term</span>'
+        f'<strong>{e(summary["average_range"])}</strong></p>'
+        "</div>"
+        '</section>'
+    )
+
+
+def render_contact_compact_path(
+    path: ContactPathRecord,
+    program: ProgramRecord,
+    courses: dict[str, CourseRecord],
+    *,
+    show_path_meta: bool,
+) -> str:
+    summaries = build_contact_year_summaries(path, program, courses)
+    if not summaries:
+        return ""
+    summary_tiles = "".join(
+        '<span class="contact-compact__summary-cell">'
+        f'<span class="contact-compact__summary-label">{e(summary["label"])}</span>'
+        f'<span class="contact-compact__summary-value">{e(summary["average_range"])}</span>'
+        "</span>"
+        for summary in summaries
+    )
+    column_html = "".join(render_contact_compact_column(summary, courses) for summary in summaries)
+    panel_id = f"contact-hours-panel-{path.slug}"
+    button_id = f"contact-hours-toggle-{path.slug}"
+    path_meta_html = ""
+    if show_path_meta:
+        eyebrow = "Stream path" if path.stream is not None else "Program path"
+        path_meta_html = (
+            '<div class="contact-compact-path__meta">'
+            f'<p class="detail-card__eyebrow">{e(eyebrow)}</p>'
+            f'<p class="contact-compact-path__title">{e(path.title)}</p>'
+            f'<p class="meta-line">{e(path.note)}</p>'
+            "</div>"
+        )
+    return (
+        '<article class="contact-compact-path">'
+        f"{path_meta_html}"
+        '<div class="contact-compact" data-contact-toggle>'
+        f'<button class="contact-compact__button" id="{e(button_id)}" type="button" aria-expanded="false" aria-controls="{e(panel_id)}">'
+        '<span class="contact-compact__intro">'
+        '<span class="contact-compact__title">Contact hours by year</span>'
+        '<span class="contact-compact__affordance">'
+        '<span class="contact-compact__affordance-closed">Show details</span>'
+        '<span class="contact-compact__affordance-open">Hide details</span>'
+        "</span>"
+        "</span>"
+        f'<span class="contact-compact__summary-grid">{summary_tiles}</span>'
+        '<span class="contact-compact__chevron" aria-hidden="true"></span>'
+        "</button>"
+        f'<div class="contact-compact__panel" id="{e(panel_id)}" role="region" aria-labelledby="{e(button_id)}" hidden>'
+        '<div class="contact-compact__details">'
+        f"{column_html}"
+        "</div>"
+        '<p class="contact-compact__legend">L = Lecture • L = Lab • T = Tutorial. Rows marked field are summer field courses listed separately and not folded into the per-term average.</p>'
+        "</div>"
+        "</div>"
+        "</article>"
+    )
 
 
 def render_contact_course_row(
@@ -3803,20 +4116,18 @@ def render_contact_hours_section(program: ProgramRecord, courses: dict[str, Cour
     paths = build_contact_paths(program)
     if not paths:
         return ""
-    path_html = "".join(render_contact_path_card(path, program, courses) for path in paths)
-    heading_copy = (
-        "Each stream path combines the shared program core with the stream-specific requirements."
-        if program.streams and program_uses_stream_placeholders(program)
-        else "Each row shows the regular-term average per term, with summer field courses broken out separately."
+    path_html = "".join(
+        render_contact_compact_path(
+            path,
+            program,
+            courses,
+            show_path_meta=(len(paths) > 1),
+        )
+        for path in paths
     )
     return (
         '<section class="section">'
-        '<div class="section-heading">'
-        '<p class="section-kicker">Contact Hours</p>'
-        '<h2>Per-term contact hours by published section.</h2>'
-        f'<p>{e(heading_copy)}</p>'
-        '</div>'
-        '<p class="contact-brief">Regular-term figures are averaged across the published terms in each section. Electives are simplified to 3-0-0 at minimum and 3-3-0 at maximum, scaled to the published unit count. Open a row to inspect the named courses and assumptions.</p>'
+        '<p class="contact-brief">Contact hours are calculated using the listed lecture-lab-tutorial information in calendar. Hour ranges for electives are calculated assuming all 3-0-0 (min) and 3-3-0 (max).</p>'
         f'<div class="section-stack">{path_html}</div>'
         '</section>'
     )
