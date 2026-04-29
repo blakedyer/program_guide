@@ -414,6 +414,75 @@ def build_program_year_group_lookup(
     return grouped
 
 
+def build_program_elective_year_group_lookup(
+    program: ProgramRecord,
+    *,
+    courses: dict[str, CourseRecord],
+    visible_groups: set[str],
+    explicit_year_groups: dict[str, str],
+    course_group_lookup: dict[str, str],
+    stream: ProgramStreamRecord | None = None,
+) -> dict[str, str]:
+    inferred: dict[str, str] = {}
+
+    for section in program_graph_sections(program, stream):
+        bucket_key = section_bucket_key(section["title"])
+        if bucket_key is None:
+            continue
+        note_lines = collect_graph_note_lines(section["rules"])
+        for note_line in note_lines:
+            candidate_codes, _note = resolve_elective_candidate_codes(
+                note_line,
+                section_title=section["title"],
+                program=program,
+                stream=stream,
+                courses=courses,
+                path_codes=set(),
+            )
+            for code in candidate_codes:
+                group_code = course_group_lookup.get(code, code)
+                if group_code not in visible_groups:
+                    continue
+                if group_code in explicit_year_groups or group_code in inferred:
+                    continue
+                inferred[group_code] = bucket_key
+
+    return inferred
+
+
+def infer_flexible_group_bucket_preferences(
+    *,
+    visible_groups: set[str],
+    slotted_groups: dict[str, str],
+    dependent_map: dict[str, set[str]],
+) -> dict[str, str]:
+    bucket_order = {"year-1": 0, "year-2": 1, "years-3-4": 2}
+    preferences: dict[str, str] = {}
+
+    for start_group in visible_groups:
+        if start_group in slotted_groups:
+            continue
+        queue = deque([(start_group, 0)])
+        visited = {start_group}
+        matches: list[tuple[int, int, str]] = []
+        while queue:
+            current_group, depth = queue.popleft()
+            for next_group in dependent_map.get(current_group, set()):
+                if next_group in visited:
+                    continue
+                visited.add(next_group)
+                next_depth = depth + 1
+                bucket_key = slotted_groups.get(next_group)
+                if bucket_key in bucket_order:
+                    matches.append((next_depth, bucket_order[bucket_key], bucket_key))
+                queue.append((next_group, next_depth))
+        if matches:
+            _depth, _order, bucket_key = min(matches)
+            preferences[start_group] = bucket_key
+
+    return preferences
+
+
 def stream_asset_stem(program: ProgramRecord, stream: ProgramStreamRecord) -> str:
     return f"{program.code}--{stream.slug}"
 
@@ -2913,8 +2982,14 @@ def write_program_graph(
 ) -> None:
     graph_id = stream_asset_stem(program, stream) if stream is not None else program.code
     graph = graph_base(graph_id)
-    if mode.key != "full":
+    if mode.key == "simplified":
         graph.attr(nodesep="0.18", ranksep="0.58", pad="0.16")
+    elif mode.year_ordered:
+        graph.attr(
+            nodesep="0.34",
+            ranksep="1.15",
+            pad="0.45",
+        )
     explicit_codes = {code for code in program_named_codes(program, stream) if code in courses}
     visible_codes = explicit_codes | {code for code in program_support_codes(program, stream) if code in courses}
     node_styles, _legend_items = build_program_node_styles(
@@ -2922,11 +2997,25 @@ def write_program_graph(
         stream,
         course_group_lookup=course_group_lookup,
     )
-    prereq_map, _ = build_group_dependency_maps(visible_codes, courses, course_group_lookup)
+    prereq_map, dependent_map = build_group_dependency_maps(visible_codes, courses, course_group_lookup)
     prereq_closure = compute_group_prereq_closure(prereq_map)
     depth_map = compute_group_depths(prereq_map)
     explicit_groups = {course_group_lookup.get(code, code) for code in explicit_codes}
     year_group_lookup = build_program_year_group_lookup(program, course_group_lookup, stream) if mode.year_ordered else {}
+    visible_groups_set = set(prereq_map)
+    inferred_year_groups = (
+        build_program_elective_year_group_lookup(
+            program,
+            courses=courses,
+            visible_groups=visible_groups_set,
+            explicit_year_groups=year_group_lookup,
+            course_group_lookup=course_group_lookup,
+            stream=stream,
+        )
+        if mode.year_ordered
+        else {}
+    )
+    year_group_lookup = {**inferred_year_groups, **year_group_lookup}
     year_bucket_order = {"year-1": 0, "year-2": 1, "years-3-4": 2}
     visible_groups = sorted(
         prereq_map,
@@ -2954,40 +3043,103 @@ def write_program_graph(
         depth_groups.setdefault(depth_map.get(group_code, 0), []).append(group_code)
 
     if mode.year_ordered:
-        bucket_groups: dict[str, list[str]] = {"year-1": [], "year-2": [], "years-3-4": [], "other": []}
+        slotted_groups = {
+            group_code
+            for group_code, bucket_key in year_group_lookup.items()
+            if bucket_key in year_bucket_order
+        }
+        flexible_bucket_preferences = infer_flexible_group_bucket_preferences(
+            visible_groups=visible_groups_set,
+            slotted_groups={group_code: year_group_lookup[group_code] for group_code in slotted_groups},
+            dependent_map=dependent_map,
+        )
+        bucket_groups: dict[str, list[str]] = {"year-1": [], "year-2": [], "years-3-4": []}
         for group_code in visible_groups:
-            bucket_groups[year_group_lookup.get(group_code, "other")].append(group_code)
+            bucket_key = year_group_lookup.get(group_code)
+            if bucket_key in bucket_groups:
+                bucket_groups[bucket_key].append(group_code)
 
         previous_anchor: str | None = None
+        previous_exit: str | None = None
         for bucket_key, bucket_label in CONTACT_SUMMARY_BUCKETS:
-            rank_nodes = [course_group_id(group_code) for group_code in bucket_groups[bucket_key]]
-            if not rank_nodes:
+            cluster_groups = bucket_groups[bucket_key]
+            if not cluster_groups:
                 continue
-            anchor_id = f"year_band__{bucket_key}"
+            entry_id = f"year_band__{bucket_key}__entry"
+            exit_id = f"year_band__{bucket_key}__exit"
+            label_id = f"year_band__{bucket_key}__label"
             with graph.subgraph(name=f"cluster_{bucket_key}") as cluster:
                 cluster.attr(
-                    label=bucket_label,
-                    style="rounded,dashed",
-                    color="#c8d0d5",
-                    penwidth="1.0",
-                    fontname="Avenir Next",
-                    fontsize="11",
-                    rank="same",
-                    margin="14",
+                    label="",
+                    style="rounded",
+                    color="#d8dde1",
+                    pencolor="#d8dde1",
+                    penwidth="1.2",
+                    bgcolor="#fbfcfd",
+                    margin="28",
                 )
-                cluster.node(anchor_id, label="", shape="point", width="0.01", height="0.01", style="invis")
-                for node_id in rank_nodes:
-                    cluster.node(node_id)
+                cluster.node(
+                    label_id,
+                    label=bucket_label,
+                    shape="box",
+                    style="filled,rounded",
+                    fillcolor="#eef2f4",
+                    color="#c8d0d5",
+                    penwidth="0.8",
+                    fontname="Avenir Next",
+                    fontsize="13",
+                    fontcolor="#4e5f68",
+                    margin="0.08,0.04",
+                )
+                cluster.node(entry_id, label="", shape="point", width="0.01", height="0.01", style="invis")
+                cluster.node(exit_id, label="", shape="point", width="0.01", height="0.01", style="invis")
+                cluster.edge(label_id, entry_id, style="invis", weight="40", minlen="1")
+                for depth in sorted({depth_map.get(group_code, 0) for group_code in cluster_groups}):
+                    with cluster.subgraph(name=f"rank_{bucket_key}_{depth}") as rank_subgraph:
+                        rank_subgraph.attr(rank="same")
+                        for group_code in cluster_groups:
+                            if depth_map.get(group_code, 0) == depth:
+                                rank_subgraph.node(course_group_id(group_code))
+                cluster.edge(entry_id, exit_id, style="invis", weight="120", minlen="5")
             if previous_anchor is not None:
-                graph.edge(previous_anchor, anchor_id, style="invis", weight="80")
-            previous_anchor = anchor_id
+                graph.edge(previous_anchor, entry_id, style="invis", weight="180", minlen="7")
+            if previous_exit is not None:
+                graph.edge(previous_exit, label_id, style="invis", weight="120", minlen="3")
+            previous_anchor = label_id
+            previous_exit = exit_id
 
-        other_rank_nodes = [course_group_id(group_code) for group_code in bucket_groups["other"]]
-        if other_rank_nodes:
-            with graph.subgraph(name="rank_program_year_other") as rank_subgraph:
-                rank_subgraph.attr(rank="same")
-                for node_id in other_rank_nodes:
-                    rank_subgraph.node(node_id)
+        for group_code in sorted(slotted_groups, key=course_sort_key):
+            bucket_key = year_group_lookup.get(group_code)
+            if bucket_key not in year_bucket_order:
+                continue
+            node_id = course_group_id(group_code)
+            graph.edge(
+                f"year_band__{bucket_key}__entry",
+                node_id,
+                style="invis",
+                weight="18" if group_code in explicit_groups else "8",
+                minlen="1",
+            )
+            if group_code in explicit_groups:
+                graph.edge(
+                    node_id,
+                    f"year_band__{bucket_key}__exit",
+                    style="invis",
+                    weight="10",
+                    minlen="1",
+                )
+
+        for group_code in sorted(flexible_bucket_preferences, key=course_sort_key):
+            bucket_key = flexible_bucket_preferences[group_code]
+            if bucket_key not in year_bucket_order:
+                continue
+            graph.edge(
+                f"year_band__{bucket_key}__entry",
+                course_group_id(group_code),
+                style="invis",
+                weight="3",
+                minlen="2",
+            )
     else:
         for depth in sorted(depth_groups):
             rank_nodes = [course_group_id(group_code) for group_code in depth_groups[depth]]

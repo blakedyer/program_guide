@@ -60,19 +60,19 @@
 </g>
 </g>
 <!-- course__CHEM102 -->
-<g id="node29" class="node">
+<g id="node28" class="node">
 <title>course__CHEM102</title>
-<g id="a_node29"><a xlink:href="../../../courses/CHEM102.html" xlink:title="CHEM102: Chemical Reactivity Fundamentals with Environmental Applications" target="_top">
-<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M499.5,-681C499.5,-681 459.5,-681 459.5,-681 453.5,-681 447.5,-675 447.5,-669 447.5,-669 447.5,-657 447.5,-657 447.5,-651 453.5,-645 459.5,-645 459.5,-645 499.5,-645 499.5,-645 505.5,-645 511.5,-651 511.5,-657 511.5,-657 511.5,-669 511.5,-669 511.5,-675 505.5,-681 499.5,-681"/>
-<text text-anchor="middle" x="479.5" y="-660.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM102</text>
+<g id="a_node28"><a xlink:href="../../../courses/CHEM102.html" xlink:title="CHEM102: Chemical Reactivity Fundamentals with Environmental Applications" target="_top">
+<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M499.5,-677C499.5,-677 459.5,-677 459.5,-677 453.5,-677 447.5,-671 447.5,-665 447.5,-665 447.5,-653 447.5,-653 447.5,-647 453.5,-641 459.5,-641 459.5,-641 499.5,-641 499.5,-641 505.5,-641 511.5,-647 511.5,-653 511.5,-653 511.5,-665 511.5,-665 511.5,-671 505.5,-677 499.5,-677"/>
+<text text-anchor="middle" x="479.5" y="-656.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM102</text>
 </a>
 </g>
 </g>
 <!-- course__CHEM101&#45;&gt;course__CHEM102 -->
 <g id="edge9" class="edge">
 <title>course__CHEM101&#45;&gt;course__CHEM102</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M126.4,-614.23C212.15,-626.11 368.22,-647.72 440.22,-657.7"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.07,-660.15 447.34,-658.68 440.74,-655.3 440.07,-660.15"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M126.4,-613.65C212.15,-624.69 368.22,-644.8 440.22,-654.07"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.08,-656.52 447.34,-654.99 440.71,-651.66 440.08,-656.52"/>
 </g>
 <!-- course__CIVE210 -->
 <g id="node48" class="node">
@@ -195,22 +195,22 @@
 <g id="node9" class="node">
 <title>course__EOS365</title>
 <g id="a_node9"><a xlink:href="../../../courses/EOS365.html" xlink:title="Equivalent or cross&#45;listed: EOS365: Climate and Society | ES365: Climate and Society" target="_top">
-<path fill="#e2deef" stroke="#665683" stroke-width="1.3" d="M100.5,-1231C100.5,-1231 31.5,-1231 31.5,-1231 25.5,-1231 19.5,-1225 19.5,-1219 19.5,-1219 19.5,-1207 19.5,-1207 19.5,-1201 25.5,-1195 31.5,-1195 31.5,-1195 100.5,-1195 100.5,-1195 106.5,-1195 112.5,-1201 112.5,-1207 112.5,-1207 112.5,-1219 112.5,-1219 112.5,-1225 106.5,-1231 100.5,-1231"/>
-<text text-anchor="middle" x="66" y="-1210.5" font-family="Avenir Next" font-size="10.00" fill="#2f2741">EOS365 / ES365</text>
+<path fill="#e2deef" stroke="#665683" stroke-width="1.3" d="M100.5,-1223C100.5,-1223 31.5,-1223 31.5,-1223 25.5,-1223 19.5,-1217 19.5,-1211 19.5,-1211 19.5,-1199 19.5,-1199 19.5,-1193 25.5,-1187 31.5,-1187 31.5,-1187 100.5,-1187 100.5,-1187 106.5,-1187 112.5,-1193 112.5,-1199 112.5,-1199 112.5,-1211 112.5,-1211 112.5,-1217 106.5,-1223 100.5,-1223"/>
+<text text-anchor="middle" x="66" y="-1202.5" font-family="Avenir Next" font-size="10.00" fill="#2f2741">EOS365 / ES365</text>
 </a>
 </g>
 </g>
 <!-- choice_GEOG450_0 -->
 <g id="node76" class="node">
 <title>choice_GEOG450_0</title>
-<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M928,-1251C928,-1251 898,-1251 898,-1251 892,-1251 886,-1245 886,-1239 886,-1239 886,-1227 886,-1227 886,-1221 892,-1215 898,-1215 898,-1215 928,-1215 928,-1215 934,-1215 940,-1221 940,-1227 940,-1227 940,-1239 940,-1239 940,-1245 934,-1251 928,-1251"/>
-<text text-anchor="middle" x="913" y="-1230.8" font-family="Avenir Next" font-size="9.00">2 of</text>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M928,-1250C928,-1250 898,-1250 898,-1250 892,-1250 886,-1244 886,-1238 886,-1238 886,-1226 886,-1226 886,-1220 892,-1214 898,-1214 898,-1214 928,-1214 928,-1214 934,-1214 940,-1220 940,-1226 940,-1226 940,-1238 940,-1238 940,-1244 934,-1250 928,-1250"/>
+<text text-anchor="middle" x="913" y="-1229.8" font-family="Avenir Next" font-size="9.00">2 of</text>
 </g>
 <!-- course__EOS365&#45;&gt;choice_GEOG450_0 -->
 <g id="edge76" class="edge">
 <title>course__EOS365&#45;&gt;choice_GEOG450_0</title>
-<path fill="none" stroke="#7a8389" d="M112.72,-1213.57C230.69,-1215.12 554.99,-1219.94 825,-1229 842.69,-1229.59 862.4,-1230.48 878.57,-1231.27"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="878.63,-1233.72 885.74,-1231.62 878.87,-1228.83 878.63,-1233.72"/>
+<path fill="none" stroke="#7a8389" d="M112.71,-1206.4C230.66,-1210.03 554.91,-1220.07 825,-1229 842.68,-1229.58 862.39,-1230.26 878.57,-1230.83"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="878.65,-1233.28 885.73,-1231.07 878.82,-1228.38 878.65,-1233.28"/>
 </g>
 <!-- choice_GEOG489_0_2 -->
 <g id="node78" class="node">
@@ -221,8 +221,8 @@
 <!-- course__EOS365&#45;&gt;choice_GEOG489_0_2 -->
 <g id="edge83" class="edge">
 <title>course__EOS365&#45;&gt;choice_GEOG489_0_2</title>
-<path fill="none" stroke="#7a8389" d="M112.61,-1201C136.17,-1194.8 164.41,-1187.36 185.87,-1181.72"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="186.73,-1184.03 192.88,-1179.87 185.48,-1179.29 186.73,-1184.03"/>
+<path fill="none" stroke="#7a8389" d="M112.61,-1195.4C136.17,-1190.44 164.41,-1184.49 185.87,-1179.97"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="186.53,-1182.34 192.88,-1178.5 185.52,-1177.54 186.53,-1182.34"/>
 </g>
 <!-- course__EOS499A -->
 <g id="node10" class="node">
@@ -243,9 +243,9 @@
 </g>
 </g>
 <!-- course__ES301 -->
-<g id="node31" class="node">
+<g id="node30" class="node">
 <title>course__ES301</title>
-<g id="a_node31"><a xlink:href="../../../courses/ES301.html" xlink:title="ES301: Political Ecology" target="_top">
+<g id="a_node30"><a xlink:href="../../../courses/ES301.html" xlink:title="ES301: Political Ecology" target="_top">
 <path fill="#e7e2d8" stroke="#746554" stroke-width="1.3" d="M494.5,-1093C494.5,-1093 464.5,-1093 464.5,-1093 458.5,-1093 452.5,-1087 452.5,-1081 452.5,-1081 452.5,-1069 452.5,-1069 452.5,-1063 458.5,-1057 464.5,-1057 464.5,-1057 494.5,-1057 494.5,-1057 500.5,-1057 506.5,-1063 506.5,-1069 506.5,-1069 506.5,-1081 506.5,-1081 506.5,-1087 500.5,-1093 494.5,-1093"/>
 <text text-anchor="middle" x="479.5" y="-1072.5" font-family="Avenir Next" font-size="10.00" fill="#342d25">ES301</text>
 </a>
@@ -311,15 +311,15 @@
 <g id="node14" class="node">
 <title>course__GEOG222</title>
 <g id="a_node14"><a xlink:href="../../../courses/GEOG222.html" xlink:title="GEOG222: Introduction to GIS" target="_top">
-<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M85.5,-477C85.5,-477 46.5,-477 46.5,-477 40.5,-477 34.5,-471 34.5,-465 34.5,-465 34.5,-453 34.5,-453 34.5,-447 40.5,-441 46.5,-441 46.5,-441 85.5,-441 85.5,-441 91.5,-441 97.5,-447 97.5,-453 97.5,-453 97.5,-465 97.5,-465 97.5,-471 91.5,-477 85.5,-477"/>
-<text text-anchor="middle" x="66" y="-456.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG222</text>
+<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M85.5,-449C85.5,-449 46.5,-449 46.5,-449 40.5,-449 34.5,-443 34.5,-437 34.5,-437 34.5,-425 34.5,-425 34.5,-419 40.5,-413 46.5,-413 46.5,-413 85.5,-413 85.5,-413 91.5,-413 97.5,-419 97.5,-425 97.5,-425 97.5,-437 97.5,-437 97.5,-443 91.5,-449 85.5,-449"/>
+<text text-anchor="middle" x="66" y="-428.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG222</text>
 </a>
 </g>
 </g>
 <!-- course__GEOG323 -->
-<g id="node34" class="node">
+<g id="node33" class="node">
 <title>course__GEOG323</title>
-<g id="a_node34"><a xlink:href="../../../courses/GEOG323.html" xlink:title="GEOG323: Digital Mapping" target="_top">
+<g id="a_node33"><a xlink:href="../../../courses/GEOG323.html" xlink:title="GEOG323: Digital Mapping" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M499,-417C499,-417 460,-417 460,-417 454,-417 448,-411 448,-405 448,-405 448,-393 448,-393 448,-387 454,-381 460,-381 460,-381 499,-381 499,-381 505,-381 511,-387 511,-393 511,-393 511,-405 511,-405 511,-411 505,-417 499,-417"/>
 <text text-anchor="middle" x="479.5" y="-396.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG323</text>
 </a>
@@ -328,13 +328,13 @@
 <!-- course__GEOG222&#45;&gt;course__GEOG323 -->
 <g id="edge58" class="edge">
 <title>course__GEOG222&#45;&gt;course__GEOG323</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M97.59,-454.54C171.63,-443.74 360.3,-416.23 440.98,-404.47"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.41,-406.88 447.99,-403.45 440.7,-402.04 441.41,-406.88"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M97.59,-428.62C171.63,-422.86 360.3,-408.19 440.98,-401.92"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.2,-404.36 447.99,-401.37 440.82,-399.47 441.2,-404.36"/>
 </g>
 <!-- course__GEOG328 -->
-<g id="node35" class="node">
+<g id="node34" class="node">
 <title>course__GEOG328</title>
-<g id="a_node35"><a xlink:href="../../../courses/GEOG328.html" xlink:title="GEOG328: GIS Analysis" target="_top">
+<g id="a_node34"><a xlink:href="../../../courses/GEOG328.html" xlink:title="GEOG328: GIS Analysis" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M499,-519C499,-519 460,-519 460,-519 454,-519 448,-513 448,-507 448,-507 448,-495 448,-495 448,-489 454,-483 460,-483 460,-483 499,-483 499,-483 505,-483 511,-489 511,-495 511,-495 511,-507 511,-507 511,-513 505,-519 499,-519"/>
 <text text-anchor="middle" x="479.5" y="-498.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG328</text>
 </a>
@@ -343,8 +343,8 @@
 <!-- course__GEOG222&#45;&gt;course__GEOG328 -->
 <g id="edge60" class="edge">
 <title>course__GEOG222&#45;&gt;course__GEOG328</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M97.52,-463.18C123.01,-466.6 160.34,-471.44 193,-475 281.55,-484.65 385.82,-493.51 440.56,-497.98"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.45,-500.42 447.62,-498.55 440.84,-495.54 440.45,-500.42"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M97.72,-444.11C122.86,-454.26 159.6,-467.76 193,-475 280.29,-493.91 385.48,-499.09 440.59,-500.49"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.65,-502.94 447.71,-500.66 440.77,-498.04 440.65,-502.94"/>
 </g>
 <!-- course__GEOG228 -->
 <g id="node15" class="node">
@@ -358,8 +358,8 @@
 <!-- course__GEOG228&#45;&gt;course__GEOG328 -->
 <g id="edge61" class="edge">
 <title>course__GEOG228&#45;&gt;course__GEOG328</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M97.59,-539.88C171.63,-532.32 360.3,-513.06 440.98,-504.83"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.27,-507.26 447.99,-504.11 440.77,-502.39 441.27,-507.26"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M97.63,-540.79C151.27,-536.82 265.69,-527.85 362,-517 388.36,-514.03 417.98,-509.95 440.75,-506.66"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.32,-509.05 447.89,-505.62 440.61,-504.2 441.32,-509.05"/>
 </g>
 <!-- course__GEOG314 -->
 <g id="node16" class="node">
@@ -373,8 +373,8 @@
 <!-- course__GEOG314&#45;&gt;choice_GEOG450_0 -->
 <g id="edge74" class="edge">
 <title>course__GEOG314&#45;&gt;choice_GEOG450_0</title>
-<path fill="none" stroke="#7a8389" d="M97.8,-1136.95C147.46,-1132.31 248.32,-1124 334,-1124 334,-1124 334,-1124 480.5,-1124 633.57,-1124 808.14,-1189.28 879.27,-1218.8"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="878.42,-1221.1 885.82,-1221.54 880.31,-1216.58 878.42,-1221.1"/>
+<path fill="none" stroke="#7a8389" d="M97.8,-1136.95C147.46,-1132.31 248.32,-1124 334,-1124 334,-1124 334,-1124 480.5,-1124 633.49,-1124 808.1,-1188.68 879.25,-1217.93"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="878.41,-1220.23 885.81,-1220.65 880.28,-1215.7 878.41,-1220.23"/>
 </g>
 <!-- course__GEOG314&#45;&gt;choice_GEOG489_0_2 -->
 <g id="edge82" class="edge">
@@ -404,13 +404,13 @@
 <!-- course__MATH100&#45;&gt;course__CHEM102 -->
 <g id="edge10" class="edge">
 <title>course__MATH100&#45;&gt;course__CHEM102</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M115.41,-798C198.15,-767.24 365.09,-705.17 440.27,-677.22"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.54,-679.36 447.25,-674.62 439.84,-674.76 441.54,-679.36"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M114.2,-797.99C196.69,-766.52 365.42,-702.14 440.74,-673.41"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.63,-675.69 447.3,-670.9 439.89,-671.11 441.63,-675.69"/>
 </g>
 <!-- course__MATH101 -->
-<g id="node36" class="node">
+<g id="node35" class="node">
 <title>course__MATH101</title>
-<g id="a_node36"><a xlink:href="../../../courses/MATH101.html" xlink:title="MATH101: Calculus II" target="_top">
+<g id="a_node35"><a xlink:href="../../../courses/MATH101.html" xlink:title="MATH101: Calculus II" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M499,-806C499,-806 460,-806 460,-806 454,-806 448,-800 448,-794 448,-794 448,-782 448,-782 448,-776 454,-770 460,-770 460,-770 499,-770 499,-770 505,-770 511,-776 511,-782 511,-782 511,-794 511,-794 511,-800 505,-806 499,-806"/>
 <text text-anchor="middle" x="479.5" y="-785.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH101</text>
 </a>
@@ -423,9 +423,9 @@
 <polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.14,-793 447.96,-790.08 440.81,-788.11 441.14,-793"/>
 </g>
 <!-- course__PHYS110 -->
-<g id="node37" class="node">
+<g id="node36" class="node">
 <title>course__PHYS110</title>
-<g id="a_node37"><a xlink:href="../../../courses/PHYS110.html" xlink:title="Equivalent or cross&#45;listed: PHYS110: Introductory Physics I | PHYS120: Physics I" target="_top">
+<g id="a_node36"><a xlink:href="../../../courses/PHYS110.html" xlink:title="Equivalent or cross&#45;listed: PHYS110: Introductory Physics I | PHYS120: Physics I" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M524,-904C524,-904 435,-904 435,-904 429,-904 423,-898 423,-892 423,-892 423,-880 423,-880 423,-874 429,-868 435,-868 435,-868 524,-868 524,-868 530,-868 536,-874 536,-880 536,-880 536,-892 536,-892 536,-898 530,-904 524,-904"/>
 <text text-anchor="middle" x="479.5" y="-883.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS110 / PHYS120</text>
 </a>
@@ -453,9 +453,9 @@
 <polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="424.07,-745.61 430.44,-741.81 423.09,-740.81 424.07,-745.61"/>
 </g>
 <!-- course__PHYS111 -->
-<g id="node44" class="node">
+<g id="node45" class="node">
 <title>course__PHYS111</title>
-<g id="a_node44"><a xlink:href="../../../courses/PHYS111.html" xlink:title="Equivalent or cross&#45;listed: PHYS111: Introductory Physics II | PHYS130: Physics II" target="_top">
+<g id="a_node45"><a xlink:href="../../../courses/PHYS111.html" xlink:title="Equivalent or cross&#45;listed: PHYS111: Introductory Physics II | PHYS130: Physics II" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M813,-855C813,-855 724,-855 724,-855 718,-855 712,-849 712,-843 712,-843 712,-831 712,-831 712,-825 718,-819 724,-819 724,-819 813,-819 813,-819 819,-819 825,-825 825,-831 825,-831 825,-843 825,-843 825,-849 819,-855 813,-855"/>
 <text text-anchor="middle" x="768.5" y="-834.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS111 / PHYS130</text>
 </a>
@@ -476,8 +476,8 @@
 <!-- course__MATH100&#45;&gt;choice_EOS314_0_0 -->
 <g id="edge29" class="edge">
 <title>course__MATH100&#45;&gt;choice_EOS314_0_0</title>
-<path fill="none" stroke="#7a8389" d="M101.86,-834.12C126.77,-846.55 161.34,-862.77 193,-874 337.28,-925.19 516.61,-963.18 589.68,-977.62"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="589.48,-980.08 596.83,-979.03 590.43,-975.27 589.48,-980.08"/>
+<path fill="none" stroke="#7a8389" d="M102.44,-834.02C127.33,-846.17 161.64,-861.95 193,-873 337.48,-923.9 516.69,-962.65 589.71,-977.45"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="589.5,-979.91 596.85,-978.89 590.47,-975.11 589.5,-979.91"/>
 </g>
 <!-- course__POLI351 -->
 <g id="node19" class="node">
@@ -500,26 +500,26 @@
 <!-- choice_BIOL184_0_0 -->
 <g id="node61" class="node">
 <title>choice_BIOL184_0_0</title>
-<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M928,-1856C928,-1856 898,-1856 898,-1856 892,-1856 886,-1850 886,-1844 886,-1844 886,-1832 886,-1832 886,-1826 892,-1820 898,-1820 898,-1820 928,-1820 928,-1820 934,-1820 940,-1826 940,-1832 940,-1832 940,-1844 940,-1844 940,-1850 934,-1856 928,-1856"/>
-<text text-anchor="middle" x="913" y="-1835.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M639,-1856C639,-1856 609,-1856 609,-1856 603,-1856 597,-1850 597,-1844 597,-1844 597,-1832 597,-1832 597,-1826 603,-1820 609,-1820 609,-1820 639,-1820 639,-1820 645,-1820 651,-1826 651,-1832 651,-1832 651,-1844 651,-1844 651,-1850 645,-1856 639,-1856"/>
+<text text-anchor="middle" x="624" y="-1835.8" font-family="Avenir Next" font-size="9.00">1 of</text>
 </g>
 <!-- course__BIOL150A&#45;&gt;choice_BIOL184_0_0 -->
 <g id="edge2" class="edge">
 <title>course__BIOL150A&#45;&gt;choice_BIOL184_0_0</title>
-<path fill="none" stroke="#7a8389" d="M97.36,-1868.33C146.82,-1874.99 247.93,-1887 334,-1887 334,-1887 334,-1887 625,-1887 714.38,-1887 737.55,-1884.46 825,-1866 843.2,-1862.16 862.98,-1855.96 879.07,-1850.37"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="879.95,-1852.66 885.73,-1848.02 878.31,-1848.04 879.95,-1852.66"/>
+<path fill="none" stroke="#7a8389" d="M97.29,-1862.58C193.24,-1858.1 490.01,-1844.22 589.84,-1839.55"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="590.08,-1841.99 596.96,-1839.22 589.86,-1837.1 590.08,-1841.99"/>
 </g>
 <!-- choice_BIOL186_0_0 -->
 <g id="node62" class="node">
 <title>choice_BIOL186_0_0</title>
-<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M639,-1856C639,-1856 609,-1856 609,-1856 603,-1856 597,-1850 597,-1844 597,-1844 597,-1832 597,-1832 597,-1826 603,-1820 609,-1820 609,-1820 639,-1820 639,-1820 645,-1820 651,-1826 651,-1832 651,-1832 651,-1844 651,-1844 651,-1850 645,-1856 639,-1856"/>
-<text text-anchor="middle" x="624" y="-1835.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M928,-1856C928,-1856 898,-1856 898,-1856 892,-1856 886,-1850 886,-1844 886,-1844 886,-1832 886,-1832 886,-1826 892,-1820 898,-1820 898,-1820 928,-1820 928,-1820 934,-1820 940,-1826 940,-1832 940,-1832 940,-1844 940,-1844 940,-1850 934,-1856 928,-1856"/>
+<text text-anchor="middle" x="913" y="-1835.8" font-family="Avenir Next" font-size="9.00">1 of</text>
 </g>
 <!-- course__BIOL150A&#45;&gt;choice_BIOL186_0_0 -->
 <g id="edge5" class="edge">
 <title>course__BIOL150A&#45;&gt;choice_BIOL186_0_0</title>
-<path fill="none" stroke="#7a8389" d="M97.29,-1862.58C193.24,-1858.1 490.01,-1844.22 589.84,-1839.55"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="590.08,-1841.99 596.96,-1839.22 589.86,-1837.1 590.08,-1841.99"/>
+<path fill="none" stroke="#7a8389" d="M97.36,-1868.33C146.82,-1874.99 247.93,-1887 334,-1887 334,-1887 334,-1887 625,-1887 714.38,-1887 737.55,-1884.46 825,-1866 843.2,-1862.16 862.98,-1855.96 879.07,-1850.37"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="879.95,-1852.66 885.73,-1848.02 878.31,-1848.04 879.95,-1852.66"/>
 </g>
 <!-- course__CHEM091 -->
 <g id="node21" class="node">
@@ -533,8 +533,8 @@
 <!-- course__CHEM091&#45;&gt;course__CHEM102 -->
 <g id="edge8" class="edge">
 <title>course__CHEM091&#45;&gt;course__CHEM102</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M96.59,-668.57C169.67,-667.5 358.63,-664.75 440.14,-663.56"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.26,-666.01 447.22,-663.46 440.18,-661.11 440.26,-666.01"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M96.59,-668.28C169.67,-666.51 358.63,-661.91 440.14,-659.93"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.28,-662.38 447.22,-659.76 440.16,-657.48 440.28,-662.38"/>
 </g>
 <!-- course__GEOG101A -->
 <g id="node22" class="node">
@@ -555,22 +555,22 @@
 <g id="node23" class="node">
 <title>course__GEOG226</title>
 <g id="a_node23"><a xlink:href="../../../courses/GEOG226.html" xlink:title="GEOG226: Quantitative Methods in Geography" target="_top">
-<path fill="#f9f9f9" stroke="#363636" d="M84.5,-372C84.5,-372 47.5,-372 47.5,-372 41.5,-372 35.5,-366 35.5,-360 35.5,-360 35.5,-348 35.5,-348 35.5,-342 41.5,-336 47.5,-336 47.5,-336 84.5,-336 84.5,-336 90.5,-336 96.5,-342 96.5,-348 96.5,-348 96.5,-360 96.5,-360 96.5,-366 90.5,-372 84.5,-372"/>
-<text text-anchor="middle" x="66" y="-351.8" font-family="Avenir Next" font-size="9.00" fill="#363636">GEOG226</text>
+<path fill="#f9f9f9" stroke="#363636" d="M84.5,-379C84.5,-379 47.5,-379 47.5,-379 41.5,-379 35.5,-373 35.5,-367 35.5,-367 35.5,-355 35.5,-355 35.5,-349 41.5,-343 47.5,-343 47.5,-343 84.5,-343 84.5,-343 90.5,-343 96.5,-349 96.5,-355 96.5,-355 96.5,-367 96.5,-367 96.5,-373 90.5,-379 84.5,-379"/>
+<text text-anchor="middle" x="66" y="-358.8" font-family="Avenir Next" font-size="9.00" fill="#363636">GEOG226</text>
 </a>
 </g>
 </g>
 <!-- course__GEOG226&#45;&gt;course__GEOG323 -->
 <g id="edge59" class="edge">
 <title>course__GEOG226&#45;&gt;course__GEOG323</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M96.59,-357.24C169.85,-365.25 359.55,-385.99 440.74,-394.87"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.56,-397.32 447.78,-395.64 441.09,-392.44 440.56,-397.32"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M96.59,-363.73C169.85,-370.5 359.55,-388.02 440.74,-395.51"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.59,-397.96 447.78,-396.16 441.04,-393.08 440.59,-397.96"/>
 </g>
 <!-- course__GEOG226&#45;&gt;course__GEOG328 -->
 <g id="edge62" class="edge">
 <title>course__GEOG226&#45;&gt;course__GEOG328</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M96.59,-364.57C169.85,-390.74 359.55,-458.51 440.74,-487.51"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.37,-489.98 447.78,-490.03 442.02,-485.37 440.37,-489.98"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M96.59,-371.07C169.85,-395.99 359.55,-460.53 440.74,-488.15"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.37,-490.61 447.78,-490.55 441.95,-485.98 440.37,-490.61"/>
 </g>
 <!-- choice_ECON383_0_0 -->
 <g id="node63" class="node">
@@ -581,7 +581,7 @@
 <!-- course__GEOG226&#45;&gt;choice_ECON383_0_0 -->
 <g id="edge16" class="edge">
 <title>course__GEOG226&#45;&gt;choice_ECON383_0_0</title>
-<path fill="none" stroke="#7a8389" d="M96.7,-336.67C144.85,-310.27 243.65,-263 334,-263 334,-263 334,-263 480.5,-263 585.67,-263 608.12,-230.4 712,-214 770.44,-204.77 839.14,-198.56 878.92,-195.41"/>
+<path fill="none" stroke="#7a8389" d="M95.75,-342.8C143.36,-314.46 242.4,-263 334,-263 334,-263 334,-263 480.5,-263 585.67,-263 608.12,-230.4 712,-214 770.44,-204.77 839.14,-198.56 878.92,-195.41"/>
 <polygon fill="#7a8389" stroke="#7a8389" points="879.21,-197.85 886,-194.86 878.83,-192.96 879.21,-197.85"/>
 </g>
 <!-- choice_STAT359_0 -->
@@ -593,7 +593,7 @@
 <!-- course__GEOG226&#45;&gt;choice_STAT359_0 -->
 <g id="edge98" class="edge">
 <title>course__GEOG226&#45;&gt;choice_STAT359_0</title>
-<path fill="none" stroke="#7a8389" d="M96.57,-350.15C145.76,-344.09 247.51,-333 334,-333 334,-333 334,-333 625,-333 717.77,-333 825.65,-311.25 878.85,-299.05"/>
+<path fill="none" stroke="#7a8389" d="M96.53,-355.86C145.64,-347.78 247.31,-333 334,-333 334,-333 334,-333 625,-333 717.77,-333 825.65,-311.25 878.85,-299.05"/>
 <polygon fill="#7a8389" stroke="#7a8389" points="879.41,-301.44 885.68,-297.47 878.31,-296.66 879.41,-301.44"/>
 </g>
 <!-- course__MATH151 -->
@@ -653,21 +653,6 @@
 <path fill="none" stroke="#7a8389" d="M94.14,-191.94C142.22,-201.92 245.64,-221 334,-221 334,-221 334,-221 480.5,-221 585.67,-221 608.12,-253.6 712,-270 770.44,-279.23 839.14,-285.44 878.92,-288.59"/>
 <polygon fill="#7a8389" stroke="#7a8389" points="878.83,-291.04 886,-289.14 879.21,-286.15 878.83,-291.04"/>
 </g>
-<!-- course__BIOL184 -->
-<g id="node28" class="node">
-<title>course__BIOL184</title>
-<g id="a_node28"><a xlink:href="../../../courses/BIOL184.html" xlink:title="BIOL184: Evolution and Biodiversity" target="_top">
-<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M496,-1810C496,-1810 463,-1810 463,-1810 457,-1810 451,-1804 451,-1798 451,-1798 451,-1786 451,-1786 451,-1780 457,-1774 463,-1774 463,-1774 496,-1774 496,-1774 502,-1774 508,-1780 508,-1786 508,-1786 508,-1798 508,-1798 508,-1804 502,-1810 496,-1810"/>
-<text text-anchor="middle" x="479.5" y="-1789.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL184</text>
-</a>
-</g>
-</g>
-<!-- course__BIOL184&#45;&gt;choice_BIOL186_0_0 -->
-<g id="edge6" class="edge">
-<title>course__BIOL184&#45;&gt;choice_BIOL186_0_0</title>
-<path fill="none" stroke="#7a8389" d="M508.31,-1800.98C531.71,-1808.53 565.21,-1819.34 589.96,-1827.34"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="589.29,-1829.69 596.7,-1829.51 590.79,-1825.03 589.29,-1829.69"/>
-</g>
 <!-- course__EOS312 -->
 <g id="node57" class="node">
 <title>course__EOS312</title>
@@ -680,13 +665,13 @@
 <!-- course__CHEM102&#45;&gt;course__EOS312 -->
 <g id="edge28" class="edge">
 <title>course__CHEM102&#45;&gt;course__EOS312</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M511.56,-668.61C641.84,-692.12 1143.65,-782.7 1278.16,-806.98"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1278.07,-809.46 1285.39,-808.29 1278.94,-804.63 1278.07,-809.46"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M511.56,-664.76C641.84,-688.9 1143.65,-781.89 1278.16,-806.82"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1278.06,-809.3 1285.39,-808.16 1278.96,-804.48 1278.06,-809.3"/>
 </g>
 <!-- course__EOS230 -->
-<g id="node30" class="node">
+<g id="node29" class="node">
 <title>course__EOS230</title>
-<g id="a_node30"><a xlink:href="../../../courses/EOS230.html" xlink:title="Equivalent or cross&#45;listed: EOS230: Introduction to Environmental Data Analysis | GEOG230: Introduction to Environmental Data Analysis" target="_top">
+<g id="a_node29"><a xlink:href="../../../courses/EOS230.html" xlink:title="Equivalent or cross&#45;listed: EOS230: Introduction to Environmental Data Analysis | GEOG230: Introduction to Environmental Data Analysis" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M522.5,-1555C522.5,-1555 436.5,-1555 436.5,-1555 430.5,-1555 424.5,-1549 424.5,-1543 424.5,-1543 424.5,-1531 424.5,-1531 424.5,-1525 430.5,-1519 436.5,-1519 436.5,-1519 522.5,-1519 522.5,-1519 528.5,-1519 534.5,-1525 534.5,-1531 534.5,-1531 534.5,-1543 534.5,-1543 534.5,-1549 528.5,-1555 522.5,-1555"/>
 <text text-anchor="middle" x="479.5" y="-1534.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">EOS230 / GEOG230</text>
 </a>
@@ -708,9 +693,9 @@
 <polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1291.33,-1401.05 1294.46,-1394.33 1287.82,-1397.63 1291.33,-1401.05"/>
 </g>
 <!-- course__ES405 -->
-<g id="node39" class="node">
+<g id="node40" class="node">
 <title>course__ES405</title>
-<g id="a_node39"><a xlink:href="../../../courses/ES405.html" xlink:title="ES405: Climate, Energy and Politics" target="_top">
+<g id="a_node40"><a xlink:href="../../../courses/ES405.html" xlink:title="ES405: Climate, Energy and Politics" target="_top">
 <path fill="#e7e2d8" stroke="#746554" stroke-width="1.3" d="M783.5,-1051C783.5,-1051 753.5,-1051 753.5,-1051 747.5,-1051 741.5,-1045 741.5,-1039 741.5,-1039 741.5,-1027 741.5,-1027 741.5,-1021 747.5,-1015 753.5,-1015 753.5,-1015 783.5,-1015 783.5,-1015 789.5,-1015 795.5,-1021 795.5,-1027 795.5,-1027 795.5,-1039 795.5,-1039 795.5,-1045 789.5,-1051 783.5,-1051"/>
 <text text-anchor="middle" x="768.5" y="-1030.5" font-family="Avenir Next" font-size="10.00" fill="#342d25">ES405</text>
 </a>
@@ -725,22 +710,22 @@
 <!-- course__ES301&#45;&gt;choice_GEOG450_0 -->
 <g id="edge77" class="edge">
 <title>course__ES301&#45;&gt;choice_GEOG450_0</title>
-<path fill="none" stroke="#7a8389" d="M506.86,-1075.76C566.97,-1078.51 717.26,-1091.23 825,-1150 852.24,-1164.86 877.17,-1190.44 893.3,-1209.28"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="891.63,-1211.11 898.01,-1214.9 895.39,-1207.96 891.63,-1211.11"/>
+<path fill="none" stroke="#7a8389" d="M506.84,-1075.81C566.89,-1078.65 717.08,-1091.56 825,-1150 851.96,-1164.6 876.77,-1189.65 892.94,-1208.24"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="891.27,-1210.04 897.68,-1213.78 894.99,-1206.86 891.27,-1210.04"/>
 </g>
 <!-- course__GEOG209 -->
-<g id="node32" class="node">
+<g id="node31" class="node">
 <title>course__GEOG209</title>
-<g id="a_node32"><a xlink:href="../../../courses/GEOG209.html" xlink:title="GEOG209: Environmental Management" target="_top">
+<g id="a_node31"><a xlink:href="../../../courses/GEOG209.html" xlink:title="GEOG209: Environmental Management" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M499,-1317C499,-1317 460,-1317 460,-1317 454,-1317 448,-1311 448,-1305 448,-1305 448,-1293 448,-1293 448,-1287 454,-1281 460,-1281 460,-1281 499,-1281 499,-1281 505,-1281 511,-1287 511,-1293 511,-1293 511,-1305 511,-1305 511,-1311 505,-1317 499,-1317"/>
 <text text-anchor="middle" x="479.5" y="-1296.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG209</text>
 </a>
 </g>
 </g>
 <!-- course__GEOG301 -->
-<g id="node40" class="node">
+<g id="node41" class="node">
 <title>course__GEOG301</title>
-<g id="a_node40"><a xlink:href="../../../courses/GEOG301.html" xlink:title="GEOG301: Environmental Impact Assessment" target="_top">
+<g id="a_node41"><a xlink:href="../../../courses/GEOG301.html" xlink:title="GEOG301: Environmental Impact Assessment" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M788,-1275C788,-1275 749,-1275 749,-1275 743,-1275 737,-1269 737,-1263 737,-1263 737,-1251 737,-1251 737,-1245 743,-1239 749,-1239 749,-1239 788,-1239 788,-1239 794,-1239 800,-1245 800,-1251 800,-1251 800,-1263 800,-1263 800,-1269 794,-1275 788,-1275"/>
 <text text-anchor="middle" x="768.5" y="-1254.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG301</text>
 </a>
@@ -753,9 +738,9 @@
 <polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="730,-1264.96 736.57,-1261.53 729.29,-1260.12 730,-1264.96"/>
 </g>
 <!-- course__GEOG371 -->
-<g id="node42" class="node">
+<g id="node43" class="node">
 <title>course__GEOG371</title>
-<g id="a_node42"><a xlink:href="../../../courses/GEOG371.html" xlink:title="GEOG371: Water Resources Management" target="_top">
+<g id="a_node43"><a xlink:href="../../../courses/GEOG371.html" xlink:title="GEOG371: Water Resources Management" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M788,-1331C788,-1331 749,-1331 749,-1331 743,-1331 737,-1325 737,-1319 737,-1319 737,-1307 737,-1307 737,-1301 743,-1295 749,-1295 749,-1295 788,-1295 788,-1295 794,-1295 800,-1301 800,-1307 800,-1307 800,-1319 800,-1319 800,-1325 794,-1331 788,-1331"/>
 <text text-anchor="middle" x="768.5" y="-1310.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG371</text>
 </a>
@@ -768,18 +753,18 @@
 <polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="729.46,-1313.6 736.57,-1311.49 729.7,-1308.7 729.46,-1313.6"/>
 </g>
 <!-- course__GEOG272 -->
-<g id="node33" class="node">
+<g id="node32" class="node">
 <title>course__GEOG272</title>
-<g id="a_node33"><a xlink:href="../../../courses/GEOG272.html" xlink:title="GEOG272: Climatology and Hydrology" target="_top">
+<g id="a_node32"><a xlink:href="../../../courses/GEOG272.html" xlink:title="GEOG272: Climatology and Hydrology" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M499,-1436C499,-1436 460,-1436 460,-1436 454,-1436 448,-1430 448,-1424 448,-1424 448,-1412 448,-1412 448,-1406 454,-1400 460,-1400 460,-1400 499,-1400 499,-1400 505,-1400 511,-1406 511,-1412 511,-1412 511,-1424 511,-1424 511,-1430 505,-1436 499,-1436"/>
 <text text-anchor="middle" x="479.5" y="-1415.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG272</text>
 </a>
 </g>
 </g>
 <!-- course__GEOG313 -->
-<g id="node41" class="node">
+<g id="node42" class="node">
 <title>course__GEOG313</title>
-<g id="a_node41"><a xlink:href="../../../courses/GEOG313.html" xlink:title="GEOG313: Field Studies in Mountain Meteorology" target="_top">
+<g id="a_node42"><a xlink:href="../../../courses/GEOG313.html" xlink:title="GEOG313: Field Studies in Mountain Meteorology" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M788,-1485C788,-1485 749,-1485 749,-1485 743,-1485 737,-1479 737,-1473 737,-1473 737,-1461 737,-1461 737,-1455 743,-1449 749,-1449 749,-1449 788,-1449 788,-1449 794,-1449 800,-1455 800,-1461 800,-1461 800,-1473 800,-1473 800,-1479 794,-1485 788,-1485"/>
 <text text-anchor="middle" x="768.5" y="-1464.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG313</text>
 </a>
@@ -798,9 +783,9 @@
 <polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="730.84,-1329.02 736.57,-1324.31 729.16,-1324.42 730.84,-1329.02"/>
 </g>
 <!-- course__GEOG373 -->
-<g id="node43" class="node">
+<g id="node44" class="node">
 <title>course__GEOG373</title>
-<g id="a_node43"><a xlink:href="../../../courses/GEOG373.html" xlink:title="GEOG373: Applied Climatology" target="_top">
+<g id="a_node44"><a xlink:href="../../../courses/GEOG373.html" xlink:title="GEOG373: Applied Climatology" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M788,-1541C788,-1541 749,-1541 749,-1541 743,-1541 737,-1535 737,-1529 737,-1529 737,-1517 737,-1517 737,-1511 743,-1505 749,-1505 749,-1505 788,-1505 788,-1505 794,-1505 800,-1511 800,-1517 800,-1517 800,-1529 800,-1529 800,-1535 794,-1541 788,-1541"/>
 <text text-anchor="middle" x="768.5" y="-1520.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">GEOG373</text>
 </a>
@@ -831,9 +816,9 @@
 <polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="704.42,-828.72 711.73,-827.48 705.24,-823.89 704.42,-828.72"/>
 </g>
 <!-- course__STAT254 -->
-<g id="node45" class="node">
+<g id="node46" class="node">
 <title>course__STAT254</title>
-<g id="a_node45"><a xlink:href="../../../courses/STAT254.html" xlink:title="Equivalent or cross&#45;listed: STAT254: Probability and Statistics for Engineers | STAT260: Introduction to Probability and Statistics I" target="_top">
+<g id="a_node46"><a xlink:href="../../../courses/STAT254.html" xlink:title="Equivalent or cross&#45;listed: STAT254: Probability and Statistics for Engineers | STAT260: Introduction to Probability and Statistics I" target="_top">
 <path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M810.5,-260C810.5,-260 726.5,-260 726.5,-260 720.5,-260 714.5,-254 714.5,-248 714.5,-248 714.5,-236 714.5,-236 714.5,-230 720.5,-224 726.5,-224 726.5,-224 810.5,-224 810.5,-224 816.5,-224 822.5,-230 822.5,-236 822.5,-236 822.5,-248 822.5,-248 822.5,-254 816.5,-260 810.5,-260"/>
 <text text-anchor="middle" x="768.5" y="-239.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">STAT254 / STAT260</text>
 </a>
@@ -863,23 +848,53 @@
 <path fill="none" stroke="#7a8389" d="M536,-902.36C554.16,-907.71 573.76,-913.49 589.75,-918.2"/>
 <polygon fill="#7a8389" stroke="#7a8389" points="589.42,-920.66 596.83,-920.29 590.81,-915.96 589.42,-920.66"/>
 </g>
+<!-- course__BIOL186 -->
+<g id="node37" class="node">
+<title>course__BIOL186</title>
+<g id="a_node37"><a xlink:href="../../../courses/BIOL186.html" xlink:title="BIOL186: Physiology and Cell Biology" target="_top">
+<path fill="#f9f9f9" stroke="#363636" d="M495.5,-1808C495.5,-1808 463.5,-1808 463.5,-1808 457.5,-1808 451.5,-1802 451.5,-1796 451.5,-1796 451.5,-1784 451.5,-1784 451.5,-1778 457.5,-1772 463.5,-1772 463.5,-1772 495.5,-1772 495.5,-1772 501.5,-1772 507.5,-1778 507.5,-1784 507.5,-1784 507.5,-1796 507.5,-1796 507.5,-1802 501.5,-1808 495.5,-1808"/>
+<text text-anchor="middle" x="479.5" y="-1787.8" font-family="Avenir Next" font-size="9.00" fill="#363636">BIOL186</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL186&#45;&gt;choice_BIOL184_0_0 -->
+<g id="edge3" class="edge">
+<title>course__BIOL186&#45;&gt;choice_BIOL184_0_0</title>
+<path fill="none" stroke="#7a8389" d="M507.64,-1799.14C531.11,-1807.05 565.11,-1818.5 590.12,-1826.93"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="589.51,-1829.3 596.92,-1829.22 591.07,-1824.66 589.51,-1829.3"/>
+</g>
 <!-- course__CSC110&#45;&gt;course__CIVE210 -->
 <g id="edge12" class="edge">
 <title>course__CSC110&#45;&gt;course__CIVE210</title>
 <path fill="none" stroke="#5d6972" stroke-width="1.2" d="M528.73,-728.46C641.36,-720.18 919.5,-699.74 1017.31,-692.55"/>
 <polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1017.5,-694.99 1024.31,-692.04 1017.15,-690.1 1017.5,-694.99"/>
 </g>
+<!-- course__BIOL184 -->
+<g id="node39" class="node">
+<title>course__BIOL184</title>
+<g id="a_node39"><a xlink:href="../../../courses/BIOL184.html" xlink:title="BIOL184: Evolution and Biodiversity" target="_top">
+<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="1.6" d="M785,-1856C785,-1856 752,-1856 752,-1856 746,-1856 740,-1850 740,-1844 740,-1844 740,-1832 740,-1832 740,-1826 746,-1820 752,-1820 752,-1820 785,-1820 785,-1820 791,-1820 797,-1826 797,-1832 797,-1832 797,-1844 797,-1844 797,-1850 791,-1856 785,-1856"/>
+<text text-anchor="middle" x="768.5" y="-1835.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL184</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL184&#45;&gt;choice_BIOL186_0_0 -->
+<g id="edge6" class="edge">
+<title>course__BIOL184&#45;&gt;choice_BIOL186_0_0</title>
+<path fill="none" stroke="#7a8389" d="M797.31,-1838C820.61,-1838 853.92,-1838 878.65,-1838"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="878.7,-1840.45 885.7,-1838 878.7,-1835.55 878.7,-1840.45"/>
+</g>
 <!-- course__GEOG301&#45;&gt;choice_GEOG450_0 -->
 <g id="edge73" class="edge">
 <title>course__GEOG301&#45;&gt;choice_GEOG450_0</title>
-<path fill="none" stroke="#7a8389" d="M800.07,-1251.85C823.19,-1247.96 854.91,-1242.61 878.68,-1238.61"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="879.29,-1240.99 885.79,-1237.42 878.48,-1236.16 879.29,-1240.99"/>
+<path fill="none" stroke="#7a8389" d="M800.07,-1251.64C823.19,-1247.58 854.91,-1242.02 878.68,-1237.85"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="879.31,-1240.22 885.79,-1236.6 878.47,-1235.4 879.31,-1240.22"/>
 </g>
 <!-- course__GEOG371&#45;&gt;choice_GEOG450_0 -->
 <g id="edge75" class="edge">
 <title>course__GEOG371&#45;&gt;choice_GEOG450_0</title>
-<path fill="none" stroke="#7a8389" d="M800.24,-1297.98C808.35,-1293.89 817.06,-1289.37 825,-1285 843.24,-1274.97 863.2,-1263.1 879.39,-1253.24"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="880.94,-1255.17 885.63,-1249.43 878.38,-1250.99 880.94,-1255.17"/>
+<path fill="none" stroke="#7a8389" d="M800.26,-1298.03C808.38,-1293.93 817.08,-1289.4 825,-1285 843.29,-1274.84 863.25,-1262.75 879.44,-1252.69"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="881.03,-1254.58 885.67,-1248.79 878.44,-1250.42 881.03,-1254.58"/>
 </g>
 <!-- course__GEOG484 -->
 <g id="node52" class="node">
@@ -973,21 +988,6 @@
 <title>course__STAT254&#45;&gt;choice_STAT359_0</title>
 <path fill="none" stroke="#7a8389" d="M822.16,-260.11C841.16,-266.64 862.07,-273.83 878.93,-279.63"/>
 <polygon fill="#7a8389" stroke="#7a8389" points="878.47,-282.06 885.89,-282.02 880.07,-277.43 878.47,-282.06"/>
-</g>
-<!-- course__BIOL186 -->
-<g id="node46" class="node">
-<title>course__BIOL186</title>
-<g id="a_node46"><a xlink:href="../../../courses/BIOL186.html" xlink:title="BIOL186: Physiology and Cell Biology" target="_top">
-<path fill="#f9f9f9" stroke="#363636" d="M784.5,-1856C784.5,-1856 752.5,-1856 752.5,-1856 746.5,-1856 740.5,-1850 740.5,-1844 740.5,-1844 740.5,-1832 740.5,-1832 740.5,-1826 746.5,-1820 752.5,-1820 752.5,-1820 784.5,-1820 784.5,-1820 790.5,-1820 796.5,-1826 796.5,-1832 796.5,-1832 796.5,-1844 796.5,-1844 796.5,-1850 790.5,-1856 784.5,-1856"/>
-<text text-anchor="middle" x="768.5" y="-1835.8" font-family="Avenir Next" font-size="9.00" fill="#363636">BIOL186</text>
-</a>
-</g>
-</g>
-<!-- course__BIOL186&#45;&gt;choice_BIOL184_0_0 -->
-<g id="edge3" class="edge">
-<title>course__BIOL186&#45;&gt;choice_BIOL184_0_0</title>
-<path fill="none" stroke="#7a8389" d="M796.64,-1838C820.01,-1838 853.82,-1838 878.8,-1838"/>
-<polygon fill="#7a8389" stroke="#7a8389" points="878.92,-1840.45 885.92,-1838 878.92,-1835.55 878.92,-1840.45"/>
 </g>
 <!-- course__PHYS102B -->
 <g id="node47" class="node">
@@ -1142,14 +1142,14 @@
 <!-- choice_BIOL184_0_0&#45;&gt;course__BIOL184 -->
 <g id="edge4" class="edge">
 <title>choice_BIOL184_0_0&#45;&gt;course__BIOL184</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M885.8,-1827.6C868.77,-1821.34 845.91,-1813.84 825,-1810 713.21,-1789.45 577.83,-1789.48 515.28,-1790.87"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="514.96,-1788.42 508.02,-1791.04 515.08,-1793.32 514.96,-1788.42"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M651.14,-1838C673.95,-1838 707.26,-1838 732.39,-1838"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="732.58,-1840.45 739.58,-1838 732.58,-1835.55 732.58,-1840.45"/>
 </g>
 <!-- choice_BIOL186_0_0&#45;&gt;course__BIOL186 -->
 <g id="edge7" class="edge">
 <title>choice_BIOL186_0_0&#45;&gt;course__BIOL186</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M651.14,-1838C674.1,-1838 707.68,-1838 732.88,-1838"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="733.07,-1840.45 740.07,-1838 733.07,-1835.55 733.07,-1840.45"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M885.8,-1827.64C868.76,-1821.39 845.9,-1813.9 825,-1810 712.95,-1789.07 577.16,-1788.2 514.81,-1789.14"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="514.54,-1786.69 507.58,-1789.26 514.62,-1791.59 514.54,-1786.69"/>
 </g>
 <!-- choice_ECON383_0_0&#45;&gt;course__ECON383 -->
 <g id="edge19" class="edge">
@@ -1238,8 +1238,8 @@
 <!-- choice_GEOG450_0&#45;&gt;course__GEOG450 -->
 <g id="edge78" class="edge">
 <title>choice_GEOG450_0&#45;&gt;course__GEOG450</title>
-<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M940.28,-1241.57C961.35,-1248.44 991.18,-1258.17 1014.71,-1265.84"/>
-<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1014.07,-1268.21 1021.49,-1268.05 1015.59,-1263.55 1014.07,-1268.21"/>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M940.28,-1240.76C961.35,-1247.78 991.18,-1257.73 1014.71,-1265.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1014.07,-1267.94 1021.49,-1267.83 1015.62,-1263.29 1014.07,-1267.94"/>
 </g>
 <!-- choice_GEOG489_0_1&#45;&gt;course__GEOG489 -->
 <g id="edge85" class="edge">
