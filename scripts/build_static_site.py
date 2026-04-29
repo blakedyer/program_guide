@@ -240,6 +240,38 @@ class ContactPathRecord:
     stream: ProgramStreamRecord | None = None
 
 
+@dataclass(frozen=True)
+class GraphModeRecord:
+    key: str
+    asset_suffix: str
+    button_label: str
+    copy_text: str
+    year_ordered: bool = False
+
+
+PROGRAM_GRAPH_MODES = (
+    GraphModeRecord(
+        key="simplified",
+        asset_suffix="--simplified",
+        button_label="Simplified view",
+        copy_text="Simplified view: collapse recurring early-sequence options and keep the prerequisite flow readable.",
+    ),
+    GraphModeRecord(
+        key="year-ordered",
+        asset_suffix="--year-ordered",
+        button_label="Year-ordered view",
+        copy_text="Year-ordered view: uses the simplified graph structure, but keeps Year 1, Year 2, and Years 3 + 4 visually grouped in calendar order.",
+        year_ordered=True,
+    ),
+    GraphModeRecord(
+        key="full",
+        asset_suffix="",
+        button_label="Full view",
+        copy_text="Full view: keep the complete prerequisite structure and the separate course variants named in the last UVic calendar sync.",
+    ),
+)
+
+
 COURSE_CODE_PATTERN = re.compile(r"\b([A-Z]{2,5})\s*([0-9]{3}[A-Z]?)\b")
 CREDIT_ONLY_ONE_OF_PATTERN = re.compile(
     r"Credit will be granted for only one of ([^.]+)\.",
@@ -351,6 +383,35 @@ def program_support_codes(program: ProgramRecord, stream: ProgramStreamRecord | 
 
 def program_graph_sections(program: ProgramRecord, stream: ProgramStreamRecord | None = None) -> list[dict]:
     return program.sections + (stream.sections if stream is not None else [])
+
+
+def section_bucket_key(title: str) -> str | None:
+    reference_key = section_reference_key(title)
+    if reference_key == "year-1":
+        return "year-1"
+    if reference_key == "year-2":
+        return "year-2"
+    if reference_key in {"year-3", "year-4", "years-3-4"}:
+        return "years-3-4"
+    return None
+
+
+def build_program_year_group_lookup(
+    program: ProgramRecord,
+    course_group_lookup: dict[str, str],
+    stream: ProgramStreamRecord | None = None,
+) -> dict[str, str]:
+    grouped: dict[str, str] = {}
+
+    for section in program_graph_sections(program, stream):
+        bucket_key = section_bucket_key(section["title"])
+        if bucket_key is None:
+            continue
+        for code in collect_course_codes(section["rules"]):
+            group_code = course_group_lookup.get(code, code)
+            grouped.setdefault(group_code, bucket_key)
+
+    return grouped
 
 
 def stream_asset_stem(program: ProgramRecord, stream: ProgramStreamRecord) -> str:
@@ -2847,12 +2908,12 @@ def write_program_graph(
     course_groups: dict[str, CourseGroupRecord],
     course_group_lookup: dict[str, str],
     *,
-    simplified: bool,
+    mode: GraphModeRecord,
     stream: ProgramStreamRecord | None = None,
 ) -> None:
     graph_id = stream_asset_stem(program, stream) if stream is not None else program.code
     graph = graph_base(graph_id)
-    if simplified:
+    if mode.key != "full":
         graph.attr(nodesep="0.18", ranksep="0.58", pad="0.16")
     explicit_codes = {code for code in program_named_codes(program, stream) if code in courses}
     visible_codes = explicit_codes | {code for code in program_support_codes(program, stream) if code in courses}
@@ -2864,16 +2925,19 @@ def write_program_graph(
     prereq_map, _ = build_group_dependency_maps(visible_codes, courses, course_group_lookup)
     prereq_closure = compute_group_prereq_closure(prereq_map)
     depth_map = compute_group_depths(prereq_map)
+    explicit_groups = {course_group_lookup.get(code, code) for code in explicit_codes}
+    year_group_lookup = build_program_year_group_lookup(program, course_group_lookup, stream) if mode.year_ordered else {}
+    year_bucket_order = {"year-1": 0, "year-2": 1, "years-3-4": 2}
     visible_groups = sorted(
         prereq_map,
         key=lambda group_code: (
+            year_bucket_order.get(year_group_lookup.get(group_code, ""), 99) if mode.year_ordered else depth_map.get(group_code, 0),
             depth_map.get(group_code, 0),
-            0 if group_code in {course_group_lookup.get(code, code) for code in explicit_codes} else 1,
+            0 if group_code in explicit_groups else 1,
             subject_from_code(group_code),
             course_sort_key(group_code),
         ),
     )
-    explicit_groups = {course_group_lookup.get(code, code) for code in explicit_codes}
 
     for group_code in visible_groups:
         add_course_group_node(
@@ -2889,17 +2953,53 @@ def write_program_graph(
     for group_code in visible_groups:
         depth_groups.setdefault(depth_map.get(group_code, 0), []).append(group_code)
 
-    for depth in sorted(depth_groups):
-        rank_nodes = [course_group_id(group_code) for group_code in depth_groups[depth]]
-        with graph.subgraph(name=f"rank_program_depth_{depth}") as rank_subgraph:
-            rank_subgraph.attr(rank="same")
-            for node_id in rank_nodes:
-                rank_subgraph.node(node_id)
+    if mode.year_ordered:
+        bucket_groups: dict[str, list[str]] = {"year-1": [], "year-2": [], "years-3-4": [], "other": []}
+        for group_code in visible_groups:
+            bucket_groups[year_group_lookup.get(group_code, "other")].append(group_code)
+
+        previous_anchor: str | None = None
+        for bucket_key, bucket_label in CONTACT_SUMMARY_BUCKETS:
+            rank_nodes = [course_group_id(group_code) for group_code in bucket_groups[bucket_key]]
+            if not rank_nodes:
+                continue
+            anchor_id = f"year_band__{bucket_key}"
+            with graph.subgraph(name=f"cluster_{bucket_key}") as cluster:
+                cluster.attr(
+                    label=bucket_label,
+                    style="rounded,dashed",
+                    color="#c8d0d5",
+                    penwidth="1.0",
+                    fontname="Avenir Next",
+                    fontsize="11",
+                    rank="same",
+                    margin="14",
+                )
+                cluster.node(anchor_id, label="", shape="point", width="0.01", height="0.01", style="invis")
+                for node_id in rank_nodes:
+                    cluster.node(node_id)
+            if previous_anchor is not None:
+                graph.edge(previous_anchor, anchor_id, style="invis", weight="80")
+            previous_anchor = anchor_id
+
+        other_rank_nodes = [course_group_id(group_code) for group_code in bucket_groups["other"]]
+        if other_rank_nodes:
+            with graph.subgraph(name="rank_program_year_other") as rank_subgraph:
+                rank_subgraph.attr(rank="same")
+                for node_id in other_rank_nodes:
+                    rank_subgraph.node(node_id)
+    else:
+        for depth in sorted(depth_groups):
+            rank_nodes = [course_group_id(group_code) for group_code in depth_groups[depth]]
+            with graph.subgraph(name=f"rank_program_depth_{depth}") as rank_subgraph:
+                rank_subgraph.attr(rank="same")
+                for node_id in rank_nodes:
+                    rank_subgraph.node(node_id)
 
     drawn_edges: set[tuple[str, str, str]] = set()
     created_aux_nodes: set[str] = set()
-    bundle_registry: dict[tuple[tuple[str, str], ...], str] | None = {} if simplified else None
-    choice_registry: dict[tuple[str, tuple[tuple[str, str], ...]], str] | None = {} if simplified else None
+    bundle_registry: dict[tuple[tuple[str, str], ...], str] | None = {} if mode.key != "full" else None
+    choice_registry: dict[tuple[str, tuple[tuple[str, str], ...]], str] | None = {} if mode.key != "full" else None
     for target_group in sorted(visible_groups, key=course_sort_key):
         target_rule_nodes = dedupe_requirement_nodes(
             (
@@ -2932,8 +3032,7 @@ def write_program_graph(
         )
 
     svg_bytes = graph.pipe(format="svg")
-    suffix = "--simplified" if simplified else ""
-    (PROGRAM_GRAPH_DIR / f"{graph_id}{suffix}.svg").write_bytes(svg_bytes)
+    (PROGRAM_GRAPH_DIR / f"{graph_id}{mode.asset_suffix}.svg").write_bytes(svg_bytes)
 
 
 def write_course_graph(
@@ -3311,14 +3410,20 @@ def render_graph_shell(
     section_kicker: str,
     heading: str,
     note: str,
-    simplified_svg: str,
-    full_svg: str,
+    default_svg: str,
     aria_label: str,
     guide_html: str,
-    simplified_copy: str,
-    full_copy: str,
+    graph_modes: list[tuple[GraphModeRecord, str]],
     footer_html: str = "",
 ) -> str:
+    toolbar_buttons = []
+    for index, (mode, svg_path) in enumerate(graph_modes):
+        active_class = " is-active" if index == 0 else ""
+        toolbar_buttons.append(
+            f'<button class="toggle-button{active_class}" type="button" data-graph-mode="{e(mode.key)}" '
+            f'data-graph-src="{svg_path}" data-graph-download="{svg_path}" data-graph-copy="{e(mode.copy_text)}">{e(mode.button_label)}</button>'
+        )
+    default_copy = graph_modes[0][0].copy_text
     return f"""
     <div class="graph-shell" id="{e(shell_id)}" data-graph-switcher>
       <p class="section-kicker">{e(section_kicker)}</p>
@@ -3326,18 +3431,17 @@ def render_graph_shell(
       <p class="graph-note">{e(note)}</p>
       <div class="graph-toolbar">
         <div class="segmented-control" role="group" aria-label="{e(heading)} graph mode">
-          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="{simplified_svg}" data-graph-download="{simplified_svg}" data-graph-copy="{e(simplified_copy)}">Simplified view</button>
-          <button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="{full_svg}" data-graph-download="{full_svg}" data-graph-copy="{e(full_copy)}">Full view</button>
+          {"".join(toolbar_buttons)}
         </div>
-        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>{e(simplified_copy)}</p>
+        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>{e(default_copy)}</p>
       </div>
       {guide_html}
       <div class="graph-frame">
-        <object data="{simplified_svg}" data-graph-object type="image/svg+xml" aria-label="{e(aria_label)}">
-          <img src="{simplified_svg}" data-graph-fallback alt="{e(aria_label)}">
+        <object data="{default_svg}" data-graph-object type="image/svg+xml" aria-label="{e(aria_label)}">
+          <img src="{default_svg}" data-graph-fallback alt="{e(aria_label)}">
         </object>
       </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="{simplified_svg}">Open current SVG</a></p>
+      <p class="graph-actions"><a class="text-link" data-graph-link href="{default_svg}">Open current SVG</a></p>
       {footer_html}
     </div>
     """
@@ -4294,12 +4398,10 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
 
     graph_key_html = render_program_graph_key()
     simplified_program_group_lookup = build_course_groups(courses, aggressive=True)[1]
-    simplified_copy = (
-        "Simplified view: collapse recurring early-sequence options and keep the prerequisite flow readable."
-    )
-    full_copy = (
-        "Full view: keep the complete prerequisite structure and the separate course variants named in the last UVic calendar sync."
-    )
+    program_graph_modes = [
+        (mode, "../assets/graphs/programs/{asset_stem}" + mode.asset_suffix + ".svg")
+        for mode in PROGRAM_GRAPH_MODES
+    ]
     if program.streams:
         graph_intro = (
             '<div class="section-heading">'
@@ -4326,6 +4428,10 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
             else:
                 stream_note = "This map combines the shared program structure with the published requirements for this stream."
             asset_stem = stream_asset_stem(program, stream)
+            stream_graph_modes = [
+                (mode, path_template.format(asset_stem=asset_stem))
+                for mode, path_template in program_graph_modes
+            ]
             additional_requirements_html = render_additional_requirements(
                 program_graph_note_lines(program, stream),
                 title="Additional program requirements",
@@ -4336,12 +4442,10 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
                     section_kicker="Stream Map",
                     heading=stream_heading,
                     note=stream_note,
-                    simplified_svg=f"../assets/graphs/programs/{asset_stem}--simplified.svg",
-                    full_svg=f"../assets/graphs/programs/{asset_stem}.svg",
+                    default_svg=stream_graph_modes[0][1],
                     aria_label=f"{program.name} {stream.title} graph",
                     guide_html=guide_html,
-                    simplified_copy=simplified_copy,
-                    full_copy=full_copy,
+                    graph_modes=stream_graph_modes,
                     footer_html=additional_requirements_html,
                 )
             )
@@ -4364,17 +4468,19 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
             program_graph_note_lines(program, None),
             title="Additional program requirements",
         )
+        page_graph_modes = [
+            (mode, path_template.format(asset_stem=program.code))
+            for mode, path_template in program_graph_modes
+        ]
         graphs_html = render_graph_shell(
             shell_id="program-graph",
             section_kicker="Program Graph",
             heading="Program requirements arranged by prerequisite flow.",
             note="The graph is driven by prerequisites from left to right (instead of year suggestions). The simplified view keeps the sequence readable while the full view is closer to the real data structure.",
-            simplified_svg=f"../assets/graphs/programs/{program.code}--simplified.svg",
-            full_svg=f"../assets/graphs/programs/{program.code}.svg",
+            default_svg=page_graph_modes[0][1],
             aria_label=f"{program.name} program graph",
             guide_html=guide_html,
-            simplified_copy=simplified_copy,
-            full_copy=full_copy,
+            graph_modes=page_graph_modes,
             footer_html=additional_requirements_html,
         )
         graph_anchor = "#program-graph"
@@ -4535,12 +4641,29 @@ def render_course_page(
         section_kicker="Course Graph",
         heading="Prerequisite flow into the course, and dependencies flow out from it.",
         note="Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.",
-        simplified_svg=f"../assets/graphs/courses/{course.code}--simplified.svg",
-        full_svg=f"../assets/graphs/courses/{course.code}.svg",
+        default_svg=f"../assets/graphs/courses/{course.code}--simplified.svg",
         aria_label=f"{course.code} course graph",
         guide_html=guide_html,
-        simplified_copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.",
-        full_copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.",
+        graph_modes=[
+            (
+                GraphModeRecord(
+                    key="simplified",
+                    asset_suffix="--simplified",
+                    button_label="Simplified view",
+                    copy_text="Simplified view: direct prerequisites for the course, then one dependency step downstream.",
+                ),
+                f"../assets/graphs/courses/{course.code}--simplified.svg",
+            ),
+            (
+                GraphModeRecord(
+                    key="full",
+                    asset_suffix="",
+                    button_label="Full view",
+                    copy_text="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.",
+                ),
+                f"../assets/graphs/courses/{course.code}.svg",
+            ),
+        ],
         footer_html=additional_requirements_html,
     )
 
@@ -4973,37 +5096,24 @@ def main() -> None:
     prepare_output_directory()
 
     for program in programs.values():
-        write_program_graph(
-            program,
-            courses,
-            simplified_course_groups,
-            simplified_course_group_lookup,
-            simplified=True,
-        )
-        write_program_graph(
-            program,
-            courses,
-            course_groups,
-            course_group_lookup,
-            simplified=False,
-        )
+        for mode in PROGRAM_GRAPH_MODES:
+            write_program_graph(
+                program,
+                courses,
+                simplified_course_groups if mode.key != "full" else course_groups,
+                simplified_course_group_lookup if mode.key != "full" else course_group_lookup,
+                mode=mode,
+            )
         for stream in program.streams:
-            write_program_graph(
-                program,
-                courses,
-                simplified_course_groups,
-                simplified_course_group_lookup,
-                simplified=True,
-                stream=stream,
-            )
-            write_program_graph(
-                program,
-                courses,
-                course_groups,
-                course_group_lookup,
-                simplified=False,
-                stream=stream,
-            )
+            for mode in PROGRAM_GRAPH_MODES:
+                write_program_graph(
+                    program,
+                    courses,
+                    simplified_course_groups if mode.key != "full" else course_groups,
+                    simplified_course_group_lookup if mode.key != "full" else course_group_lookup,
+                    mode=mode,
+                    stream=stream,
+                )
 
     for course in courses.values():
         write_course_graph(
