@@ -172,6 +172,12 @@ COURSE_THEME_RULES = (
     ("physics", "Physics", ("physics", "mechanic", "dynamics", "thermodynam", "optics", "quantum", "fluid")),
 )
 
+CONTACT_SUMMARY_BUCKETS = (
+    ("year-1", "Year 1"),
+    ("year-2", "Year 2"),
+    ("years-3-4", "Years 3 + 4"),
+)
+
 
 @dataclass
 class CourseRecord:
@@ -3080,9 +3086,11 @@ def render_layout(
     hero_actions: str,
     content: str,
     hero_image: str | None = None,
+    body_class: str = "",
 ) -> str:
     hero_class = "hero hero--guide hero--photo" if hero_image else "hero hero--guide"
     hero_style = f' style="--hero-image: url(\'{hero_image}\')"' if hero_image else ""
+    body_class_attr = f' class="{e(body_class)}"' if body_class else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -3094,7 +3102,7 @@ def render_layout(
   <link rel="stylesheet" href="{base}program-guide.css">
   <script defer src="{base}program-guide.js"></script>
 </head>
-<body>
+<body{body_class_attr}>
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="{base}index.html">{e(SITE_NAME)}</a>
@@ -3496,6 +3504,79 @@ def render_program_card(program: ProgramRecord, base: str, courses: dict[str, Co
     )
 
 
+def render_contact_overview_summary_value(summary: dict | None) -> str:
+    if not summary:
+        return '<span class="program-hours-cell__value">—</span>'
+    if summary.get("has_field_course"):
+        visible_value = e(summary["average_range"])
+        spoken_value = e(summary["average_range"].replace(" (+F)", ""))
+        return (
+            '<span class="program-hours-cell__value" title="Includes summer field course">'
+            f'<span aria-hidden="true">{visible_value}</span>'
+            f'<span class="sr-only">{spoken_value}, includes summer field course</span>'
+            "</span>"
+        )
+    return f'<span class="program-hours-cell__value">{e(summary["average_range"])}</span>'
+
+
+def render_contact_overview_cell(paths: list[dict], bucket_key: str) -> str:
+    if not paths:
+        return '<div class="program-hours-cell"><span class="program-hours-cell__value">—</span></div>'
+    if len(paths) == 1:
+        return (
+            '<div class="program-hours-cell">'
+            f'{render_contact_overview_summary_value(paths[0]["summaries"].get(bucket_key))}'
+            "</div>"
+        )
+
+    entries = []
+    for path in paths:
+        path_label = "Program path" if not path["is_stream"] else path["title"]
+        entries.append(
+            '<div class="program-hours-cell__entry">'
+            f'<span class="program-hours-cell__path">{e(path_label)}</span>'
+            f'{render_contact_overview_summary_value(path["summaries"].get(bucket_key))}'
+            "</div>"
+        )
+    return '<div class="program-hours-cell program-hours-cell--stacked">' + "".join(entries) + "</div>"
+
+
+def render_program_overview_row(program: ProgramRecord, courses: dict[str, CourseRecord]) -> str:
+    named_codes = program_named_codes(program)
+    eos_count = sum(1 for code in named_codes if subject_from_code(code) == "EOS")
+    category = program_primary_category_label(program)
+    category_tokens = program_category_tokens(program)
+    contact_paths = build_program_contact_overview_paths(program, courses)
+    official_link = (
+        f'<a class="text-link" href="{e(program.catalog_url)}">Official calendar</a>'
+        if program.catalog_url
+        else '<span class="meta-line">Official calendar unavailable</span>'
+    )
+    return (
+        '<tr class="program-overview-row"'
+        f' data-filter-category="{e(filter_token_string(category_tokens))}">'
+        '<td class="program-overview-table__program" data-label="Program">'
+        f'<a class="program-overview-table__primary-link" href="{program_page_href("", program.code)}">{e(program.name)}</a>'
+        f'<p class="program-overview-table__subtitle">{e(program.title)}</p>'
+        f'<p class="program-overview-table__meta">{len(named_codes)} named courses | {eos_count} EOS | {len(program.support_codes)} related prerequisites</p>'
+        "</td>"
+        '<td class="program-overview-table__type" data-label="Type">'
+        f'<span class="program-overview-table__type-label">{e(category)}</span>'
+        f'<span class="program-overview-table__code">{e(program.code)}</span>'
+        "</td>"
+        f'<td class="program-overview-table__hours" data-label="Year 1">{render_contact_overview_cell(contact_paths, "year-1")}</td>'
+        f'<td class="program-overview-table__hours" data-label="Year 2">{render_contact_overview_cell(contact_paths, "year-2")}</td>'
+        f'<td class="program-overview-table__hours" data-label="Years 3 + 4">{render_contact_overview_cell(contact_paths, "years-3-4")}</td>'
+        '<td class="program-overview-table__details" data-label="Details">'
+        '<div class="program-overview-table__links">'
+        f'<a class="text-link" href="{program_page_href("", program.code)}">Open program</a>'
+        f"{official_link}"
+        "</div>"
+        "</td>"
+        "</tr>"
+    )
+
+
 def render_course_card(course: CourseRecord, base: str, *, support: bool = False) -> str:
     card_type = "Partner-department course" if support else "EOS course"
     level_label = course_level_label(course.code)
@@ -3735,11 +3816,7 @@ def build_contact_year_summaries(
         bucket_nodes[bucket_key].append(section_node)
 
     summaries = []
-    for bucket_key, bucket_label in (
-        ("year-1", "Year 1"),
-        ("year-2", "Year 2"),
-        ("years-3-4", "Years 3 + 4"),
-    ):
+    for bucket_key, bucket_label in CONTACT_SUMMARY_BUCKETS:
         nodes = bucket_nodes[bucket_key]
         if not nodes:
             continue
@@ -3786,6 +3863,33 @@ def build_contact_year_summaries(
             }
         )
     return summaries
+
+
+def build_program_contact_overview_paths(
+    program: ProgramRecord,
+    courses: dict[str, CourseRecord],
+) -> list[dict]:
+    overview_paths = []
+    for path in build_contact_paths(program):
+        summary_lookup = {
+            summary["key"]: {
+                "label": summary["label"],
+                "average_range": summary["average_range"],
+                "has_field_course": summary["has_field_course"],
+                "term_count": summary["term_count"],
+            }
+            for summary in build_contact_year_summaries(path, program, courses)
+        }
+        overview_paths.append(
+            {
+                "slug": path.slug,
+                "title": path.title,
+                "note": path.note,
+                "is_stream": path.stream is not None,
+                "summaries": summary_lookup,
+            }
+        )
+    return overview_paths
 
 
 def render_contact_selection_flags(flags: set[str] | None) -> str:
@@ -4502,18 +4606,10 @@ def render_course_page(
 
 
 def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[str, CourseRecord], generated_at: str) -> str:
-    cards = "".join(
-        render_program_card(program, "", courses)
-        for program in sorted(programs.values(), key=lambda item: item.name)
-    )
-    metric_cards = "".join(
-        [
-            render_metric_card(str(len(programs)), "Programs in the SEOS set"),
-            render_metric_card(str(sum(1 for program in programs.values() if "Honours" in program.name)), "Honours and combined honours variants"),
-            render_metric_card(str(sum(1 for program in programs.values() if "Minor" in program.name)), "Minors"),
-            render_metric_card(e(generated_at), "Last UVic calendar sync"),
-        ]
-    )
+    programs_sorted = sorted(programs.values(), key=lambda item: item.name)
+    rows = "".join(render_program_overview_row(program, courses) for program in programs_sorted)
+    combined_count = sum(1 for program in programs.values() if "combined" in program_category_tokens(program))
+    seos_only_count = len(programs) - combined_count
     category_filters = render_filter_group(
         "Category",
         [
@@ -4528,23 +4624,43 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
     )
     content = f"""
     <section class="section section--tight">
-      <div class="metric-grid">{metric_cards}</div>
+      <div class="overview-strip">
+        <p><strong>{len(programs)}</strong> programs in the current atlas</p>
+        <p><strong>{combined_count}</strong> combined variants and <strong>{seos_only_count}</strong> SEOS-only options</p>
+        <p><strong>Last UVic calendar sync</strong> {e(generated_at)}</p>
+      </div>
     </section>
 
-    <section class="section">
-      <div class="section-heading">
-        <p class="section-kicker">Program Directory</p>
-        <h2>Published SEOS and related program structures.</h2>
-        <p>Each page turns the published program structure into a prerequisite-flow map.</p>
+    <section class="section section--program-overview">
+      <div class="section-heading section-heading--compact">
+        <p class="section-kicker">Program Comparison</p>
+        <h2>Compare contact-hour load, then open the guide you want.</h2>
+        <p>Program names are the main links. The table uses the same compact contact-hour summaries shown on the individual program pages.</p>
       </div>
-      <div class="filter-panel" data-card-filter>
+      <div class="filter-panel filter-panel--compact" data-card-filter>
         <div class="filter-panel__groups">
           {category_filters}
         </div>
+        <p class="filter-panel__note">Filter by program category. <span aria-hidden="true">(+F)</span><span class="sr-only"> plus F</span> means the year group includes a summer field course.</p>
       </div>
-      <div class="directory-grid" data-filter-grid>{cards}</div>
+      <div class="table-shell">
+        <table class="program-overview-table">
+          <caption class="sr-only">SEOS program overview with program links, program type, contact hour summaries for Year 1, Year 2, and Years 3 plus 4, and detail links.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Program</th>
+              <th scope="col">Type</th>
+              <th scope="col">Year 1</th>
+              <th scope="col">Year 2</th>
+              <th scope="col">Years 3 + 4</th>
+              <th scope="col">Details</th>
+            </tr>
+          </thead>
+          <tbody data-filter-grid>{rows}</tbody>
+        </table>
+      </div>
       <p class="empty-state empty-state--filtered is-hidden" data-filter-empty>No programs match the current filters.</p>
-      </section>
+    </section>
     """
     hero_actions = (
         '<div class="hero__actions">'
@@ -4559,11 +4675,12 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         title=f"Programs | {SITE_NAME}",
         description="Published SEOS and related program structures at UVic, generated as static curriculum maps with node graphs.",
         eyebrow="Programs",
-        hero_title="SEOS programs and combined programs.",
-        hero_lede="Current published structures, rebuilt as static pages and SVG graphs from the catalog snapshot.",
+        hero_title="Program overview",
+        hero_lede="Compare program type and contact-hour load at a glance, then open the full guide page for any program.",
         hero_actions=hero_actions,
         content=content,
         hero_image=f"{HERO_ASSET_URL}program-overview.jpg",
+        body_class="page--program-overview",
     )
 
 

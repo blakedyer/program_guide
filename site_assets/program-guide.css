@@ -122,6 +122,18 @@ a:hover {
   padding-bottom: 4rem;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .hero {
   position: relative;
   display: grid;
@@ -248,6 +260,11 @@ a:hover {
   margin-top: 1.8rem;
 }
 
+.page--program-overview .hero {
+  min-height: 24rem;
+  padding: 5rem 0 2.2rem;
+}
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -336,6 +353,36 @@ a:hover {
 
 .section-heading h2 {
   font-size: clamp(1.9rem, 4vw, 3rem);
+}
+
+.section-heading--compact {
+  max-width: 60rem;
+  margin-bottom: 0.9rem;
+}
+
+.section-heading--compact h2 {
+  font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+}
+
+.overview-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1.2rem;
+  align-items: center;
+  padding: 0.9rem 1.15rem;
+  border: 1px solid rgba(27, 39, 48, 0.08);
+  border-radius: 1rem;
+  background: rgba(255, 253, 249, 0.82);
+}
+
+.overview-strip p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.overview-strip strong {
+  color: var(--ink);
 }
 
 .split-callout {
@@ -786,6 +833,18 @@ a:hover {
   gap: 0.9rem;
 }
 
+.filter-panel--compact {
+  gap: 0.75rem;
+  margin: 0.9rem 0 1rem;
+  padding: 0.9rem 1rem;
+}
+
+.filter-panel__note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .filter-group {
   display: grid;
   gap: 0.5rem;
@@ -821,6 +880,142 @@ a:hover {
   background: rgba(215, 233, 239, 0.86);
   border-color: rgba(31, 79, 102, 0.28);
   color: var(--ink);
+}
+
+.section--program-overview {
+  padding-top: 1.15rem;
+}
+
+.table-shell {
+  overflow-x: auto;
+  border: 1px solid rgba(27, 39, 48, 0.08);
+  border-radius: 1.25rem;
+  background: rgba(255, 253, 249, 0.88);
+}
+
+.program-overview-table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+.program-overview-table caption {
+  caption-side: top;
+}
+
+.program-overview-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.95rem 1rem;
+  border-bottom: 1px solid rgba(27, 39, 48, 0.1);
+  background: rgba(248, 245, 239, 0.96);
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.program-overview-table tbody tr + tr td {
+  border-top: 1px solid rgba(27, 39, 48, 0.08);
+}
+
+.program-overview-table td {
+  padding: 0.95rem 1rem;
+  vertical-align: top;
+}
+
+.program-overview-table__program {
+  min-width: 19rem;
+}
+
+.program-overview-table__primary-link {
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.program-overview-table__primary-link:hover {
+  color: var(--accent);
+}
+
+.program-overview-table__subtitle,
+.program-overview-table__meta {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.program-overview-table__subtitle {
+  font-size: 0.92rem;
+}
+
+.program-overview-table__meta {
+  font-size: 0.88rem;
+}
+
+.program-overview-table__type {
+  min-width: 10rem;
+}
+
+.program-overview-table__type-label,
+.program-overview-table__code {
+  display: block;
+}
+
+.program-overview-table__type-label {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.program-overview-table__code {
+  margin-top: 0.22rem;
+  color: var(--muted);
+  font-size: 0.88rem;
+  letter-spacing: 0.06em;
+}
+
+.program-overview-table__hours {
+  min-width: 11rem;
+}
+
+.program-hours-cell,
+.program-hours-cell--stacked,
+.program-hours-cell__entry,
+.program-overview-table__links {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.program-hours-cell__entry + .program-hours-cell__entry {
+  padding-top: 0.45rem;
+  border-top: 1px solid rgba(27, 39, 48, 0.06);
+}
+
+.program-hours-cell__path {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.program-hours-cell__value {
+  color: var(--ink);
+  font-size: 0.94rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.program-overview-table__details {
+  min-width: 10.5rem;
+}
+
+.program-overview-table__links {
+  justify-items: start;
 }
 
 .search-field {
@@ -1177,6 +1372,10 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .overview-strip {
+    gap: 0.55rem 0.9rem;
+  }
+
   .contact-compact__button {
     grid-template-columns: 1fr;
   }
@@ -1218,6 +1417,87 @@ a:hover {
 }
 
 @media (max-width: 640px) {
+  .page--program-overview .hero {
+    min-height: 20rem;
+    padding-top: 4.6rem;
+    padding-bottom: 1.7rem;
+  }
+
+  .overview-strip {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .filter-panel--compact {
+    padding: 0.85rem 0.9rem;
+  }
+
+  .table-shell {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  .program-overview-table {
+    min-width: 0;
+  }
+
+  .program-overview-table thead {
+    display: none;
+  }
+
+  .program-overview-table tbody {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .program-overview-table tbody tr {
+    display: grid;
+    gap: 0.55rem;
+    padding: 1rem;
+    border: 1px solid rgba(27, 39, 48, 0.08);
+    border-radius: 1rem;
+    background: rgba(255, 253, 249, 0.88);
+    box-shadow: var(--shadow);
+  }
+
+  .program-overview-table tbody tr + tr td,
+  .program-overview-table td {
+    border-top: 0;
+  }
+
+  .program-overview-table td {
+    display: grid;
+    gap: 0.24rem;
+    padding: 0;
+    min-width: 0;
+  }
+
+  .program-overview-table td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 0.77rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .program-overview-table__program::before {
+    content: "Program";
+  }
+
+  .program-overview-table__primary-link {
+    font-size: 1.08rem;
+  }
+
+  .program-overview-table__details .program-overview-table__links {
+    gap: 0.45rem;
+  }
+
+  .program-hours-cell__value {
+    white-space: normal;
+  }
+
   .contact-compact__summary-grid,
   .contact-compact__details {
     grid-template-columns: 1fr;
