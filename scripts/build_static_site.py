@@ -225,6 +225,15 @@ class ProgramStreamRecord:
     support_codes: list[str] = field(default_factory=list)
 
 
+@dataclass
+class ContactPathRecord:
+    slug: str
+    title: str
+    note: str
+    sections: list[dict]
+    stream: ProgramStreamRecord | None = None
+
+
 COURSE_CODE_PATTERN = re.compile(r"\b([A-Z]{2,5})\s*([0-9]{3}[A-Z]?)\b")
 CREDIT_ONLY_ONE_OF_PATTERN = re.compile(
     r"Credit will be granted for only one of ([^.]+)\.",
@@ -653,6 +662,704 @@ def parse_program_streams(detail: dict) -> list["ProgramStreamRecord"]:
             )
         )
     return streams
+
+
+def course_credit_value(code: str, courses: dict[str, CourseRecord]) -> float:
+    course = courses.get(code)
+    if course is None:
+        return 1.5
+    credits = course.detail.get("credits") or {}
+    if isinstance(credits, dict):
+        value = credits.get("value")
+        if value is not None:
+            try:
+                return float(value)
+            except (TypeError, ValueError):
+                pass
+        nested = credits.get("credits")
+        if isinstance(nested, dict):
+            for key in ("max", "min"):
+                raw = nested.get(key)
+                if raw is None:
+                    continue
+                try:
+                    return float(raw)
+                except (TypeError, ValueError):
+                    continue
+    return 1.5
+
+
+def parse_hours_catalog_text(raw_text: str | None) -> tuple[float, float, float] | None:
+    if not raw_text:
+        return None
+    match = re.match(r"^\s*([0-9.]+)\s*-\s*([0-9.]+)\s*-\s*([0-9.]+)\s*$", raw_text)
+    if not match:
+        return None
+    return tuple(float(match.group(index)) for index in range(1, 4))
+
+
+def format_hours_pattern(lecture: float, lab: float, tutorial: float) -> str:
+    return (
+        f"{format_unit_count(lecture)}-"
+        f"{format_unit_count(lab)}-"
+        f"{format_unit_count(tutorial)}"
+    )
+
+
+def infer_contact_hours_from_calendar_text(code: str, courses: dict[str, CourseRecord]) -> dict:
+    course = courses.get(code)
+    if course is None:
+        lecture = 3.0
+        lab = 0.0
+        tutorial = 0.0
+        return {
+            "lecture": lecture,
+            "lab": lab,
+            "tutorial": tutorial,
+            "total": lecture + lab + tutorial,
+            "pattern": format_hours_pattern(lecture, lab, tutorial),
+            "source": "assumed",
+            "label": "assumed lecture",
+            "note": "Course detail is not in the current sync, so the estimate falls back to a lecture-only 3 contact hours per week.",
+        }
+
+    parsed_pattern = parse_hours_catalog_text(course.detail.get("hoursCatalogText"))
+    if parsed_pattern is not None:
+        lecture, lab, tutorial = parsed_pattern
+        return {
+            "lecture": lecture,
+            "lab": lab,
+            "tutorial": tutorial,
+            "total": lecture + lab + tutorial,
+            "pattern": format_hours_pattern(lecture, lab, tutorial),
+            "source": "calendar",
+            "label": "official calendar hours",
+            "note": (
+                f"UVic publishes {format_hours_pattern(lecture, lab, tutorial)} in the current calendar snapshot."
+            ),
+        }
+
+    title = course.name or course.code
+    detail_text = normalize_text(
+        " ".join(
+            part
+            for part in (
+                title,
+                BeautifulSoup(course.detail.get("description") or "", "html.parser").get_text(" ", strip=True),
+                BeautifulSoup(course.detail.get("supplementalNotes") or "", "html.parser").get_text(" ", strip=True),
+            )
+            if part
+        )
+    ).lower()
+    has_lab = bool(
+        re.search(
+            r"\b(lab|labs|laboratory|laboratories|field course|field school|field trip|field component|field work|fieldwork|mapping)\b",
+            detail_text,
+        )
+    )
+    has_tutorial = bool(
+        re.search(r"\b(tutorial|tutorials|seminar|seminars|colloquium|colloquia)\b", detail_text)
+    )
+    lecture = 3.0
+    lab = 3.0 if has_lab else 0.0
+    tutorial = 2.0 if has_tutorial else 0.0
+    assumption_bits = ["3 lecture hours"]
+    if has_lab:
+        assumption_bits.append("3 lab/field hours")
+    if has_tutorial:
+        assumption_bits.append("2 tutorial/seminar hours")
+    if len(assumption_bits) == 1:
+        assumption_note = "No calendar hour pattern is published, so the estimate assumes a lecture-only 3 contact hours per week."
+    else:
+        assumption_note = (
+            "No calendar hour pattern is published, so the estimate assumes "
+            + ", ".join(assumption_bits[:-1])
+            + (" and " + assumption_bits[-1] if len(assumption_bits) > 1 else assumption_bits[-1])
+            + " based on the course title/description."
+        )
+    return {
+        "lecture": lecture,
+        "lab": lab,
+        "tutorial": tutorial,
+        "total": lecture + lab + tutorial,
+        "pattern": format_hours_pattern(lecture, lab, tutorial),
+        "source": "assumed",
+        "label": "assumed hours",
+        "note": assumption_note,
+    }
+
+
+def course_level_number(code: str) -> int | None:
+    match = re.search(r"[A-Z]{2,5}\s*([0-9])", code)
+    if not match:
+        return None
+    return int(match.group(1))
+
+
+def section_year_levels(title: str) -> set[int]:
+    lowered = normalize_text(title).lower()
+    numbers = [int(value) for value in re.findall(r"\b([1-4])\b", lowered)]
+    if not numbers:
+        return set()
+    return set(numbers)
+
+
+def section_reference_key(text: str) -> str:
+    lowered = normalize_text(text).lower()
+    if "year 1" in lowered:
+        return "year-1"
+    if "year 2" in lowered:
+        return "year-2"
+    if "year 3 and 4" in lowered or "years 3 and 4" in lowered:
+        return "years-3-4"
+    if "year 3" in lowered:
+        return "year-3"
+    if "year 4" in lowered:
+        return "year-4"
+    return slugify_token(lowered or "program-requirements")
+
+
+def section_is_combined_years(title: str) -> bool:
+    lowered = normalize_text(title).lower()
+    return "years " in lowered or "year 3 and 4" in lowered
+
+
+def extract_grouped_subject_codes(text: str) -> set[str]:
+    codes: set[str] = set()
+    for match in re.finditer(
+        r"\b([A-Z]{2,5})\s+((?:[0-9]{3}[A-Z]?(?:\s*,\s*)?){2,})",
+        text,
+    ):
+        subject = match.group(1)
+        for number in re.findall(r"[0-9]{3}[A-Z]?", match.group(2)):
+            codes.add(f"{subject}{number}")
+    return codes
+
+
+def extract_excluded_course_codes(text: str) -> set[str]:
+    exclusions: set[str] = set()
+    for match in re.finditer(r"excluding\s+([^)]+)", text, re.IGNORECASE):
+        exclusions.update(extract_course_codes_from_text(match.group(1)))
+        exclusions.update(extract_grouped_subject_codes(match.group(1)))
+    return exclusions
+
+
+def course_matches_subject_level_filters(
+    code: str,
+    text: str,
+    course: CourseRecord | None,
+) -> bool:
+    number_match = re.search(r"([0-9]{3})", code)
+    if number_match is None:
+        return False
+    subject = subject_from_code(code)
+    number = int(number_match.group(1))
+    level = course_level_number(code)
+    if level is None:
+        return False
+
+    for match in re.finditer(
+        r"\b((?:[A-Z]{2,5}\s*(?:or\s+)?)*)\s*([0-9]{3})\s*-\s*([0-9]{3})",
+        text,
+    ):
+        subjects = re.findall(r"[A-Z]{2,5}", match.group(1))
+        if subject in subjects and int(match.group(2)) <= number <= int(match.group(3)):
+            return True
+
+    if re.search(rf"\b{re.escape(subject)}\s*{level}00-level\b", text):
+        return True
+
+    if re.search(r"300-\s*or\s*400-level", text, re.IGNORECASE):
+        subjects = set(re.findall(r"\b[A-Z]{2,5}\b", text))
+        if subject in subjects and level in {3, 4}:
+            return True
+
+    lowered = text.lower()
+    if subject == "EOS" and ("oceanograph" in lowered or "ocean science" in lowered):
+        haystack = normalize_text(
+            " ".join(
+                part
+                for part in (
+                    course.name if course is not None else code,
+                    BeautifulSoup(course.detail.get("description") or "", "html.parser").get_text(" ", strip=True)
+                    if course is not None
+                    else "",
+                )
+                if part
+            )
+        ).lower()
+        return "ocean" in haystack or "marine" in haystack
+
+    return False
+
+
+def program_uses_stream_placeholders(program: ProgramRecord) -> bool:
+    return any(
+        "stream requirements" in note.lower()
+        for note in program.text_requirements
+    )
+
+
+def resolve_elective_candidate_codes(
+    text: str,
+    *,
+    section_title: str,
+    program: ProgramRecord,
+    stream: ProgramStreamRecord | None,
+    courses: dict[str, CourseRecord],
+    path_codes: set[str],
+) -> tuple[list[str], str]:
+    normalized = normalize_text(text)
+    lowered = normalized.lower()
+    explicit_codes = set(extract_course_codes_from_text(normalized))
+    explicit_codes.update(extract_grouped_subject_codes(normalized))
+    excluded_codes = extract_excluded_course_codes(normalized)
+
+    if "stream requirements" in lowered and stream is not None:
+        target_key = section_reference_key(normalized)
+        stream_sections = [
+            section
+            for section in stream.sections
+            if section_reference_key(section["title"]) == target_key
+        ]
+        candidate_codes = unique_ordered(
+            code
+            for section in stream_sections
+            for code in collect_course_codes(section["rules"])
+        )
+        note = f"Resolved from the published {stream.title} section referenced by this rule."
+        return candidate_codes, note
+
+    candidate_codes: set[str] = set(explicit_codes)
+    for code, course in courses.items():
+        if code in excluded_codes:
+            continue
+        if course_matches_subject_level_filters(code, normalized, course):
+            candidate_codes.add(code)
+
+    filtered_codes = [
+        code
+        for code in unique_ordered(sorted(candidate_codes, key=course_sort_key))
+        if code not in excluded_codes and course_credit_value(code, courses) > 0
+    ]
+    available_after_exclusion = [code for code in filtered_codes if code not in path_codes]
+    if available_after_exclusion:
+        filtered_codes = available_after_exclusion
+    elif filtered_codes:
+        filtered_codes = filtered_codes
+
+    if filtered_codes:
+        missing_codes = [code for code in filtered_codes if code not in courses]
+        note_bits = ["Range uses the eligible published candidates that this guide can identify from the rule text."]
+        if excluded_codes:
+            note_bits.append(
+                "Excluded "
+                + ", ".join(sorted(excluded_codes, key=course_sort_key))
+                + " because the rule marks them as exclusions."
+            )
+        if missing_codes:
+            note_bits.append(
+                "Some candidates are not in the current course-detail sync and therefore use the fallback assumption."
+            )
+        return filtered_codes, " ".join(note_bits)
+
+    generic_levels = section_year_levels(section_title)
+    fallback_codes = [
+        code
+        for code, course in sorted(courses.items(), key=lambda item: course_sort_key(item[0]))
+        if course_credit_value(code, courses) > 0
+        and code not in excluded_codes
+        and (not generic_levels or course_level_number(code) in generic_levels)
+    ]
+    available_after_exclusion = [code for code in fallback_codes if code not in path_codes]
+    if available_after_exclusion:
+        fallback_codes = available_after_exclusion
+    note = (
+        "The rule does not publish a concrete candidate list, so the range falls back to the course pool captured in this guide"
+        + (
+            f" for year level{'s' if len(generic_levels) > 1 else ''} {', '.join(str(level) for level in sorted(generic_levels))}."
+            if generic_levels
+            else "."
+        )
+    )
+    return fallback_codes, note
+
+
+def choose_items_by_count(
+    items: list[dict],
+    required_count: int,
+) -> tuple[list[int], list[int]]:
+    if required_count <= 0 or not items:
+        return ([], [])
+    capped = min(required_count, len(items))
+    min_indices = sorted(
+        range(len(items)),
+        key=lambda index: (items[index]["min_hours"], items[index]["label"]),
+    )[:capped]
+    max_indices = sorted(
+        range(len(items)),
+        key=lambda index: (items[index]["max_hours"], items[index]["label"]),
+        reverse=True,
+    )[:capped]
+    return (sorted(min_indices), sorted(max_indices))
+
+
+def choose_items_by_units(
+    items: list[dict],
+    required_units: float,
+) -> tuple[list[int], list[int], float, float]:
+    target = int(round(required_units * 10))
+    min_states: dict[int, tuple[float, list[int]]] = {0: (0.0, [])}
+    max_states: dict[int, tuple[float, list[int]]] = {0: (0.0, [])}
+
+    for index, item in enumerate(items):
+        credit_value = item["max_credits"] if item["max_credits"] > 0 else item["min_credits"]
+        credit_steps = int(round(credit_value * 10))
+        if credit_steps <= 0:
+            continue
+        new_min_states = dict(min_states)
+        for credit_total, (hours_total, selected) in min_states.items():
+            next_credit_total = credit_total + credit_steps
+            next_hours_total = hours_total + item["min_hours"]
+            next_selected = selected + [index]
+            existing = new_min_states.get(next_credit_total)
+            if existing is None or next_hours_total < existing[0]:
+                new_min_states[next_credit_total] = (next_hours_total, next_selected)
+        min_states = new_min_states
+
+        new_max_states = dict(max_states)
+        for credit_total, (hours_total, selected) in max_states.items():
+            next_credit_total = credit_total + credit_steps
+            next_hours_total = hours_total + item["max_hours"]
+            next_selected = selected + [index]
+            existing = new_max_states.get(next_credit_total)
+            if existing is None or next_hours_total > existing[0]:
+                new_max_states[next_credit_total] = (next_hours_total, next_selected)
+        max_states = new_max_states
+
+    valid_credit_totals = [
+        credit_total
+        for credit_total in set(min_states) | set(max_states)
+        if credit_total >= target
+    ]
+    if not valid_credit_totals:
+        return ([], [], 0.0, 0.0)
+
+    min_overrun = min(credit_total - target for credit_total in valid_credit_totals)
+    exactish_credits = [
+        credit_total for credit_total in valid_credit_totals if credit_total - target == min_overrun
+    ]
+    valid_min_credits = [credit_total for credit_total in exactish_credits if credit_total in min_states]
+    valid_max_credits = [credit_total for credit_total in exactish_credits if credit_total in max_states]
+    min_credit_total = min(
+        valid_min_credits,
+        key=lambda credit_total: (
+            min_states[credit_total][0],
+            len(min_states[credit_total][1]),
+        ),
+    )
+    max_credit_total = max(
+        valid_max_credits,
+        key=lambda credit_total: (
+            max_states[credit_total][0],
+            -len(max_states[credit_total][1]),
+        ),
+    )
+    return (
+        sorted(min_states[min_credit_total][1]),
+        sorted(max_states[max_credit_total][1]),
+        min_credit_total / 10,
+        max_credit_total / 10,
+    )
+
+
+def build_contact_node(
+    *,
+    kind: str,
+    label: str,
+    min_hours: float,
+    max_hours: float,
+    min_credits: float,
+    max_credits: float,
+    children: list[dict] | None = None,
+    meta: dict | None = None,
+) -> dict:
+    return {
+        "kind": kind,
+        "label": label,
+        "min_hours": min_hours,
+        "max_hours": max_hours,
+        "min_credits": min_credits,
+        "max_credits": max_credits,
+        "children": children or [],
+        "meta": meta or {},
+    }
+
+
+def evaluate_contact_rule(
+    node: dict,
+    *,
+    section_title: str,
+    program: ProgramRecord,
+    stream: ProgramStreamRecord | None,
+    courses: dict[str, CourseRecord],
+    path_codes: set[str],
+) -> dict:
+    if node["kind"] == "course":
+        code = node["code"]
+        estimate = infer_contact_hours_from_calendar_text(code, courses)
+        return build_contact_node(
+            kind="course",
+            label=code,
+            min_hours=estimate["total"],
+            max_hours=estimate["total"],
+            min_credits=course_credit_value(code, courses),
+            max_credits=course_credit_value(code, courses),
+            meta={
+                "code": code,
+                "title": courses[code].name if code in courses else strip_course_title_from_rule(node.get("text") or code, code),
+                "pattern": estimate["pattern"],
+                "source": estimate["source"],
+                "source_label": estimate["label"],
+                "source_note": estimate["note"],
+            },
+        )
+
+    if node["kind"] == "text":
+        text = normalize_text(node["text"])
+        lowered = text.lower()
+        if "stream requirements" in lowered and stream is not None:
+            target_key = section_reference_key(text)
+            matched_sections = [
+                section
+                for section in stream.sections
+                if section_reference_key(section["title"]) == target_key
+            ]
+            referenced_children = [
+                evaluate_contact_section(
+                    section,
+                    program=program,
+                    stream=stream,
+                    courses=courses,
+                    path_codes=path_codes,
+                )
+                for section in matched_sections
+            ]
+            return build_contact_node(
+                kind="stream-reference",
+                label=text,
+                min_hours=sum(child["min_hours"] for child in referenced_children),
+                max_hours=sum(child["max_hours"] for child in referenced_children),
+                min_credits=sum(child["min_credits"] for child in referenced_children),
+                max_credits=sum(child["max_credits"] for child in referenced_children),
+                children=referenced_children,
+                meta={
+                    "source_note": f"Resolved against the published {stream.title} requirements.",
+                },
+            )
+
+        unit_match = re.search(r"([0-9.]+)\s+units?", lowered)
+        if unit_match and ("elective" in lowered or " from " in lowered or " of:" in lowered):
+            required_units = float(unit_match.group(1))
+            candidate_codes, pool_note = resolve_elective_candidate_codes(
+                text,
+                section_title=section_title,
+                program=program,
+                stream=stream,
+                courses=courses,
+                path_codes=path_codes,
+            )
+            candidate_nodes = [
+                evaluate_contact_rule(
+                    {"kind": "course", "code": code, "text": code},
+                    section_title=section_title,
+                    program=program,
+                    stream=stream,
+                    courses=courses,
+                    path_codes=path_codes,
+                )
+                for code in candidate_codes
+            ]
+            min_indices, max_indices, min_units, max_units = choose_items_by_units(
+                candidate_nodes,
+                required_units,
+            )
+            return build_contact_node(
+                kind="elective-pool",
+                label=text,
+                min_hours=sum(candidate_nodes[index]["min_hours"] for index in min_indices),
+                max_hours=sum(candidate_nodes[index]["max_hours"] for index in max_indices),
+                min_credits=min_units,
+                max_credits=max_units,
+                children=candidate_nodes,
+                meta={
+                    "required_units": required_units,
+                    "min_selected_indices": min_indices,
+                    "max_selected_indices": max_indices,
+                    "source_note": pool_note,
+                },
+            )
+
+        return build_contact_node(
+            kind="note",
+            label=text,
+            min_hours=0.0,
+            max_hours=0.0,
+            min_credits=0.0,
+            max_credits=0.0,
+        )
+
+    child_nodes = [
+        evaluate_contact_rule(
+            child,
+            section_title=section_title,
+            program=program,
+            stream=stream,
+            courses=courses,
+            path_codes=path_codes,
+        )
+        for child in node["children"]
+    ]
+    cleaned_label = clean_requirement_label(node["label"])
+    lowered = cleaned_label.lower()
+    choose_match = re.search(r"([0-9.]+)\s+of", lowered)
+    units_match = re.search(r"([0-9.]+)\s+units?", lowered)
+
+    if choose_match:
+        required_count = max(1, int(round(float(choose_match.group(1)))))
+        min_indices, max_indices = choose_items_by_count(child_nodes, required_count)
+        return build_contact_node(
+            kind="choice-group",
+            label=cleaned_label,
+            min_hours=sum(child_nodes[index]["min_hours"] for index in min_indices),
+            max_hours=sum(child_nodes[index]["max_hours"] for index in max_indices),
+            min_credits=sum(child_nodes[index]["min_credits"] for index in min_indices),
+            max_credits=sum(child_nodes[index]["max_credits"] for index in max_indices),
+            children=child_nodes,
+            meta={
+                "required_count": required_count,
+                "min_selected_indices": min_indices,
+                "max_selected_indices": max_indices,
+            },
+        )
+
+    if units_match and (" from" in lowered or lowered.startswith("complete ")) and child_nodes:
+        required_units = float(units_match.group(1))
+        min_indices, max_indices, min_units, max_units = choose_items_by_units(
+            child_nodes,
+            required_units,
+        )
+        return build_contact_node(
+            kind="elective-group",
+            label=cleaned_label,
+            min_hours=sum(child_nodes[index]["min_hours"] for index in min_indices),
+            max_hours=sum(child_nodes[index]["max_hours"] for index in max_indices),
+            min_credits=min_units,
+            max_credits=max_units,
+            children=child_nodes,
+            meta={
+                "required_units": required_units,
+                "min_selected_indices": min_indices,
+                "max_selected_indices": max_indices,
+            },
+        )
+
+    return build_contact_node(
+        kind="group",
+        label=cleaned_label,
+        min_hours=sum(child["min_hours"] for child in child_nodes),
+        max_hours=sum(child["max_hours"] for child in child_nodes),
+        min_credits=sum(child["min_credits"] for child in child_nodes),
+        max_credits=sum(child["max_credits"] for child in child_nodes),
+        children=child_nodes,
+    )
+
+
+def evaluate_contact_section(
+    section: dict,
+    *,
+    program: ProgramRecord,
+    stream: ProgramStreamRecord | None,
+    courses: dict[str, CourseRecord],
+    path_codes: set[str],
+) -> dict:
+    children = [
+        evaluate_contact_rule(
+            rule,
+            section_title=section["title"],
+            program=program,
+            stream=stream,
+            courses=courses,
+            path_codes=path_codes,
+        )
+        for rule in section["rules"]
+    ]
+    return build_contact_node(
+        kind="section",
+        label=section["title"],
+        min_hours=sum(child["min_hours"] for child in children),
+        max_hours=sum(child["max_hours"] for child in children),
+        min_credits=sum(child["min_credits"] for child in children),
+        max_credits=sum(child["max_credits"] for child in children),
+        children=children,
+        meta={
+            "combined_years": section_is_combined_years(section["title"]),
+        },
+    )
+
+
+def build_contact_paths(program: ProgramRecord) -> list[ContactPathRecord]:
+    base_path = ContactPathRecord(
+        slug="program",
+        title=program.name,
+        note="Published program requirements only.",
+        sections=program.sections,
+        stream=None,
+    )
+    if not program.streams:
+        return [base_path]
+
+    if program_uses_stream_placeholders(program):
+        return [
+            ContactPathRecord(
+                slug=stream.slug,
+                title=stream.title,
+                note=(
+                    stream.description
+                    or "Combines the shared program core with the published stream-specific requirement bundle."
+                ),
+                sections=program.sections,
+                stream=stream,
+            )
+            for stream in program.streams
+        ]
+
+    paths = [base_path]
+    for stream in program.streams:
+        extra_sections = [
+            {
+                "title": (
+                    f"{stream.title} add-on"
+                    if section["title"] == "Program requirements"
+                    else f"{stream.title} {section['title']}"
+                ),
+                "rules": section["rules"],
+            }
+            for section in stream.sections
+        ]
+        paths.append(
+            ContactPathRecord(
+                slug=stream.slug,
+                title=stream.title,
+                note=(
+                    stream.description
+                    or "Adds the published option-specific requirements to the base program totals."
+                ),
+                sections=program.sections + extra_sections,
+                stream=stream,
+            )
+        )
+    return paths
 
 
 def iter_rule_nodes(nodes: list[dict]) -> Iterable[dict]:
@@ -2786,6 +3493,206 @@ def render_program_section(section: dict, courses: dict[str, CourseRecord]) -> s
     )
 
 
+def format_contact_hours_range(min_hours: float, max_hours: float) -> str:
+    if abs(min_hours - max_hours) < 1e-9:
+        return f"{format_unit_count(min_hours)} h/wk"
+    return f"{format_unit_count(min_hours)}-{format_unit_count(max_hours)} h/wk"
+
+
+def render_contact_selection_flags(flags: set[str] | None) -> str:
+    if not flags:
+        return ""
+    ordered = []
+    if "min" in flags:
+        ordered.append(
+            '<span class="contact-flag" title="Used in the lowest-contact-hour path.">Min</span>'
+        )
+    if "max" in flags:
+        ordered.append(
+            '<span class="contact-flag" title="Used in the highest-contact-hour path.">Max</span>'
+        )
+    return "".join(ordered)
+
+
+def render_contact_source_badge(meta: dict) -> str:
+    source = meta.get("source")
+    if source == "calendar":
+        return (
+            f'<span class="contact-source contact-source--calendar" title="{e(meta.get("source_note"))}">'
+            f'calendar {e(meta.get("pattern"))}</span>'
+        )
+    if source == "assumed":
+        return (
+            f'<span class="contact-source contact-source--assumed" title="{e(meta.get("source_note"))}">'
+            f'assumed {e(meta.get("pattern"))}</span>'
+        )
+    return ""
+
+
+def render_contact_node_html(
+    node: dict,
+    prefix: str,
+    courses: dict[str, CourseRecord],
+    *,
+    flags: set[str] | None = None,
+) -> str:
+    flags_html = render_contact_selection_flags(flags)
+    meta = node.get("meta") or {}
+    total_html = f'<span class="contact-total">{e(format_contact_hours_range(node["min_hours"], node["max_hours"]))}</span>'
+
+    if node["kind"] == "course":
+        code = meta.get("code") or node["label"]
+        title = meta.get("title") or (courses[code].name if code in courses else code)
+        source_badge = render_contact_source_badge(meta)
+        return (
+            '<div class="contact-row">'
+            '<div class="contact-row__label">'
+            f'{render_course_chip(code, prefix, courses)}'
+            f'<span class="contact-course-name">{e(title)}</span>'
+            f"{flags_html}"
+            "</div>"
+            '<div class="contact-row__meta">'
+            f"{source_badge}"
+            f"{total_html}"
+            "</div>"
+            "</div>"
+        )
+
+    if node["kind"] == "note":
+        return (
+            '<div class="contact-row contact-row--note">'
+            '<div class="contact-row__label">'
+            f'<span class="contact-note">{e(node["label"])}</span>'
+            "</div>"
+            '<div class="contact-row__meta">'
+            '<span class="contact-source contact-source--note">note</span>'
+            "</div>"
+            "</div>"
+        )
+
+    child_flag_map: dict[int, set[str]] = {}
+    for key, marker in (("min_selected_indices", "min"), ("max_selected_indices", "max")):
+        for index in meta.get(key, []):
+            child_flag_map.setdefault(index, set()).add(marker)
+    child_html = "".join(
+        render_contact_node_html(
+            child,
+            prefix,
+            courses,
+            flags=child_flag_map.get(index),
+        )
+        for index, child in enumerate(node["children"])
+    )
+    help_lines: list[str] = []
+    if meta.get("source_note"):
+        help_lines.append(meta["source_note"])
+    if node["kind"] == "section" and meta.get("combined_years"):
+        help_lines.append("The calendar publishes this as one combined section rather than separate Year 3 and Year 4 totals.")
+    help_html = (
+        '<p class="contact-help">' + " ".join(e(line) for line in help_lines) + "</p>"
+        if help_lines
+        else ""
+    )
+    return (
+        '<details class="contact-node" open>'
+        '<summary class="contact-node__summary">'
+        '<span class="contact-row__label">'
+        f'<span class="contact-node__title">{e(node["label"])}</span>'
+        f"{flags_html}"
+        "</span>"
+        f'<span class="contact-row__meta">{total_html}</span>'
+        "</summary>"
+        f'{help_html}'
+        f'<div class="contact-node__body">{child_html}</div>'
+        "</details>"
+    )
+
+
+def render_contact_path_card(
+    path: ContactPathRecord,
+    program: ProgramRecord,
+    courses: dict[str, CourseRecord],
+) -> str:
+    path_codes = set(program_named_codes(program, path.stream))
+    section_cards = []
+    for section in path.sections:
+        section_node = evaluate_contact_section(
+            section,
+            program=program,
+            stream=path.stream,
+            courses=courses,
+            path_codes=path_codes,
+        )
+        section_cards.append(
+            '<article class="contact-card">'
+            '<div class="contact-card__head">'
+            '<div>'
+            f'<p class="detail-card__eyebrow">{e("Published section")}</p>'
+            f'<h3>{e(section_node["label"])}</h3>'
+            + (
+                '<p class="meta-line">The calendar publishes this as one combined section rather than separate year totals.</p>'
+                if section_node["meta"].get("combined_years")
+                else ""
+            )
+            + '</div>'
+            f'<p class="contact-card__total">{e(format_contact_hours_range(section_node["min_hours"], section_node["max_hours"]))}</p>'
+            "</div>"
+            f'<div class="contact-stack">{"".join(render_contact_node_html(child, "../courses/", courses) for child in section_node["children"])}</div>'
+            "</article>"
+        )
+
+    eyebrow = "Stream path" if path.stream is not None else "Program path"
+    return (
+        '<article class="section-block contact-path">'
+        '<div class="contact-path__head">'
+        f'<p class="detail-card__eyebrow">{e(eyebrow)}</p>'
+        f'<h3>{e(path.title)}</h3>'
+        f'<p class="meta-line">{e(path.note)}</p>'
+        "</div>"
+        f'<div class="contact-grid">{"".join(section_cards)}</div>'
+        "</article>"
+    )
+
+
+def render_contact_hours_section(program: ProgramRecord, courses: dict[str, CourseRecord]) -> str:
+    paths = build_contact_paths(program)
+    if not paths:
+        return ""
+    path_html = "".join(render_contact_path_card(path, program, courses) for path in paths)
+    method_html = (
+        '<div class="split-callout contact-method">'
+        '<div>'
+        '<p class="section-kicker">Method</p>'
+        '<h2>How these contact hours were estimated.</h2>'
+        '<p>Totals use official UVic weekly hour patterns when the calendar publishes them. If a course has no published pattern in the synced data, the estimate falls back to 3 lecture hours, adds 3 lab/field hours when the calendar text mentions a lab or field component, and adds 2 tutorial/seminar hours when the text mentions tutorials or seminars.</p>'
+        '</div>'
+        '<div>'
+        '<ul class="process-list">'
+        '<li>Choice groups use the lowest-hour and highest-hour valid selections from the published options.</li>'
+        '<li>Elective rules show a range based on the eligible candidate courses this guide can identify from the rule text.</li>'
+        '<li>Generic elective wording falls back to the course pool captured in this guide for the matching year level, and the note inside the breakdown states when that fallback was used.</li>'
+        '</ul>'
+        '</div>'
+        '</div>'
+    )
+    heading_copy = (
+        "Each stream path below combines the shared program core with the published stream-specific requirements."
+        if program.streams and program_uses_stream_placeholders(program)
+        else "Each path below shows the published year grouping, the estimated weekly contact hours, and the expandable breakdown used to get there."
+    )
+    return (
+        '<section class="section">'
+        '<div class="section-heading">'
+        '<p class="section-kicker">Contact Hours</p>'
+        '<h2>Contact hours by published year grouping.</h2>'
+        f'<p>{e(heading_copy)}</p>'
+        '</div>'
+        f"{method_html}"
+        f'<div class="section-stack">{path_html}</div>'
+        '</section>'
+    )
+
+
 def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]) -> str:
     named_codes = program_named_codes(program)
     metric_items = [
@@ -2941,6 +3848,8 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
     <section class="section">
       <div class="detail-grid">{detail_html}</div>
     </section>
+
+    {render_contact_hours_section(program, courses)}
 
     <section class="section">
       {graphs_html}
