@@ -421,10 +421,6 @@ a:hover {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-.contact-method {
-  margin-bottom: 1.2rem;
-}
-
 .contact-path {
   display: grid;
   gap: 1rem;
@@ -435,38 +431,26 @@ a:hover {
   gap: 0.25rem;
 }
 
-.contact-grid {
+.contact-brief {
+  margin: 0 0 1rem;
+  max-width: 72ch;
+  color: var(--muted);
+}
+
+.contact-list {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.85rem;
 }
 
-.contact-card {
-  padding: 1.15rem 1.2rem;
+.contact-summary,
+.contact-node {
   border: 1px solid rgba(27, 39, 48, 0.08);
-  border-radius: 1.3rem;
-  background: rgba(255, 253, 249, 0.88);
+  border-radius: 1rem;
+  background: rgba(255, 253, 249, 0.8);
 }
 
-.contact-card__head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.9rem;
-}
-
-.contact-card__head h3 {
-  font-size: 1.3rem;
-}
-
-.contact-card__total {
-  margin: 0;
-  white-space: nowrap;
-  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--accent);
+.contact-summary {
+  padding: 0.8rem 0.95rem;
 }
 
 .contact-stack {
@@ -475,11 +459,45 @@ a:hover {
 }
 
 .contact-row,
+.contact-summary__summary,
 .contact-node__summary {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
   gap: 0.9rem;
+}
+
+.contact-summary__summary,
+.contact-node__summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.contact-summary__summary::-webkit-details-marker,
+.contact-node__summary::-webkit-details-marker {
+  display: none;
+}
+
+.contact-summary__title {
+  margin-right: auto;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.contact-summary__metric {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.contact-summary__metric strong {
+  color: var(--ink);
 }
 
 .contact-row__label,
@@ -497,6 +515,10 @@ a:hover {
 .contact-row__meta {
   justify-content: flex-end;
   text-align: right;
+}
+
+.contact-row--note {
+  padding: 0.1rem 0;
 }
 
 .contact-course-name,
@@ -555,19 +577,7 @@ a:hover {
 }
 
 .contact-node {
-  padding: 0.8rem 0.85rem;
-  border: 1px solid rgba(27, 39, 48, 0.08);
-  border-radius: 1rem;
-  background: rgba(255, 253, 249, 0.75);
-}
-
-.contact-node__summary {
-  cursor: pointer;
-  list-style: none;
-}
-
-.contact-node__summary::-webkit-details-marker {
-  display: none;
+  padding: 0.75rem 0.85rem;
 }
 
 .contact-node__title {
@@ -1040,7 +1050,7 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
-  .contact-card__head,
+  .contact-summary__summary,
   .contact-row,
   .contact-node__summary {
     flex-direction: column;
