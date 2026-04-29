@@ -257,13 +257,6 @@ PROGRAM_GRAPH_MODES = (
         copy_text="Simplified view: collapse recurring early-sequence options and keep the prerequisite flow readable.",
     ),
     GraphModeRecord(
-        key="year-ordered",
-        asset_suffix="--year-ordered",
-        button_label="Year-ordered view",
-        copy_text="Year-ordered view: uses the simplified graph structure, but keeps Year 1, Year 2, and Years 3 + 4 visually grouped in calendar order.",
-        year_ordered=True,
-    ),
-    GraphModeRecord(
         key="full",
         asset_suffix="",
         button_label="Full view",
