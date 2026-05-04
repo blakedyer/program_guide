@@ -3398,11 +3398,31 @@ def render_metric_card(value: str, label: str) -> str:
     )
 
 
-def render_filter_search(label: str, placeholder: str) -> str:
+def render_filter_search(
+    label: str,
+    placeholder: str,
+    *,
+    autocomplete_id: str | None = None,
+    autocomplete_options: list[tuple[str, str]] | None = None,
+) -> str:
+    list_attr = f' list="{e(autocomplete_id)}"' if autocomplete_id else ""
+    datalist = ""
+    if autocomplete_id and autocomplete_options:
+        seen_values: set[str] = set()
+        option_markup = []
+        for value, option_label in autocomplete_options:
+            normalized = value.strip()
+            if not normalized or normalized.lower() in seen_values:
+                continue
+            seen_values.add(normalized.lower())
+            label_attr = f' label="{e(option_label)}"' if option_label else ""
+            option_markup.append(f'<option value="{e(normalized)}"{label_attr}></option>')
+        datalist = f'<datalist id="{e(autocomplete_id)}">{"".join(option_markup)}</datalist>'
     return (
         '<label class="search-field filter-search">'
         f'<span>{e(label)}</span>'
-        f'<input type="search" data-filter-search-input placeholder="{e(placeholder)}" autocomplete="off">'
+        f'<input type="search" data-filter-search-input placeholder="{e(placeholder)}" autocomplete="off"{list_attr}>'
+        f"{datalist}"
         "</label>"
     )
 
@@ -4977,6 +4997,15 @@ def render_course_page(
 def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[str, CourseRecord], generated_at: str) -> str:
     programs_sorted = sorted(programs.values(), key=lambda item: item.name)
     rows = "".join(render_program_overview_row(program, courses) for program in programs_sorted)
+    search_options = []
+    for program in programs_sorted:
+        category = program_primary_category_label(program)
+        search_options.extend(
+            [
+                (program.name, f"{program.code} | {category}"),
+                (program.code, f"{program.name} | {category}"),
+            ]
+        )
     category_filters = render_filter_group(
         "Category",
         [
@@ -4996,7 +5025,7 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
         <p>Search or filter, then open a graph page for the full prerequisite map.</p>
       </div>
       <div class="filter-panel filter-panel--compact" data-card-filter>
-        {render_filter_search("Search programs", "Program name, code, or type")}
+        {render_filter_search("Search programs", "Program name, code, or type", autocomplete_id="program-search-options", autocomplete_options=search_options)}
         <div class="filter-panel__status">
           <span data-filter-count>{len(programs_sorted)} programs</span>
           <button class="filter-clear" type="button" data-filter-clear>Clear filters</button>
@@ -5280,9 +5309,8 @@ def render_index_page(programs: dict[str, ProgramRecord], courses: dict[str, Cou
 
     hero_actions = (
         '<div class="hero__actions">'
-        '<a class="button" href="programs/overview.html">Open program overview</a>'
-        '<a class="button button--ghost" href="courses/overview.html">Open course overview</a>'
-        '<a class="button button--ghost" href="curriculum_workflow.html">Maintenance workflow</a>'
+        '<a class="button" href="programs/overview.html">Open programs</a>'
+        '<a class="button button--ghost" href="courses/overview.html">Open courses</a>'
         "</div>"
     )
 

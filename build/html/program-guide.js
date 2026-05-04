@@ -538,6 +538,51 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     };
 
+    const getNodePrimaryLabel = (node) => {
+      const nodeId = node.dataset.atlasNodeId || getDirectTitle(node);
+      return getNodeVisibleLines(node)[0] || nodeId.replace(/^course__/, "");
+    };
+
+    const clearGraphHighlight = (svg, graphIndex) => {
+      svg.classList.remove("atlas-searching");
+      svg.dataset.atlasSelectedNodeId = "";
+      graphIndex.nodeMap.forEach((node) => {
+        node.classList.remove("is-atlas-match", "is-atlas-context", "is-atlas-terminal");
+      });
+      graphIndex.edges.forEach(({ edge }) => edge.classList.remove("is-atlas-branch"));
+    };
+
+    const highlightGraphNodes = (svg, graphIndex, matchedNodes, options = {}) => {
+      const focus = options.focus ?? true;
+      clearGraphHighlight(svg, graphIndex);
+      if (matchedNodes.length === 0) {
+        if (focus) {
+          restoreGraphView(svg);
+        }
+        return { branchCount: 0 };
+      }
+
+      svg.classList.add("atlas-searching");
+      const branchContext = collectBranchContext(graphIndex, matchedNodes);
+      matchedNodes.forEach((node) => node.classList.add("is-atlas-match", "is-atlas-context"));
+      branchContext.contextNodes.forEach((node) => node.classList.add("is-atlas-context"));
+      branchContext.terminalNodes.forEach((node) => node.classList.add("is-atlas-terminal"));
+      branchContext.branchEdges.forEach((edge) => edge.classList.add("is-atlas-branch"));
+      if (focus) {
+        focusGraphElements(svg, [...branchContext.contextNodes, ...branchContext.branchEdges]);
+      }
+      return { branchCount: branchContext.branchEdges.size };
+    };
+
+    const getLinkHref = (link) =>
+      link?.getAttribute("href") ||
+      link?.getAttribute("xlink:href") ||
+      link?.getAttributeNS?.("http://www.w3.org/1999/xlink", "href") ||
+      "";
+
+    const isModifiedActivation = (event) =>
+      event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+
     const prepareGraphSvg = (svg) => {
       if (!svg || svg.dataset.atlasGraphReady === "true") {
         return;
@@ -629,8 +674,47 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
           }
           event.preventDefault();
-          event.stopPropagation();
+          event.stopImmediatePropagation();
           suppressNextClick = false;
+        },
+        true,
+      );
+
+      svg.addEventListener(
+        "click",
+        (event) => {
+          if (suppressNextClick || isModifiedActivation(event)) {
+            return;
+          }
+
+          const link = event.target.closest?.("a");
+          const node = event.target.closest?.("g.node");
+          const href = getLinkHref(link);
+          if (!link || !node || !href || !document.body.classList.contains("page--program-detail")) {
+            return;
+          }
+
+          const graphIndex = buildGraphIndex(svg);
+          const nodeId = node.dataset.atlasNodeId || getDirectTitle(node);
+          const selectedNodeId = svg.dataset.atlasSelectedNodeId || "";
+          if (
+            nodeId &&
+            node.classList.contains("is-atlas-match") &&
+            (!selectedNodeId || selectedNodeId === nodeId)
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+          event.stopPropagation();
+          const { branchCount } = highlightGraphNodes(svg, graphIndex, [node]);
+          svg.dataset.atlasSelectedNodeId = nodeId;
+          if (graphSearchInput) {
+            graphSearchInput.value = getNodePrimaryLabel(node);
+          }
+          if (graphSearchStatus) {
+            graphSearchStatus.textContent = `${getNodePrimaryLabel(node)} highlighted with ${branchCount} connected branch${branchCount === 1 ? "" : "es"}. Select it again to open the course page.`;
+          }
         },
         true,
       );
@@ -651,29 +735,22 @@ document.addEventListener("DOMContentLoaded", () => {
       const nodes = Array.from(graphIndex.nodeMap.values());
       let matchCount = 0;
       const matchedNodes = [];
-      svg.classList.toggle("atlas-searching", Boolean(query));
 
       nodes.forEach((node) => {
         const text = getNodeSearchText(node);
         const isMatch = Boolean(query) && text.includes(query);
-        node.classList.remove("is-atlas-match", "is-atlas-context", "is-atlas-terminal");
         if (isMatch) {
           matchCount += 1;
           matchedNodes.push(node);
         }
       });
 
-      graphIndex.edges.forEach(({ edge }) => edge.classList.remove("is-atlas-branch"));
-
       if (!query || matchedNodes.length === 0) {
+        clearGraphHighlight(svg, graphIndex);
         restoreGraphView(svg);
       } else {
-        const branchContext = collectBranchContext(graphIndex, matchedNodes);
-        matchedNodes.forEach((node) => node.classList.add("is-atlas-match", "is-atlas-context"));
-        branchContext.contextNodes.forEach((node) => node.classList.add("is-atlas-context"));
-        branchContext.terminalNodes.forEach((node) => node.classList.add("is-atlas-terminal"));
-        branchContext.branchEdges.forEach((edge) => edge.classList.add("is-atlas-branch"));
-        focusGraphElements(svg, [...branchContext.contextNodes, ...branchContext.branchEdges]);
+        svg.dataset.atlasSelectedNodeId = "";
+        highlightGraphNodes(svg, graphIndex, matchedNodes);
       }
 
       if (!graphSearchStatus) {
