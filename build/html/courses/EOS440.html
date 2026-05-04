@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../program-guide.css">
   <script defer src="../program-guide.js"></script>
 </head>
-<body>
+<body class="page--course-detail">
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="../index.html">SEOS Curriculum Atlas</a>
@@ -30,40 +30,420 @@
     </section>
     
     <section class="section section--tight">
-      <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Earth and Ocean Sciences</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">400-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">2</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">3</p><p class="metric-card__label">Published prerequisite links</p></article></div>
-    </section>
-
-    <section class="section">
-      <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1mp7daQ4">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Focuses on the occurrence and flow of groundwater, groundwater resource evaluation, as well as the role of groundwater in geologic processes, and processes that affect groundwater chemistry, within the Canadian context of management and protection of the groundwater resource.</p></div></article></div>
-    </section>
-
-    <section class="section">
       
     <div class="graph-shell" id="course-graph" data-graph-switcher>
-      <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
-      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">Course Graph</p>
+          <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+          <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="../assets/graphs/courses/EOS440--simplified.svg">Open SVG</a>
+      </div>
       <div class="graph-toolbar">
         <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
           <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/EOS440--simplified.svg" data-graph-download="../assets/graphs/courses/EOS440--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/EOS440.svg" data-graph-download="../assets/graphs/courses/EOS440.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
         </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
         <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
       </div>
       
-      <div class="graph-frame">
-        <object data="../assets/graphs/courses/EOS440--simplified.svg" data-graph-object type="image/svg+xml" aria-label="EOS440 course graph">
-          <img src="../assets/graphs/courses/EOS440--simplified.svg" data-graph-fallback alt="EOS440 course graph">
-        </object>
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">Graph key and legend</span>
+          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
+        </span>
+        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">EOS440</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
+      </summary>
+      <div class="graph-guide__body">
+        <div class="legend"><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #d7e9ef"></span>Earth and Ocean Sciences</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #dfe3f4"></span>Mathematics</span></div>
+        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
       </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="../assets/graphs/courses/EOS440--simplified.svg">Open current SVG</a></p>
+    </details>
+      <div class="graph-frame">
+        <div class="graph-svg-stage" data-graph-stage aria-label="EOS440 course graph">
+          <!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: EOS440 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="EOS440 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="547pt" height="177pt"
+ viewBox="0.00 0.00 547.20 177.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 155.6)">
+<title>EOS440</title>
+<!-- course__MATH200 -->
+<g id="node1" class="node">
+<title>course__MATH200</title>
+<g id="a_node1"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M107,-109C107,-109 12,-109 12,-109 6,-109 0,-103 0,-97 0,-97 0,-85 0,-85 0,-79 6,-73 12,-73 12,-73 107,-73 107,-73 113,-73 119,-79 119,-85 119,-85 119,-97 119,-97 119,-103 113,-109 107,-109"/>
+<text text-anchor="middle" x="59.5" y="-88.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204 -->
+<g id="node3" class="node">
+<title>course__MATH204</title>
+<g id="a_node3"><a xlink:href="MATH204.html" xlink:title="MATH204: Calculus IV" target="_top" href="MATH204.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M231,-134C231,-134 192,-134 192,-134 186,-134 180,-128 180,-122 180,-122 180,-110 180,-110 180,-104 186,-98 192,-98 192,-98 231,-98 231,-98 237,-98 243,-104 243,-110 243,-110 243,-122 243,-122 243,-128 237,-134 231,-134"/>
+<text text-anchor="middle" x="211.5" y="-113.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH204</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH204 -->
+<g id="edge5" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH204</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M119.35,-100.81C137.29,-103.8 156.52,-107 172.67,-109.7"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="172.55,-112.16 179.86,-110.89 173.36,-107.33 172.55,-112.16"/>
+</g>
+<!-- choice_EOS440_0_1 -->
+<g id="node5" class="node">
+<title>choice_EOS440_0_1</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M346,-85C346,-85 316,-85 316,-85 310,-85 304,-79 304,-73 304,-73 304,-61 304,-61 304,-55 310,-49 316,-49 316,-49 346,-49 346,-49 352,-49 358,-55 358,-61 358,-61 358,-73 358,-73 358,-79 352,-85 346,-85"/>
+<text text-anchor="middle" x="331" y="-64.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__MATH200&#45;&gt;choice_EOS440_0_1 -->
+<g id="edge1" class="edge">
+<title>course__MATH200&#45;&gt;choice_EOS440_0_1</title>
+<path fill="none" stroke="#7a8389" d="M119.31,-85.76C173.74,-80.92 252.71,-73.88 296.89,-69.95"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="297.18,-72.38 303.94,-69.32 296.75,-67.5 297.18,-72.38"/>
+</g>
+<!-- course__EOS240 -->
+<g id="node2" class="node">
+<title>course__EOS240</title>
+<g id="a_node2"><a xlink:href="EOS240.html" xlink:title="EOS240: Geochemistry" target="_top" href="EOS240.html">
+<path fill="#d7e9ef" stroke="#1b2730" stroke-width="1.6" d="M226.5,-36C226.5,-36 196.5,-36 196.5,-36 190.5,-36 184.5,-30 184.5,-24 184.5,-24 184.5,-12 184.5,-12 184.5,-6 190.5,0 196.5,0 196.5,0 226.5,0 226.5,0 232.5,0 238.5,-6 238.5,-12 238.5,-12 238.5,-24 238.5,-24 238.5,-30 232.5,-36 226.5,-36"/>
+<text text-anchor="middle" x="211.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">EOS240</text>
+</a>
+</g>
+</g>
+<!-- course__EOS440 -->
+<g id="node4" class="node">
+<title>course__EOS440</title>
+<g id="a_node4"><a xlink:href="EOS440.html" xlink:title="EOS440: Hydrogeology" target="_top" href="EOS440.html">
+<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="2" d="M492,-60C492,-60 431,-60 431,-60 425,-60 419,-54 419,-48 419,-48 419,-36 419,-36 419,-30 425,-24 431,-24 431,-24 492,-24 492,-24 498,-24 504,-30 504,-36 504,-36 504,-48 504,-48 504,-54 498,-60 492,-60"/>
+<text text-anchor="middle" x="461.5" y="-45" font-family="Avenir Next" font-size="10.00" fill="#17232b">EOS440</text>
+<text text-anchor="middle" x="461.5" y="-34" font-family="Avenir Next" font-size="10.00" fill="#17232b">Hydrogeology</text>
+</a>
+</g>
+</g>
+<!-- course__EOS240&#45;&gt;course__EOS440 -->
+<g id="edge3" class="edge">
+<title>course__EOS240&#45;&gt;course__EOS440</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M238.57,-20.52C279.55,-24.49 359.7,-32.25 411.63,-37.27"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="411.56,-39.73 418.76,-37.96 412.03,-34.85 411.56,-39.73"/>
+</g>
+<!-- course__MATH204&#45;&gt;choice_EOS440_0_1 -->
+<g id="edge2" class="edge">
+<title>course__MATH204&#45;&gt;choice_EOS440_0_1</title>
+<path fill="none" stroke="#7a8389" d="M243.07,-103.25C259.75,-96.29 280.42,-87.68 297.41,-80.59"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="298.45,-82.81 303.97,-77.86 296.56,-78.29 298.45,-82.81"/>
+</g>
+<!-- choice_EOS440_0_1&#45;&gt;course__EOS440 -->
+<g id="edge4" class="edge">
+<title>choice_EOS440_0_1&#45;&gt;course__EOS440</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M358,-61.94C373.41,-58.94 393.44,-55.05 411.69,-51.5"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="412.45,-53.84 418.85,-50.1 411.51,-49.03 412.45,-53.84"/>
+</g>
+</g>
+</svg>
+        </div>
+        <div class="graph-template-bank" hidden>
+          <template data-graph-template="simplified"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: EOS440 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="EOS440 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="547pt" height="177pt"
+ viewBox="0.00 0.00 547.20 177.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 155.6)">
+<title>EOS440</title>
+<!-- course__MATH200 -->
+<g id="node1" class="node">
+<title>course__MATH200</title>
+<g id="a_node1"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M107,-109C107,-109 12,-109 12,-109 6,-109 0,-103 0,-97 0,-97 0,-85 0,-85 0,-79 6,-73 12,-73 12,-73 107,-73 107,-73 113,-73 119,-79 119,-85 119,-85 119,-97 119,-97 119,-103 113,-109 107,-109"/>
+<text text-anchor="middle" x="59.5" y="-88.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204 -->
+<g id="node3" class="node">
+<title>course__MATH204</title>
+<g id="a_node3"><a xlink:href="MATH204.html" xlink:title="MATH204: Calculus IV" target="_top" href="MATH204.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M231,-134C231,-134 192,-134 192,-134 186,-134 180,-128 180,-122 180,-122 180,-110 180,-110 180,-104 186,-98 192,-98 192,-98 231,-98 231,-98 237,-98 243,-104 243,-110 243,-110 243,-122 243,-122 243,-128 237,-134 231,-134"/>
+<text text-anchor="middle" x="211.5" y="-113.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH204</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH204 -->
+<g id="edge5" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH204</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M119.35,-100.81C137.29,-103.8 156.52,-107 172.67,-109.7"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="172.55,-112.16 179.86,-110.89 173.36,-107.33 172.55,-112.16"/>
+</g>
+<!-- choice_EOS440_0_1 -->
+<g id="node5" class="node">
+<title>choice_EOS440_0_1</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M346,-85C346,-85 316,-85 316,-85 310,-85 304,-79 304,-73 304,-73 304,-61 304,-61 304,-55 310,-49 316,-49 316,-49 346,-49 346,-49 352,-49 358,-55 358,-61 358,-61 358,-73 358,-73 358,-79 352,-85 346,-85"/>
+<text text-anchor="middle" x="331" y="-64.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__MATH200&#45;&gt;choice_EOS440_0_1 -->
+<g id="edge1" class="edge">
+<title>course__MATH200&#45;&gt;choice_EOS440_0_1</title>
+<path fill="none" stroke="#7a8389" d="M119.31,-85.76C173.74,-80.92 252.71,-73.88 296.89,-69.95"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="297.18,-72.38 303.94,-69.32 296.75,-67.5 297.18,-72.38"/>
+</g>
+<!-- course__EOS240 -->
+<g id="node2" class="node">
+<title>course__EOS240</title>
+<g id="a_node2"><a xlink:href="EOS240.html" xlink:title="EOS240: Geochemistry" target="_top" href="EOS240.html">
+<path fill="#d7e9ef" stroke="#1b2730" stroke-width="1.6" d="M226.5,-36C226.5,-36 196.5,-36 196.5,-36 190.5,-36 184.5,-30 184.5,-24 184.5,-24 184.5,-12 184.5,-12 184.5,-6 190.5,0 196.5,0 196.5,0 226.5,0 226.5,0 232.5,0 238.5,-6 238.5,-12 238.5,-12 238.5,-24 238.5,-24 238.5,-30 232.5,-36 226.5,-36"/>
+<text text-anchor="middle" x="211.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">EOS240</text>
+</a>
+</g>
+</g>
+<!-- course__EOS440 -->
+<g id="node4" class="node">
+<title>course__EOS440</title>
+<g id="a_node4"><a xlink:href="EOS440.html" xlink:title="EOS440: Hydrogeology" target="_top" href="EOS440.html">
+<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="2" d="M492,-60C492,-60 431,-60 431,-60 425,-60 419,-54 419,-48 419,-48 419,-36 419,-36 419,-30 425,-24 431,-24 431,-24 492,-24 492,-24 498,-24 504,-30 504,-36 504,-36 504,-48 504,-48 504,-54 498,-60 492,-60"/>
+<text text-anchor="middle" x="461.5" y="-45" font-family="Avenir Next" font-size="10.00" fill="#17232b">EOS440</text>
+<text text-anchor="middle" x="461.5" y="-34" font-family="Avenir Next" font-size="10.00" fill="#17232b">Hydrogeology</text>
+</a>
+</g>
+</g>
+<!-- course__EOS240&#45;&gt;course__EOS440 -->
+<g id="edge3" class="edge">
+<title>course__EOS240&#45;&gt;course__EOS440</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M238.57,-20.52C279.55,-24.49 359.7,-32.25 411.63,-37.27"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="411.56,-39.73 418.76,-37.96 412.03,-34.85 411.56,-39.73"/>
+</g>
+<!-- course__MATH204&#45;&gt;choice_EOS440_0_1 -->
+<g id="edge2" class="edge">
+<title>course__MATH204&#45;&gt;choice_EOS440_0_1</title>
+<path fill="none" stroke="#7a8389" d="M243.07,-103.25C259.75,-96.29 280.42,-87.68 297.41,-80.59"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="298.45,-82.81 303.97,-77.86 296.56,-78.29 298.45,-82.81"/>
+</g>
+<!-- choice_EOS440_0_1&#45;&gt;course__EOS440 -->
+<g id="edge4" class="edge">
+<title>choice_EOS440_0_1&#45;&gt;course__EOS440</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M358,-61.94C373.41,-58.94 393.44,-55.05 411.69,-51.5"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="412.45,-53.84 418.85,-50.1 411.51,-49.03 412.45,-53.84"/>
+</g>
+</g>
+</svg></template><template data-graph-template="full"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: EOS440 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="EOS440 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="844pt" height="219pt"
+ viewBox="0.00 0.00 844.20 219.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 197.6)">
+<title>EOS440</title>
+<!-- course__CHEM091 -->
+<g id="node1" class="node">
+<title>course__CHEM091</title>
+<g id="a_node1"><a xlink:href="CHEM091.html" xlink:title="CHEM091: Introduction to Chemistry" target="_top" href="CHEM091.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M75.5,-176C75.5,-176 38.5,-176 38.5,-176 32.5,-176 26.5,-170 26.5,-164 26.5,-164 26.5,-152 26.5,-152 26.5,-146 32.5,-140 38.5,-140 38.5,-140 75.5,-140 75.5,-140 81.5,-140 87.5,-146 87.5,-152 87.5,-152 87.5,-164 87.5,-164 87.5,-170 81.5,-176 75.5,-176"/>
+<text text-anchor="middle" x="57" y="-155.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM091</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102 -->
+<g id="node4" class="node">
+<title>course__CHEM102</title>
+<g id="a_node4"><a xlink:href="CHEM102.html" xlink:title="CHEM102: Chemical Reactivity Fundamentals with Environmental Applications" target="_top" href="CHEM102.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M224,-148C224,-148 187,-148 187,-148 181,-148 175,-142 175,-136 175,-136 175,-124 175,-124 175,-118 181,-112 187,-112 187,-112 224,-112 224,-112 230,-112 236,-118 236,-124 236,-124 236,-136 236,-136 236,-142 230,-148 224,-148"/>
+<text text-anchor="middle" x="205.5" y="-127.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM102</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM091&#45;&gt;course__CHEM102 -->
+<g id="edge1" class="edge">
+<title>course__CHEM091&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M87.65,-152.33C110.78,-147.91 143.04,-141.75 167.8,-137.01"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="168.48,-139.38 174.9,-135.66 167.56,-134.57 168.48,-139.38"/>
+</g>
+<!-- course__CHEM101 -->
+<g id="node2" class="node">
+<title>course__CHEM101</title>
+<g id="a_node2"><a xlink:href="CHEM101.html" xlink:title="Equivalent or cross&#45;listed: CHEM101: Fundamentals of Chemistry from Atoms to Materials | CHEM150: Engineering Chemistry" target="_top" href="CHEM101.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M102,-120C102,-120 12,-120 12,-120 6,-120 0,-114 0,-108 0,-108 0,-96 0,-96 0,-90 6,-84 12,-84 12,-84 102,-84 102,-84 108,-84 114,-90 114,-96 114,-96 114,-108 114,-108 114,-114 108,-120 102,-120"/>
+<text text-anchor="middle" x="57" y="-99.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM101 / CHEM150</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM101&#45;&gt;course__CHEM102 -->
+<g id="edge2" class="edge">
+<title>course__CHEM101&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M114.22,-112.75C132.14,-116.17 151.49,-119.87 167.66,-122.96"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="167.52,-125.43 174.85,-124.33 168.44,-120.61 167.52,-125.43"/>
+</g>
+<!-- course__MATH100 -->
+<g id="node3" class="node">
+<title>course__MATH100</title>
+<g id="a_node3"><a xlink:href="MATH100.html" xlink:title="Equivalent or cross&#45;listed: MATH100: Calculus I | MATH102: Calculus for Students in the Social and Biological Sciences | MATH109: Introduction to Calculus" target="_top" href="MATH100.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M100.5,-36C100.5,-36 13.5,-36 13.5,-36 7.5,-36 1.5,-30 1.5,-24 1.5,-24 1.5,-12 1.5,-12 1.5,-6 7.5,0 13.5,0 13.5,0 100.5,0 100.5,0 106.5,0 112.5,-6 112.5,-12 112.5,-12 112.5,-24 112.5,-24 112.5,-30 106.5,-36 100.5,-36"/>
+<text text-anchor="middle" x="57" y="-20.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH100 / MATH102</text>
+<text text-anchor="middle" x="57" y="-10.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH109</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__CHEM102 -->
+<g id="edge3" class="edge">
+<title>course__MATH100&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M81.86,-36.24C107.3,-55.69 147.6,-86.5 175,-107.45"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="173.6,-109.46 180.65,-111.76 176.57,-105.57 173.6,-109.46"/>
+</g>
+<!-- course__MATH101 -->
+<g id="node6" class="node">
+<title>course__MATH101</title>
+<g id="a_node6"><a xlink:href="MATH101.html" xlink:title="MATH101: Calculus II" target="_top" href="MATH101.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M223,-36C223,-36 188,-36 188,-36 182,-36 176,-30 176,-24 176,-24 176,-12 176,-12 176,-6 182,0 188,0 188,0 223,0 223,0 229,0 235,-6 235,-12 235,-12 235,-24 235,-24 235,-30 229,-36 223,-36"/>
+<text text-anchor="middle" x="205.5" y="-15.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH101</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__MATH101 -->
+<g id="edge11" class="edge">
+<title>course__MATH100&#45;&gt;course__MATH101</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M112.55,-18C131.34,-18 151.9,-18 168.79,-18"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="168.8,-20.45 175.8,-18 168.8,-15.55 168.8,-20.45"/>
+</g>
+<!-- course__EOS205 -->
+<g id="node7" class="node">
+<title>course__EOS205</title>
+<g id="a_node7"><a xlink:href="EOS205.html" xlink:title="EOS205: Mineralogy" target="_top" href="EOS205.html">
+<path fill="#d7e9ef" stroke="#7e8d96" d="M371.5,-116C371.5,-116 341.5,-116 341.5,-116 335.5,-116 329.5,-110 329.5,-104 329.5,-104 329.5,-92 329.5,-92 329.5,-86 335.5,-80 341.5,-80 341.5,-80 371.5,-80 371.5,-80 377.5,-80 383.5,-86 383.5,-92 383.5,-92 383.5,-104 383.5,-104 383.5,-110 377.5,-116 371.5,-116"/>
+<text text-anchor="middle" x="356.5" y="-95.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">EOS205</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102&#45;&gt;course__EOS205 -->
+<g id="edge5" class="edge">
+<title>course__CHEM102&#45;&gt;course__EOS205</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M236.29,-123.6C261.14,-118.27 296.5,-110.67 322.25,-105.14"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="322.92,-107.5 329.25,-103.64 321.89,-102.71 322.92,-107.5"/>
+</g>
+<!-- course__EOS120 -->
+<g id="node5" class="node">
+<title>course__EOS120</title>
+<g id="a_node5"><a xlink:href="EOS120.html" xlink:title="EOS120: The Dynamic Earth" target="_top" href="EOS120.html">
+<path fill="#d7e9ef" stroke="#7e8d96" d="M220.5,-92C220.5,-92 190.5,-92 190.5,-92 184.5,-92 178.5,-86 178.5,-80 178.5,-80 178.5,-68 178.5,-68 178.5,-62 184.5,-56 190.5,-56 190.5,-56 220.5,-56 220.5,-56 226.5,-56 232.5,-62 232.5,-68 232.5,-68 232.5,-80 232.5,-80 232.5,-86 226.5,-92 220.5,-92"/>
+<text text-anchor="middle" x="205.5" y="-71.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">EOS120</text>
+</a>
+</g>
+</g>
+<!-- course__EOS120&#45;&gt;course__EOS205 -->
+<g id="edge4" class="edge">
+<title>course__EOS120&#45;&gt;course__EOS205</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M232.8,-78.24C257.8,-82.26 295.49,-88.33 322.5,-92.68"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="322.17,-95.11 329.47,-93.81 322.95,-90.27 322.17,-95.11"/>
+</g>
+<!-- course__MATH200 -->
+<g id="node8" class="node">
+<title>course__MATH200</title>
+<g id="a_node8"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M404,-36C404,-36 309,-36 309,-36 303,-36 297,-30 297,-24 297,-24 297,-12 297,-12 297,-6 303,0 309,0 309,0 404,0 404,0 410,0 416,-6 416,-12 416,-12 416,-24 416,-24 416,-30 410,-36 404,-36"/>
+<text text-anchor="middle" x="356.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101&#45;&gt;course__MATH200 -->
+<g id="edge12" class="edge">
+<title>course__MATH101&#45;&gt;course__MATH200</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M235.23,-18C250.82,-18 270.78,-18 289.93,-18"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="289.95,-20.45 296.95,-18 289.95,-15.55 289.95,-20.45"/>
+</g>
+<!-- course__EOS240 -->
+<g id="node9" class="node">
+<title>course__EOS240</title>
+<g id="a_node9"><a xlink:href="EOS240.html" xlink:title="EOS240: Geochemistry" target="_top" href="EOS240.html">
+<path fill="#d7e9ef" stroke="#1b2730" stroke-width="1.6" d="M523.5,-116C523.5,-116 493.5,-116 493.5,-116 487.5,-116 481.5,-110 481.5,-104 481.5,-104 481.5,-92 481.5,-92 481.5,-86 487.5,-80 493.5,-80 493.5,-80 523.5,-80 523.5,-80 529.5,-80 535.5,-86 535.5,-92 535.5,-92 535.5,-104 535.5,-104 535.5,-110 529.5,-116 523.5,-116"/>
+<text text-anchor="middle" x="508.5" y="-95.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">EOS240</text>
+</a>
+</g>
+</g>
+<!-- course__EOS205&#45;&gt;course__EOS240 -->
+<g id="edge6" class="edge">
+<title>course__EOS205&#45;&gt;course__EOS240</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M383.63,-98C408.82,-98 447.05,-98 474.37,-98"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="474.42,-100.45 481.42,-98 474.42,-95.55 474.42,-100.45"/>
+</g>
+<!-- course__MATH204 -->
+<g id="node10" class="node">
+<title>course__MATH204</title>
+<g id="a_node10"><a xlink:href="MATH204.html" xlink:title="MATH204: Calculus IV" target="_top" href="MATH204.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M528,-60C528,-60 489,-60 489,-60 483,-60 477,-54 477,-48 477,-48 477,-36 477,-36 477,-30 483,-24 489,-24 489,-24 528,-24 528,-24 534,-24 540,-30 540,-36 540,-36 540,-48 540,-48 540,-54 534,-60 528,-60"/>
+<text text-anchor="middle" x="508.5" y="-39.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH204</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH204 -->
+<g id="edge13" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH204</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M416.35,-27.42C434.29,-30.29 453.52,-33.36 469.67,-35.95"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="469.56,-38.41 476.86,-37.1 470.33,-33.57 469.56,-38.41"/>
+</g>
+<!-- choice_EOS440_0_1 -->
+<g id="node12" class="node">
+<title>choice_EOS440_0_1</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M643,-60C643,-60 613,-60 613,-60 607,-60 601,-54 601,-48 601,-48 601,-36 601,-36 601,-30 607,-24 613,-24 613,-24 643,-24 643,-24 649,-24 655,-30 655,-36 655,-36 655,-48 655,-48 655,-54 649,-60 643,-60"/>
+<text text-anchor="middle" x="628" y="-39.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__MATH200&#45;&gt;choice_EOS440_0_1 -->
+<g id="edge7" class="edge">
+<title>course__MATH200&#45;&gt;choice_EOS440_0_1</title>
+<path fill="none" stroke="#7a8389" d="M416.21,-11.47C452.16,-8.76 498.99,-7.56 540,-14 558.38,-16.88 578.17,-23 594.23,-28.78"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="593.45,-31.11 600.87,-31.23 595.15,-26.51 593.45,-31.11"/>
+</g>
+<!-- course__EOS440 -->
+<g id="node11" class="node">
+<title>course__EOS440</title>
+<g id="a_node11"><a xlink:href="EOS440.html" xlink:title="EOS440: Hydrogeology" target="_top" href="EOS440.html">
+<path fill="#d7e9ef" stroke="#1f4f66" stroke-width="2" d="M789,-84C789,-84 728,-84 728,-84 722,-84 716,-78 716,-72 716,-72 716,-60 716,-60 716,-54 722,-48 728,-48 728,-48 789,-48 789,-48 795,-48 801,-54 801,-60 801,-60 801,-72 801,-72 801,-78 795,-84 789,-84"/>
+<text text-anchor="middle" x="758.5" y="-69" font-family="Avenir Next" font-size="10.00" fill="#17232b">EOS440</text>
+<text text-anchor="middle" x="758.5" y="-58" font-family="Avenir Next" font-size="10.00" fill="#17232b">Hydrogeology</text>
+</a>
+</g>
+</g>
+<!-- course__EOS240&#45;&gt;course__EOS440 -->
+<g id="edge9" class="edge">
+<title>course__EOS240&#45;&gt;course__EOS440</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M535.57,-94.64C576.55,-89.35 656.7,-79.01 708.63,-72.31"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="709.14,-74.71 715.76,-71.39 708.51,-69.85 709.14,-74.71"/>
+</g>
+<!-- course__MATH204&#45;&gt;choice_EOS440_0_1 -->
+<g id="edge8" class="edge">
+<title>course__MATH204&#45;&gt;choice_EOS440_0_1</title>
+<path fill="none" stroke="#7a8389" d="M540.07,-42C556.61,-42 577.05,-42 593.96,-42"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="593.97,-44.45 600.97,-42 593.97,-39.55 593.97,-44.45"/>
+</g>
+<!-- choice_EOS440_0_1&#45;&gt;course__EOS440 -->
+<g id="edge10" class="edge">
+<title>choice_EOS440_0_1&#45;&gt;course__EOS440</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M655,-46.86C670.41,-49.73 690.44,-53.47 708.69,-56.88"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="708.52,-59.34 715.85,-58.22 709.42,-54.53 708.52,-59.34"/>
+</g>
+</g>
+</svg></template>
+        </div>
+      </div>
       
     <div class="graph-followup">
       <p class="detail-card__eyebrow">Additional course requirements</p>
       <ul class="graph-followup__list"><li>or permission of the school</li></ul>
     </div>
-    
     </div>
     
+    </section>
+
+    <section class="section">
+      <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Earth and Ocean Sciences</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">400-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">2</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">3</p><p class="metric-card__label">Published prerequisite links</p></article></div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/B1mp7daQ4">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Focuses on the occurrence and flow of groundwater, groundwater resource evaluation, as well as the role of groundwater in geologic processes, and processes that affect groundwater chemistry, within the Canadian context of management and protection of the groundwater resource.</p></div></article></div>
     </section>
 
     <section class="section">

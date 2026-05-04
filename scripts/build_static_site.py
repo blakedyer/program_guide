@@ -3398,6 +3398,25 @@ def render_metric_card(value: str, label: str) -> str:
     )
 
 
+def render_filter_search(label: str, placeholder: str) -> str:
+    return (
+        '<label class="search-field filter-search">'
+        f'<span>{e(label)}</span>'
+        f'<input type="search" data-filter-search-input placeholder="{e(placeholder)}" autocomplete="off">'
+        "</label>"
+    )
+
+
+def render_filter_disclosure(title: str, body: str, *, open: bool = False) -> str:
+    open_attr = " open" if open else ""
+    return (
+        f'<details class="filter-disclosure"{open_attr}>'
+        f'<summary>{e(title)}</summary>'
+        f'{body}'
+        "</details>"
+    )
+
+
 def render_graph_key_item(title: str, body: str, sample: str) -> str:
     return (
         '<article class="graph-key__item">'
@@ -3549,6 +3568,65 @@ def render_additional_requirements(note_lines: list[str], *, title: str) -> str:
     """
 
 
+def graph_asset_path_for_url(svg_path: str) -> Path:
+    normalized = svg_path
+    while normalized.startswith("../"):
+        normalized = normalized[3:]
+    normalized = normalized.lstrip("/")
+    return BUILD_DIR / normalized
+
+
+def rewrite_inline_svg_course_links(svg_markup: str, course_href_prefix: str) -> str:
+    def rewrite_course_href(match: re.Match[str]) -> str:
+        attr = match.group("attr")
+        quote = match.group("quote")
+        code = match.group("code")
+        return f'{attr}={quote}{course_href_prefix}{code}.html{quote}'
+
+    svg_markup = re.sub(
+        r'(?P<attr>\b(?:xlink:href|href))=(?P<quote>["\'])\.\./\.\./\.\./courses/(?P<code>[A-Z]{2,5}[0-9]{3}[A-Z]?)\.html(?P=quote)',
+        rewrite_course_href,
+        svg_markup,
+    )
+
+    def add_plain_href(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        if re.search(r"(?<!:)href=", tag):
+            return tag
+        xlink_href = re.search(r'xlink:href=(["\'])([^"\']+)\1', tag)
+        if not xlink_href:
+            return tag
+        return f'{tag[:-1]} href="{xlink_href.group(2)}">'
+
+    return re.sub(r"<a\b[^>]*>", add_plain_href, svg_markup)
+
+
+def inline_graph_svg(svg_path: str, aria_label: str, *, course_href_prefix: str) -> str:
+    asset_path = graph_asset_path_for_url(svg_path)
+    try:
+        svg_markup = asset_path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        return (
+            f'<p class="empty-state">Graph file unavailable. '
+            f'<a class="text-link" href="{e(svg_path)}">Open the SVG file</a>.</p>'
+        )
+
+    svg_markup = re.sub(r"^\s*<\?xml[^>]*>\s*", "", svg_markup)
+    svg_markup = re.sub(r"^\s*<!DOCTYPE[\s\S]*?>\s*", "", svg_markup).strip()
+    svg_markup = rewrite_inline_svg_course_links(svg_markup, course_href_prefix)
+    svg_markup = re.sub(
+        r"<svg\b",
+        (
+            '<svg class="atlas-graph-svg" role="img" '
+            f'aria-label="{e(aria_label)}" focusable="false" '
+            'preserveAspectRatio="xMidYMid meet"'
+        ),
+        svg_markup,
+        count=1,
+    )
+    return svg_markup
+
+
 def render_graph_shell(
     *,
     shell_id: str,
@@ -3559,34 +3637,56 @@ def render_graph_shell(
     aria_label: str,
     guide_html: str,
     graph_modes: list[tuple[GraphModeRecord, str]],
+    course_href_prefix: str,
     footer_html: str = "",
 ) -> str:
     toolbar_buttons = []
+    graph_templates = []
+    default_graph_markup = ""
+    guide_html = guide_html.rstrip()
+    footer_html = footer_html.rstrip()
     for index, (mode, svg_path) in enumerate(graph_modes):
         active_class = " is-active" if index == 0 else ""
         toolbar_buttons.append(
             f'<button class="toggle-button{active_class}" type="button" data-graph-mode="{e(mode.key)}" '
             f'data-graph-src="{svg_path}" data-graph-download="{svg_path}" data-graph-copy="{e(mode.copy_text)}">{e(mode.button_label)}</button>'
         )
+        graph_markup = inline_graph_svg(svg_path, aria_label, course_href_prefix=course_href_prefix)
+        graph_templates.append(f'<template data-graph-template="{e(mode.key)}">{graph_markup}</template>')
+        if index == 0:
+            default_graph_markup = graph_markup
     default_copy = graph_modes[0][0].copy_text
     return f"""
     <div class="graph-shell" id="{e(shell_id)}" data-graph-switcher>
-      <p class="section-kicker">{e(section_kicker)}</p>
-      <h2>{e(heading)}</h2>
-      <p class="graph-note">{e(note)}</p>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">{e(section_kicker)}</p>
+          <h2>{e(heading)}</h2>
+          <p class="graph-note">{e(note)}</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="{default_svg}">Open SVG</a>
+      </div>
       <div class="graph-toolbar">
         <div class="segmented-control" role="group" aria-label="{e(heading)} graph mode">
           {"".join(toolbar_buttons)}
         </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
         <p class="panel-note graph-toolbar__note" data-graph-mode-copy>{e(default_copy)}</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
       </div>
       {guide_html}
       <div class="graph-frame">
-        <object data="{default_svg}" data-graph-object type="image/svg+xml" aria-label="{e(aria_label)}">
-          <img src="{default_svg}" data-graph-fallback alt="{e(aria_label)}">
-        </object>
+        <div class="graph-svg-stage" data-graph-stage aria-label="{e(aria_label)}">
+          {default_graph_markup}
+        </div>
+        <div class="graph-template-bank" hidden>
+          {"".join(graph_templates)}
+        </div>
       </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="{default_svg}">Open current SVG</a></p>
       {footer_html}
     </div>
     """
@@ -3706,9 +3806,10 @@ def course_theme_labels(course: CourseRecord) -> list[str]:
 
 def render_filter_button(label: str, *, group: str, value: str, active: bool = False) -> str:
     class_name = "filter-chip is-active" if active else "filter-chip"
+    pressed = "true" if active else "false"
     return (
         f'<button class="{class_name}" type="button" data-filter-group="{e(group)}" '
-        f'data-filter-value="{e(value)}">{e(label)}</button>'
+        f'data-filter-value="{e(value)}" aria-pressed="{pressed}">{e(label)}</button>'
     )
 
 
@@ -3728,6 +3829,7 @@ def render_program_card(program: ProgramRecord, base: str, courses: dict[str, Co
     partner_prereq_count = len(program.support_codes)
     category = program_primary_category_label(program)
     category_tokens = program_category_tokens(program)
+    search_text = " ".join(unique_ordered([program.code, program.name, program.title, category, *category_tokens]))
     metadata_pills = "".join(
         f'<span class="meta-pill">{e(label)}</span>'
         for label in [category]
@@ -3739,14 +3841,15 @@ def render_program_card(program: ProgramRecord, base: str, courses: dict[str, Co
     )
     return (
         '<article class="directory-card"'
-        f' data-filter-category="{e(filter_token_string(category_tokens))}">'
+        f' data-filter-category="{e(filter_token_string(category_tokens))}"'
+        f' data-filter-search="{e(search_text.lower())}">'
         f'<p class="directory-card__eyebrow">{e(program.code)} | {e(category)}</p>'
         f'<h3><a href="{program_page_href(base, program.code)}">{e(program.name)}</a></h3>'
         f'<p>{e(program.title)}</p>'
         f'<p class="meta-line">{len(named_codes)} named courses | {eos_count} EOS | {partner_prereq_count} related prerequisite courses outside the named list</p>'
         f'<div class="pill-row">{metadata_pills}</div>'
         '<div class="link-row">'
-        f'<a class="text-link" href="{program_page_href(base, program.code)}">Open guide page</a>'
+        f'<a class="text-link" href="{program_page_href(base, program.code)}">Open graph</a>'
         f'{official_link}'
         "</div>"
         "</article>"
@@ -3793,6 +3896,7 @@ def render_contact_overview_cell(paths: list[dict], bucket_key: str) -> str:
 def render_program_overview_row(program: ProgramRecord, courses: dict[str, CourseRecord]) -> str:
     category = program_primary_category_label(program)
     category_tokens = program_category_tokens(program)
+    search_text = " ".join(unique_ordered([program.code, program.name, program.title, category, *category_tokens]))
     contact_paths = build_program_contact_overview_paths(program, courses)
     official_link = (
         f'<a class="text-link" href="{e(program.catalog_url)}">UVic Calendar</a>'
@@ -3801,7 +3905,8 @@ def render_program_overview_row(program: ProgramRecord, courses: dict[str, Cours
     )
     return (
         '<tr class="program-overview-row"'
-        f' data-filter-category="{e(filter_token_string(category_tokens))}">'
+        f' data-filter-category="{e(filter_token_string(category_tokens))}"'
+        f' data-filter-search="{e(search_text.lower())}">'
         '<td class="program-overview-table__program" data-label="Program">'
         f'<a class="program-overview-table__primary-link" href="{program_page_href("", program.code)}">{e(program.name)}</a>'
         "</td>"
@@ -3813,7 +3918,7 @@ def render_program_overview_row(program: ProgramRecord, courses: dict[str, Cours
         f'<td class="program-overview-table__hours" data-label="Years 3 + 4">{render_contact_overview_cell(contact_paths, "years-3-4")}</td>'
         '<td class="program-overview-table__details" data-label="Details">'
         '<div class="program-overview-table__links">'
-        f'<a class="text-link" href="{program_page_href("", program.code)}">Program Atlas</a>'
+        f'<a class="text-link" href="{program_page_href("", program.code)}">Open graph</a>'
         f"{official_link}"
         "</div>"
         "</td>"
@@ -3848,7 +3953,7 @@ def render_course_card(course: CourseRecord, base: str, *, support: bool = False
         f'<p class="meta-line">{len(course.prereq_codes)} prerequisite links | {len(course.used_by_programs)} programs | {len(course.dependents)} downstream courses</p>'
         f'<div class="pill-row">{render_subject_pill(course.code)}{tag_pills}</div>'
         '<div class="link-row">'
-        f'<a class="text-link" href="{base}{course.code}.html">Open course page</a>'
+        f'<a class="text-link" href="{base}{course.code}.html">Open graph</a>'
         f'{official_link}'
         "</div>"
         "</article>"
@@ -4552,7 +4657,7 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
             '<div class="section-heading">'
             '<p class="section-kicker">Program Graphs</p>'
             '<h2>Program requirements arranged by prerequisite flow.</h2>'
-            '<p>Climate Science is published with a shared core and two stream-specific progressions. There are separate maps below for each stream. Note that courses with no direct prerequisite links in the database are shown as isolated nodes. Some of these courses may have prerequisites outside the scope of the courses that we pulled from the database.</p>'
+            f'<p>{e(program.name)} includes distinct published paths, so each map below keeps its stream or option context intact. Courses with no direct prerequisite links in the database are shown as isolated nodes; some may have prerequisites outside the pulled course set.</p>'
             '</div>'
         )
         graph_shells = []
@@ -4591,6 +4696,7 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
                     aria_label=f"{program.name} {stream.title} graph",
                     guide_html=guide_html,
                     graph_modes=stream_graph_modes,
+                    course_href_prefix="../courses/",
                     footer_html=additional_requirements_html,
                 )
             )
@@ -4626,21 +4732,22 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
             aria_label=f"{program.name} program graph",
             guide_html=guide_html,
             graph_modes=page_graph_modes,
+            course_href_prefix="../courses/",
             footer_html=additional_requirements_html,
         )
         graph_anchor = "#program-graph"
 
     content = f"""
     <section class="section section--tight">
+      {graphs_html}
+    </section>
+
+    <section class="section">
       <div class="metric-grid">{metric_cards}</div>
     </section>
 
     <section class="section">
       <div class="detail-grid">{detail_html}</div>
-    </section>
-
-    <section class="section">
-      {graphs_html}
     </section>
 
     {render_contact_hours_section(program, courses)}
@@ -4684,6 +4791,7 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
         hero_actions=hero_actions,
         content=content,
         hero_image=program_hero_image("../", program),
+        body_class="page--program-detail",
     )
 
 
@@ -4764,19 +4872,15 @@ def render_course_page(
         course_groups,
         course_group_lookup,
     )
-    # graph_key_html = render_course_graph_key() %legend course graph key
-    graph_key_html = ""
+    graph_key_html = render_course_graph_key()
+    guide_html = render_graph_guide(
+        summary="Expand for department colours, choice nodes, and merged-course labels used in the course map.",
+        preview_samples=[(course.code, "focus"), ("1 of", "choice"), ("", "junction"), ("Merged", "merged")],
+        legend_html=render_subject_legend([course.code, *course.prereq_codes, *course.dependents]),
+        graph_key_html=graph_key_html,
+        title="Graph key and legend",
+    )
 
-    # guide_html = render_graph_guide(
-    #     summary="Expand for department colours, choice nodes, and merged-course labels used in the course map.",
-    #     preview_samples=[(course.code, "focus"), ("1 of", "choice"), ("", "junction"), ("Merged", "merged")],
-    #     legend_html=render_subject_pill(course.code),
-    #     graph_key_html=graph_key_html,
-    #     title="Graph key and legend",
-    # )
-
-    guide_html = "" 
-    
     additional_requirements_html = render_additional_requirements(
         course_note_lines,
         title="Additional course requirements",
@@ -4809,20 +4913,21 @@ def render_course_page(
                 f"../assets/graphs/courses/{course.code}.svg",
             ),
         ],
+        course_href_prefix="",
         footer_html=additional_requirements_html,
     )
 
     content = f"""
     <section class="section section--tight">
+      {graph_html}
+    </section>
+
+    <section class="section">
       <div class="metric-grid">{metric_cards}</div>
     </section>
 
     <section class="section">
       <div class="detail-grid">{details_html}</div>
-    </section>
-
-    <section class="section">
-      {graph_html}
     </section>
 
     <section class="section">
@@ -4865,6 +4970,7 @@ def render_course_page(
         hero_actions=hero_actions,
         content=content,
         hero_image=course_hero_image("../", course),
+        body_class="page--course-detail",
     )
 
 
@@ -4887,9 +4993,14 @@ def render_program_overview(programs: dict[str, ProgramRecord], courses: dict[st
     <section class="section section--program-overview">
       <div class="section-heading section-heading--compact">
         <p class="section-kicker">SEOS Programs</p>
-        <p>Select a program to inspect the pre-requisite graph and detailed contact hour breakdowns.</p>
+        <p>Search or filter, then open a graph page for the full prerequisite map.</p>
       </div>
       <div class="filter-panel filter-panel--compact" data-card-filter>
+        {render_filter_search("Search programs", "Program name, code, or type")}
+        <div class="filter-panel__status">
+          <span data-filter-count>{len(programs_sorted)} programs</span>
+          <button class="filter-clear" type="button" data-filter-clear>Clear filters</button>
+        </div>
         <div class="filter-panel__groups">
           {category_filters}
         </div>
@@ -4999,13 +5110,18 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
       <div class="section-heading">
         <p class="section-kicker">Course Directory</p>
         <h2>EOS courses and partner-department prerequisites.</h2>
-        <p>Use the quick filters to narrow by level and by broad course theme.</p>
+        <p>Search by code or title first; open a course graph when you find the dependency chain you need.</p>
       </div>
       <div class="filter-panel" data-card-filter>
+        {render_filter_search("Search courses", "Course code, title, department, or theme")}
+        <div class="filter-panel__status">
+          <span data-filter-count>{len(eos_courses) + len(support_courses)} courses</span>
+          <button class="filter-clear" type="button" data-filter-clear>Clear filters</button>
+        </div>
         <div class="filter-panel__groups">
-          {department_filters}
           {level_filters}
-          {theme_filters}
+          {render_filter_disclosure("Department filters", department_filters)}
+          {render_filter_disclosure("Theme filters", theme_filters)}
         </div>
       </div>
       <div class="directory-grid" data-filter-grid>{eos_cards}{support_cards}</div>
@@ -5032,6 +5148,7 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
         hero_actions=hero_actions,
         content=content,
         hero_image=f"{HERO_ASSET_URL}course-overview.jpg",
+        body_class="page--course-overview",
     )
 
 
@@ -5121,6 +5238,7 @@ def render_workflow_page(manifest: dict) -> str:
         hero_actions=hero_actions,
         content=content,
         hero_image=f"{HERO_ASSET_URL}workflow-overview.jpg",
+        body_class="page--workflow",
     )
 
 

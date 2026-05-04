@@ -26,12 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const emptyState = panel.parentElement?.querySelector("[data-filter-empty]");
     const buttons = Array.from(panel.querySelectorAll("[data-filter-group]"));
     const searchInput = panel.querySelector("[data-filter-search-input]");
+    const countLabel = panel.querySelector("[data-filter-count]");
+    const clearButton = panel.querySelector("[data-filter-clear]");
 
     if (!grid) {
       return;
     }
 
     const cards = Array.from(grid.children);
+    const countNoun = (countLabel?.textContent || "items").replace(/^\d+\s*/, "") || "items";
 
     const activeFilters = {};
     buttons.forEach((button) => {
@@ -74,6 +77,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (emptyState) {
         emptyState.classList.toggle("is-hidden", visibleCount !== 0);
       }
+      if (countLabel) {
+        countLabel.textContent = `${visibleCount} ${countNoun}`;
+      }
     };
 
     buttons.forEach((button) => {
@@ -100,29 +106,601 @@ document.addEventListener("DOMContentLoaded", () => {
       searchInput.addEventListener("input", applyFilters);
     }
 
+    if (clearButton) {
+      clearButton.addEventListener("click", () => {
+        if (searchInput) {
+          searchInput.value = "";
+        }
+        Object.keys(activeFilters).forEach((group) => {
+          activeFilters[group] = "all";
+          buttons.forEach((button) => {
+            if (button.getAttribute("data-filter-group") !== group) {
+              return;
+            }
+            const isActive = (button.getAttribute("data-filter-value") || "all") === "all";
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+          });
+        });
+        applyFilters();
+      });
+    }
+
     applyFilters();
   });
 
   document.querySelectorAll("[data-graph-switcher]").forEach((shell) => {
-    const graphObject = shell.querySelector("[data-graph-object]");
-    const graphFallback = shell.querySelector("[data-graph-fallback]");
+    const graphStage = shell.querySelector("[data-graph-stage]");
     const graphLink = shell.querySelector("[data-graph-link]");
     const modeCopy = shell.querySelector("[data-graph-mode-copy]");
+    const graphSearchInput = shell.querySelector("[data-graph-search-input]");
+    const graphSearchStatus = shell.querySelector("[data-graph-search-status]");
+    const resetButton = shell.querySelector("[data-graph-reset]");
     const buttons = Array.from(shell.querySelectorAll("[data-graph-mode]"));
+    const templates = Array.from(shell.querySelectorAll("[data-graph-template]"));
 
-    if (!graphObject || buttons.length === 0) {
+    if (!graphStage || buttons.length === 0) {
       return;
     }
 
-    const applyMode = (button) => {
-      const src = button.getAttribute("data-graph-src");
-      const download = button.getAttribute("data-graph-download") || src;
-      const copy = button.getAttribute("data-graph-copy") || "";
+    const graphViewState = new WeakMap();
+    const getActiveSvg = () => graphStage.querySelector("svg");
+    const autocompleteList = document.createElement("datalist");
 
-      if (src) {
-        graphObject.setAttribute("data", src);
-        if (graphFallback) {
-          graphFallback.setAttribute("src", src);
+    if (graphSearchInput) {
+      autocompleteList.id = `${shell.id || "graph"}-course-options`;
+      graphSearchInput.setAttribute("list", autocompleteList.id);
+      shell.appendChild(autocompleteList);
+    }
+
+    const parseViewBox = (svg) => {
+      const attr = svg?.getAttribute("viewBox");
+      if (!attr) {
+        return null;
+      }
+      const parts = attr
+        .trim()
+        .split(/\s+/)
+        .map((part) => Number(part));
+      if (parts.length !== 4 || !parts.every(Number.isFinite)) {
+        return null;
+      }
+      return {
+        x: parts[0],
+        y: parts[1],
+        width: parts[2],
+        height: parts[3],
+      };
+    };
+
+    const getDefaultViewBox = (svg) => {
+      if (!svg) {
+        return null;
+      }
+      if (graphViewState.has(svg)) {
+        return graphViewState.get(svg);
+      }
+
+      let viewBox = parseViewBox(svg);
+      if (!viewBox && svg.viewBox?.baseVal) {
+        const base = svg.viewBox.baseVal;
+        viewBox = {
+          x: base.x,
+          y: base.y,
+          width: base.width,
+          height: base.height,
+        };
+      }
+
+      if (viewBox) {
+        graphViewState.set(svg, viewBox);
+      }
+      return viewBox;
+    };
+
+    const getCurrentViewBox = (svg) => parseViewBox(svg) || getDefaultViewBox(svg);
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const constrainViewBox = (svg, viewBox) => {
+      const defaultViewBox = getDefaultViewBox(svg);
+      if (!defaultViewBox) {
+        return viewBox;
+      }
+
+      const width = clamp(viewBox.width, defaultViewBox.width * 0.16, defaultViewBox.width);
+      const height = clamp(viewBox.height, defaultViewBox.height * 0.16, defaultViewBox.height);
+      const maxX = defaultViewBox.x + defaultViewBox.width - width;
+      const maxY = defaultViewBox.y + defaultViewBox.height - height;
+      return {
+        x: clamp(viewBox.x, defaultViewBox.x, Math.max(defaultViewBox.x, maxX)),
+        y: clamp(viewBox.y, defaultViewBox.y, Math.max(defaultViewBox.y, maxY)),
+        width,
+        height,
+      };
+    };
+
+    const setViewBox = (svg, viewBox) => {
+      const nextViewBox = constrainViewBox(svg, viewBox);
+      svg.setAttribute(
+        "viewBox",
+        `${nextViewBox.x.toFixed(2)} ${nextViewBox.y.toFixed(2)} ${nextViewBox.width.toFixed(2)} ${nextViewBox.height.toFixed(2)}`,
+      );
+    };
+
+    const clientPointToSvgPoint = (svg, clientX, clientY) => {
+      const matrix = svg.getScreenCTM();
+      if (!matrix) {
+        const current = getCurrentViewBox(svg);
+        return current
+          ? {
+              x: current.x + current.width / 2,
+              y: current.y + current.height / 2,
+            }
+          : null;
+      }
+      const point = svg.createSVGPoint();
+      point.x = clientX;
+      point.y = clientY;
+      return point.matrixTransform(matrix.inverse());
+    };
+
+    const zoomGraph = (svg, factor, clientX, clientY) => {
+      const current = getCurrentViewBox(svg);
+      const focusPoint = clientPointToSvgPoint(svg, clientX, clientY);
+      if (!current || !focusPoint) {
+        return;
+      }
+
+      const width = current.width * factor;
+      const height = current.height * factor;
+      const focusXRatio = (focusPoint.x - current.x) / current.width;
+      const focusYRatio = (focusPoint.y - current.y) / current.height;
+      setViewBox(svg, {
+        x: focusPoint.x - width * focusXRatio,
+        y: focusPoint.y - height * focusYRatio,
+        width,
+        height,
+      });
+    };
+
+    const getElementBounds = (svg, element) => {
+      let bbox;
+      let matrix;
+      try {
+        bbox = element.getBBox();
+        const rootMatrix = svg.getScreenCTM();
+        const elementMatrix = element.getScreenCTM();
+        matrix = rootMatrix && elementMatrix ? rootMatrix.inverse().multiply(elementMatrix) : null;
+      } catch {
+        return null;
+      }
+      if (!bbox || !matrix) {
+        return null;
+      }
+
+      const point = svg.createSVGPoint();
+      const transformPoint = (x, y) => {
+        point.x = x;
+        point.y = y;
+        return point.matrixTransform(matrix);
+      };
+      const corners = [
+        transformPoint(bbox.x, bbox.y),
+        transformPoint(bbox.x + bbox.width, bbox.y),
+        transformPoint(bbox.x, bbox.y + bbox.height),
+        transformPoint(bbox.x + bbox.width, bbox.y + bbox.height),
+      ];
+      return {
+        minX: Math.min(...corners.map((corner) => corner.x)),
+        maxX: Math.max(...corners.map((corner) => corner.x)),
+        minY: Math.min(...corners.map((corner) => corner.y)),
+        maxY: Math.max(...corners.map((corner) => corner.y)),
+      };
+    };
+
+    const focusGraphElements = (svg, elements) => {
+      const defaultViewBox = getDefaultViewBox(svg);
+      if (!defaultViewBox) {
+        return;
+      }
+
+      const bounds = elements.map((element) => getElementBounds(svg, element)).filter(Boolean);
+      if (bounds.length === 0) {
+        return;
+      }
+
+      const minX = Math.min(...bounds.map((bound) => bound.minX));
+      const maxX = Math.max(...bounds.map((bound) => bound.maxX));
+      const minY = Math.min(...bounds.map((bound) => bound.minY));
+      const maxY = Math.max(...bounds.map((bound) => bound.maxY));
+      const nodeWidth = Math.max(maxX - minX, 1);
+      const nodeHeight = Math.max(maxY - minY, 1);
+      const centerX = minX + nodeWidth / 2;
+      const centerY = minY + nodeHeight / 2;
+      const aspect = defaultViewBox.width / defaultViewBox.height;
+      const padding = Math.max(32, Math.max(nodeWidth, nodeHeight) * 0.14);
+      let width = Math.max(nodeWidth + padding * 2, defaultViewBox.width * 0.24, 140);
+      let height = width / aspect;
+      if (height < nodeHeight + padding * 2) {
+        height = nodeHeight + padding * 2;
+        width = height * aspect;
+      }
+
+      width = Math.min(width, defaultViewBox.width);
+      height = Math.min(height, defaultViewBox.height);
+      const maxXOffset = defaultViewBox.x + defaultViewBox.width - width;
+      const maxYOffset = defaultViewBox.y + defaultViewBox.height - height;
+      setViewBox(svg, {
+        x: clamp(centerX - width / 2, defaultViewBox.x, maxXOffset),
+        y: clamp(centerY - height / 2, defaultViewBox.y, maxYOffset),
+        width,
+        height,
+      });
+    };
+
+    const restoreGraphView = (svg = getActiveSvg()) => {
+      const defaultViewBox = getDefaultViewBox(svg);
+      if (defaultViewBox) {
+        setViewBox(svg, defaultViewBox);
+      }
+    };
+
+    const injectGraphSearchStyles = (svg) => {
+      if (!svg || svg.querySelector("#atlas-graph-search-style")) {
+        return;
+      }
+      const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+      style.id = "atlas-graph-search-style";
+      style.textContent = `
+        svg.atlas-searching g.node:not(.is-atlas-context),
+        svg.atlas-searching g.edge:not(.is-atlas-branch) {
+          opacity: 0.12;
+          transition: opacity 160ms ease-out;
+        }
+        g.edge.is-atlas-branch path {
+          stroke: #0f4154 !important;
+          stroke-width: 3px !important;
+        }
+        g.edge.is-atlas-branch polygon {
+          fill: #0f4154 !important;
+          stroke: #0f4154 !important;
+          stroke-width: 1.4px !important;
+        }
+        g.node.is-atlas-context:not(.is-atlas-match) polygon,
+        g.node.is-atlas-context:not(.is-atlas-match) ellipse,
+        g.node.is-atlas-context:not(.is-atlas-match) path {
+          stroke: #0f4154 !important;
+          stroke-width: 2.4px !important;
+        }
+        g.node.is-atlas-match {
+          filter: drop-shadow(0 0 8px rgba(31, 79, 102, 0.42));
+        }
+        g.node.is-atlas-match polygon,
+        g.node.is-atlas-match ellipse,
+        g.node.is-atlas-match path {
+          fill: #fff1cf !important;
+          stroke: #0f4154 !important;
+          stroke-width: 4px !important;
+        }
+        g.node.is-atlas-match text {
+          fill: #0f2630 !important;
+          font-weight: 700;
+        }
+      `;
+      svg.appendChild(style);
+    };
+
+    const getDirectTitle = (element) =>
+      Array.from(element.children)
+        .find((child) => child.tagName.toLowerCase() === "title")
+        ?.textContent.trim() || "";
+
+    const isCourseNodeId = (nodeId) => nodeId.startsWith("course__");
+
+    const getNodeVisibleLines = (node) =>
+      Array.from(node.querySelectorAll("text"))
+        .map((text) => text.textContent.trim())
+        .filter(Boolean);
+
+    const getNodeLinkTitle = (node) => {
+      const link = node.querySelector("a");
+      return (
+        link?.getAttribute("xlink:title") ||
+        link?.getAttributeNS?.("http://www.w3.org/1999/xlink", "title") ||
+        link?.getAttribute("title") ||
+        ""
+      );
+    };
+
+    const getNodeSearchText = (node) =>
+      [getDirectTitle(node), ...getNodeVisibleLines(node), getNodeLinkTitle(node)].join(" ").toLowerCase();
+
+    const buildGraphIndex = (svg) => {
+      const nodeMap = new Map();
+      const incoming = new Map();
+      const outgoing = new Map();
+      const edges = [];
+
+      Array.from(svg.querySelectorAll("g.node")).forEach((node) => {
+        const nodeId = getDirectTitle(node);
+        if (!nodeId) {
+          return;
+        }
+        node.dataset.atlasNodeId = nodeId;
+        nodeMap.set(nodeId, node);
+      });
+
+      Array.from(svg.querySelectorAll("g.edge")).forEach((edge) => {
+        const title = getDirectTitle(edge);
+        const [from, to] = title.split("->");
+        if (!from || !to) {
+          return;
+        }
+        const record = { edge, from, to };
+        edges.push(record);
+        if (!outgoing.has(from)) {
+          outgoing.set(from, []);
+        }
+        if (!incoming.has(to)) {
+          incoming.set(to, []);
+        }
+        outgoing.get(from).push(record);
+        incoming.get(to).push(record);
+      });
+
+      return { nodeMap, incoming, outgoing, edges };
+    };
+
+    const collectBranchContext = (index, matchedNodes) => {
+      const contextNodes = new Set(matchedNodes);
+      const terminalNodes = new Set();
+      const branchEdges = new Set();
+      const queue = [];
+      const visited = new Set();
+
+      const enqueue = (nodeId, direction, originId) => {
+        const edgeRecords = direction === "out" ? index.outgoing.get(nodeId) || [] : index.incoming.get(nodeId) || [];
+        edgeRecords.forEach((record) => {
+          const key = `${direction}:${originId}:${record.from}->${record.to}`;
+          if (visited.has(key)) {
+            return;
+          }
+          visited.add(key);
+          queue.push({ record, direction, originId });
+        });
+      };
+
+      matchedNodes.forEach((node) => {
+        const nodeId = node.dataset.atlasNodeId || getDirectTitle(node);
+        if (!nodeId) {
+          return;
+        }
+        enqueue(nodeId, "in", nodeId);
+        enqueue(nodeId, "out", nodeId);
+      });
+
+      while (queue.length > 0) {
+        const { record, direction, originId } = queue.shift();
+        const nextId = direction === "out" ? record.to : record.from;
+        const nextNode = index.nodeMap.get(nextId);
+
+        branchEdges.add(record.edge);
+        if (!nextNode) {
+          continue;
+        }
+
+        contextNodes.add(nextNode);
+        if (nextId !== originId && isCourseNodeId(nextId)) {
+          terminalNodes.add(nextNode);
+          continue;
+        }
+
+        enqueue(nextId, direction, originId);
+      }
+
+      return { contextNodes, terminalNodes, branchEdges };
+    };
+
+    const updateGraphAutocomplete = (svg) => {
+      if (!graphSearchInput || !autocompleteList) {
+        return;
+      }
+
+      const options = Array.from(svg.querySelectorAll("g.node"))
+        .map((node) => {
+          const nodeId = getDirectTitle(node);
+          if (!isCourseNodeId(nodeId)) {
+            return null;
+          }
+          const visibleLines = getNodeVisibleLines(node);
+          const value = visibleLines[0] || nodeId.replace(/^course__/, "");
+          const label = [visibleLines.slice(1).join(" "), getNodeLinkTitle(node)]
+            .filter(Boolean)
+            .join(" | ");
+          return { value, label };
+        })
+        .filter(Boolean)
+        .filter(
+          (option, index, allOptions) =>
+            allOptions.findIndex((candidate) => candidate.value === option.value) === index,
+        )
+        .sort((a, b) => a.value.localeCompare(b.value, undefined, { numeric: true }));
+
+      autocompleteList.replaceChildren(
+        ...options.map((option) => {
+          const element = document.createElement("option");
+          element.value = option.value;
+          if (option.label) {
+            element.label = option.label;
+          }
+          return element;
+        }),
+      );
+    };
+
+    const prepareGraphSvg = (svg) => {
+      if (!svg || svg.dataset.atlasGraphReady === "true") {
+        return;
+      }
+
+      svg.dataset.atlasGraphReady = "true";
+      svg.classList.add("atlas-graph-svg");
+      svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+      getDefaultViewBox(svg);
+      injectGraphSearchStyles(svg);
+      updateGraphAutocomplete(svg);
+
+      let dragState = null;
+      let suppressNextClick = false;
+
+      svg.addEventListener(
+        "wheel",
+        (event) => {
+          event.preventDefault();
+          zoomGraph(svg, event.deltaY < 0 ? 0.84 : 1.18, event.clientX, event.clientY);
+        },
+        { passive: false },
+      );
+
+      svg.addEventListener("pointerdown", (event) => {
+        if (event.button !== 0) {
+          return;
+        }
+        dragState = {
+          lastX: event.clientX,
+          lastY: event.clientY,
+          startX: event.clientX,
+          startY: event.clientY,
+          moved: false,
+          pointerId: event.pointerId,
+        };
+      });
+
+      svg.addEventListener("pointermove", (event) => {
+        if (!dragState) {
+          return;
+        }
+
+        const totalMove = Math.hypot(event.clientX - dragState.startX, event.clientY - dragState.startY);
+        if (!dragState.moved && totalMove < 4) {
+          return;
+        }
+
+        if (!dragState.moved) {
+          dragState.moved = true;
+          suppressNextClick = true;
+          svg.classList.add("is-atlas-panning");
+          svg.setPointerCapture?.(dragState.pointerId);
+        }
+
+        event.preventDefault();
+        const current = getCurrentViewBox(svg);
+        const rect = svg.getBoundingClientRect();
+        if (!current || rect.width === 0 || rect.height === 0) {
+          return;
+        }
+
+        const deltaX = ((event.clientX - dragState.lastX) * current.width) / rect.width;
+        const deltaY = ((event.clientY - dragState.lastY) * current.height) / rect.height;
+        dragState.lastX = event.clientX;
+        dragState.lastY = event.clientY;
+        setViewBox(svg, {
+          ...current,
+          x: current.x - deltaX,
+          y: current.y - deltaY,
+        });
+      });
+
+      const endDrag = () => {
+        if (!dragState) {
+          return;
+        }
+        svg.classList.remove("is-atlas-panning");
+        svg.releasePointerCapture?.(dragState.pointerId);
+        dragState = null;
+      };
+
+      svg.addEventListener("pointerup", endDrag);
+      svg.addEventListener("pointercancel", endDrag);
+      svg.addEventListener(
+        "click",
+        (event) => {
+          if (!suppressNextClick) {
+            return;
+          }
+          event.preventDefault();
+          event.stopPropagation();
+          suppressNextClick = false;
+        },
+        true,
+      );
+    };
+
+    const updateGraphSearch = () => {
+      const query = (graphSearchInput?.value || "").trim().toLowerCase();
+      const svg = getActiveSvg();
+      if (!svg) {
+        if (graphSearchStatus) {
+          graphSearchStatus.textContent = "Search is available after the graph finishes loading.";
+        }
+        return;
+      }
+
+      prepareGraphSvg(svg);
+      const graphIndex = buildGraphIndex(svg);
+      const nodes = Array.from(graphIndex.nodeMap.values());
+      let matchCount = 0;
+      const matchedNodes = [];
+      svg.classList.toggle("atlas-searching", Boolean(query));
+
+      nodes.forEach((node) => {
+        const text = getNodeSearchText(node);
+        const isMatch = Boolean(query) && text.includes(query);
+        node.classList.remove("is-atlas-match", "is-atlas-context", "is-atlas-terminal");
+        if (isMatch) {
+          matchCount += 1;
+          matchedNodes.push(node);
+        }
+      });
+
+      graphIndex.edges.forEach(({ edge }) => edge.classList.remove("is-atlas-branch"));
+
+      if (!query || matchedNodes.length === 0) {
+        restoreGraphView(svg);
+      } else {
+        const branchContext = collectBranchContext(graphIndex, matchedNodes);
+        matchedNodes.forEach((node) => node.classList.add("is-atlas-match", "is-atlas-context"));
+        branchContext.contextNodes.forEach((node) => node.classList.add("is-atlas-context"));
+        branchContext.terminalNodes.forEach((node) => node.classList.add("is-atlas-terminal"));
+        branchContext.branchEdges.forEach((edge) => edge.classList.add("is-atlas-branch"));
+        focusGraphElements(svg, [...branchContext.contextNodes, ...branchContext.branchEdges]);
+      }
+
+      if (!graphSearchStatus) {
+        return;
+      }
+      if (!query) {
+        graphSearchStatus.textContent =
+          "Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.";
+      } else if (matchCount === 0) {
+        graphSearchStatus.textContent = `No graph nodes match "${graphSearchInput.value}".`;
+      } else {
+        const branchCount = svg.querySelectorAll("g.edge.is-atlas-branch").length;
+        graphSearchStatus.textContent = `${matchCount} matching graph node${matchCount === 1 ? "" : "s"} with ${branchCount} connected branch${branchCount === 1 ? "" : "es"} highlighted.`;
+      }
+    };
+
+    const applyMode = (button) => {
+      const modeKey = button.getAttribute("data-graph-mode");
+      const download = button.getAttribute("data-graph-download") || button.getAttribute("data-graph-src");
+      const copy = button.getAttribute("data-graph-copy") || "";
+      const template = templates.find((candidate) => candidate.getAttribute("data-graph-template") === modeKey);
+
+      if (template) {
+        const svg = template.content.firstElementChild?.cloneNode(true);
+        if (svg) {
+          graphStage.replaceChildren(svg);
+          prepareGraphSvg(svg);
         }
       }
 
@@ -139,11 +717,27 @@ document.addEventListener("DOMContentLoaded", () => {
         candidate.classList.toggle("is-active", isActive);
         candidate.setAttribute("aria-pressed", String(isActive));
       });
+
+      updateGraphSearch();
     };
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => applyMode(button));
     });
+
+    if (graphSearchInput) {
+      graphSearchInput.addEventListener("input", updateGraphSearch);
+    }
+
+    if (resetButton) {
+      resetButton.addEventListener("click", () => {
+        if (graphSearchInput) {
+          graphSearchInput.value = "";
+        }
+        restoreGraphView();
+        updateGraphSearch();
+      });
+    }
 
     const activeButton = buttons.find((button) => button.classList.contains("is-active")) || buttons[0];
     applyMode(activeButton);

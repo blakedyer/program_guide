@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../program-guide.css">
   <script defer src="../program-guide.js"></script>
 </head>
-<body>
+<body class="page--course-detail">
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="../index.html">SEOS Curriculum Atlas</a>
@@ -30,35 +30,335 @@
     </section>
     
     <section class="section section--tight">
+      
+    <div class="graph-shell" id="course-graph" data-graph-switcher>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">Course Graph</p>
+          <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+          <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="../assets/graphs/courses/CHEM362--simplified.svg">Open SVG</a>
+      </div>
+      <div class="graph-toolbar">
+        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
+          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/CHEM362--simplified.svg" data-graph-download="../assets/graphs/courses/CHEM362--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/CHEM362.svg" data-graph-download="../assets/graphs/courses/CHEM362.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
+        </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
+        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
+      </div>
+      
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">Graph key and legend</span>
+          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
+        </span>
+        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">CHEM362</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
+      </summary>
+      <div class="graph-guide__body">
+        <div class="legend"><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #ead9b8"></span>Chemistry</span></div>
+        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
+      </div>
+    </details>
+      <div class="graph-frame">
+        <div class="graph-svg-stage" data-graph-stage aria-label="CHEM362 course graph">
+          <!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CHEM362 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CHEM362 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="411pt" height="135pt"
+ viewBox="0.00 0.00 411.20 135.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 113.6)">
+<title>CHEM362</title>
+<!-- course__CHEM225 -->
+<g id="node1" class="node">
+<title>course__CHEM225</title>
+<g id="a_node1"><a xlink:href="CHEM225.html" xlink:title="CHEM225: Introduction to Inorganic Chemistry" target="_top" href="CHEM225.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M52,-92C52,-92 12,-92 12,-92 6,-92 0,-86 0,-80 0,-80 0,-68 0,-68 0,-62 6,-56 12,-56 12,-56 52,-56 52,-56 58,-56 64,-62 64,-68 64,-68 64,-80 64,-80 64,-86 58,-92 52,-92"/>
+<text text-anchor="middle" x="32" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM225</text>
+</a>
+</g>
+</g>
+<!-- bundle_CHEM362_0_1 -->
+<g id="node4" class="node">
+<title>bundle_CHEM362_0_1</title>
+<g id="a_node4"><a xlink:title="Grouped requirement junction">
+<ellipse fill="#7a8790" stroke="#667780" cx="131" cy="-46" rx="6" ry="6"/>
+</a>
+</g>
+</g>
+<!-- course__CHEM225&#45;&gt;bundle_CHEM362_0_1 -->
+<g id="edge1" class="edge">
+<title>course__CHEM225&#45;&gt;bundle_CHEM362_0_1</title>
+<path fill="none" stroke="#7a8389" d="M64.23,-64.99C82.57,-59.69 104.71,-53.3 118.05,-49.45"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="119.07,-51.71 125.11,-47.41 117.71,-47 119.07,-51.71"/>
+</g>
+<!-- course__CHEM260 -->
+<g id="node2" class="node">
+<title>course__CHEM260</title>
+<g id="a_node2"><a xlink:href="CHEM260.html" xlink:title="CHEM260: Synthetic Chemistry Laboratory" target="_top" href="CHEM260.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M52,-36C52,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 52,0 52,0 58,0 64,-6 64,-12 64,-12 64,-24 64,-24 64,-30 58,-36 52,-36"/>
+<text text-anchor="middle" x="32" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM260</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM260&#45;&gt;bundle_CHEM362_0_1 -->
+<g id="edge2" class="edge">
+<title>course__CHEM260&#45;&gt;bundle_CHEM362_0_1</title>
+<path fill="none" stroke="#7a8389" d="M64.23,-27.01C82.57,-32.31 104.71,-38.7 118.05,-42.55"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="117.71,-45 125.11,-44.59 119.07,-40.29 117.71,-45"/>
+</g>
+<!-- course__CHEM362 -->
+<g id="node3" class="node">
+<title>course__CHEM362</title>
+<g id="a_node3"><a xlink:href="CHEM362.html" xlink:title="CHEM362: Inorganic Chemistry Laboratory" target="_top" href="CHEM362.html">
+<path fill="#ead9b8" stroke="#1f4f66" stroke-width="2" d="M356,-64C356,-64 210,-64 210,-64 204,-64 198,-58 198,-52 198,-52 198,-40 198,-40 198,-34 204,-28 210,-28 210,-28 356,-28 356,-28 362,-28 368,-34 368,-40 368,-40 368,-52 368,-52 368,-58 362,-64 356,-64"/>
+<text text-anchor="middle" x="283" y="-49" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM362</text>
+<text text-anchor="middle" x="283" y="-38" font-family="Avenir Next" font-size="10.00" fill="#17232b">Inorganic Chemistry Laboratory</text>
+</a>
+</g>
+</g>
+<!-- bundle_CHEM362_0_1&#45;&gt;course__CHEM362 -->
+<g id="edge3" class="edge">
+<title>bundle_CHEM362_0_1&#45;&gt;course__CHEM362</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M137.34,-46C146.8,-46 167.69,-46 190.73,-46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="190.94,-48.45 197.94,-46 190.94,-43.55 190.94,-48.45"/>
+</g>
+</g>
+</svg>
+        </div>
+        <div class="graph-template-bank" hidden>
+          <template data-graph-template="simplified"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CHEM362 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CHEM362 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="411pt" height="135pt"
+ viewBox="0.00 0.00 411.20 135.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 113.6)">
+<title>CHEM362</title>
+<!-- course__CHEM225 -->
+<g id="node1" class="node">
+<title>course__CHEM225</title>
+<g id="a_node1"><a xlink:href="CHEM225.html" xlink:title="CHEM225: Introduction to Inorganic Chemistry" target="_top" href="CHEM225.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M52,-92C52,-92 12,-92 12,-92 6,-92 0,-86 0,-80 0,-80 0,-68 0,-68 0,-62 6,-56 12,-56 12,-56 52,-56 52,-56 58,-56 64,-62 64,-68 64,-68 64,-80 64,-80 64,-86 58,-92 52,-92"/>
+<text text-anchor="middle" x="32" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM225</text>
+</a>
+</g>
+</g>
+<!-- bundle_CHEM362_0_1 -->
+<g id="node4" class="node">
+<title>bundle_CHEM362_0_1</title>
+<g id="a_node4"><a xlink:title="Grouped requirement junction">
+<ellipse fill="#7a8790" stroke="#667780" cx="131" cy="-46" rx="6" ry="6"/>
+</a>
+</g>
+</g>
+<!-- course__CHEM225&#45;&gt;bundle_CHEM362_0_1 -->
+<g id="edge1" class="edge">
+<title>course__CHEM225&#45;&gt;bundle_CHEM362_0_1</title>
+<path fill="none" stroke="#7a8389" d="M64.23,-64.99C82.57,-59.69 104.71,-53.3 118.05,-49.45"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="119.07,-51.71 125.11,-47.41 117.71,-47 119.07,-51.71"/>
+</g>
+<!-- course__CHEM260 -->
+<g id="node2" class="node">
+<title>course__CHEM260</title>
+<g id="a_node2"><a xlink:href="CHEM260.html" xlink:title="CHEM260: Synthetic Chemistry Laboratory" target="_top" href="CHEM260.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M52,-36C52,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 52,0 52,0 58,0 64,-6 64,-12 64,-12 64,-24 64,-24 64,-30 58,-36 52,-36"/>
+<text text-anchor="middle" x="32" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM260</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM260&#45;&gt;bundle_CHEM362_0_1 -->
+<g id="edge2" class="edge">
+<title>course__CHEM260&#45;&gt;bundle_CHEM362_0_1</title>
+<path fill="none" stroke="#7a8389" d="M64.23,-27.01C82.57,-32.31 104.71,-38.7 118.05,-42.55"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="117.71,-45 125.11,-44.59 119.07,-40.29 117.71,-45"/>
+</g>
+<!-- course__CHEM362 -->
+<g id="node3" class="node">
+<title>course__CHEM362</title>
+<g id="a_node3"><a xlink:href="CHEM362.html" xlink:title="CHEM362: Inorganic Chemistry Laboratory" target="_top" href="CHEM362.html">
+<path fill="#ead9b8" stroke="#1f4f66" stroke-width="2" d="M356,-64C356,-64 210,-64 210,-64 204,-64 198,-58 198,-52 198,-52 198,-40 198,-40 198,-34 204,-28 210,-28 210,-28 356,-28 356,-28 362,-28 368,-34 368,-40 368,-40 368,-52 368,-52 368,-58 362,-64 356,-64"/>
+<text text-anchor="middle" x="283" y="-49" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM362</text>
+<text text-anchor="middle" x="283" y="-38" font-family="Avenir Next" font-size="10.00" fill="#17232b">Inorganic Chemistry Laboratory</text>
+</a>
+</g>
+</g>
+<!-- bundle_CHEM362_0_1&#45;&gt;course__CHEM362 -->
+<g id="edge3" class="edge">
+<title>bundle_CHEM362_0_1&#45;&gt;course__CHEM362</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M137.34,-46C146.8,-46 167.69,-46 190.73,-46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="190.94,-48.45 197.94,-46 190.94,-43.55 190.94,-48.45"/>
+</g>
+</g>
+</svg></template><template data-graph-template="full"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CHEM362 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CHEM362 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="708pt" height="191pt"
+ viewBox="0.00 0.00 708.20 191.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 169.6)">
+<title>CHEM362</title>
+<!-- course__CHEM091 -->
+<g id="node1" class="node">
+<title>course__CHEM091</title>
+<g id="a_node1"><a xlink:href="CHEM091.html" xlink:title="CHEM091: Introduction to Chemistry" target="_top" href="CHEM091.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M75.5,-148C75.5,-148 38.5,-148 38.5,-148 32.5,-148 26.5,-142 26.5,-136 26.5,-136 26.5,-124 26.5,-124 26.5,-118 32.5,-112 38.5,-112 38.5,-112 75.5,-112 75.5,-112 81.5,-112 87.5,-118 87.5,-124 87.5,-124 87.5,-136 87.5,-136 87.5,-142 81.5,-148 75.5,-148"/>
+<text text-anchor="middle" x="57" y="-127.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM091</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102 -->
+<g id="node4" class="node">
+<title>course__CHEM102</title>
+<g id="a_node4"><a xlink:href="CHEM102.html" xlink:title="CHEM102: Chemical Reactivity Fundamentals with Environmental Applications" target="_top" href="CHEM102.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M224,-92C224,-92 187,-92 187,-92 181,-92 175,-86 175,-80 175,-80 175,-68 175,-68 175,-62 181,-56 187,-56 187,-56 224,-56 224,-56 230,-56 236,-62 236,-68 236,-68 236,-80 236,-80 236,-86 230,-92 224,-92"/>
+<text text-anchor="middle" x="205.5" y="-71.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM102</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM091&#45;&gt;course__CHEM102 -->
+<g id="edge1" class="edge">
+<title>course__CHEM091&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M87.65,-118.67C110.88,-109.79 143.31,-97.39 168.12,-87.91"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="169.23,-90.1 174.9,-85.32 167.48,-85.53 169.23,-90.1"/>
+</g>
+<!-- course__CHEM101 -->
+<g id="node2" class="node">
+<title>course__CHEM101</title>
+<g id="a_node2"><a xlink:href="CHEM101.html" xlink:title="Equivalent or cross&#45;listed: CHEM101: Fundamentals of Chemistry from Atoms to Materials | CHEM150: Engineering Chemistry" target="_top" href="CHEM101.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M102,-36C102,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 102,0 102,0 108,0 114,-6 114,-12 114,-12 114,-24 114,-24 114,-30 108,-36 102,-36"/>
+<text text-anchor="middle" x="57" y="-15.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM101 / CHEM150</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM101&#45;&gt;course__CHEM102 -->
+<g id="edge2" class="edge">
+<title>course__CHEM101&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M105.16,-36.03C125.57,-43.83 149.09,-52.82 168.12,-60.09"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="167.5,-62.48 174.92,-62.69 169.25,-57.9 167.5,-62.48"/>
+</g>
+<!-- course__CHEM231 -->
+<g id="node5" class="node">
+<title>course__CHEM231</title>
+<g id="a_node5"><a xlink:href="CHEM231.html" xlink:title="CHEM231: Introduction to Organic Chemistry" target="_top" href="CHEM231.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M224,-36C224,-36 187,-36 187,-36 181,-36 175,-30 175,-24 175,-24 175,-12 175,-12 175,-6 181,0 187,0 187,0 224,0 224,0 230,0 236,-6 236,-12 236,-12 236,-24 236,-24 236,-30 230,-36 224,-36"/>
+<text text-anchor="middle" x="205.5" y="-15.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM231</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM101&#45;&gt;course__CHEM231 -->
+<g id="edge5" class="edge">
+<title>course__CHEM101&#45;&gt;course__CHEM231</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M114.22,-18C132.14,-18 151.49,-18 167.66,-18"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="167.85,-20.45 174.85,-18 167.85,-15.55 167.85,-20.45"/>
+</g>
+<!-- course__MATH100 -->
+<g id="node3" class="node">
+<title>course__MATH100</title>
+<g id="a_node3"><a xlink:href="MATH100.html" xlink:title="Equivalent or cross&#45;listed: MATH100: Calculus I | MATH102: Calculus for Students in the Social and Biological Sciences | MATH109: Introduction to Calculus" target="_top" href="MATH100.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M100.5,-92C100.5,-92 13.5,-92 13.5,-92 7.5,-92 1.5,-86 1.5,-80 1.5,-80 1.5,-68 1.5,-68 1.5,-62 7.5,-56 13.5,-56 13.5,-56 100.5,-56 100.5,-56 106.5,-56 112.5,-62 112.5,-68 112.5,-68 112.5,-80 112.5,-80 112.5,-86 106.5,-92 100.5,-92"/>
+<text text-anchor="middle" x="57" y="-76.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH100 / MATH102</text>
+<text text-anchor="middle" x="57" y="-66.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH109</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__CHEM102 -->
+<g id="edge3" class="edge">
+<title>course__MATH100&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M112.55,-74C130.89,-74 150.91,-74 167.57,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="167.97,-76.45 174.97,-74 167.97,-71.55 167.97,-76.45"/>
+</g>
+<!-- course__CHEM225 -->
+<g id="node6" class="node">
+<title>course__CHEM225</title>
+<g id="a_node6"><a xlink:href="CHEM225.html" xlink:title="CHEM225: Introduction to Inorganic Chemistry" target="_top" href="CHEM225.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M349,-92C349,-92 309,-92 309,-92 303,-92 297,-86 297,-80 297,-80 297,-68 297,-68 297,-62 303,-56 309,-56 309,-56 349,-56 349,-56 355,-56 361,-62 361,-68 361,-68 361,-80 361,-80 361,-86 355,-92 349,-92"/>
+<text text-anchor="middle" x="329" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM225</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102&#45;&gt;course__CHEM225 -->
+<g id="edge4" class="edge">
+<title>course__CHEM102&#45;&gt;course__CHEM225</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M236.22,-74C252.33,-74 272.41,-74 289.68,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="289.89,-76.45 296.89,-74 289.89,-71.55 289.89,-76.45"/>
+</g>
+<!-- course__CHEM260 -->
+<g id="node7" class="node">
+<title>course__CHEM260</title>
+<g id="a_node7"><a xlink:href="CHEM260.html" xlink:title="CHEM260: Synthetic Chemistry Laboratory" target="_top" href="CHEM260.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M349,-36C349,-36 309,-36 309,-36 303,-36 297,-30 297,-24 297,-24 297,-12 297,-12 297,-6 303,0 309,0 309,0 349,0 349,0 355,0 361,-6 361,-12 361,-12 361,-24 361,-24 361,-30 355,-36 349,-36"/>
+<text text-anchor="middle" x="329" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM260</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102&#45;&gt;course__CHEM260 -->
+<g id="edge6" class="edge">
+<title>course__CHEM102&#45;&gt;course__CHEM260</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M236.22,-60.3C252.47,-52.81 272.77,-43.46 290.14,-35.45"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="291.56,-37.49 296.89,-32.34 289.51,-33.04 291.56,-37.49"/>
+</g>
+<!-- course__CHEM231&#45;&gt;course__CHEM260 -->
+<g id="edge7" class="edge">
+<title>course__CHEM231&#45;&gt;course__CHEM260</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M236.22,-18C252.33,-18 272.41,-18 289.68,-18"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="289.89,-20.45 296.89,-18 289.89,-15.55 289.89,-20.45"/>
+</g>
+<!-- bundle_CHEM362_0_1 -->
+<g id="node9" class="node">
+<title>bundle_CHEM362_0_1</title>
+<g id="a_node9"><a xlink:title="Grouped requirement junction">
+<ellipse fill="#7a8790" stroke="#667780" cx="428" cy="-46" rx="6" ry="6"/>
+</a>
+</g>
+</g>
+<!-- course__CHEM225&#45;&gt;bundle_CHEM362_0_1 -->
+<g id="edge8" class="edge">
+<title>course__CHEM225&#45;&gt;bundle_CHEM362_0_1</title>
+<path fill="none" stroke="#7a8389" d="M361.23,-64.99C379.57,-59.69 401.71,-53.3 415.05,-49.45"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="416.07,-51.71 422.11,-47.41 414.71,-47 416.07,-51.71"/>
+</g>
+<!-- course__CHEM260&#45;&gt;bundle_CHEM362_0_1 -->
+<g id="edge9" class="edge">
+<title>course__CHEM260&#45;&gt;bundle_CHEM362_0_1</title>
+<path fill="none" stroke="#7a8389" d="M361.23,-27.01C379.57,-32.31 401.71,-38.7 415.05,-42.55"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="414.71,-45 422.11,-44.59 416.07,-40.29 414.71,-45"/>
+</g>
+<!-- course__CHEM362 -->
+<g id="node8" class="node">
+<title>course__CHEM362</title>
+<g id="a_node8"><a xlink:href="CHEM362.html" xlink:title="CHEM362: Inorganic Chemistry Laboratory" target="_top" href="CHEM362.html">
+<path fill="#ead9b8" stroke="#1f4f66" stroke-width="2" d="M653,-64C653,-64 507,-64 507,-64 501,-64 495,-58 495,-52 495,-52 495,-40 495,-40 495,-34 501,-28 507,-28 507,-28 653,-28 653,-28 659,-28 665,-34 665,-40 665,-40 665,-52 665,-52 665,-58 659,-64 653,-64"/>
+<text text-anchor="middle" x="580" y="-49" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM362</text>
+<text text-anchor="middle" x="580" y="-38" font-family="Avenir Next" font-size="10.00" fill="#17232b">Inorganic Chemistry Laboratory</text>
+</a>
+</g>
+</g>
+<!-- bundle_CHEM362_0_1&#45;&gt;course__CHEM362 -->
+<g id="edge10" class="edge">
+<title>bundle_CHEM362_0_1&#45;&gt;course__CHEM362</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M434.34,-46C443.8,-46 464.69,-46 487.73,-46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="487.94,-48.45 494.94,-46 487.94,-43.55 487.94,-48.45"/>
+</g>
+</g>
+</svg></template>
+        </div>
+      </div>
+      
+    </div>
+    
+    </section>
+
+    <section class="section">
       <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Chemistry</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">300-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">4</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">4</p><p class="metric-card__label">Published prerequisite links</p></article></div>
     </section>
 
     <section class="section">
       <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkXkkOTmE">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Emphasizes synthesis and characterization of inorganic compounds.</p></div></article><article class="detail-card"><p class="detail-card__eyebrow">Supplemental Notes</p><h3>Catalog notes</h3><div class="rich-text"><ul><li>A total of 1.5 units of credit will be granted for only one of CHEM 362, CHEM 323, CHEM 324 (if taken prior to September 2001).</li></ul></div></article></div>
-    </section>
-
-    <section class="section">
-      
-    <div class="graph-shell" id="course-graph" data-graph-switcher>
-      <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
-      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
-      <div class="graph-toolbar">
-        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
-          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/CHEM362--simplified.svg" data-graph-download="../assets/graphs/courses/CHEM362--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/CHEM362.svg" data-graph-download="../assets/graphs/courses/CHEM362.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
-        </div>
-        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
-      </div>
-      
-      <div class="graph-frame">
-        <object data="../assets/graphs/courses/CHEM362--simplified.svg" data-graph-object type="image/svg+xml" aria-label="CHEM362 course graph">
-          <img src="../assets/graphs/courses/CHEM362--simplified.svg" data-graph-fallback alt="CHEM362 course graph">
-        </object>
-      </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="../assets/graphs/courses/CHEM362--simplified.svg">Open current SVG</a></p>
-      
-    </div>
-    
     </section>
 
     <section class="section">

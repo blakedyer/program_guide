@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../program-guide.css">
   <script defer src="../program-guide.js"></script>
 </head>
-<body>
+<body class="page--course-detail">
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="../index.html">SEOS Curriculum Atlas</a>
@@ -30,35 +30,443 @@
     </section>
     
     <section class="section section--tight">
+      
+    <div class="graph-shell" id="course-graph" data-graph-switcher>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">Course Graph</p>
+          <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+          <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="../assets/graphs/courses/CIVE210--simplified.svg">Open SVG</a>
+      </div>
+      <div class="graph-toolbar">
+        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
+          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/CIVE210--simplified.svg" data-graph-download="../assets/graphs/courses/CIVE210--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/CIVE210.svg" data-graph-download="../assets/graphs/courses/CIVE210.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
+        </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
+        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
+      </div>
+      
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">Graph key and legend</span>
+          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
+        </span>
+        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">CIVE210</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
+      </summary>
+      <div class="graph-guide__body">
+        <div class="legend"><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #f2ece3"></span>CIVE</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #ead9b8"></span>Chemistry</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #e7ddec"></span>Computer Science</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #dfe3f4"></span>Mathematics</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #efd8cf"></span>Physics</span></div>
+        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
+      </div>
+    </details>
+      <div class="graph-frame">
+        <div class="graph-svg-stage" data-graph-stage aria-label="CIVE210 course graph">
+          <!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CIVE210 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CIVE210 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="768pt" height="226pt"
+ viewBox="0.00 0.00 768.20 226.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 204.6)">
+<title>CIVE210</title>
+<!-- course__MATH100 -->
+<g id="node1" class="node">
+<title>course__MATH100</title>
+<g id="a_node1"><a xlink:href="MATH100.html" xlink:title="Collapsed in simplified view: MATH100: Calculus I | MATH102: Calculus for Students in the Social and Biological Sciences | MATH109: Introduction to Calculus" target="_top" href="MATH100.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M52,-134C52,-134 12,-134 12,-134 6,-134 0,-128 0,-122 0,-122 0,-110 0,-110 0,-104 6,-98 12,-98 12,-98 52,-98 52,-98 58,-98 64,-104 64,-110 64,-110 64,-122 64,-122 64,-128 58,-134 52,-134"/>
+<text text-anchor="middle" x="32" y="-113.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Calculus I</text>
+</a>
+</g>
+</g>
+<!-- course__PHYS102A -->
+<g id="node2" class="node">
+<title>course__PHYS102A</title>
+<g id="a_node2"><a xlink:href="PHYS102A.html" xlink:title="Collapsed in simplified view: PHYS102A: General Physics I | PHYS110: Introductory Physics I | PHYS120: Physics I" target="_top" href="PHYS102A.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M172,-183C172,-183 137,-183 137,-183 131,-183 125,-177 125,-171 125,-171 125,-159 125,-159 125,-153 131,-147 137,-147 137,-147 172,-147 172,-147 178,-147 184,-153 184,-159 184,-159 184,-171 184,-171 184,-177 178,-183 172,-183"/>
+<text text-anchor="middle" x="154.5" y="-162.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Physics I</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__PHYS102A -->
+<g id="edge6" class="edge">
+<title>course__MATH100&#45;&gt;course__PHYS102A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.03,-128.62C80.53,-135.33 100.89,-143.6 118.01,-150.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="117.23,-152.9 124.64,-153.27 119.08,-148.36 117.23,-152.9"/>
+</g>
+<!-- course__CSC110 -->
+<g id="node4" class="node">
+<title>course__CSC110</title>
+<g id="a_node4"><a xlink:href="CSC110.html" xlink:title="Collapsed in simplified view: CSC110: Fundamentals of Programming I | CSC111: Fundamentals of Programming with Engineering Applications" target="_top" href="CSC110.html">
+<path fill="#e7ddec" stroke="#1b2730" stroke-width="1.6" d="M337.5,-92C337.5,-92 272.5,-92 272.5,-92 266.5,-92 260.5,-86 260.5,-80 260.5,-80 260.5,-68 260.5,-68 260.5,-62 266.5,-56 272.5,-56 272.5,-56 337.5,-56 337.5,-56 343.5,-56 349.5,-62 349.5,-68 349.5,-68 349.5,-80 349.5,-80 349.5,-86 343.5,-92 337.5,-92"/>
+<text text-anchor="middle" x="305" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Programming I</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__CSC110 -->
+<g id="edge5" class="edge">
+<title>course__MATH100&#45;&gt;course__CSC110</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.09,-111.18C110.35,-104.01 197.82,-90.46 253.39,-81.84"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="253.8,-84.26 260.34,-80.77 253.05,-79.42 253.8,-84.26"/>
+</g>
+<!-- course__PHYS102B -->
+<g id="node5" class="node">
+<title>course__PHYS102B</title>
+<g id="a_node5"><a xlink:href="PHYS102B.html" xlink:title="Collapsed in simplified view: PHYS102B: General Physics II | PHYS111: Introductory Physics II | PHYS130: Physics II" target="_top" href="PHYS102B.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M324,-148C324,-148 286,-148 286,-148 280,-148 274,-142 274,-136 274,-136 274,-124 274,-124 274,-118 280,-112 286,-112 286,-112 324,-112 324,-112 330,-112 336,-118 336,-124 336,-124 336,-136 336,-136 336,-142 330,-148 324,-148"/>
+<text text-anchor="middle" x="305" y="-127.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Physics II</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__PHYS102B -->
+<g id="edge8" class="edge">
+<title>course__MATH100&#45;&gt;course__PHYS102B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.09,-117.61C114.15,-120.19 212.45,-125.27 266.38,-128.06"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="266.57,-130.52 273.69,-128.43 266.83,-125.63 266.57,-130.52"/>
+</g>
+<!-- course__PHYS102A&#45;&gt;course__PHYS102B -->
+<g id="edge7" class="edge">
+<title>course__PHYS102A&#45;&gt;course__PHYS102B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M184.13,-158.25C207.71,-152.7 241.3,-144.78 266.92,-138.74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="267.68,-141.08 273.93,-137.09 266.55,-136.31 267.68,-141.08"/>
+</g>
+<!-- course__CHEM101 -->
+<g id="node3" class="node">
+<title>course__CHEM101</title>
+<g id="a_node3"><a xlink:href="CHEM101.html" xlink:title="Equivalent or cross&#45;listed: CHEM101: Fundamentals of Chemistry from Atoms to Materials | CHEM150: Engineering Chemistry" target="_top" href="CHEM101.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M353,-36C353,-36 257,-36 257,-36 251,-36 245,-30 245,-24 245,-24 245,-12 245,-12 245,-6 251,0 257,0 257,0 353,0 353,0 359,0 365,-6 365,-12 365,-12 365,-24 365,-24 365,-30 359,-36 353,-36"/>
+<text text-anchor="middle" x="305" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM101 / CHEM150</text>
+</a>
+</g>
+</g>
+<!-- course__CIVE210 -->
+<g id="node6" class="node">
+<title>course__CIVE210</title>
+<g id="a_node6"><a xlink:href="CIVE210.html" xlink:title="CIVE210: Sustainability in Civil Engineering" target="_top" href="CIVE210.html">
+<path fill="#f2ece3" stroke="#1f4f66" stroke-width="2" d="M595,-92C595,-92 438,-92 438,-92 432,-92 426,-86 426,-80 426,-80 426,-68 426,-68 426,-62 432,-56 438,-56 438,-56 595,-56 595,-56 601,-56 607,-62 607,-68 607,-68 607,-80 607,-80 607,-86 601,-92 595,-92"/>
+<text text-anchor="middle" x="516.5" y="-77" font-family="Avenir Next" font-size="10.00" fill="#17232b">CIVE210</text>
+<text text-anchor="middle" x="516.5" y="-66" font-family="Avenir Next" font-size="10.00" fill="#17232b">Sustainability in Civil Engineering</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM101&#45;&gt;course__CIVE210 -->
+<g id="edge1" class="edge">
+<title>course__CHEM101&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M365.19,-33.82C388.75,-40.12 416.13,-47.44 441.01,-54.09"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.56,-56.51 447.96,-55.95 441.83,-51.77 440.56,-56.51"/>
+</g>
+<!-- course__CSC110&#45;&gt;course__CIVE210 -->
+<g id="edge2" class="edge">
+<title>course__CSC110&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M349.66,-74C369.75,-74 394.43,-74 418.56,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="418.69,-76.45 425.69,-74 418.69,-71.55 418.69,-76.45"/>
+</g>
+<!-- course__PHYS102B&#45;&gt;course__CIVE210 -->
+<g id="edge3" class="edge">
+<title>course__PHYS102B&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M336.02,-121.98C363.28,-114.69 404.63,-103.64 440.77,-93.98"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.79,-96.24 447.92,-92.06 440.53,-91.5 441.79,-96.24"/>
+</g>
+<!-- course__CIVE315 -->
+<g id="node7" class="node">
+<title>course__CIVE315</title>
+<g id="a_node7"><a xlink:href="CIVE315.html" xlink:title="CIVE315: Environmental Policy" target="_top" href="CIVE315.html">
+<path fill="#f2ece3" stroke="#1b2730" stroke-width="1.6" d="M713,-92C713,-92 680,-92 680,-92 674,-92 668,-86 668,-80 668,-80 668,-68 668,-68 668,-62 674,-56 680,-56 680,-56 713,-56 713,-56 719,-56 725,-62 725,-68 725,-68 725,-80 725,-80 725,-86 719,-92 713,-92"/>
+<text text-anchor="middle" x="696.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CIVE315</text>
+</a>
+</g>
+</g>
+<!-- course__CIVE210&#45;&gt;course__CIVE315 -->
+<g id="edge4" class="edge">
+<title>course__CIVE210&#45;&gt;course__CIVE315</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M607.02,-74C626.07,-74 645.08,-74 660.58,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="660.88,-76.45 667.88,-74 660.88,-71.55 660.88,-76.45"/>
+</g>
+</g>
+</svg>
+        </div>
+        <div class="graph-template-bank" hidden>
+          <template data-graph-template="simplified"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CIVE210 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CIVE210 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="768pt" height="226pt"
+ viewBox="0.00 0.00 768.20 226.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 204.6)">
+<title>CIVE210</title>
+<!-- course__MATH100 -->
+<g id="node1" class="node">
+<title>course__MATH100</title>
+<g id="a_node1"><a xlink:href="MATH100.html" xlink:title="Collapsed in simplified view: MATH100: Calculus I | MATH102: Calculus for Students in the Social and Biological Sciences | MATH109: Introduction to Calculus" target="_top" href="MATH100.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M52,-134C52,-134 12,-134 12,-134 6,-134 0,-128 0,-122 0,-122 0,-110 0,-110 0,-104 6,-98 12,-98 12,-98 52,-98 52,-98 58,-98 64,-104 64,-110 64,-110 64,-122 64,-122 64,-128 58,-134 52,-134"/>
+<text text-anchor="middle" x="32" y="-113.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Calculus I</text>
+</a>
+</g>
+</g>
+<!-- course__PHYS102A -->
+<g id="node2" class="node">
+<title>course__PHYS102A</title>
+<g id="a_node2"><a xlink:href="PHYS102A.html" xlink:title="Collapsed in simplified view: PHYS102A: General Physics I | PHYS110: Introductory Physics I | PHYS120: Physics I" target="_top" href="PHYS102A.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M172,-183C172,-183 137,-183 137,-183 131,-183 125,-177 125,-171 125,-171 125,-159 125,-159 125,-153 131,-147 137,-147 137,-147 172,-147 172,-147 178,-147 184,-153 184,-159 184,-159 184,-171 184,-171 184,-177 178,-183 172,-183"/>
+<text text-anchor="middle" x="154.5" y="-162.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Physics I</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__PHYS102A -->
+<g id="edge6" class="edge">
+<title>course__MATH100&#45;&gt;course__PHYS102A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.03,-128.62C80.53,-135.33 100.89,-143.6 118.01,-150.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="117.23,-152.9 124.64,-153.27 119.08,-148.36 117.23,-152.9"/>
+</g>
+<!-- course__CSC110 -->
+<g id="node4" class="node">
+<title>course__CSC110</title>
+<g id="a_node4"><a xlink:href="CSC110.html" xlink:title="Collapsed in simplified view: CSC110: Fundamentals of Programming I | CSC111: Fundamentals of Programming with Engineering Applications" target="_top" href="CSC110.html">
+<path fill="#e7ddec" stroke="#1b2730" stroke-width="1.6" d="M337.5,-92C337.5,-92 272.5,-92 272.5,-92 266.5,-92 260.5,-86 260.5,-80 260.5,-80 260.5,-68 260.5,-68 260.5,-62 266.5,-56 272.5,-56 272.5,-56 337.5,-56 337.5,-56 343.5,-56 349.5,-62 349.5,-68 349.5,-68 349.5,-80 349.5,-80 349.5,-86 343.5,-92 337.5,-92"/>
+<text text-anchor="middle" x="305" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Programming I</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__CSC110 -->
+<g id="edge5" class="edge">
+<title>course__MATH100&#45;&gt;course__CSC110</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.09,-111.18C110.35,-104.01 197.82,-90.46 253.39,-81.84"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="253.8,-84.26 260.34,-80.77 253.05,-79.42 253.8,-84.26"/>
+</g>
+<!-- course__PHYS102B -->
+<g id="node5" class="node">
+<title>course__PHYS102B</title>
+<g id="a_node5"><a xlink:href="PHYS102B.html" xlink:title="Collapsed in simplified view: PHYS102B: General Physics II | PHYS111: Introductory Physics II | PHYS130: Physics II" target="_top" href="PHYS102B.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M324,-148C324,-148 286,-148 286,-148 280,-148 274,-142 274,-136 274,-136 274,-124 274,-124 274,-118 280,-112 286,-112 286,-112 324,-112 324,-112 330,-112 336,-118 336,-124 336,-124 336,-136 336,-136 336,-142 330,-148 324,-148"/>
+<text text-anchor="middle" x="305" y="-127.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Physics II</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__PHYS102B -->
+<g id="edge8" class="edge">
+<title>course__MATH100&#45;&gt;course__PHYS102B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.09,-117.61C114.15,-120.19 212.45,-125.27 266.38,-128.06"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="266.57,-130.52 273.69,-128.43 266.83,-125.63 266.57,-130.52"/>
+</g>
+<!-- course__PHYS102A&#45;&gt;course__PHYS102B -->
+<g id="edge7" class="edge">
+<title>course__PHYS102A&#45;&gt;course__PHYS102B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M184.13,-158.25C207.71,-152.7 241.3,-144.78 266.92,-138.74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="267.68,-141.08 273.93,-137.09 266.55,-136.31 267.68,-141.08"/>
+</g>
+<!-- course__CHEM101 -->
+<g id="node3" class="node">
+<title>course__CHEM101</title>
+<g id="a_node3"><a xlink:href="CHEM101.html" xlink:title="Equivalent or cross&#45;listed: CHEM101: Fundamentals of Chemistry from Atoms to Materials | CHEM150: Engineering Chemistry" target="_top" href="CHEM101.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M353,-36C353,-36 257,-36 257,-36 251,-36 245,-30 245,-24 245,-24 245,-12 245,-12 245,-6 251,0 257,0 257,0 353,0 353,0 359,0 365,-6 365,-12 365,-12 365,-24 365,-24 365,-30 359,-36 353,-36"/>
+<text text-anchor="middle" x="305" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM101 / CHEM150</text>
+</a>
+</g>
+</g>
+<!-- course__CIVE210 -->
+<g id="node6" class="node">
+<title>course__CIVE210</title>
+<g id="a_node6"><a xlink:href="CIVE210.html" xlink:title="CIVE210: Sustainability in Civil Engineering" target="_top" href="CIVE210.html">
+<path fill="#f2ece3" stroke="#1f4f66" stroke-width="2" d="M595,-92C595,-92 438,-92 438,-92 432,-92 426,-86 426,-80 426,-80 426,-68 426,-68 426,-62 432,-56 438,-56 438,-56 595,-56 595,-56 601,-56 607,-62 607,-68 607,-68 607,-80 607,-80 607,-86 601,-92 595,-92"/>
+<text text-anchor="middle" x="516.5" y="-77" font-family="Avenir Next" font-size="10.00" fill="#17232b">CIVE210</text>
+<text text-anchor="middle" x="516.5" y="-66" font-family="Avenir Next" font-size="10.00" fill="#17232b">Sustainability in Civil Engineering</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM101&#45;&gt;course__CIVE210 -->
+<g id="edge1" class="edge">
+<title>course__CHEM101&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M365.19,-33.82C388.75,-40.12 416.13,-47.44 441.01,-54.09"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="440.56,-56.51 447.96,-55.95 441.83,-51.77 440.56,-56.51"/>
+</g>
+<!-- course__CSC110&#45;&gt;course__CIVE210 -->
+<g id="edge2" class="edge">
+<title>course__CSC110&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M349.66,-74C369.75,-74 394.43,-74 418.56,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="418.69,-76.45 425.69,-74 418.69,-71.55 418.69,-76.45"/>
+</g>
+<!-- course__PHYS102B&#45;&gt;course__CIVE210 -->
+<g id="edge3" class="edge">
+<title>course__PHYS102B&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M336.02,-121.98C363.28,-114.69 404.63,-103.64 440.77,-93.98"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="441.79,-96.24 447.92,-92.06 440.53,-91.5 441.79,-96.24"/>
+</g>
+<!-- course__CIVE315 -->
+<g id="node7" class="node">
+<title>course__CIVE315</title>
+<g id="a_node7"><a xlink:href="CIVE315.html" xlink:title="CIVE315: Environmental Policy" target="_top" href="CIVE315.html">
+<path fill="#f2ece3" stroke="#1b2730" stroke-width="1.6" d="M713,-92C713,-92 680,-92 680,-92 674,-92 668,-86 668,-80 668,-80 668,-68 668,-68 668,-62 674,-56 680,-56 680,-56 713,-56 713,-56 719,-56 725,-62 725,-68 725,-68 725,-80 725,-80 725,-86 719,-92 713,-92"/>
+<text text-anchor="middle" x="696.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CIVE315</text>
+</a>
+</g>
+</g>
+<!-- course__CIVE210&#45;&gt;course__CIVE315 -->
+<g id="edge4" class="edge">
+<title>course__CIVE210&#45;&gt;course__CIVE315</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M607.02,-74C626.07,-74 645.08,-74 660.58,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="660.88,-76.45 667.88,-74 660.88,-71.55 660.88,-76.45"/>
+</g>
+</g>
+</svg></template><template data-graph-template="full"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CIVE210 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CIVE210 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="877pt" height="273pt"
+ viewBox="0.00 0.00 877.20 273.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 251.6)">
+<title>CIVE210</title>
+<!-- course__MATH100 -->
+<g id="node1" class="node">
+<title>course__MATH100</title>
+<g id="a_node1"><a xlink:href="MATH100.html" xlink:title="Equivalent or cross&#45;listed: MATH100: Calculus I | MATH102: Calculus for Students in the Social and Biological Sciences | MATH109: Introduction to Calculus" target="_top" href="MATH100.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M107,-149C107,-149 12,-149 12,-149 6,-149 0,-143 0,-137 0,-137 0,-125 0,-125 0,-119 6,-113 12,-113 12,-113 107,-113 107,-113 113,-113 119,-119 119,-125 119,-125 119,-137 119,-137 119,-143 113,-149 107,-149"/>
+<text text-anchor="middle" x="59.5" y="-134" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH100 / MATH102</text>
+<text text-anchor="middle" x="59.5" y="-123" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH109</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101 -->
+<g id="node2" class="node">
+<title>course__MATH101</title>
+<g id="a_node2"><a xlink:href="MATH101.html" xlink:title="MATH101: Calculus II" target="_top" href="MATH101.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M254,-230C254,-230 219,-230 219,-230 213,-230 207,-224 207,-218 207,-218 207,-206 207,-206 207,-200 213,-194 219,-194 219,-194 254,-194 254,-194 260,-194 266,-200 266,-206 266,-206 266,-218 266,-218 266,-224 260,-230 254,-230"/>
+<text text-anchor="middle" x="236.5" y="-209.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH101</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__MATH101 -->
+<g id="edge6" class="edge">
+<title>course__MATH100&#45;&gt;course__MATH101</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M99.77,-149.18C130.03,-163.18 171.49,-182.37 200.59,-195.84"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="199.59,-198.08 206.98,-198.8 201.65,-193.63 199.59,-198.08"/>
+</g>
+<!-- course__PHYS110 -->
+<g id="node3" class="node">
+<title>course__PHYS110</title>
+<g id="a_node3"><a xlink:href="PHYS110.html" xlink:title="Equivalent or cross&#45;listed: PHYS110: Introductory Physics I | PHYS120: Physics I" target="_top" href="PHYS110.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M281,-174C281,-174 192,-174 192,-174 186,-174 180,-168 180,-162 180,-162 180,-150 180,-150 180,-144 186,-138 192,-138 192,-138 281,-138 281,-138 287,-138 293,-144 293,-150 293,-150 293,-162 293,-162 293,-168 287,-174 281,-174"/>
+<text text-anchor="middle" x="236.5" y="-153.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS110 / PHYS120</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__PHYS110 -->
+<g id="edge7" class="edge">
+<title>course__MATH100&#45;&gt;course__PHYS110</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M119.26,-139.39C136.38,-141.84 155.14,-144.52 172.51,-147"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="172.58,-149.49 179.86,-148.05 173.27,-144.64 172.58,-149.49"/>
+</g>
+<!-- course__CSC110 -->
+<g id="node5" class="node">
+<title>course__CSC110</title>
+<g id="a_node5"><a xlink:href="CSC110.html" xlink:title="Equivalent or cross&#45;listed: CSC110: Fundamentals of Programming I | CSC111: Fundamentals of Programming with Engineering Applications" target="_top" href="CSC110.html">
+<path fill="#e7ddec" stroke="#1b2730" stroke-width="1.6" d="M452.5,-92C452.5,-92 375.5,-92 375.5,-92 369.5,-92 363.5,-86 363.5,-80 363.5,-80 363.5,-68 363.5,-68 363.5,-62 369.5,-56 375.5,-56 375.5,-56 452.5,-56 452.5,-56 458.5,-56 464.5,-62 464.5,-68 464.5,-68 464.5,-80 464.5,-80 464.5,-86 458.5,-92 452.5,-92"/>
+<text text-anchor="middle" x="414" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CSC110 / CSC111</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__CSC110 -->
+<g id="edge5" class="edge">
+<title>course__MATH100&#45;&gt;course__CSC110</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M119.1,-121.52C185.03,-110.86 291.36,-93.67 356.43,-83.15"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="356.86,-85.56 363.38,-82.02 356.08,-80.72 356.86,-85.56"/>
+</g>
+<!-- course__PHYS111 -->
+<g id="node6" class="node">
+<title>course__PHYS111</title>
+<g id="a_node6"><a xlink:href="PHYS111.html" xlink:title="Equivalent or cross&#45;listed: PHYS111: Introductory Physics II | PHYS130: Physics II" target="_top" href="PHYS111.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M458.5,-157C458.5,-157 369.5,-157 369.5,-157 363.5,-157 357.5,-151 357.5,-145 357.5,-145 357.5,-133 357.5,-133 357.5,-127 363.5,-121 369.5,-121 369.5,-121 458.5,-121 458.5,-121 464.5,-121 470.5,-127 470.5,-133 470.5,-133 470.5,-145 470.5,-145 470.5,-151 464.5,-157 458.5,-157"/>
+<text text-anchor="middle" x="414" y="-136.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS111 / PHYS130</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__PHYS111 -->
+<g id="edge9" class="edge">
+<title>course__MATH100&#45;&gt;course__PHYS111</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M119.3,-128.34C166.32,-126.67 233.92,-125.3 293,-128 311.54,-128.85 331.65,-130.43 350,-132.13"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="350.01,-134.6 357.21,-132.82 350.47,-129.72 350.01,-134.6"/>
+</g>
+<!-- course__MATH101&#45;&gt;course__PHYS111 -->
+<g id="edge10" class="edge">
+<title>course__MATH101&#45;&gt;course__PHYS111</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M266.09,-200.11C292.29,-189.21 331.68,-172.83 363.07,-159.77"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="364.12,-161.98 369.64,-157.03 362.24,-157.46 364.12,-161.98"/>
+</g>
+<!-- course__PHYS110&#45;&gt;course__PHYS111 -->
+<g id="edge8" class="edge">
+<title>course__PHYS110&#45;&gt;course__PHYS111</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M293.03,-150.62C311.11,-148.87 331.32,-146.91 349.92,-145.11"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="350.5,-147.52 357.23,-144.4 350.03,-142.64 350.5,-147.52"/>
+</g>
+<!-- course__CHEM101 -->
+<g id="node4" class="node">
+<title>course__CHEM101</title>
+<g id="a_node4"><a xlink:href="CHEM101.html" xlink:title="Equivalent or cross&#45;listed: CHEM101: Fundamentals of Chemistry from Atoms to Materials | CHEM150: Engineering Chemistry" target="_top" href="CHEM101.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M462,-36C462,-36 366,-36 366,-36 360,-36 354,-30 354,-24 354,-24 354,-12 354,-12 354,-6 360,0 366,0 366,0 462,0 462,0 468,0 474,-6 474,-12 474,-12 474,-24 474,-24 474,-30 468,-36 462,-36"/>
+<text text-anchor="middle" x="414" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM101 / CHEM150</text>
+</a>
+</g>
+</g>
+<!-- course__CIVE210 -->
+<g id="node7" class="node">
+<title>course__CIVE210</title>
+<g id="a_node7"><a xlink:href="CIVE210.html" xlink:title="CIVE210: Sustainability in Civil Engineering" target="_top" href="CIVE210.html">
+<path fill="#f2ece3" stroke="#1f4f66" stroke-width="2" d="M704,-92C704,-92 547,-92 547,-92 541,-92 535,-86 535,-80 535,-80 535,-68 535,-68 535,-62 541,-56 547,-56 547,-56 704,-56 704,-56 710,-56 716,-62 716,-68 716,-68 716,-80 716,-80 716,-86 710,-92 704,-92"/>
+<text text-anchor="middle" x="625.5" y="-77" font-family="Avenir Next" font-size="10.00" fill="#17232b">CIVE210</text>
+<text text-anchor="middle" x="625.5" y="-66" font-family="Avenir Next" font-size="10.00" fill="#17232b">Sustainability in Civil Engineering</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM101&#45;&gt;course__CIVE210 -->
+<g id="edge1" class="edge">
+<title>course__CHEM101&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M474.19,-33.82C497.75,-40.12 525.13,-47.44 550.01,-54.09"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="549.56,-56.51 556.96,-55.95 550.83,-51.77 549.56,-56.51"/>
+</g>
+<!-- course__CSC110&#45;&gt;course__CIVE210 -->
+<g id="edge2" class="edge">
+<title>course__CSC110&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M464.65,-74C483.54,-74 505.77,-74 527.55,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="527.6,-76.45 534.6,-74 527.6,-71.55 527.6,-76.45"/>
+</g>
+<!-- course__PHYS111&#45;&gt;course__CIVE210 -->
+<g id="edge3" class="edge">
+<title>course__PHYS111&#45;&gt;course__CIVE210</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M470.59,-121.75C497.97,-113.26 531.15,-102.96 559.68,-94.11"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="560.49,-96.42 566.45,-92.01 559.04,-91.74 560.49,-96.42"/>
+</g>
+<!-- course__CIVE315 -->
+<g id="node8" class="node">
+<title>course__CIVE315</title>
+<g id="a_node8"><a xlink:href="CIVE315.html" xlink:title="CIVE315: Environmental Policy" target="_top" href="CIVE315.html">
+<path fill="#f2ece3" stroke="#1b2730" stroke-width="1.6" d="M822,-92C822,-92 789,-92 789,-92 783,-92 777,-86 777,-80 777,-80 777,-68 777,-68 777,-62 783,-56 789,-56 789,-56 822,-56 822,-56 828,-56 834,-62 834,-68 834,-68 834,-80 834,-80 834,-86 828,-92 822,-92"/>
+<text text-anchor="middle" x="805.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CIVE315</text>
+</a>
+</g>
+</g>
+<!-- course__CIVE210&#45;&gt;course__CIVE315 -->
+<g id="edge4" class="edge">
+<title>course__CIVE210&#45;&gt;course__CIVE315</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M716.02,-74C735.07,-74 754.08,-74 769.58,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="769.88,-76.45 776.88,-74 769.88,-71.55 769.88,-76.45"/>
+</g>
+</g>
+</svg></template>
+        </div>
+      </div>
+      
+    </div>
+    
+    </section>
+
+    <section class="section">
       <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">CIVE</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">200-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">2</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">11</p><p class="metric-card__label">Published prerequisite links</p></article></div>
     </section>
 
     <section class="section">
       <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkPm1dpXV">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Global and local sustainability context; planetary boundaries; footprints. Conceptions of sustainability. Tools, methods and frameworks in sustainable assessment, planning and design - life cycle assessment, substance flow analysis of socioeconomic metabolism, resource efficiency analysis, energy return on investment and accounting of externalities. Uncertainty and risk management. Related policy - environmental impact assessment, pressure state response model. Sustainable Energy. Green design case studies.</p></div></article></div>
-    </section>
-
-    <section class="section">
-      
-    <div class="graph-shell" id="course-graph" data-graph-switcher>
-      <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
-      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
-      <div class="graph-toolbar">
-        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
-          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/CIVE210--simplified.svg" data-graph-download="../assets/graphs/courses/CIVE210--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/CIVE210.svg" data-graph-download="../assets/graphs/courses/CIVE210.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
-        </div>
-        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
-      </div>
-      
-      <div class="graph-frame">
-        <object data="../assets/graphs/courses/CIVE210--simplified.svg" data-graph-object type="image/svg+xml" aria-label="CIVE210 course graph">
-          <img src="../assets/graphs/courses/CIVE210--simplified.svg" data-graph-fallback alt="CIVE210 course graph">
-        </object>
-      </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="../assets/graphs/courses/CIVE210--simplified.svg">Open current SVG</a></p>
-      
-    </div>
-    
     </section>
 
     <section class="section">

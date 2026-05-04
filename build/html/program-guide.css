@@ -11,8 +11,13 @@
   --shadow: 0 18px 40px rgba(27, 39, 48, 0.08);
   --shadow-strong: 0 30px 70px rgba(27, 39, 48, 0.14);
   --content-width: min(1240px, calc(100vw - 2rem));
-  --radius: 1.5rem;
-  --radius-large: 2rem;
+  --radius: 0.75rem;
+  --radius-large: 1rem;
+  --space-xs: 0.35rem;
+  --space-sm: 0.65rem;
+  --space-md: 1rem;
+  --space-lg: 1.45rem;
+  --space-xl: 2rem;
 }
 
 *,
@@ -50,6 +55,14 @@ a {
 
 a:hover {
   color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 3px solid rgba(31, 79, 102, 0.32);
+  outline-offset: 3px;
 }
 
 .site-header {
@@ -260,9 +273,47 @@ a:hover {
   margin-top: 1.8rem;
 }
 
-.page--program-overview .hero {
-  min-height: 24rem;
-  padding: 5rem 0 2.2rem;
+.page--program-overview .hero,
+.page--course-overview .hero,
+.page--workflow .hero {
+  min-height: 14.5rem;
+  padding: 2.1rem 0 1.35rem;
+}
+
+.page--program-detail .hero,
+.page--course-detail .hero {
+  min-height: 13.5rem;
+  padding: 1.9rem 0 1.25rem;
+}
+
+.page--program-overview .hero__title,
+.page--course-overview .hero__title,
+.page--workflow .hero__title,
+.page--program-detail .hero__title,
+.page--course-detail .hero__title {
+  max-width: 21ch;
+  font-size: clamp(2.15rem, 4.1vw, 3.8rem);
+}
+
+.page--program-detail .hero__lede,
+.page--course-detail .hero__lede {
+  max-width: 42rem;
+}
+
+.page--program-overview .hero__lede,
+.page--course-overview .hero__lede,
+.page--workflow .hero__lede,
+.page--program-detail .hero__lede,
+.page--course-detail .hero__lede {
+  margin-top: 0.6rem;
+}
+
+.page--program-overview .hero__actions,
+.page--course-overview .hero__actions,
+.page--workflow .hero__actions,
+.page--program-detail .hero__actions,
+.page--course-detail .hero__actions {
+  margin-top: 1rem;
 }
 
 .button {
@@ -296,11 +347,11 @@ a:hover {
 }
 
 .section {
-  padding: 2rem 0 0;
+  padding: 1.45rem 0 0;
 }
 
 .section--tight {
-  padding-top: 1rem;
+  padding-top: 0.95rem;
 }
 
 .metric-grid,
@@ -330,13 +381,13 @@ a:hover {
 }
 
 .metric-card {
-  padding: 1.2rem 1.3rem;
+  padding: 1rem 1.05rem;
 }
 
 .metric-card__value {
   margin: 0;
   font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: clamp(1.45rem, 2.3vw, 2rem);
   font-weight: 700;
   line-height: 1;
 }
@@ -362,6 +413,13 @@ a:hover {
 
 .section-heading--compact h2 {
   font-size: clamp(1.7rem, 3.6vw, 2.5rem);
+}
+
+.page--program-detail .section-heading h2,
+.page--course-detail .section-heading h2,
+.page--program-overview .section-heading h2,
+.page--course-overview .section-heading h2 {
+  font-size: clamp(1.65rem, 3vw, 2.45rem);
 }
 
 .overview-strip {
@@ -772,17 +830,32 @@ a:hover {
 }
 
 .graph-shell {
-  padding: 1.4rem;
+  padding: 1rem;
+}
+
+.graph-shell__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.graph-open-link {
+  white-space: nowrap;
+  margin-top: 0.1rem;
 }
 
 .graph-toolbar {
   display: grid;
-  gap: 0.9rem;
+  grid-template-columns: auto minmax(18rem, 28rem) auto;
+  gap: 0.75rem 1rem;
+  align-items: end;
   margin-top: 1rem;
 }
 
 .graph-toolbar__note {
   margin: 0;
+  grid-column: 1 / -1;
 }
 
 .segmented-control {
@@ -822,15 +895,15 @@ a:hover {
   display: grid;
   gap: 1rem;
   margin: 1.2rem 0 1.3rem;
-  padding: 1.1rem 1.15rem;
+  padding: 1rem;
   border: 1px solid rgba(27, 39, 48, 0.08);
-  border-radius: 1.25rem;
+  border-radius: var(--radius);
   background: rgba(255, 253, 249, 0.86);
 }
 
 .filter-panel__groups {
   display: grid;
-  gap: 0.9rem;
+  gap: 0.75rem;
 }
 
 .filter-panel--compact {
@@ -843,6 +916,16 @@ a:hover {
   margin: 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.filter-panel__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  color: var(--muted);
+  font-size: 0.94rem;
 }
 
 .filter-group {
@@ -880,6 +963,40 @@ a:hover {
   background: rgba(215, 233, 239, 0.86);
   border-color: rgba(31, 79, 102, 0.28);
   color: var(--ink);
+}
+
+.filter-clear {
+  min-height: 2.15rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid rgba(27, 39, 48, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 253, 249, 0.92);
+  color: var(--accent);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-disclosure {
+  border: 1px solid rgba(27, 39, 48, 0.08);
+  border-radius: var(--radius);
+  background: rgba(255, 253, 249, 0.6);
+  overflow: hidden;
+}
+
+.filter-disclosure summary {
+  cursor: pointer;
+  padding: 0.72rem 0.85rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.filter-disclosure .filter-group {
+  padding: 0 0.85rem 0.85rem;
+}
+
+.filter-disclosure .detail-card__eyebrow {
+  display: none;
 }
 
 .section--program-overview {
@@ -1023,6 +1140,14 @@ a:hover {
   gap: 0.4rem;
 }
 
+.search-field span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .search-field input {
   width: min(28rem, 100%);
   min-height: 2.8rem;
@@ -1038,6 +1163,19 @@ a:hover {
   outline: 2px solid rgba(31, 79, 102, 0.18);
   outline-offset: 1px;
   border-color: rgba(31, 79, 102, 0.28);
+}
+
+.filter-search input,
+.graph-search input {
+  width: 100%;
+}
+
+.graph-search__status {
+  margin: 0;
+  min-height: 1.35rem;
+  color: var(--ink);
+  font-weight: 700;
+  grid-column: 1 / -1;
 }
 
 .graph-guide {
@@ -1229,10 +1367,26 @@ a:hover {
   overflow: auto;
 }
 
-.graph-frame object {
-  width: 100%;
+.graph-svg-stage {
   min-width: 900px;
-  min-height: 520px;
+}
+
+.atlas-graph-svg {
+  display: block;
+  width: 100%;
+  height: 520px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.atlas-graph-svg.is-atlas-panning {
+  cursor: grabbing;
+}
+
+.page--program-detail .atlas-graph-svg,
+.page--course-detail .atlas-graph-svg {
+  height: 650px;
 }
 
 .graph-actions {
@@ -1314,8 +1468,8 @@ a:hover {
 
 .rule-note {
   padding: 0.75rem 0.9rem;
-  border-left: 4px solid #b7793f;
-  border-radius: 0 0.9rem 0.9rem 0;
+  border: 1px solid rgba(183, 121, 63, 0.26);
+  border-radius: var(--radius);
   background: rgba(255, 247, 236, 0.8);
 }
 
@@ -1372,6 +1526,11 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  .graph-shell__head,
+  .graph-toolbar {
+    grid-template-columns: 1fr;
+  }
+
   .overview-strip {
     gap: 0.55rem 0.9rem;
   }
@@ -1403,7 +1562,7 @@ a:hover {
     grid-template-columns: minmax(0, 1fr) auto;
   }
 
-  .graph-frame object {
+  .graph-svg-stage {
     min-width: 720px;
   }
 
@@ -1417,10 +1576,14 @@ a:hover {
 }
 
 @media (max-width: 640px) {
-  .page--program-overview .hero {
-    min-height: 20rem;
-    padding-top: 4.6rem;
-    padding-bottom: 1.7rem;
+  .page--program-overview .hero,
+  .page--course-overview .hero,
+  .page--workflow .hero,
+  .page--program-detail .hero,
+  .page--course-detail .hero {
+    min-height: 15.5rem;
+    padding-top: 2.3rem;
+    padding-bottom: 1.25rem;
   }
 
   .overview-strip {
@@ -1540,8 +1703,25 @@ a:hover {
     padding-top: 5.2rem;
   }
 
+  .page--program-overview .hero,
+  .page--course-overview .hero,
+  .page--workflow .hero,
+  .page--program-detail .hero,
+  .page--course-detail .hero {
+    min-height: 15.5rem;
+    padding-top: 2.3rem;
+  }
+
   .hero__title {
     max-width: none;
+  }
+
+  .page--program-detail .hero__title,
+  .page--course-detail .hero__title,
+  .page--program-overview .hero__title,
+  .page--course-overview .hero__title,
+  .page--workflow .hero__title {
+    font-size: clamp(2rem, 10vw, 3rem);
   }
 
   .nav-shell,
@@ -1561,8 +1741,16 @@ a:hover {
     padding: 1.15rem;
   }
 
-  .graph-frame object {
+  .graph-svg-stage {
     min-width: 620px;
-    min-height: 440px;
+  }
+
+  .atlas-graph-svg {
+    height: 440px;
+  }
+
+  .page--program-detail .atlas-graph-svg,
+  .page--course-detail .atlas-graph-svg {
+    height: 440px;
   }
 }

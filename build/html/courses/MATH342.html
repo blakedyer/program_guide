@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../program-guide.css">
   <script defer src="../program-guide.js"></script>
 </head>
-<body>
+<body class="page--course-detail">
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="../index.html">SEOS Curriculum Atlas</a>
@@ -30,40 +30,780 @@
     </section>
     
     <section class="section section--tight">
-      <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Mathematics</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">300-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">4</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">5</p><p class="metric-card__label">Published prerequisite links</p></article></div>
-    </section>
-
-    <section class="section">
-      <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkbW2u6XE">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Picard-Lindelöf and Peano existence theorems, series solutions near regular singular points, Frobenius method, systems of first order linear equations, complex and repeated eigenvalues, nonhomogeneous linear systems, qualitative theory for nonlinear systems; Lyapunov stability theory; periodic solutions; introduction to bifurcations and chaos.</p></div></article><article class="detail-card"><p class="detail-card__eyebrow">Supplemental Notes</p><h3>Catalog notes</h3><div class="rich-text"><ul><li>Credit will be granted for only one of MATH 342, MATH 323, MATH 323A, MATH 325, MATH 379.</li></ul></div></article></div>
-    </section>
-
-    <section class="section">
       
     <div class="graph-shell" id="course-graph" data-graph-switcher>
-      <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
-      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">Course Graph</p>
+          <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+          <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="../assets/graphs/courses/MATH342--simplified.svg">Open SVG</a>
+      </div>
       <div class="graph-toolbar">
         <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
           <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/MATH342--simplified.svg" data-graph-download="../assets/graphs/courses/MATH342--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/MATH342.svg" data-graph-download="../assets/graphs/courses/MATH342.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
         </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
         <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
       </div>
       
-      <div class="graph-frame">
-        <object data="../assets/graphs/courses/MATH342--simplified.svg" data-graph-object type="image/svg+xml" aria-label="MATH342 course graph">
-          <img src="../assets/graphs/courses/MATH342--simplified.svg" data-graph-fallback alt="MATH342 course graph">
-        </object>
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">Graph key and legend</span>
+          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
+        </span>
+        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">MATH342</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
+      </summary>
+      <div class="graph-guide__body">
+        <div class="legend"><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #dfe3f4"></span>Mathematics</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #efd8cf"></span>Physics</span></div>
+        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
       </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="../assets/graphs/courses/MATH342--simplified.svg">Open current SVG</a></p>
+    </details>
+      <div class="graph-frame">
+        <div class="graph-svg-stage" data-graph-stage aria-label="MATH342 course graph">
+          <!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: MATH342 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="MATH342 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="951pt" height="268pt"
+ viewBox="0.00 0.00 951.20 268.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 246.6)">
+<title>MATH342</title>
+<!-- course__MATH200 -->
+<g id="node1" class="node">
+<title>course__MATH200</title>
+<g id="a_node1"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M107,-109C107,-109 12,-109 12,-109 6,-109 0,-103 0,-97 0,-97 0,-85 0,-85 0,-79 6,-73 12,-73 12,-73 107,-73 107,-73 113,-73 119,-79 119,-85 119,-85 119,-97 119,-97 119,-103 113,-109 107,-109"/>
+<text text-anchor="middle" x="59.5" y="-88.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204 -->
+<g id="node2" class="node">
+<title>course__MATH204</title>
+<g id="a_node2"><a xlink:href="MATH204.html" xlink:title="MATH204: Calculus IV" target="_top" href="MATH204.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M231,-134C231,-134 192,-134 192,-134 186,-134 180,-128 180,-122 180,-122 180,-110 180,-110 180,-104 186,-98 192,-98 192,-98 231,-98 231,-98 237,-98 243,-104 243,-110 243,-110 243,-122 243,-122 243,-128 237,-134 231,-134"/>
+<text text-anchor="middle" x="211.5" y="-113.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH204</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH204 -->
+<g id="edge1" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH204</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M119.35,-100.81C137.29,-103.8 156.52,-107 172.67,-109.7"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="172.55,-112.16 179.86,-110.89 173.36,-107.33 172.55,-112.16"/>
+</g>
+<!-- choice_MATH342_0_1 -->
+<g id="node10" class="node">
+<title>choice_MATH342_0_1</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M346,-85C346,-85 316,-85 316,-85 310,-85 304,-79 304,-73 304,-73 304,-61 304,-61 304,-55 310,-49 316,-49 316,-49 346,-49 346,-49 352,-49 358,-55 358,-61 358,-61 358,-73 358,-73 358,-79 352,-85 346,-85"/>
+<text text-anchor="middle" x="331" y="-64.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__MATH200&#45;&gt;choice_MATH342_0_1 -->
+<g id="edge2" class="edge">
+<title>course__MATH200&#45;&gt;choice_MATH342_0_1</title>
+<path fill="none" stroke="#7a8389" d="M119.31,-85.76C173.74,-80.92 252.71,-73.88 296.89,-69.95"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="297.18,-72.38 303.94,-69.32 296.75,-67.5 297.18,-72.38"/>
+</g>
+<!-- course__PHYS321A -->
+<g id="node6" class="node">
+<title>course__PHYS321A</title>
+<g id="a_node6"><a xlink:href="PHYS321A.html" xlink:title="PHYS321A: Classical Mechanics I" target="_top" href="PHYS321A.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M768,-113C768,-113 725,-113 725,-113 719,-113 713,-107 713,-101 713,-101 713,-89 713,-89 713,-83 719,-77 725,-77 725,-77 768,-77 768,-77 774,-77 780,-83 780,-89 780,-89 780,-101 780,-101 780,-107 774,-113 768,-113"/>
+<text text-anchor="middle" x="746.5" y="-92.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS321A</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS321A -->
+<g id="edge7" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS321A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.07,-114.8C334.12,-111.21 603.51,-100.59 705.64,-96.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="705.8,-99.02 712.7,-96.29 705.6,-94.12 705.8,-99.02"/>
+</g>
+<!-- course__PHYS323 -->
+<g id="node7" class="node">
+<title>course__PHYS323</title>
+<g id="a_node7"><a xlink:href="PHYS323.html" xlink:title="PHYS323: Quantum Mechanics I" target="_top" href="PHYS323.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M764.5,-225C764.5,-225 728.5,-225 728.5,-225 722.5,-225 716.5,-219 716.5,-213 716.5,-213 716.5,-201 716.5,-201 716.5,-195 722.5,-189 728.5,-189 728.5,-189 764.5,-189 764.5,-189 770.5,-189 776.5,-195 776.5,-201 776.5,-201 776.5,-213 776.5,-213 776.5,-219 770.5,-225 764.5,-225"/>
+<text text-anchor="middle" x="746.5" y="-204.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS323</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS323 -->
+<g id="edge11" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS323</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.06,-127.1C260.68,-133.14 283.36,-140.31 304,-145 452.44,-178.7 633.35,-197.21 709.25,-203.98"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="709.08,-206.43 716.27,-204.6 709.51,-201.54 709.08,-206.43"/>
+</g>
+<!-- course__PHYS326 -->
+<g id="node8" class="node">
+<title>course__PHYS326</title>
+<g id="a_node8"><a xlink:href="PHYS326.html" xlink:title="PHYS326: Electricity and Magnetism" target="_top" href="PHYS326.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M764.5,-169C764.5,-169 728.5,-169 728.5,-169 722.5,-169 716.5,-163 716.5,-157 716.5,-157 716.5,-145 716.5,-145 716.5,-139 722.5,-133 728.5,-133 728.5,-133 764.5,-133 764.5,-133 770.5,-133 776.5,-139 776.5,-145 776.5,-145 776.5,-157 776.5,-157 776.5,-163 770.5,-169 764.5,-169"/>
+<text text-anchor="middle" x="746.5" y="-148.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS326</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS326 -->
+<g id="edge13" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS326</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.37,-120.22C261.08,-122.51 283.76,-125.23 304,-127 453.9,-140.07 633.09,-147.2 708.83,-149.82"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="709.19,-152.28 716.26,-150.07 709.35,-147.38 709.19,-152.28"/>
+</g>
+<!-- course__MATH204&#45;&gt;choice_MATH342_0_1 -->
+<g id="edge3" class="edge">
+<title>course__MATH204&#45;&gt;choice_MATH342_0_1</title>
+<path fill="none" stroke="#7a8389" d="M243.07,-103.25C259.75,-96.29 280.42,-87.68 297.41,-80.59"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="298.45,-82.81 303.97,-77.86 296.56,-78.29 298.45,-82.81"/>
+</g>
+<!-- course__MATH211 -->
+<g id="node3" class="node">
+<title>course__MATH211</title>
+<g id="a_node3"><a xlink:href="MATH211.html" xlink:title="MATH211: Matrix Algebra I" target="_top" href="MATH211.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M231,-36C231,-36 192,-36 192,-36 186,-36 180,-30 180,-24 180,-24 180,-12 180,-12 180,-6 186,0 192,0 192,0 231,0 231,0 237,0 243,-6 243,-12 243,-12 243,-24 243,-24 243,-30 237,-36 231,-36"/>
+<text text-anchor="middle" x="211.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH211</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342 -->
+<g id="node4" class="node">
+<title>course__MATH342</title>
+<g id="a_node4"><a xlink:href="MATH342.html" xlink:title="MATH342: Intermediate Ordinary Differential Equations" target="_top" href="MATH342.html">
+<path fill="#dfe3f4" stroke="#1f4f66" stroke-width="2" d="M640,-85C640,-85 431,-85 431,-85 425,-85 419,-79 419,-73 419,-73 419,-61 419,-61 419,-55 425,-49 431,-49 431,-49 640,-49 640,-49 646,-49 652,-55 652,-61 652,-61 652,-73 652,-73 652,-79 646,-85 640,-85"/>
+<text text-anchor="middle" x="535.5" y="-70" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH342</text>
+<text text-anchor="middle" x="535.5" y="-59" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intermediate Ordinary Differential Equations</text>
+</a>
+</g>
+</g>
+<!-- course__MATH211&#45;&gt;course__MATH342 -->
+<g id="edge4" class="edge">
+<title>course__MATH211&#45;&gt;course__MATH342</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.17,-22.3C272.63,-26.46 318.38,-33 358,-39 376.58,-41.81 396.24,-44.86 415.44,-47.88"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="415.2,-50.32 422.49,-48.99 415.96,-45.48 415.2,-50.32"/>
+</g>
+<!-- course__MATH442 -->
+<g id="node5" class="node">
+<title>course__MATH442</title>
+<g id="a_node5"><a xlink:href="MATH442.html" xlink:title="MATH442: Advanced Ordinary Differential Equations" target="_top" href="MATH442.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M766,-57C766,-57 727,-57 727,-57 721,-57 715,-51 715,-45 715,-45 715,-33 715,-33 715,-27 721,-21 727,-21 727,-21 766,-21 766,-21 772,-21 778,-27 778,-33 778,-33 778,-45 778,-45 778,-51 772,-57 766,-57"/>
+<text text-anchor="middle" x="746.5" y="-36.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH442</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342&#45;&gt;course__MATH442 -->
+<g id="edge6" class="edge">
+<title>course__MATH342&#45;&gt;course__MATH442</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M652,-51.53C672.14,-48.83 691.73,-46.2 707.73,-44.06"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="708.21,-46.47 714.82,-43.11 707.56,-41.61 708.21,-46.47"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS321A -->
+<g id="edge8" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS321A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M652,-82.47C671.32,-85.06 690.14,-87.58 705.76,-89.68"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="705.44,-92.11 712.71,-90.61 706.09,-87.25 705.44,-92.11"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS323 -->
+<g id="edge12" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS323</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M563.4,-85.02C601.54,-110.57 671.29,-157.29 712.51,-184.9"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="711.2,-186.97 718.38,-188.83 713.92,-182.9 711.2,-186.97"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS326 -->
+<g id="edge14" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS326</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M581.34,-85.02C619.68,-100.43 674.14,-122.32 709.65,-136.59"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="709.07,-139 716.48,-139.34 710.9,-134.45 709.07,-139"/>
+</g>
+<!-- course__PHYS321B -->
+<g id="node9" class="node">
+<title>course__PHYS321B</title>
+<g id="a_node9"><a xlink:href="PHYS321B.html" xlink:title="PHYS321B: Classical Mechanics II" target="_top" href="PHYS321B.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M896,-60C896,-60 853,-60 853,-60 847,-60 841,-54 841,-48 841,-48 841,-36 841,-36 841,-30 847,-24 853,-24 853,-24 896,-24 896,-24 902,-24 908,-30 908,-36 908,-36 908,-48 908,-48 908,-54 902,-60 896,-60"/>
+<text text-anchor="middle" x="874.5" y="-39.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS321B</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS321B -->
+<g id="edge10" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS321B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M574.57,-48.85C622.24,-28.3 706.56,0.86 780,-11 798.17,-13.93 817.59,-19.88 833.99,-25.79"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="833.41,-28.18 840.83,-28.31 835.11,-23.59 833.41,-28.18"/>
+</g>
+<!-- course__PHYS321A&#45;&gt;course__PHYS321B -->
+<g id="edge9" class="edge">
+<title>course__PHYS321A&#45;&gt;course__PHYS321B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M780.28,-81.21C796.76,-74.28 816.85,-65.83 834.16,-58.55"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="835.39,-60.69 840.89,-55.72 833.49,-56.17 835.39,-60.69"/>
+</g>
+<!-- choice_MATH342_0_1&#45;&gt;course__MATH342 -->
+<g id="edge5" class="edge">
+<title>choice_MATH342_0_1&#45;&gt;course__MATH342</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M358.06,-67C372.39,-67 391.33,-67 411.48,-67"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="411.65,-69.45 418.65,-67 411.65,-64.55 411.65,-69.45"/>
+</g>
+</g>
+</svg>
+        </div>
+        <div class="graph-template-bank" hidden>
+          <template data-graph-template="simplified"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: MATH342 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="MATH342 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="951pt" height="268pt"
+ viewBox="0.00 0.00 951.20 268.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 246.6)">
+<title>MATH342</title>
+<!-- course__MATH200 -->
+<g id="node1" class="node">
+<title>course__MATH200</title>
+<g id="a_node1"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M107,-109C107,-109 12,-109 12,-109 6,-109 0,-103 0,-97 0,-97 0,-85 0,-85 0,-79 6,-73 12,-73 12,-73 107,-73 107,-73 113,-73 119,-79 119,-85 119,-85 119,-97 119,-97 119,-103 113,-109 107,-109"/>
+<text text-anchor="middle" x="59.5" y="-88.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204 -->
+<g id="node2" class="node">
+<title>course__MATH204</title>
+<g id="a_node2"><a xlink:href="MATH204.html" xlink:title="MATH204: Calculus IV" target="_top" href="MATH204.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M231,-134C231,-134 192,-134 192,-134 186,-134 180,-128 180,-122 180,-122 180,-110 180,-110 180,-104 186,-98 192,-98 192,-98 231,-98 231,-98 237,-98 243,-104 243,-110 243,-110 243,-122 243,-122 243,-128 237,-134 231,-134"/>
+<text text-anchor="middle" x="211.5" y="-113.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH204</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH204 -->
+<g id="edge1" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH204</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M119.35,-100.81C137.29,-103.8 156.52,-107 172.67,-109.7"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="172.55,-112.16 179.86,-110.89 173.36,-107.33 172.55,-112.16"/>
+</g>
+<!-- choice_MATH342_0_1 -->
+<g id="node10" class="node">
+<title>choice_MATH342_0_1</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M346,-85C346,-85 316,-85 316,-85 310,-85 304,-79 304,-73 304,-73 304,-61 304,-61 304,-55 310,-49 316,-49 316,-49 346,-49 346,-49 352,-49 358,-55 358,-61 358,-61 358,-73 358,-73 358,-79 352,-85 346,-85"/>
+<text text-anchor="middle" x="331" y="-64.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__MATH200&#45;&gt;choice_MATH342_0_1 -->
+<g id="edge2" class="edge">
+<title>course__MATH200&#45;&gt;choice_MATH342_0_1</title>
+<path fill="none" stroke="#7a8389" d="M119.31,-85.76C173.74,-80.92 252.71,-73.88 296.89,-69.95"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="297.18,-72.38 303.94,-69.32 296.75,-67.5 297.18,-72.38"/>
+</g>
+<!-- course__PHYS321A -->
+<g id="node6" class="node">
+<title>course__PHYS321A</title>
+<g id="a_node6"><a xlink:href="PHYS321A.html" xlink:title="PHYS321A: Classical Mechanics I" target="_top" href="PHYS321A.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M768,-113C768,-113 725,-113 725,-113 719,-113 713,-107 713,-101 713,-101 713,-89 713,-89 713,-83 719,-77 725,-77 725,-77 768,-77 768,-77 774,-77 780,-83 780,-89 780,-89 780,-101 780,-101 780,-107 774,-113 768,-113"/>
+<text text-anchor="middle" x="746.5" y="-92.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS321A</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS321A -->
+<g id="edge7" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS321A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.07,-114.8C334.12,-111.21 603.51,-100.59 705.64,-96.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="705.8,-99.02 712.7,-96.29 705.6,-94.12 705.8,-99.02"/>
+</g>
+<!-- course__PHYS323 -->
+<g id="node7" class="node">
+<title>course__PHYS323</title>
+<g id="a_node7"><a xlink:href="PHYS323.html" xlink:title="PHYS323: Quantum Mechanics I" target="_top" href="PHYS323.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M764.5,-225C764.5,-225 728.5,-225 728.5,-225 722.5,-225 716.5,-219 716.5,-213 716.5,-213 716.5,-201 716.5,-201 716.5,-195 722.5,-189 728.5,-189 728.5,-189 764.5,-189 764.5,-189 770.5,-189 776.5,-195 776.5,-201 776.5,-201 776.5,-213 776.5,-213 776.5,-219 770.5,-225 764.5,-225"/>
+<text text-anchor="middle" x="746.5" y="-204.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS323</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS323 -->
+<g id="edge11" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS323</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.06,-127.1C260.68,-133.14 283.36,-140.31 304,-145 452.44,-178.7 633.35,-197.21 709.25,-203.98"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="709.08,-206.43 716.27,-204.6 709.51,-201.54 709.08,-206.43"/>
+</g>
+<!-- course__PHYS326 -->
+<g id="node8" class="node">
+<title>course__PHYS326</title>
+<g id="a_node8"><a xlink:href="PHYS326.html" xlink:title="PHYS326: Electricity and Magnetism" target="_top" href="PHYS326.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M764.5,-169C764.5,-169 728.5,-169 728.5,-169 722.5,-169 716.5,-163 716.5,-157 716.5,-157 716.5,-145 716.5,-145 716.5,-139 722.5,-133 728.5,-133 728.5,-133 764.5,-133 764.5,-133 770.5,-133 776.5,-139 776.5,-145 776.5,-145 776.5,-157 776.5,-157 776.5,-163 770.5,-169 764.5,-169"/>
+<text text-anchor="middle" x="746.5" y="-148.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS326</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS326 -->
+<g id="edge13" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS326</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.37,-120.22C261.08,-122.51 283.76,-125.23 304,-127 453.9,-140.07 633.09,-147.2 708.83,-149.82"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="709.19,-152.28 716.26,-150.07 709.35,-147.38 709.19,-152.28"/>
+</g>
+<!-- course__MATH204&#45;&gt;choice_MATH342_0_1 -->
+<g id="edge3" class="edge">
+<title>course__MATH204&#45;&gt;choice_MATH342_0_1</title>
+<path fill="none" stroke="#7a8389" d="M243.07,-103.25C259.75,-96.29 280.42,-87.68 297.41,-80.59"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="298.45,-82.81 303.97,-77.86 296.56,-78.29 298.45,-82.81"/>
+</g>
+<!-- course__MATH211 -->
+<g id="node3" class="node">
+<title>course__MATH211</title>
+<g id="a_node3"><a xlink:href="MATH211.html" xlink:title="MATH211: Matrix Algebra I" target="_top" href="MATH211.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M231,-36C231,-36 192,-36 192,-36 186,-36 180,-30 180,-24 180,-24 180,-12 180,-12 180,-6 186,0 192,0 192,0 231,0 231,0 237,0 243,-6 243,-12 243,-12 243,-24 243,-24 243,-30 237,-36 231,-36"/>
+<text text-anchor="middle" x="211.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH211</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342 -->
+<g id="node4" class="node">
+<title>course__MATH342</title>
+<g id="a_node4"><a xlink:href="MATH342.html" xlink:title="MATH342: Intermediate Ordinary Differential Equations" target="_top" href="MATH342.html">
+<path fill="#dfe3f4" stroke="#1f4f66" stroke-width="2" d="M640,-85C640,-85 431,-85 431,-85 425,-85 419,-79 419,-73 419,-73 419,-61 419,-61 419,-55 425,-49 431,-49 431,-49 640,-49 640,-49 646,-49 652,-55 652,-61 652,-61 652,-73 652,-73 652,-79 646,-85 640,-85"/>
+<text text-anchor="middle" x="535.5" y="-70" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH342</text>
+<text text-anchor="middle" x="535.5" y="-59" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intermediate Ordinary Differential Equations</text>
+</a>
+</g>
+</g>
+<!-- course__MATH211&#45;&gt;course__MATH342 -->
+<g id="edge4" class="edge">
+<title>course__MATH211&#45;&gt;course__MATH342</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.17,-22.3C272.63,-26.46 318.38,-33 358,-39 376.58,-41.81 396.24,-44.86 415.44,-47.88"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="415.2,-50.32 422.49,-48.99 415.96,-45.48 415.2,-50.32"/>
+</g>
+<!-- course__MATH442 -->
+<g id="node5" class="node">
+<title>course__MATH442</title>
+<g id="a_node5"><a xlink:href="MATH442.html" xlink:title="MATH442: Advanced Ordinary Differential Equations" target="_top" href="MATH442.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M766,-57C766,-57 727,-57 727,-57 721,-57 715,-51 715,-45 715,-45 715,-33 715,-33 715,-27 721,-21 727,-21 727,-21 766,-21 766,-21 772,-21 778,-27 778,-33 778,-33 778,-45 778,-45 778,-51 772,-57 766,-57"/>
+<text text-anchor="middle" x="746.5" y="-36.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH442</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342&#45;&gt;course__MATH442 -->
+<g id="edge6" class="edge">
+<title>course__MATH342&#45;&gt;course__MATH442</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M652,-51.53C672.14,-48.83 691.73,-46.2 707.73,-44.06"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="708.21,-46.47 714.82,-43.11 707.56,-41.61 708.21,-46.47"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS321A -->
+<g id="edge8" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS321A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M652,-82.47C671.32,-85.06 690.14,-87.58 705.76,-89.68"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="705.44,-92.11 712.71,-90.61 706.09,-87.25 705.44,-92.11"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS323 -->
+<g id="edge12" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS323</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M563.4,-85.02C601.54,-110.57 671.29,-157.29 712.51,-184.9"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="711.2,-186.97 718.38,-188.83 713.92,-182.9 711.2,-186.97"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS326 -->
+<g id="edge14" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS326</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M581.34,-85.02C619.68,-100.43 674.14,-122.32 709.65,-136.59"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="709.07,-139 716.48,-139.34 710.9,-134.45 709.07,-139"/>
+</g>
+<!-- course__PHYS321B -->
+<g id="node9" class="node">
+<title>course__PHYS321B</title>
+<g id="a_node9"><a xlink:href="PHYS321B.html" xlink:title="PHYS321B: Classical Mechanics II" target="_top" href="PHYS321B.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M896,-60C896,-60 853,-60 853,-60 847,-60 841,-54 841,-48 841,-48 841,-36 841,-36 841,-30 847,-24 853,-24 853,-24 896,-24 896,-24 902,-24 908,-30 908,-36 908,-36 908,-48 908,-48 908,-54 902,-60 896,-60"/>
+<text text-anchor="middle" x="874.5" y="-39.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS321B</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS321B -->
+<g id="edge10" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS321B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M574.57,-48.85C622.24,-28.3 706.56,0.86 780,-11 798.17,-13.93 817.59,-19.88 833.99,-25.79"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="833.41,-28.18 840.83,-28.31 835.11,-23.59 833.41,-28.18"/>
+</g>
+<!-- course__PHYS321A&#45;&gt;course__PHYS321B -->
+<g id="edge9" class="edge">
+<title>course__PHYS321A&#45;&gt;course__PHYS321B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M780.28,-81.21C796.76,-74.28 816.85,-65.83 834.16,-58.55"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="835.39,-60.69 840.89,-55.72 833.49,-56.17 835.39,-60.69"/>
+</g>
+<!-- choice_MATH342_0_1&#45;&gt;course__MATH342 -->
+<g id="edge5" class="edge">
+<title>choice_MATH342_0_1&#45;&gt;course__MATH342</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M358.06,-67C372.39,-67 391.33,-67 411.48,-67"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="411.65,-69.45 418.65,-67 411.65,-64.55 411.65,-69.45"/>
+</g>
+</g>
+</svg></template><template data-graph-template="full"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: MATH342 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="MATH342 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="1510pt" height="397pt"
+ viewBox="0.00 0.00 1510.20 397.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 375.6)">
+<title>MATH342</title>
+<!-- course__MATH100 -->
+<g id="node1" class="node">
+<title>course__MATH100</title>
+<g id="a_node1"><a xlink:href="MATH100.html" xlink:title="Equivalent or cross&#45;listed: MATH100: Calculus I | MATH102: Calculus for Students in the Social and Biological Sciences | MATH109: Introduction to Calculus" target="_top" href="MATH100.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M99,-108C99,-108 12,-108 12,-108 6,-108 0,-102 0,-96 0,-96 0,-84 0,-84 0,-78 6,-72 12,-72 12,-72 99,-72 99,-72 105,-72 111,-78 111,-84 111,-84 111,-96 111,-96 111,-102 105,-108 99,-108"/>
+<text text-anchor="middle" x="55.5" y="-92.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH100 / MATH102</text>
+<text text-anchor="middle" x="55.5" y="-82.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH109</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101 -->
+<g id="node2" class="node">
+<title>course__MATH101</title>
+<g id="a_node2"><a xlink:href="MATH101.html" xlink:title="MATH101: Calculus II" target="_top" href="MATH101.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M219,-161C219,-161 184,-161 184,-161 178,-161 172,-155 172,-149 172,-149 172,-137 172,-137 172,-131 178,-125 184,-125 184,-125 219,-125 219,-125 225,-125 231,-131 231,-137 231,-137 231,-149 231,-149 231,-155 225,-161 219,-161"/>
+<text text-anchor="middle" x="201.5" y="-140.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH101</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__MATH101 -->
+<g id="edge4" class="edge">
+<title>course__MATH100&#45;&gt;course__MATH101</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M105.65,-108.09C125.07,-115.24 146.97,-123.3 164.82,-129.87"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="164.29,-132.28 171.71,-132.4 165.98,-127.69 164.29,-132.28"/>
+</g>
+<!-- choice_MATH211_0 -->
+<g id="node18" class="node">
+<title>choice_MATH211_0</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M514,-91C514,-91 484,-91 484,-91 478,-91 472,-85 472,-79 472,-79 472,-67 472,-67 472,-61 478,-55 484,-55 484,-55 514,-55 514,-55 520,-55 526,-61 526,-67 526,-67 526,-79 526,-79 526,-85 520,-91 514,-91"/>
+<text text-anchor="middle" x="499" y="-70.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__MATH100&#45;&gt;choice_MATH211_0 -->
+<g id="edge7" class="edge">
+<title>course__MATH100&#45;&gt;choice_MATH211_0</title>
+<path fill="none" stroke="#7a8389" d="M111.08,-87.9C203.65,-84.33 388.74,-77.21 464.5,-74.29"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="465.01,-76.72 471.91,-74 464.82,-71.83 465.01,-76.72"/>
+</g>
+<!-- course__MATH200 -->
+<g id="node4" class="node">
+<title>course__MATH200</title>
+<g id="a_node4"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M399,-189C399,-189 304,-189 304,-189 298,-189 292,-183 292,-177 292,-177 292,-165 292,-165 292,-159 298,-153 304,-153 304,-153 399,-153 399,-153 405,-153 411,-159 411,-165 411,-165 411,-177 411,-177 411,-183 405,-189 399,-189"/>
+<text text-anchor="middle" x="351.5" y="-168.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101&#45;&gt;course__MATH200 -->
+<g id="edge5" class="edge">
+<title>course__MATH101&#45;&gt;course__MATH200</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M231.04,-148.4C246.37,-151.3 265.96,-155.01 284.82,-158.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="284.39,-160.99 291.73,-159.88 285.3,-156.17 284.39,-160.99"/>
+</g>
+<!-- course__MATH151 -->
+<g id="node3" class="node">
+<title>course__MATH151</title>
+<g id="a_node3"><a xlink:href="MATH151.html" xlink:title="MATH151: Finite Mathematics" target="_top" href="MATH151.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M369,-133C369,-133 334,-133 334,-133 328,-133 322,-127 322,-121 322,-121 322,-109 322,-109 322,-103 328,-97 334,-97 334,-97 369,-97 369,-97 375,-97 381,-103 381,-109 381,-109 381,-121 381,-121 381,-127 375,-133 369,-133"/>
+<text text-anchor="middle" x="351.5" y="-112.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH151</text>
+</a>
+</g>
+</g>
+<!-- course__MATH151&#45;&gt;choice_MATH211_0 -->
+<g id="edge8" class="edge">
+<title>course__MATH151&#45;&gt;choice_MATH211_0</title>
+<path fill="none" stroke="#7a8389" d="M381.25,-106.7C405.32,-99.75 439.69,-89.83 464.91,-82.55"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="465.71,-84.87 471.76,-80.57 464.35,-80.16 465.71,-84.87"/>
+</g>
+<!-- course__MATH204 -->
+<g id="node5" class="node">
+<title>course__MATH204</title>
+<g id="a_node5"><a xlink:href="MATH204.html" xlink:title="MATH204: Calculus IV" target="_top" href="MATH204.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M638,-183C638,-183 599,-183 599,-183 593,-183 587,-177 587,-171 587,-171 587,-159 587,-159 587,-153 593,-147 599,-147 599,-147 638,-147 638,-147 644,-147 650,-153 650,-159 650,-159 650,-171 650,-171 650,-177 644,-183 638,-183"/>
+<text text-anchor="middle" x="618.5" y="-162.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH204</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH204 -->
+<g id="edge6" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH204</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M411.31,-169.67C462.73,-168.5 535.87,-166.85 579.8,-165.85"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="579.92,-168.3 586.86,-165.69 579.8,-163.4 579.92,-168.3"/>
+</g>
+<!-- choice_MATH342_0_1 -->
+<g id="node19" class="node">
+<title>choice_MATH342_0_1</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M753,-232C753,-232 723,-232 723,-232 717,-232 711,-226 711,-220 711,-220 711,-208 711,-208 711,-202 717,-196 723,-196 723,-196 753,-196 753,-196 759,-196 765,-202 765,-208 765,-208 765,-220 765,-220 765,-226 759,-232 753,-232"/>
+<text text-anchor="middle" x="738" y="-211.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__MATH200&#45;&gt;choice_MATH342_0_1 -->
+<g id="edge10" class="edge">
+<title>course__MATH200&#45;&gt;choice_MATH342_0_1</title>
+<path fill="none" stroke="#7a8389" d="M411.32,-177.58C493.15,-186.73 638.64,-203 703.82,-210.29"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="703.76,-212.75 710.98,-211.09 704.3,-207.88 703.76,-212.75"/>
+</g>
+<!-- course__PHYS321A -->
+<g id="node9" class="node">
+<title>course__PHYS321A</title>
+<g id="a_node9"><a xlink:href="PHYS321A.html" xlink:title="PHYS321A: Classical Mechanics I" target="_top" href="PHYS321A.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M1175,-183C1175,-183 1132,-183 1132,-183 1126,-183 1120,-177 1120,-171 1120,-171 1120,-159 1120,-159 1120,-153 1126,-147 1132,-147 1132,-147 1175,-147 1175,-147 1181,-147 1187,-153 1187,-159 1187,-159 1187,-171 1187,-171 1187,-177 1181,-183 1175,-183"/>
+<text text-anchor="middle" x="1153.5" y="-162.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS321A</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS321A -->
+<g id="edge15" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS321A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M650.07,-165C741.12,-165 1010.51,-165 1112.64,-165"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1112.7,-167.45 1119.7,-165 1112.7,-162.55 1112.7,-167.45"/>
+</g>
+<!-- course__PHYS323 -->
+<g id="node10" class="node">
+<title>course__PHYS323</title>
+<g id="a_node10"><a xlink:href="PHYS323.html" xlink:title="PHYS323: Quantum Mechanics I" target="_top" href="PHYS323.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M1171.5,-127C1171.5,-127 1135.5,-127 1135.5,-127 1129.5,-127 1123.5,-121 1123.5,-115 1123.5,-115 1123.5,-103 1123.5,-103 1123.5,-97 1129.5,-91 1135.5,-91 1135.5,-91 1171.5,-91 1171.5,-91 1177.5,-91 1183.5,-97 1183.5,-103 1183.5,-103 1183.5,-115 1183.5,-115 1183.5,-121 1177.5,-127 1171.5,-127"/>
+<text text-anchor="middle" x="1153.5" y="-106.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS323</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS323 -->
+<g id="edge19" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS323</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M650.07,-161.79C742.22,-152.11 1017.02,-123.23 1116.25,-112.81"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1116.66,-115.23 1123.36,-112.06 1116.15,-110.36 1116.66,-115.23"/>
+</g>
+<!-- course__PHYS326 -->
+<g id="node11" class="node">
+<title>course__PHYS326</title>
+<g id="a_node11"><a xlink:href="PHYS326.html" xlink:title="PHYS326: Electricity and Magnetism" target="_top" href="PHYS326.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M1171.5,-337C1171.5,-337 1135.5,-337 1135.5,-337 1129.5,-337 1123.5,-331 1123.5,-325 1123.5,-325 1123.5,-313 1123.5,-313 1123.5,-307 1129.5,-301 1135.5,-301 1135.5,-301 1171.5,-301 1171.5,-301 1177.5,-301 1183.5,-307 1183.5,-313 1183.5,-313 1183.5,-325 1183.5,-325 1183.5,-331 1177.5,-337 1171.5,-337"/>
+<text text-anchor="middle" x="1153.5" y="-316.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS326</text>
+</a>
+</g>
+</g>
+<!-- course__MATH204&#45;&gt;course__PHYS326 -->
+<g id="edge21" class="edge">
+<title>course__MATH204&#45;&gt;course__PHYS326</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M635.43,-183.11C652.32,-201.07 680.7,-227.88 711,-242 850.54,-307.03 1038.13,-317.54 1116.13,-318.95"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1116.29,-321.4 1123.33,-319.06 1116.37,-316.51 1116.29,-321.4"/>
+</g>
+<!-- course__MATH204&#45;&gt;choice_MATH342_0_1 -->
+<g id="edge11" class="edge">
+<title>course__MATH204&#45;&gt;choice_MATH342_0_1</title>
+<path fill="none" stroke="#7a8389" d="M650.07,-177.75C666.75,-184.71 687.42,-193.32 704.41,-200.41"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="703.56,-202.71 710.97,-203.14 705.45,-198.19 703.56,-202.71"/>
+</g>
+<!-- course__MATH211 -->
+<g id="node6" class="node">
+<title>course__MATH211</title>
+<g id="a_node6"><a xlink:href="MATH211.html" xlink:title="MATH211: Matrix Algebra I" target="_top" href="MATH211.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M638,-91C638,-91 599,-91 599,-91 593,-91 587,-85 587,-79 587,-79 587,-67 587,-67 587,-61 593,-55 599,-55 599,-55 638,-55 638,-55 644,-55 650,-61 650,-67 650,-67 650,-79 650,-79 650,-85 644,-91 638,-91"/>
+<text text-anchor="middle" x="618.5" y="-70.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH211</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342 -->
+<g id="node7" class="node">
+<title>course__MATH342</title>
+<g id="a_node7"><a xlink:href="MATH342.html" xlink:title="MATH342: Intermediate Ordinary Differential Equations" target="_top" href="MATH342.html">
+<path fill="#dfe3f4" stroke="#1f4f66" stroke-width="2" d="M1047,-232C1047,-232 838,-232 838,-232 832,-232 826,-226 826,-220 826,-220 826,-208 826,-208 826,-202 832,-196 838,-196 838,-196 1047,-196 1047,-196 1053,-196 1059,-202 1059,-208 1059,-208 1059,-220 1059,-220 1059,-226 1053,-232 1047,-232"/>
+<text text-anchor="middle" x="942.5" y="-217" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH342</text>
+<text text-anchor="middle" x="942.5" y="-206" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intermediate Ordinary Differential Equations</text>
+</a>
+</g>
+</g>
+<!-- course__MATH211&#45;&gt;course__MATH342 -->
+<g id="edge12" class="edge">
+<title>course__MATH211&#45;&gt;course__MATH342</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M650.08,-86.39C706.32,-111.02 826.5,-163.64 893.63,-193.04"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="892.96,-195.42 900.36,-195.98 894.93,-190.93 892.96,-195.42"/>
+</g>
+<!-- course__PHYS411 -->
+<g id="node16" class="node">
+<title>course__PHYS411</title>
+<g id="a_node16"><a xlink:href="PHYS411.html" xlink:title="PHYS411: Time Series Analysis" target="_top" href="PHYS411.html">
+<path fill="#efd8cf" stroke="#7e8d96" d="M1432,-36C1432,-36 1398,-36 1398,-36 1392,-36 1386,-30 1386,-24 1386,-24 1386,-12 1386,-12 1386,-6 1392,0 1398,0 1398,0 1432,0 1432,0 1438,0 1444,-6 1444,-12 1444,-12 1444,-24 1444,-24 1444,-30 1438,-36 1432,-36"/>
+<text text-anchor="middle" x="1415" y="-15.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">PHYS411</text>
+</a>
+</g>
+</g>
+<!-- course__MATH211&#45;&gt;course__PHYS411 -->
+<g id="edge28" class="edge">
+<title>course__MATH211&#45;&gt;course__PHYS411</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M650.12,-61.91C706.8,-42.41 832.3,-4 941.5,-4 941.5,-4 941.5,-4 1154.5,-4 1234.92,-4 1329.14,-10.79 1378.97,-14.91"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1378.81,-17.35 1385.99,-15.5 1379.22,-12.47 1378.81,-17.35"/>
+</g>
+<!-- course__MATH442 -->
+<g id="node8" class="node">
+<title>course__MATH442</title>
+<g id="a_node8"><a xlink:href="MATH442.html" xlink:title="MATH442: Advanced Ordinary Differential Equations" target="_top" href="MATH442.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M1173,-239C1173,-239 1134,-239 1134,-239 1128,-239 1122,-233 1122,-227 1122,-227 1122,-215 1122,-215 1122,-209 1128,-203 1134,-203 1134,-203 1173,-203 1173,-203 1179,-203 1185,-209 1185,-215 1185,-215 1185,-227 1185,-227 1185,-233 1179,-239 1173,-239"/>
+<text text-anchor="middle" x="1153.5" y="-218.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH442</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342&#45;&gt;course__MATH442 -->
+<g id="edge14" class="edge">
+<title>course__MATH342&#45;&gt;course__MATH442</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1059,-217.87C1079.14,-218.54 1098.73,-219.2 1114.73,-219.74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1114.74,-222.19 1121.82,-219.97 1114.91,-217.29 1114.74,-222.19"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS321A -->
+<g id="edge16" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS321A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1020.43,-195.96C1051.82,-188.6 1086.78,-180.41 1112.84,-174.3"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1113.69,-176.62 1119.94,-172.63 1112.57,-171.85 1113.69,-176.62"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS323 -->
+<g id="edge20" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS323</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M979.43,-195.95C1017.93,-176.61 1078.68,-146.09 1117.01,-126.83"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1118.27,-128.94 1123.43,-123.6 1116.08,-124.56 1118.27,-128.94"/>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS326 -->
+<g id="edge22" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS326</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M979.43,-232.05C1017.93,-251.39 1078.68,-281.91 1117.01,-301.17"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1116.08,-303.44 1123.43,-304.4 1118.27,-299.06 1116.08,-303.44"/>
+</g>
+<!-- course__PHYS321B -->
+<g id="node14" class="node">
+<title>course__PHYS321B</title>
+<g id="a_node14"><a xlink:href="PHYS321B.html" xlink:title="PHYS321B: Classical Mechanics II" target="_top" href="PHYS321B.html">
+<path fill="#efd8cf" stroke="#1b2730" stroke-width="1.6" d="M1436.5,-281C1436.5,-281 1393.5,-281 1393.5,-281 1387.5,-281 1381.5,-275 1381.5,-269 1381.5,-269 1381.5,-257 1381.5,-257 1381.5,-251 1387.5,-245 1393.5,-245 1393.5,-245 1436.5,-245 1436.5,-245 1442.5,-245 1448.5,-251 1448.5,-257 1448.5,-257 1448.5,-269 1448.5,-269 1448.5,-275 1442.5,-281 1436.5,-281"/>
+<text text-anchor="middle" x="1415" y="-260.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">PHYS321B</text>
+</a>
+</g>
+</g>
+<!-- course__MATH342&#45;&gt;course__PHYS321B -->
+<g id="edge18" class="edge">
+<title>course__MATH342&#45;&gt;course__PHYS321B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1021.3,-232.01C1051.9,-238.42 1087.44,-245.02 1120,-249 1210.29,-260.04 1317.16,-262.5 1373.9,-262.97"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1374.22,-265.42 1381.24,-263.02 1374.25,-260.52 1374.22,-265.42"/>
+</g>
+<!-- course__EOS427 -->
+<g id="node12" class="node">
+<title>course__EOS427</title>
+<g id="a_node12"><a xlink:href="EOS427.html" xlink:title="Equivalent or cross&#45;listed: EOS427: Geophysics | PHYS427: Geophysics" target="_top" href="EOS427.html">
+<path fill="#d7e9ef" stroke="#7e8d96" d="M1455,-354C1455,-354 1375,-354 1375,-354 1369,-354 1363,-348 1363,-342 1363,-342 1363,-330 1363,-330 1363,-324 1369,-318 1375,-318 1375,-318 1455,-318 1455,-318 1461,-318 1467,-324 1467,-330 1467,-330 1467,-342 1467,-342 1467,-348 1461,-354 1455,-354"/>
+<text text-anchor="middle" x="1415" y="-333.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">EOS427 / PHYS427</text>
+</a>
+</g>
+</g>
+<!-- course__PHYS321A&#45;&gt;course__EOS427 -->
+<g id="edge1" class="edge">
+<title>course__PHYS321A&#45;&gt;course__EOS427</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1181.89,-183.21C1200.52,-195.58 1225.73,-212.3 1248,-227 1293.78,-257.21 1346.77,-291.97 1380.33,-313.96"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1379.17,-316.12 1386.37,-317.91 1381.85,-312.02 1379.17,-316.12"/>
+</g>
+<!-- course__EOS451 -->
+<g id="node13" class="node">
+<title>course__EOS451</title>
+<g id="a_node13"><a xlink:href="EOS451.html" xlink:title="EOS451: Introductory Dynamic Meteorology" target="_top" href="EOS451.html">
+<path fill="#d7e9ef" stroke="#7e8d96" d="M1430,-162C1430,-162 1400,-162 1400,-162 1394,-162 1388,-156 1388,-150 1388,-150 1388,-138 1388,-138 1388,-132 1394,-126 1400,-126 1400,-126 1430,-126 1430,-126 1436,-126 1442,-132 1442,-138 1442,-138 1442,-150 1442,-150 1442,-156 1436,-162 1430,-162"/>
+<text text-anchor="middle" x="1415" y="-141.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">EOS451</text>
+</a>
+</g>
+</g>
+<!-- course__PHYS321A&#45;&gt;course__EOS451 -->
+<g id="edge3" class="edge">
+<title>course__PHYS321A&#45;&gt;course__EOS451</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1187.1,-162.36C1236.8,-158.34 1330.97,-150.72 1380.94,-146.68"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1381.2,-149.11 1387.98,-146.11 1380.8,-144.23 1381.2,-149.11"/>
+</g>
+<!-- course__PHYS321A&#45;&gt;course__PHYS321B -->
+<g id="edge17" class="edge">
+<title>course__PHYS321A&#45;&gt;course__PHYS321B</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1187.1,-177.31C1234.78,-195.32 1323.42,-228.79 1374.66,-248.14"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1373.91,-250.48 1381.33,-250.66 1375.64,-245.9 1373.91,-250.48"/>
+</g>
+<!-- course__PHYS410 -->
+<g id="node15" class="node">
+<title>course__PHYS410</title>
+<g id="a_node15"><a xlink:href="PHYS410.html" xlink:title="PHYS410: Topics in Mathematical Physics I" target="_top" href="PHYS410.html">
+<path fill="#efd8cf" stroke="#7e8d96" d="M1432,-106C1432,-106 1398,-106 1398,-106 1392,-106 1386,-100 1386,-94 1386,-94 1386,-82 1386,-82 1386,-76 1392,-70 1398,-70 1398,-70 1432,-70 1432,-70 1438,-70 1444,-76 1444,-82 1444,-82 1444,-94 1444,-94 1444,-100 1438,-106 1432,-106"/>
+<text text-anchor="middle" x="1415" y="-85.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">PHYS410</text>
+</a>
+</g>
+</g>
+<!-- course__PHYS321A&#45;&gt;course__PHYS410 -->
+<g id="edge23" class="edge">
+<title>course__PHYS321A&#45;&gt;course__PHYS410</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1187.1,-155.33C1236.12,-140.78 1328.41,-113.4 1378.87,-98.43"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1379.68,-100.74 1385.7,-96.4 1378.29,-96.04 1379.68,-100.74"/>
+</g>
+<!-- course__PHYS426 -->
+<g id="node17" class="node">
+<title>course__PHYS426</title>
+<g id="a_node17"><a xlink:href="PHYS426.html" xlink:title="PHYS426: Fluid Mechanics" target="_top" href="PHYS426.html">
+<path fill="#efd8cf" stroke="#7e8d96" d="M1432,-218C1432,-218 1398,-218 1398,-218 1392,-218 1386,-212 1386,-206 1386,-206 1386,-194 1386,-194 1386,-188 1392,-182 1398,-182 1398,-182 1432,-182 1432,-182 1438,-182 1444,-188 1444,-194 1444,-194 1444,-206 1444,-206 1444,-212 1438,-218 1432,-218"/>
+<text text-anchor="middle" x="1415" y="-197.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">PHYS426</text>
+</a>
+</g>
+</g>
+<!-- course__PHYS321A&#45;&gt;course__PHYS426 -->
+<g id="edge29" class="edge">
+<title>course__PHYS321A&#45;&gt;course__PHYS426</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1187.1,-169.4C1236.02,-175.99 1328.03,-188.4 1378.56,-195.22"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1378.43,-197.68 1385.7,-196.18 1379.09,-192.82 1378.43,-197.68"/>
+</g>
+<!-- choice_PHYS411_0_0 -->
+<g id="node20" class="node">
+<title>choice_PHYS411_0_0</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M1290,-71C1290,-71 1260,-71 1260,-71 1254,-71 1248,-65 1248,-59 1248,-59 1248,-47 1248,-47 1248,-41 1254,-35 1260,-35 1260,-35 1290,-35 1290,-35 1296,-35 1302,-41 1302,-47 1302,-47 1302,-59 1302,-59 1302,-65 1296,-71 1290,-71"/>
+<text text-anchor="middle" x="1275" y="-50.8" font-family="Avenir Next" font-size="9.00">2 of</text>
+</g>
+<!-- course__PHYS321A&#45;&gt;choice_PHYS411_0_0 -->
+<g id="edge24" class="edge">
+<title>course__PHYS321A&#45;&gt;choice_PHYS411_0_0</title>
+<path fill="none" stroke="#7a8389" d="M1175.98,-146.8C1179.69,-143.57 1183.48,-140.21 1187,-137 1209.07,-116.87 1233.48,-93.17 1250.81,-76.08"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="1252.7,-77.67 1255.96,-71 1249.25,-74.18 1252.7,-77.67"/>
+</g>
+<!-- course__PHYS323&#45;&gt;choice_PHYS411_0_0 -->
+<g id="edge25" class="edge">
+<title>course__PHYS323&#45;&gt;choice_PHYS411_0_0</title>
+<path fill="none" stroke="#7a8389" d="M1183.73,-95.3C1201.21,-87.11 1223.45,-76.69 1241.48,-68.24"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="1242.62,-70.41 1247.92,-65.22 1240.54,-65.98 1242.62,-70.41"/>
+</g>
+<!-- course__PHYS326&#45;&gt;course__EOS427 -->
+<g id="edge2" class="edge">
+<title>course__PHYS326&#45;&gt;course__EOS427</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1183.53,-322.16C1201.98,-324.07 1226.37,-326.44 1248,-328 1283.72,-330.58 1323.82,-332.54 1355.66,-333.87"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1355.64,-336.32 1362.74,-334.16 1355.84,-331.43 1355.64,-336.32"/>
+</g>
+<!-- course__PHYS326&#45;&gt;choice_PHYS411_0_0 -->
+<g id="edge26" class="edge">
+<title>course__PHYS326&#45;&gt;choice_PHYS411_0_0</title>
+<path fill="none" stroke="#7a8389" d="M1163,-300.91C1169.61,-286.8 1178.97,-266.69 1187,-249 1214.89,-187.57 1246.89,-114.89 1263.21,-77.68"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="1265.5,-78.55 1266.07,-71.15 1261.01,-76.58 1265.5,-78.55"/>
+</g>
+<!-- choice_MATH211_0&#45;&gt;course__MATH211 -->
+<g id="edge9" class="edge">
+<title>choice_MATH211_0&#45;&gt;course__MATH211</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M526.08,-73C541.81,-73 562.14,-73 579.62,-73"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="579.92,-75.45 586.92,-73 579.92,-70.55 579.92,-75.45"/>
+</g>
+<!-- choice_MATH342_0_1&#45;&gt;course__MATH342 -->
+<g id="edge13" class="edge">
+<title>choice_MATH342_0_1&#45;&gt;course__MATH342</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M765.06,-214C779.39,-214 798.33,-214 818.48,-214"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="818.65,-216.45 825.65,-214 818.65,-211.55 818.65,-216.45"/>
+</g>
+<!-- choice_PHYS411_0_0&#45;&gt;course__PHYS411 -->
+<g id="edge27" class="edge">
+<title>choice_PHYS411_0_0&#45;&gt;course__PHYS411</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M1302.28,-46.33C1324.06,-40.81 1355.2,-32.91 1379.08,-26.86"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1379.74,-29.22 1385.92,-25.12 1378.53,-24.47 1379.74,-29.22"/>
+</g>
+</g>
+</svg></template>
+        </div>
+      </div>
       
     <div class="graph-followup">
       <p class="detail-card__eyebrow">Additional course requirements</p>
       <ul class="graph-followup__list"><li>or permission of the department</li></ul>
     </div>
-    
     </div>
     
+    </section>
+
+    <section class="section">
+      <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Mathematics</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">300-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">4</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">5</p><p class="metric-card__label">Published prerequisite links</p></article></div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/rkbW2u6XE">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Picard-Lindelöf and Peano existence theorems, series solutions near regular singular points, Frobenius method, systems of first order linear equations, complex and repeated eigenvalues, nonhomogeneous linear systems, qualitative theory for nonlinear systems; Lyapunov stability theory; periodic solutions; introduction to bifurcations and chaos.</p></div></article><article class="detail-card"><p class="detail-card__eyebrow">Supplemental Notes</p><h3>Catalog notes</h3><div class="rich-text"><ul><li>Credit will be granted for only one of MATH 342, MATH 323, MATH 323A, MATH 325, MATH 379.</li></ul></div></article></div>
     </section>
 
     <section class="section">

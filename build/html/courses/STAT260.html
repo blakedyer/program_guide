@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../program-guide.css">
   <script defer src="../program-guide.js"></script>
 </head>
-<body>
+<body class="page--course-detail">
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="../index.html">SEOS Curriculum Atlas</a>
@@ -30,40 +30,645 @@
     </section>
     
     <section class="section section--tight">
-      <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Statistics</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">200-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">14</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">2</p><p class="metric-card__label">Published prerequisite links</p></article></div>
-    </section>
-
-    <section class="section">
-      <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/SyPCgtTQV">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Descriptive statistics; elementary probability theory; random variables, discrete and continuous probability distributions, expectation, joint, marginal and conditional distributions; linear functions of random variables; random sampling and sampling distributions; point and interval estimation; classical hypothesis testing and significance testing. The mathematical foundations of statistical inference are introduced and illustrated with examples from a variety of disciplines.</p></div></article><article class="detail-card"><p class="detail-card__eyebrow">Supplemental Notes</p><h3>Catalog notes</h3><div class="rich-text"><ul> <li>Credit will be granted for only one of STAT 260, STAT 250, STAT 254.</li> <li>See "Credit Limit - Beginning Level Statistics Courses".</li> </ul></div></article></div>
-    </section>
-
-    <section class="section">
       
     <div class="graph-shell" id="course-graph" data-graph-switcher>
-      <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
-      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">Course Graph</p>
+          <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+          <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="../assets/graphs/courses/STAT260--simplified.svg">Open SVG</a>
+      </div>
       <div class="graph-toolbar">
         <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
           <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/STAT260--simplified.svg" data-graph-download="../assets/graphs/courses/STAT260--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/STAT260.svg" data-graph-download="../assets/graphs/courses/STAT260.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
         </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
         <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
       </div>
       
-      <div class="graph-frame">
-        <object data="../assets/graphs/courses/STAT260--simplified.svg" data-graph-object type="image/svg+xml" aria-label="STAT260 course graph">
-          <img src="../assets/graphs/courses/STAT260--simplified.svg" data-graph-fallback alt="STAT260 course graph">
-        </object>
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">Graph key and legend</span>
+          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
+        </span>
+        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">STAT260</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
+      </summary>
+      <div class="graph-guide__body">
+        <div class="legend"><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #e6dde9"></span>Statistics</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #dfe3f4"></span>Mathematics</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #dbe8d2"></span>Biology</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #f2ece3"></span>ECON</span></div>
+        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
       </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="../assets/graphs/courses/STAT260--simplified.svg">Open current SVG</a></p>
+    </details>
+      <div class="graph-frame">
+        <div class="graph-svg-stage" data-graph-stage aria-label="STAT260 course graph">
+          <!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: STAT260 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="STAT260 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="739pt" height="415pt"
+ viewBox="0.00 0.00 739.20 415.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 393.6)">
+<title>STAT260</title>
+<!-- course__MATH101 -->
+<g id="node1" class="node">
+<title>course__MATH101</title>
+<g id="a_node1"><a xlink:href="MATH101.html" xlink:title="MATH101: Calculus II" target="_top" href="MATH101.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M51,-151C51,-151 12,-151 12,-151 6,-151 0,-145 0,-139 0,-139 0,-127 0,-127 0,-121 6,-115 12,-115 12,-115 51,-115 51,-115 57,-115 63,-121 63,-127 63,-127 63,-139 63,-139 63,-145 57,-151 51,-151"/>
+<text text-anchor="middle" x="31.5" y="-130.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH101</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200 -->
+<g id="node2" class="node">
+<title>course__MATH200</title>
+<g id="a_node2"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M231,-127C231,-127 136,-127 136,-127 130,-127 124,-121 124,-115 124,-115 124,-103 124,-103 124,-97 130,-91 136,-91 136,-91 231,-91 231,-91 237,-91 243,-97 243,-103 243,-103 243,-115 243,-115 243,-121 237,-127 231,-127"/>
+<text text-anchor="middle" x="183.5" y="-106.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101&#45;&gt;course__MATH200 -->
+<g id="edge5" class="edge">
+<title>course__MATH101&#45;&gt;course__MATH200</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M63.22,-128.09C78.65,-125.62 97.99,-122.52 116.57,-119.55"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="117.39,-121.9 123.92,-118.37 116.62,-117.06 117.39,-121.9"/>
+</g>
+<!-- course__STAT254 -->
+<g id="node3" class="node">
+<title>course__STAT254</title>
+<g id="a_node3"><a xlink:href="STAT260.html" xlink:title="Collapsed in simplified view: STAT254: Probability and Statistics for Engineers | STAT255: Statistics for Life Sciences I | STAT260: Introduction to Probability and Statistics I" target="_top" href="STAT260.html">
+<path fill="#e6dde9" stroke="#1f4f66" stroke-width="2" d="M510,-176C510,-176 316,-176 316,-176 310,-176 304,-170 304,-164 304,-164 304,-152 304,-152 304,-146 310,-140 316,-140 316,-140 510,-140 510,-140 516,-140 522,-146 522,-152 522,-152 522,-164 522,-164 522,-170 516,-176 510,-176"/>
+<text text-anchor="middle" x="413" y="-161" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intro statistics</text>
+<text text-anchor="middle" x="413" y="-150" font-family="Avenir Next" font-size="10.00" fill="#17232b">Introduction to Probability and Statistics I</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101&#45;&gt;course__STAT254 -->
+<g id="edge10" class="edge">
+<title>course__MATH101&#45;&gt;course__STAT254</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M63.23,-135.02C113.51,-138.34 215.82,-145.08 296.69,-150.4"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="296.81,-152.87 303.96,-150.88 297.13,-147.98 296.81,-152.87"/>
+</g>
+<!-- course__MATH200&#45;&gt;course__STAT254 -->
+<g id="edge9" class="edge">
+<title>course__MATH200&#45;&gt;course__STAT254</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.09,-121.62C266.9,-126.75 294.96,-132.79 321.3,-138.46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="320.96,-140.9 328.31,-139.98 321.99,-136.11 320.96,-140.9"/>
+</g>
+<!-- course__MATH352 -->
+<g id="node8" class="node">
+<title>course__MATH352</title>
+<g id="a_node8"><a xlink:href="MATH352.html" xlink:title="Equivalent or cross&#45;listed: MATH352: Introduction to Probability | STAT350: Mathematical Statistics I" target="_top" href="MATH352.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M684,-36C684,-36 595,-36 595,-36 589,-36 583,-30 583,-24 583,-24 583,-12 583,-12 583,-6 589,0 595,0 595,0 684,0 684,0 690,0 696,-6 696,-12 696,-12 696,-24 696,-24 696,-30 690,-36 684,-36"/>
+<text text-anchor="middle" x="639.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH352 / STAT350</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH352 -->
+<g id="edge6" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH352</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.39,-97.2C329.23,-79.99 488.06,-48.15 575.94,-30.54"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="576.54,-32.92 582.92,-29.14 575.57,-28.11 576.54,-32.92"/>
+</g>
+<!-- course__BIOL319 -->
+<g id="node4" class="node">
+<title>course__BIOL319</title>
+<g id="a_node4"><a xlink:href="BIOL319.html" xlink:title="BIOL319: Marine Ecology" target="_top" href="BIOL319.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M656,-372C656,-372 623,-372 623,-372 617,-372 611,-366 611,-360 611,-360 611,-348 611,-348 611,-342 617,-336 623,-336 623,-336 656,-336 656,-336 662,-336 668,-342 668,-348 668,-348 668,-360 668,-360 668,-366 662,-372 656,-372"/>
+<text text-anchor="middle" x="639.5" y="-351.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL319</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL319 -->
+<g id="edge1" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL319</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M428.76,-176.05C456.38,-209.01 518.91,-279.78 583,-326 589.57,-330.74 597.05,-335.1 604.35,-338.91"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="603.62,-341.28 610.98,-342.24 605.82,-336.9 603.62,-341.28"/>
+</g>
+<!-- course__BIOL330 -->
+<g id="node5" class="node">
+<title>course__BIOL330</title>
+<g id="a_node5"><a xlink:href="BIOL330.html" xlink:title="BIOL330: Study Design and Data Analysis" target="_top" href="BIOL330.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M656,-316C656,-316 623,-316 623,-316 617,-316 611,-310 611,-304 611,-304 611,-292 611,-292 611,-286 617,-280 623,-280 623,-280 656,-280 656,-280 662,-280 668,-286 668,-292 668,-292 668,-304 668,-304 668,-310 662,-316 656,-316"/>
+<text text-anchor="middle" x="639.5" y="-295.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL330</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL330 -->
+<g id="edge2" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL330</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M439.17,-176.04C471.68,-199.02 530.35,-239.41 583,-270 589.79,-273.94 597.2,-277.91 604.33,-281.56"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="603.42,-283.85 610.78,-284.82 605.63,-279.47 603.42,-283.85"/>
+</g>
+<!-- course__BIOL370 -->
+<g id="node6" class="node">
+<title>course__BIOL370</title>
+<g id="a_node6"><a xlink:href="BIOL370.html" xlink:title="BIOL370: Conservation Biology" target="_top" href="BIOL370.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M656,-260C656,-260 623,-260 623,-260 617,-260 611,-254 611,-248 611,-248 611,-236 611,-236 611,-230 617,-224 623,-224 623,-224 656,-224 656,-224 662,-224 668,-230 668,-236 668,-236 668,-248 668,-248 668,-254 662,-260 656,-260"/>
+<text text-anchor="middle" x="639.5" y="-239.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL370</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL370 -->
+<g id="edge3" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL370</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M462.16,-176.02C504.85,-191.99 566.15,-214.93 604.09,-229.12"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="603.47,-231.51 610.89,-231.67 605.19,-226.92 603.47,-231.51"/>
+</g>
+<!-- course__ECON383 -->
+<g id="node7" class="node">
+<title>course__ECON383</title>
+<g id="a_node7"><a xlink:href="ECON383.html" xlink:title="ECON383: Climate Economics" target="_top" href="ECON383.html">
+<path fill="#f2ece3" stroke="#1b2730" stroke-width="1.6" d="M658.5,-204C658.5,-204 620.5,-204 620.5,-204 614.5,-204 608.5,-198 608.5,-192 608.5,-192 608.5,-180 608.5,-180 608.5,-174 614.5,-168 620.5,-168 620.5,-168 658.5,-168 658.5,-168 664.5,-168 670.5,-174 670.5,-180 670.5,-180 670.5,-192 670.5,-192 670.5,-198 664.5,-204 658.5,-204"/>
+<text text-anchor="middle" x="639.5" y="-183.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">ECON383</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__ECON383 -->
+<g id="edge4" class="edge">
+<title>course__STAT254&#45;&gt;course__ECON383</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M522.3,-171.51C550.71,-175.05 579.46,-178.64 601.25,-181.35"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="601.12,-183.81 608.36,-182.24 601.72,-178.94 601.12,-183.81"/>
+</g>
+<!-- course__STAT254&#45;&gt;course__MATH352 -->
+<g id="edge7" class="edge">
+<title>course__STAT254&#45;&gt;course__MATH352</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M447.31,-139.77C469.02,-127.52 497.73,-110.63 522,-94 550.46,-74.5 553.9,-64.53 583,-46 586.44,-43.81 590.08,-41.65 593.77,-39.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="595.06,-41.66 600.03,-36.15 592.71,-37.36 595.06,-41.66"/>
+</g>
+<!-- course__MATH377 -->
+<g id="node9" class="node">
+<title>course__MATH377</title>
+<g id="a_node9"><a xlink:href="MATH377.html" xlink:title="MATH377: Mathematical Modelling" target="_top" href="MATH377.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M659,-148C659,-148 620,-148 620,-148 614,-148 608,-142 608,-136 608,-136 608,-124 608,-124 608,-118 614,-112 620,-112 620,-112 659,-112 659,-112 665,-112 671,-118 671,-124 671,-124 671,-136 671,-136 671,-142 665,-148 659,-148"/>
+<text text-anchor="middle" x="639.5" y="-127.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH377</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__MATH377 -->
+<g id="edge8" class="edge">
+<title>course__STAT254&#45;&gt;course__MATH377</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M522.3,-144.49C550.51,-140.97 579.05,-137.41 600.79,-134.7"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="601.24,-137.12 607.89,-133.82 600.64,-132.25 601.24,-137.12"/>
+</g>
+<!-- course__STAT359 -->
+<g id="node10" class="node">
+<title>course__STAT359</title>
+<g id="a_node10"><a xlink:href="STAT359.html" xlink:title="STAT359: Data Analysis" target="_top" href="STAT359.html">
+<path fill="#e6dde9" stroke="#1b2730" stroke-width="1.6" d="M656.5,-92C656.5,-92 622.5,-92 622.5,-92 616.5,-92 610.5,-86 610.5,-80 610.5,-80 610.5,-68 610.5,-68 610.5,-62 616.5,-56 622.5,-56 622.5,-56 656.5,-56 656.5,-56 662.5,-56 668.5,-62 668.5,-68 668.5,-68 668.5,-80 668.5,-80 668.5,-86 662.5,-92 656.5,-92"/>
+<text text-anchor="middle" x="639.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">STAT359</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__STAT359 -->
+<g id="edge11" class="edge">
+<title>course__STAT254&#45;&gt;course__STAT359</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M462.16,-139.98C504.61,-124.1 565.45,-101.33 603.44,-87.12"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="604.56,-89.32 610.25,-84.57 602.84,-84.73 604.56,-89.32"/>
+</g>
+</g>
+</svg>
+        </div>
+        <div class="graph-template-bank" hidden>
+          <template data-graph-template="simplified"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: STAT260 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="STAT260 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="739pt" height="415pt"
+ viewBox="0.00 0.00 739.20 415.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 393.6)">
+<title>STAT260</title>
+<!-- course__MATH101 -->
+<g id="node1" class="node">
+<title>course__MATH101</title>
+<g id="a_node1"><a xlink:href="MATH101.html" xlink:title="MATH101: Calculus II" target="_top" href="MATH101.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M51,-151C51,-151 12,-151 12,-151 6,-151 0,-145 0,-139 0,-139 0,-127 0,-127 0,-121 6,-115 12,-115 12,-115 51,-115 51,-115 57,-115 63,-121 63,-127 63,-127 63,-139 63,-139 63,-145 57,-151 51,-151"/>
+<text text-anchor="middle" x="31.5" y="-130.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH101</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200 -->
+<g id="node2" class="node">
+<title>course__MATH200</title>
+<g id="a_node2"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M231,-127C231,-127 136,-127 136,-127 130,-127 124,-121 124,-115 124,-115 124,-103 124,-103 124,-97 130,-91 136,-91 136,-91 231,-91 231,-91 237,-91 243,-97 243,-103 243,-103 243,-115 243,-115 243,-121 237,-127 231,-127"/>
+<text text-anchor="middle" x="183.5" y="-106.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101&#45;&gt;course__MATH200 -->
+<g id="edge5" class="edge">
+<title>course__MATH101&#45;&gt;course__MATH200</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M63.22,-128.09C78.65,-125.62 97.99,-122.52 116.57,-119.55"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="117.39,-121.9 123.92,-118.37 116.62,-117.06 117.39,-121.9"/>
+</g>
+<!-- course__STAT254 -->
+<g id="node3" class="node">
+<title>course__STAT254</title>
+<g id="a_node3"><a xlink:href="STAT260.html" xlink:title="Collapsed in simplified view: STAT254: Probability and Statistics for Engineers | STAT255: Statistics for Life Sciences I | STAT260: Introduction to Probability and Statistics I" target="_top" href="STAT260.html">
+<path fill="#e6dde9" stroke="#1f4f66" stroke-width="2" d="M510,-176C510,-176 316,-176 316,-176 310,-176 304,-170 304,-164 304,-164 304,-152 304,-152 304,-146 310,-140 316,-140 316,-140 510,-140 510,-140 516,-140 522,-146 522,-152 522,-152 522,-164 522,-164 522,-170 516,-176 510,-176"/>
+<text text-anchor="middle" x="413" y="-161" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intro statistics</text>
+<text text-anchor="middle" x="413" y="-150" font-family="Avenir Next" font-size="10.00" fill="#17232b">Introduction to Probability and Statistics I</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101&#45;&gt;course__STAT254 -->
+<g id="edge10" class="edge">
+<title>course__MATH101&#45;&gt;course__STAT254</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M63.23,-135.02C113.51,-138.34 215.82,-145.08 296.69,-150.4"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="296.81,-152.87 303.96,-150.88 297.13,-147.98 296.81,-152.87"/>
+</g>
+<!-- course__MATH200&#45;&gt;course__STAT254 -->
+<g id="edge9" class="edge">
+<title>course__MATH200&#45;&gt;course__STAT254</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.09,-121.62C266.9,-126.75 294.96,-132.79 321.3,-138.46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="320.96,-140.9 328.31,-139.98 321.99,-136.11 320.96,-140.9"/>
+</g>
+<!-- course__MATH352 -->
+<g id="node8" class="node">
+<title>course__MATH352</title>
+<g id="a_node8"><a xlink:href="MATH352.html" xlink:title="Equivalent or cross&#45;listed: MATH352: Introduction to Probability | STAT350: Mathematical Statistics I" target="_top" href="MATH352.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M684,-36C684,-36 595,-36 595,-36 589,-36 583,-30 583,-24 583,-24 583,-12 583,-12 583,-6 589,0 595,0 595,0 684,0 684,0 690,0 696,-6 696,-12 696,-12 696,-24 696,-24 696,-30 690,-36 684,-36"/>
+<text text-anchor="middle" x="639.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH352 / STAT350</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH352 -->
+<g id="edge6" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH352</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M243.39,-97.2C329.23,-79.99 488.06,-48.15 575.94,-30.54"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="576.54,-32.92 582.92,-29.14 575.57,-28.11 576.54,-32.92"/>
+</g>
+<!-- course__BIOL319 -->
+<g id="node4" class="node">
+<title>course__BIOL319</title>
+<g id="a_node4"><a xlink:href="BIOL319.html" xlink:title="BIOL319: Marine Ecology" target="_top" href="BIOL319.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M656,-372C656,-372 623,-372 623,-372 617,-372 611,-366 611,-360 611,-360 611,-348 611,-348 611,-342 617,-336 623,-336 623,-336 656,-336 656,-336 662,-336 668,-342 668,-348 668,-348 668,-360 668,-360 668,-366 662,-372 656,-372"/>
+<text text-anchor="middle" x="639.5" y="-351.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL319</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL319 -->
+<g id="edge1" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL319</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M428.76,-176.05C456.38,-209.01 518.91,-279.78 583,-326 589.57,-330.74 597.05,-335.1 604.35,-338.91"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="603.62,-341.28 610.98,-342.24 605.82,-336.9 603.62,-341.28"/>
+</g>
+<!-- course__BIOL330 -->
+<g id="node5" class="node">
+<title>course__BIOL330</title>
+<g id="a_node5"><a xlink:href="BIOL330.html" xlink:title="BIOL330: Study Design and Data Analysis" target="_top" href="BIOL330.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M656,-316C656,-316 623,-316 623,-316 617,-316 611,-310 611,-304 611,-304 611,-292 611,-292 611,-286 617,-280 623,-280 623,-280 656,-280 656,-280 662,-280 668,-286 668,-292 668,-292 668,-304 668,-304 668,-310 662,-316 656,-316"/>
+<text text-anchor="middle" x="639.5" y="-295.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL330</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL330 -->
+<g id="edge2" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL330</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M439.17,-176.04C471.68,-199.02 530.35,-239.41 583,-270 589.79,-273.94 597.2,-277.91 604.33,-281.56"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="603.42,-283.85 610.78,-284.82 605.63,-279.47 603.42,-283.85"/>
+</g>
+<!-- course__BIOL370 -->
+<g id="node6" class="node">
+<title>course__BIOL370</title>
+<g id="a_node6"><a xlink:href="BIOL370.html" xlink:title="BIOL370: Conservation Biology" target="_top" href="BIOL370.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M656,-260C656,-260 623,-260 623,-260 617,-260 611,-254 611,-248 611,-248 611,-236 611,-236 611,-230 617,-224 623,-224 623,-224 656,-224 656,-224 662,-224 668,-230 668,-236 668,-236 668,-248 668,-248 668,-254 662,-260 656,-260"/>
+<text text-anchor="middle" x="639.5" y="-239.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL370</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL370 -->
+<g id="edge3" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL370</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M462.16,-176.02C504.85,-191.99 566.15,-214.93 604.09,-229.12"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="603.47,-231.51 610.89,-231.67 605.19,-226.92 603.47,-231.51"/>
+</g>
+<!-- course__ECON383 -->
+<g id="node7" class="node">
+<title>course__ECON383</title>
+<g id="a_node7"><a xlink:href="ECON383.html" xlink:title="ECON383: Climate Economics" target="_top" href="ECON383.html">
+<path fill="#f2ece3" stroke="#1b2730" stroke-width="1.6" d="M658.5,-204C658.5,-204 620.5,-204 620.5,-204 614.5,-204 608.5,-198 608.5,-192 608.5,-192 608.5,-180 608.5,-180 608.5,-174 614.5,-168 620.5,-168 620.5,-168 658.5,-168 658.5,-168 664.5,-168 670.5,-174 670.5,-180 670.5,-180 670.5,-192 670.5,-192 670.5,-198 664.5,-204 658.5,-204"/>
+<text text-anchor="middle" x="639.5" y="-183.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">ECON383</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__ECON383 -->
+<g id="edge4" class="edge">
+<title>course__STAT254&#45;&gt;course__ECON383</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M522.3,-171.51C550.71,-175.05 579.46,-178.64 601.25,-181.35"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="601.12,-183.81 608.36,-182.24 601.72,-178.94 601.12,-183.81"/>
+</g>
+<!-- course__STAT254&#45;&gt;course__MATH352 -->
+<g id="edge7" class="edge">
+<title>course__STAT254&#45;&gt;course__MATH352</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M447.31,-139.77C469.02,-127.52 497.73,-110.63 522,-94 550.46,-74.5 553.9,-64.53 583,-46 586.44,-43.81 590.08,-41.65 593.77,-39.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="595.06,-41.66 600.03,-36.15 592.71,-37.36 595.06,-41.66"/>
+</g>
+<!-- course__MATH377 -->
+<g id="node9" class="node">
+<title>course__MATH377</title>
+<g id="a_node9"><a xlink:href="MATH377.html" xlink:title="MATH377: Mathematical Modelling" target="_top" href="MATH377.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M659,-148C659,-148 620,-148 620,-148 614,-148 608,-142 608,-136 608,-136 608,-124 608,-124 608,-118 614,-112 620,-112 620,-112 659,-112 659,-112 665,-112 671,-118 671,-124 671,-124 671,-136 671,-136 671,-142 665,-148 659,-148"/>
+<text text-anchor="middle" x="639.5" y="-127.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH377</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__MATH377 -->
+<g id="edge8" class="edge">
+<title>course__STAT254&#45;&gt;course__MATH377</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M522.3,-144.49C550.51,-140.97 579.05,-137.41 600.79,-134.7"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="601.24,-137.12 607.89,-133.82 600.64,-132.25 601.24,-137.12"/>
+</g>
+<!-- course__STAT359 -->
+<g id="node10" class="node">
+<title>course__STAT359</title>
+<g id="a_node10"><a xlink:href="STAT359.html" xlink:title="STAT359: Data Analysis" target="_top" href="STAT359.html">
+<path fill="#e6dde9" stroke="#1b2730" stroke-width="1.6" d="M656.5,-92C656.5,-92 622.5,-92 622.5,-92 616.5,-92 610.5,-86 610.5,-80 610.5,-80 610.5,-68 610.5,-68 610.5,-62 616.5,-56 622.5,-56 622.5,-56 656.5,-56 656.5,-56 662.5,-56 668.5,-62 668.5,-68 668.5,-68 668.5,-80 668.5,-80 668.5,-86 662.5,-92 656.5,-92"/>
+<text text-anchor="middle" x="639.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">STAT359</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__STAT359 -->
+<g id="edge11" class="edge">
+<title>course__STAT254&#45;&gt;course__STAT359</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M462.16,-139.98C504.61,-124.1 565.45,-101.33 603.44,-87.12"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="604.56,-89.32 610.25,-84.57 602.84,-84.73 604.56,-89.32"/>
+</g>
+</g>
+</svg></template><template data-graph-template="full"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: STAT260 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="STAT260 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="1143pt" height="427pt"
+ viewBox="0.00 0.00 1143.20 427.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 405.6)">
+<title>STAT260</title>
+<!-- course__MATH100 -->
+<g id="node1" class="node">
+<title>course__MATH100</title>
+<g id="a_node1"><a xlink:href="MATH100.html" xlink:title="Equivalent or cross&#45;listed: MATH100: Calculus I | MATH102: Calculus for Students in the Social and Biological Sciences | MATH109: Introduction to Calculus" target="_top" href="MATH100.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M99,-151C99,-151 12,-151 12,-151 6,-151 0,-145 0,-139 0,-139 0,-127 0,-127 0,-121 6,-115 12,-115 12,-115 99,-115 99,-115 105,-115 111,-121 111,-127 111,-127 111,-139 111,-139 111,-145 105,-151 99,-151"/>
+<text text-anchor="middle" x="55.5" y="-135.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH100 / MATH102</text>
+<text text-anchor="middle" x="55.5" y="-125.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH109</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101 -->
+<g id="node2" class="node">
+<title>course__MATH101</title>
+<g id="a_node2"><a xlink:href="MATH101.html" xlink:title="MATH101: Calculus II" target="_top" href="MATH101.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M223,-151C223,-151 184,-151 184,-151 178,-151 172,-145 172,-139 172,-139 172,-127 172,-127 172,-121 178,-115 184,-115 184,-115 223,-115 223,-115 229,-115 235,-121 235,-127 235,-127 235,-139 235,-139 235,-145 229,-151 223,-151"/>
+<text text-anchor="middle" x="203.5" y="-130.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH101</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__MATH101 -->
+<g id="edge11" class="edge">
+<title>course__MATH100&#45;&gt;course__MATH101</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M111.28,-133C128.96,-133 148.17,-133 164.38,-133"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="164.6,-135.45 171.6,-133 164.6,-130.55 164.6,-135.45"/>
+</g>
+<!-- course__MATH200 -->
+<g id="node3" class="node">
+<title>course__MATH200</title>
+<g id="a_node3"><a xlink:href="MATH200.html" xlink:title="Equivalent or cross&#45;listed: MATH200: Calculus III | MATH202: Intermediate Calculus for CSC and EOS" target="_top" href="MATH200.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M403,-127C403,-127 308,-127 308,-127 302,-127 296,-121 296,-115 296,-115 296,-103 296,-103 296,-97 302,-91 308,-91 308,-91 403,-91 403,-91 409,-91 415,-97 415,-103 415,-103 415,-115 415,-115 415,-121 409,-127 403,-127"/>
+<text text-anchor="middle" x="355.5" y="-106.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH200 / MATH202</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101&#45;&gt;course__MATH200 -->
+<g id="edge12" class="edge">
+<title>course__MATH101&#45;&gt;course__MATH200</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M235.22,-128.09C250.65,-125.62 269.99,-122.52 288.57,-119.55"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="289.39,-121.9 295.92,-118.37 288.62,-117.06 289.39,-121.9"/>
+</g>
+<!-- course__STAT254 -->
+<g id="node4" class="node">
+<title>course__STAT254</title>
+<g id="a_node4"><a xlink:href="STAT260.html" xlink:title="Equivalent or cross&#45;listed: STAT254: Probability and Statistics for Engineers | STAT260: Introduction to Probability and Statistics I" target="_top" href="STAT260.html">
+<path fill="#e6dde9" stroke="#1f4f66" stroke-width="2" d="M682,-176C682,-176 488,-176 488,-176 482,-176 476,-170 476,-164 476,-164 476,-152 476,-152 476,-146 482,-140 488,-140 488,-140 682,-140 682,-140 688,-140 694,-146 694,-152 694,-152 694,-164 694,-164 694,-170 688,-176 682,-176"/>
+<text text-anchor="middle" x="585" y="-161" font-family="Avenir Next" font-size="10.00" fill="#17232b">STAT254 / STAT260</text>
+<text text-anchor="middle" x="585" y="-150" font-family="Avenir Next" font-size="10.00" fill="#17232b">Introduction to Probability and Statistics I</text>
+</a>
+</g>
+</g>
+<!-- course__MATH101&#45;&gt;course__STAT254 -->
+<g id="edge17" class="edge">
+<title>course__MATH101&#45;&gt;course__STAT254</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M235.23,-135.02C285.51,-138.34 387.82,-145.08 468.69,-150.4"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="468.81,-152.87 475.96,-150.88 469.13,-147.98 468.81,-152.87"/>
+</g>
+<!-- course__MATH200&#45;&gt;course__STAT254 -->
+<g id="edge16" class="edge">
+<title>course__MATH200&#45;&gt;course__STAT254</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M415.09,-121.62C438.9,-126.75 466.96,-132.79 493.3,-138.46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="492.96,-140.9 500.31,-139.98 493.99,-136.11 492.96,-140.9"/>
+</g>
+<!-- course__MATH352 -->
+<g id="node9" class="node">
+<title>course__MATH352</title>
+<g id="a_node9"><a xlink:href="MATH352.html" xlink:title="Equivalent or cross&#45;listed: MATH352: Introduction to Probability | STAT350: Mathematical Statistics I" target="_top" href="MATH352.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M856,-36C856,-36 767,-36 767,-36 761,-36 755,-30 755,-24 755,-24 755,-12 755,-12 755,-6 761,0 767,0 767,0 856,0 856,0 862,0 868,-6 868,-12 868,-12 868,-24 868,-24 868,-30 862,-36 856,-36"/>
+<text text-anchor="middle" x="811.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH352 / STAT350</text>
+</a>
+</g>
+</g>
+<!-- course__MATH200&#45;&gt;course__MATH352 -->
+<g id="edge13" class="edge">
+<title>course__MATH200&#45;&gt;course__MATH352</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M415.39,-97.2C501.23,-79.99 660.06,-48.15 747.94,-30.54"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="748.54,-32.92 754.92,-29.14 747.57,-28.11 748.54,-32.92"/>
+</g>
+<!-- course__BIOL319 -->
+<g id="node5" class="node">
+<title>course__BIOL319</title>
+<g id="a_node5"><a xlink:href="BIOL319.html" xlink:title="BIOL319: Marine Ecology" target="_top" href="BIOL319.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M828,-384C828,-384 795,-384 795,-384 789,-384 783,-378 783,-372 783,-372 783,-360 783,-360 783,-354 789,-348 795,-348 795,-348 828,-348 828,-348 834,-348 840,-354 840,-360 840,-360 840,-372 840,-372 840,-378 834,-384 828,-384"/>
+<text text-anchor="middle" x="811.5" y="-363.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL319</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL319 -->
+<g id="edge1" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL319</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M602.42,-176.11C631.67,-207.96 695.37,-275.42 755,-326 762.15,-332.06 770.16,-338.19 777.82,-343.76"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="776.48,-345.81 783.6,-347.9 779.34,-341.83 776.48,-345.81"/>
+</g>
+<!-- course__BIOL330 -->
+<g id="node6" class="node">
+<title>course__BIOL330</title>
+<g id="a_node6"><a xlink:href="BIOL330.html" xlink:title="BIOL330: Study Design and Data Analysis" target="_top" href="BIOL330.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M828,-316C828,-316 795,-316 795,-316 789,-316 783,-310 783,-304 783,-304 783,-292 783,-292 783,-286 789,-280 795,-280 795,-280 828,-280 828,-280 834,-280 840,-286 840,-292 840,-292 840,-304 840,-304 840,-310 834,-316 828,-316"/>
+<text text-anchor="middle" x="811.5" y="-295.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL330</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL330 -->
+<g id="edge2" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL330</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M611.17,-176.04C643.68,-199.02 702.35,-239.41 755,-270 761.79,-273.94 769.2,-277.91 776.33,-281.56"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="775.42,-283.85 782.78,-284.82 777.63,-279.47 775.42,-283.85"/>
+</g>
+<!-- course__BIOL370 -->
+<g id="node7" class="node">
+<title>course__BIOL370</title>
+<g id="a_node7"><a xlink:href="BIOL370.html" xlink:title="BIOL370: Conservation Biology" target="_top" href="BIOL370.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M828,-260C828,-260 795,-260 795,-260 789,-260 783,-254 783,-248 783,-248 783,-236 783,-236 783,-230 789,-224 795,-224 795,-224 828,-224 828,-224 834,-224 840,-230 840,-236 840,-236 840,-248 840,-248 840,-254 834,-260 828,-260"/>
+<text text-anchor="middle" x="811.5" y="-239.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL370</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__BIOL370 -->
+<g id="edge3" class="edge">
+<title>course__STAT254&#45;&gt;course__BIOL370</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M634.16,-176.02C676.85,-191.99 738.15,-214.93 776.09,-229.12"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="775.47,-231.51 782.89,-231.67 777.19,-226.92 775.47,-231.51"/>
+</g>
+<!-- course__ECON383 -->
+<g id="node8" class="node">
+<title>course__ECON383</title>
+<g id="a_node8"><a xlink:href="ECON383.html" xlink:title="ECON383: Climate Economics" target="_top" href="ECON383.html">
+<path fill="#f2ece3" stroke="#1b2730" stroke-width="1.6" d="M830.5,-204C830.5,-204 792.5,-204 792.5,-204 786.5,-204 780.5,-198 780.5,-192 780.5,-192 780.5,-180 780.5,-180 780.5,-174 786.5,-168 792.5,-168 792.5,-168 830.5,-168 830.5,-168 836.5,-168 842.5,-174 842.5,-180 842.5,-180 842.5,-192 842.5,-192 842.5,-198 836.5,-204 830.5,-204"/>
+<text text-anchor="middle" x="811.5" y="-183.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">ECON383</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__ECON383 -->
+<g id="edge10" class="edge">
+<title>course__STAT254&#45;&gt;course__ECON383</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M694.3,-171.51C722.71,-175.05 751.46,-178.64 773.25,-181.35"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="773.12,-183.81 780.36,-182.24 773.72,-178.94 773.12,-183.81"/>
+</g>
+<!-- course__STAT254&#45;&gt;course__MATH352 -->
+<g id="edge14" class="edge">
+<title>course__STAT254&#45;&gt;course__MATH352</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M619.31,-139.77C641.02,-127.52 669.73,-110.63 694,-94 722.46,-74.5 725.9,-64.53 755,-46 758.44,-43.81 762.08,-41.65 765.77,-39.57"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="767.06,-41.66 772.03,-36.15 764.71,-37.36 767.06,-41.66"/>
+</g>
+<!-- course__MATH377 -->
+<g id="node10" class="node">
+<title>course__MATH377</title>
+<g id="a_node10"><a xlink:href="MATH377.html" xlink:title="MATH377: Mathematical Modelling" target="_top" href="MATH377.html">
+<path fill="#dfe3f4" stroke="#1b2730" stroke-width="1.6" d="M831,-148C831,-148 792,-148 792,-148 786,-148 780,-142 780,-136 780,-136 780,-124 780,-124 780,-118 786,-112 792,-112 792,-112 831,-112 831,-112 837,-112 843,-118 843,-124 843,-124 843,-136 843,-136 843,-142 837,-148 831,-148"/>
+<text text-anchor="middle" x="811.5" y="-127.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">MATH377</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__MATH377 -->
+<g id="edge15" class="edge">
+<title>course__STAT254&#45;&gt;course__MATH377</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M694.3,-144.49C722.51,-140.97 751.05,-137.41 772.79,-134.7"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="773.24,-137.12 779.89,-133.82 772.64,-132.25 773.24,-137.12"/>
+</g>
+<!-- course__STAT359 -->
+<g id="node11" class="node">
+<title>course__STAT359</title>
+<g id="a_node11"><a xlink:href="STAT359.html" xlink:title="STAT359: Data Analysis" target="_top" href="STAT359.html">
+<path fill="#e6dde9" stroke="#1b2730" stroke-width="1.6" d="M828.5,-92C828.5,-92 794.5,-92 794.5,-92 788.5,-92 782.5,-86 782.5,-80 782.5,-80 782.5,-68 782.5,-68 782.5,-62 788.5,-56 794.5,-56 794.5,-56 828.5,-56 828.5,-56 834.5,-56 840.5,-62 840.5,-68 840.5,-68 840.5,-80 840.5,-80 840.5,-86 834.5,-92 828.5,-92"/>
+<text text-anchor="middle" x="811.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">STAT359</text>
+</a>
+</g>
+</g>
+<!-- course__STAT254&#45;&gt;course__STAT359 -->
+<g id="edge18" class="edge">
+<title>course__STAT254&#45;&gt;course__STAT359</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M634.16,-139.98C676.61,-124.1 737.45,-101.33 775.44,-87.12"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="776.56,-89.32 782.25,-84.57 774.84,-84.73 776.56,-89.32"/>
+</g>
+<!-- course__BIOL466 -->
+<g id="node14" class="node">
+<title>course__BIOL466</title>
+<g id="a_node14"><a xlink:href="BIOL466.html" xlink:title="BIOL466: Frontiers in Marine Biology" target="_top" href="BIOL466.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M1088,-382C1088,-382 1056,-382 1056,-382 1050,-382 1044,-376 1044,-370 1044,-370 1044,-358 1044,-358 1044,-352 1050,-346 1056,-346 1056,-346 1088,-346 1088,-346 1094,-346 1100,-352 1100,-358 1100,-358 1100,-370 1100,-370 1100,-376 1094,-382 1088,-382"/>
+<text text-anchor="middle" x="1072" y="-361.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL466</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL319&#45;&gt;course__BIOL466 -->
+<g id="edge8" class="edge">
+<title>course__BIOL319&#45;&gt;course__BIOL466</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M840.16,-365.79C887.71,-365.42 984.8,-364.67 1036.62,-364.27"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1036.94,-366.71 1043.92,-364.21 1036.9,-361.81 1036.94,-366.71"/>
+</g>
+<!-- course__BIOL446 -->
+<g id="node12" class="node">
+<title>course__BIOL446</title>
+<g id="a_node12"><a xlink:href="BIOL446.html" xlink:title="BIOL446: Advanced Aquatic Ecology" target="_top" href="BIOL446.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M1088,-312C1088,-312 1056,-312 1056,-312 1050,-312 1044,-306 1044,-300 1044,-300 1044,-288 1044,-288 1044,-282 1050,-276 1056,-276 1056,-276 1088,-276 1088,-276 1094,-276 1100,-282 1100,-288 1100,-288 1100,-300 1100,-300 1100,-306 1094,-312 1088,-312"/>
+<text text-anchor="middle" x="1072" y="-291.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL446</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL330&#45;&gt;course__BIOL446 -->
+<g id="edge4" class="edge">
+<title>course__BIOL330&#45;&gt;course__BIOL446</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M840.16,-297.57C887.71,-296.84 984.8,-295.33 1036.62,-294.53"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1036.96,-296.98 1043.92,-294.42 1036.89,-292.08 1036.96,-296.98"/>
+</g>
+<!-- course__BIOL330&#45;&gt;course__BIOL466 -->
+<g id="edge9" class="edge">
+<title>course__BIOL330&#45;&gt;course__BIOL466</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M840.16,-305.06C887.81,-317.23 985.2,-342.09 1036.94,-355.3"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1036.53,-357.73 1043.92,-357.09 1037.75,-352.98 1036.53,-357.73"/>
+</g>
+<!-- choice_BIOL461_0_0 -->
+<g id="node15" class="node">
+<title>choice_BIOL461_0_0</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M971,-260C971,-260 941,-260 941,-260 935,-260 929,-254 929,-248 929,-248 929,-236 929,-236 929,-230 935,-224 941,-224 941,-224 971,-224 971,-224 977,-224 983,-230 983,-236 983,-236 983,-248 983,-248 983,-254 977,-260 971,-260"/>
+<text text-anchor="middle" x="956" y="-239.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__BIOL330&#45;&gt;choice_BIOL461_0_0 -->
+<g id="edge5" class="edge">
+<title>course__BIOL330&#45;&gt;choice_BIOL461_0_0</title>
+<path fill="none" stroke="#7a8389" d="M840.31,-287.07C863.71,-277.88 897.21,-264.71 921.96,-254.98"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="923.08,-257.18 928.7,-252.34 921.29,-252.62 923.08,-257.18"/>
+</g>
+<!-- course__BIOL370&#45;&gt;choice_BIOL461_0_0 -->
+<g id="edge6" class="edge">
+<title>course__BIOL370&#45;&gt;choice_BIOL461_0_0</title>
+<path fill="none" stroke="#7a8389" d="M840.31,-242C863.61,-242 896.92,-242 921.65,-242"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="921.7,-244.45 928.7,-242 921.7,-239.55 921.7,-244.45"/>
+</g>
+<!-- course__BIOL461 -->
+<g id="node13" class="node">
+<title>course__BIOL461</title>
+<g id="a_node13"><a xlink:href="BIOL461.html" xlink:title="BIOL461: Fisheries Ecology and Management" target="_top" href="BIOL461.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M1088,-256C1088,-256 1056,-256 1056,-256 1050,-256 1044,-250 1044,-244 1044,-244 1044,-232 1044,-232 1044,-226 1050,-220 1056,-220 1056,-220 1088,-220 1088,-220 1094,-220 1100,-226 1100,-232 1100,-232 1100,-244 1100,-244 1100,-250 1094,-256 1088,-256"/>
+<text text-anchor="middle" x="1072" y="-235.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL461</text>
+</a>
+</g>
+</g>
+<!-- choice_BIOL461_0_0&#45;&gt;course__BIOL461 -->
+<g id="edge7" class="edge">
+<title>choice_BIOL461_0_0&#45;&gt;course__BIOL461</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M983.15,-241.08C999.03,-240.53 1019.47,-239.81 1036.64,-239.21"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="1036.87,-241.65 1043.78,-238.96 1036.7,-236.75 1036.87,-241.65"/>
+</g>
+</g>
+</svg></template>
+        </div>
+      </div>
       
     <div class="graph-followup">
       <p class="detail-card__eyebrow">Additional course requirements</p>
       <ul class="graph-followup__list"><li>Admission to BEng program</li><li>Concurrently enrolled in</li></ul>
     </div>
-    
     </div>
     
+    </section>
+
+    <section class="section">
+      <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Statistics</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">200-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">14</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">2</p><p class="metric-card__label">Published prerequisite links</p></article></div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/SyPCgtTQV">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Descriptive statistics; elementary probability theory; random variables, discrete and continuous probability distributions, expectation, joint, marginal and conditional distributions; linear functions of random variables; random sampling and sampling distributions; point and interval estimation; classical hypothesis testing and significance testing. The mathematical foundations of statistical inference are introduced and illustrated with examples from a variety of disciplines.</p></div></article><article class="detail-card"><p class="detail-card__eyebrow">Supplemental Notes</p><h3>Catalog notes</h3><div class="rich-text"><ul> <li>Credit will be granted for only one of STAT 260, STAT 250, STAT 254.</li> <li>See "Credit Limit - Beginning Level Statistics Courses".</li> </ul></div></article></div>
     </section>
 
     <section class="section">

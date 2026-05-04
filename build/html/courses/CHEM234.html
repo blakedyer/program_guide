@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../program-guide.css">
   <script defer src="../program-guide.js"></script>
 </head>
-<body>
+<body class="page--course-detail">
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="../index.html">SEOS Curriculum Atlas</a>
@@ -30,35 +30,362 @@
     </section>
     
     <section class="section section--tight">
+      
+    <div class="graph-shell" id="course-graph" data-graph-switcher>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">Course Graph</p>
+          <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+          <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="../assets/graphs/courses/CHEM234--simplified.svg">Open SVG</a>
+      </div>
+      <div class="graph-toolbar">
+        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
+          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/CHEM234--simplified.svg" data-graph-download="../assets/graphs/courses/CHEM234--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/CHEM234.svg" data-graph-download="../assets/graphs/courses/CHEM234.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
+        </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
+        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
+      </div>
+      
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">Graph key and legend</span>
+          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
+        </span>
+        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">CHEM234</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
+      </summary>
+      <div class="graph-guide__body">
+        <div class="legend"><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #ead9b8"></span>Chemistry</span><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #e2e8d5"></span>Biochemistry</span></div>
+        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
+      </div>
+    </details>
+      <div class="graph-frame">
+        <div class="graph-svg-stage" data-graph-stage aria-label="CHEM234 course graph">
+          <!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CHEM234 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CHEM234 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="539pt" height="135pt"
+ viewBox="0.00 0.00 539.20 135.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 113.6)">
+<title>CHEM234</title>
+<!-- course__CHEM102 -->
+<g id="node1" class="node">
+<title>course__CHEM102</title>
+<g id="a_node1"><a xlink:href="CHEM102.html" xlink:title="CHEM102: Chemical Reactivity Fundamentals with Environmental Applications" target="_top" href="CHEM102.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M52,-92C52,-92 12,-92 12,-92 6,-92 0,-86 0,-80 0,-80 0,-68 0,-68 0,-62 6,-56 12,-56 12,-56 52,-56 52,-56 58,-56 64,-62 64,-68 64,-68 64,-80 64,-80 64,-86 58,-92 52,-92"/>
+<text text-anchor="middle" x="32" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM102</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM234 -->
+<g id="node3" class="node">
+<title>course__CHEM234</title>
+<g id="a_node3"><a xlink:href="CHEM234.html" xlink:title="CHEM234: Organic Chemistry with Biological Applications" target="_top" href="CHEM234.html">
+<path fill="#ead9b8" stroke="#1f4f66" stroke-width="2" d="M358,-64C358,-64 137,-64 137,-64 131,-64 125,-58 125,-52 125,-52 125,-40 125,-40 125,-34 131,-28 137,-28 137,-28 358,-28 358,-28 364,-28 370,-34 370,-40 370,-40 370,-52 370,-52 370,-58 364,-64 358,-64"/>
+<text text-anchor="middle" x="247.5" y="-49" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM234</text>
+<text text-anchor="middle" x="247.5" y="-38" font-family="Avenir Next" font-size="10.00" fill="#17232b">Organic Chemistry with Biological Applications</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102&#45;&gt;course__CHEM234 -->
+<g id="edge2" class="edge">
+<title>course__CHEM102&#45;&gt;course__CHEM234</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.04,-69.93C78.84,-67.99 97.63,-65.52 117.5,-62.92"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="117.94,-65.33 124.56,-61.99 117.3,-60.47 117.94,-65.33"/>
+</g>
+<!-- course__CHEM231 -->
+<g id="node2" class="node">
+<title>course__CHEM231</title>
+<g id="a_node2"><a xlink:href="CHEM231.html" xlink:title="CHEM231: Introduction to Organic Chemistry" target="_top" href="CHEM231.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M52,-36C52,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 52,0 52,0 58,0 64,-6 64,-12 64,-12 64,-24 64,-24 64,-30 58,-36 52,-36"/>
+<text text-anchor="middle" x="32" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM231</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM231&#45;&gt;course__CHEM234 -->
+<g id="edge3" class="edge">
+<title>course__CHEM231&#45;&gt;course__CHEM234</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.04,-22.07C78.84,-24.01 97.63,-26.48 117.5,-29.08"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="117.3,-31.53 124.56,-30.01 117.94,-26.67 117.3,-31.53"/>
+</g>
+<!-- course__BIOC300A -->
+<g id="node4" class="node">
+<title>course__BIOC300A</title>
+<g id="a_node4"><a xlink:href="BIOC300A.html" xlink:title="BIOC300A: General Biochemistry I" target="_top" href="BIOC300A.html">
+<path fill="#e2e8d5" stroke="#1b2730" stroke-width="1.6" d="M484,-92C484,-92 443,-92 443,-92 437,-92 431,-86 431,-80 431,-80 431,-68 431,-68 431,-62 437,-56 443,-56 443,-56 484,-56 484,-56 490,-56 496,-62 496,-68 496,-68 496,-80 496,-80 496,-86 490,-92 484,-92"/>
+<text text-anchor="middle" x="463.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOC300A</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM234&#45;&gt;course__BIOC300A -->
+<g id="edge1" class="edge">
+<title>course__CHEM234&#45;&gt;course__BIOC300A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M370.19,-61.92C389.44,-64.44 408.04,-66.87 423.44,-68.89"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="423.47,-71.36 430.73,-69.84 424.11,-66.51 423.47,-71.36"/>
+</g>
+<!-- course__CHEM363 -->
+<g id="node5" class="node">
+<title>course__CHEM363</title>
+<g id="a_node5"><a xlink:href="CHEM363.html" xlink:title="CHEM363: Organic Chemistry Laboratory" target="_top" href="CHEM363.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M483.5,-36C483.5,-36 443.5,-36 443.5,-36 437.5,-36 431.5,-30 431.5,-24 431.5,-24 431.5,-12 431.5,-12 431.5,-6 437.5,0 443.5,0 443.5,0 483.5,0 483.5,0 489.5,0 495.5,-6 495.5,-12 495.5,-12 495.5,-24 495.5,-24 495.5,-30 489.5,-36 483.5,-36"/>
+<text text-anchor="middle" x="463.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM363</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM234&#45;&gt;course__CHEM363 -->
+<g id="edge4" class="edge">
+<title>course__CHEM234&#45;&gt;course__CHEM363</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M370.19,-30.08C389.6,-27.54 408.35,-25.08 423.82,-23.06"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="424.52,-25.44 431.15,-22.1 423.89,-20.58 424.52,-25.44"/>
+</g>
+</g>
+</svg>
+        </div>
+        <div class="graph-template-bank" hidden>
+          <template data-graph-template="simplified"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CHEM234 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CHEM234 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="539pt" height="135pt"
+ viewBox="0.00 0.00 539.20 135.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 113.6)">
+<title>CHEM234</title>
+<!-- course__CHEM102 -->
+<g id="node1" class="node">
+<title>course__CHEM102</title>
+<g id="a_node1"><a xlink:href="CHEM102.html" xlink:title="CHEM102: Chemical Reactivity Fundamentals with Environmental Applications" target="_top" href="CHEM102.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M52,-92C52,-92 12,-92 12,-92 6,-92 0,-86 0,-80 0,-80 0,-68 0,-68 0,-62 6,-56 12,-56 12,-56 52,-56 52,-56 58,-56 64,-62 64,-68 64,-68 64,-80 64,-80 64,-86 58,-92 52,-92"/>
+<text text-anchor="middle" x="32" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM102</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM234 -->
+<g id="node3" class="node">
+<title>course__CHEM234</title>
+<g id="a_node3"><a xlink:href="CHEM234.html" xlink:title="CHEM234: Organic Chemistry with Biological Applications" target="_top" href="CHEM234.html">
+<path fill="#ead9b8" stroke="#1f4f66" stroke-width="2" d="M358,-64C358,-64 137,-64 137,-64 131,-64 125,-58 125,-52 125,-52 125,-40 125,-40 125,-34 131,-28 137,-28 137,-28 358,-28 358,-28 364,-28 370,-34 370,-40 370,-40 370,-52 370,-52 370,-58 364,-64 358,-64"/>
+<text text-anchor="middle" x="247.5" y="-49" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM234</text>
+<text text-anchor="middle" x="247.5" y="-38" font-family="Avenir Next" font-size="10.00" fill="#17232b">Organic Chemistry with Biological Applications</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102&#45;&gt;course__CHEM234 -->
+<g id="edge2" class="edge">
+<title>course__CHEM102&#45;&gt;course__CHEM234</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.04,-69.93C78.84,-67.99 97.63,-65.52 117.5,-62.92"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="117.94,-65.33 124.56,-61.99 117.3,-60.47 117.94,-65.33"/>
+</g>
+<!-- course__CHEM231 -->
+<g id="node2" class="node">
+<title>course__CHEM231</title>
+<g id="a_node2"><a xlink:href="CHEM231.html" xlink:title="CHEM231: Introduction to Organic Chemistry" target="_top" href="CHEM231.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M52,-36C52,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 52,0 52,0 58,0 64,-6 64,-12 64,-12 64,-24 64,-24 64,-30 58,-36 52,-36"/>
+<text text-anchor="middle" x="32" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM231</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM231&#45;&gt;course__CHEM234 -->
+<g id="edge3" class="edge">
+<title>course__CHEM231&#45;&gt;course__CHEM234</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M64.04,-22.07C78.84,-24.01 97.63,-26.48 117.5,-29.08"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="117.3,-31.53 124.56,-30.01 117.94,-26.67 117.3,-31.53"/>
+</g>
+<!-- course__BIOC300A -->
+<g id="node4" class="node">
+<title>course__BIOC300A</title>
+<g id="a_node4"><a xlink:href="BIOC300A.html" xlink:title="BIOC300A: General Biochemistry I" target="_top" href="BIOC300A.html">
+<path fill="#e2e8d5" stroke="#1b2730" stroke-width="1.6" d="M484,-92C484,-92 443,-92 443,-92 437,-92 431,-86 431,-80 431,-80 431,-68 431,-68 431,-62 437,-56 443,-56 443,-56 484,-56 484,-56 490,-56 496,-62 496,-68 496,-68 496,-80 496,-80 496,-86 490,-92 484,-92"/>
+<text text-anchor="middle" x="463.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOC300A</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM234&#45;&gt;course__BIOC300A -->
+<g id="edge1" class="edge">
+<title>course__CHEM234&#45;&gt;course__BIOC300A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M370.19,-61.92C389.44,-64.44 408.04,-66.87 423.44,-68.89"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="423.47,-71.36 430.73,-69.84 424.11,-66.51 423.47,-71.36"/>
+</g>
+<!-- course__CHEM363 -->
+<g id="node5" class="node">
+<title>course__CHEM363</title>
+<g id="a_node5"><a xlink:href="CHEM363.html" xlink:title="CHEM363: Organic Chemistry Laboratory" target="_top" href="CHEM363.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M483.5,-36C483.5,-36 443.5,-36 443.5,-36 437.5,-36 431.5,-30 431.5,-24 431.5,-24 431.5,-12 431.5,-12 431.5,-6 437.5,0 443.5,0 443.5,0 483.5,0 483.5,0 489.5,0 495.5,-6 495.5,-12 495.5,-12 495.5,-24 495.5,-24 495.5,-30 489.5,-36 483.5,-36"/>
+<text text-anchor="middle" x="463.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM363</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM234&#45;&gt;course__CHEM363 -->
+<g id="edge4" class="edge">
+<title>course__CHEM234&#45;&gt;course__CHEM363</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M370.19,-30.08C389.6,-27.54 408.35,-25.08 423.82,-23.06"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="424.52,-25.44 431.15,-22.1 423.89,-20.58 424.52,-25.44"/>
+</g>
+</g>
+</svg></template><template data-graph-template="full"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: CHEM234 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="CHEM234 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="831pt" height="191pt"
+ viewBox="0.00 0.00 831.20 191.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 169.6)">
+<title>CHEM234</title>
+<!-- course__CHEM091 -->
+<g id="node1" class="node">
+<title>course__CHEM091</title>
+<g id="a_node1"><a xlink:href="CHEM091.html" xlink:title="CHEM091: Introduction to Chemistry" target="_top" href="CHEM091.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M75.5,-148C75.5,-148 38.5,-148 38.5,-148 32.5,-148 26.5,-142 26.5,-136 26.5,-136 26.5,-124 26.5,-124 26.5,-118 32.5,-112 38.5,-112 38.5,-112 75.5,-112 75.5,-112 81.5,-112 87.5,-118 87.5,-124 87.5,-124 87.5,-136 87.5,-136 87.5,-142 81.5,-148 75.5,-148"/>
+<text text-anchor="middle" x="57" y="-127.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM091</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102 -->
+<g id="node4" class="node">
+<title>course__CHEM102</title>
+<g id="a_node4"><a xlink:href="CHEM102.html" xlink:title="CHEM102: Chemical Reactivity Fundamentals with Environmental Applications" target="_top" href="CHEM102.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M227,-92C227,-92 187,-92 187,-92 181,-92 175,-86 175,-80 175,-80 175,-68 175,-68 175,-62 181,-56 187,-56 187,-56 227,-56 227,-56 233,-56 239,-62 239,-68 239,-68 239,-80 239,-80 239,-86 233,-92 227,-92"/>
+<text text-anchor="middle" x="207" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM102</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM091&#45;&gt;course__CHEM102 -->
+<g id="edge3" class="edge">
+<title>course__CHEM091&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M87.59,-118.8C110.73,-110.05 143.04,-97.82 168.07,-88.35"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="169.25,-90.53 174.93,-85.76 167.51,-85.94 169.25,-90.53"/>
+</g>
+<!-- course__CHEM101 -->
+<g id="node2" class="node">
+<title>course__CHEM101</title>
+<g id="a_node2"><a xlink:href="CHEM101.html" xlink:title="Equivalent or cross&#45;listed: CHEM101: Fundamentals of Chemistry from Atoms to Materials | CHEM150: Engineering Chemistry" target="_top" href="CHEM101.html">
+<path fill="#ead9b8" stroke="#7e8d96" d="M102,-36C102,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 102,0 102,0 108,0 114,-6 114,-12 114,-12 114,-24 114,-24 114,-30 108,-36 102,-36"/>
+<text text-anchor="middle" x="57" y="-15.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">CHEM101 / CHEM150</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM101&#45;&gt;course__CHEM102 -->
+<g id="edge4" class="edge">
+<title>course__CHEM101&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M105.64,-36.03C125.81,-43.66 148.99,-52.43 167.98,-59.61"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="167.36,-62 174.78,-62.19 169.1,-57.42 167.36,-62"/>
+</g>
+<!-- course__CHEM231 -->
+<g id="node5" class="node">
+<title>course__CHEM231</title>
+<g id="a_node5"><a xlink:href="CHEM231.html" xlink:title="CHEM231: Introduction to Organic Chemistry" target="_top" href="CHEM231.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M227,-36C227,-36 187,-36 187,-36 181,-36 175,-30 175,-24 175,-24 175,-12 175,-12 175,-6 181,0 187,0 187,0 227,0 227,0 233,0 239,-6 239,-12 239,-12 239,-24 239,-24 239,-30 233,-36 227,-36"/>
+<text text-anchor="middle" x="207" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM231</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM101&#45;&gt;course__CHEM231 -->
+<g id="edge6" class="edge">
+<title>course__CHEM101&#45;&gt;course__CHEM231</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M114.37,-18C132.08,-18 151.22,-18 167.41,-18"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="167.62,-20.45 174.62,-18 167.62,-15.55 167.62,-20.45"/>
+</g>
+<!-- course__MATH100 -->
+<g id="node3" class="node">
+<title>course__MATH100</title>
+<g id="a_node3"><a xlink:href="MATH100.html" xlink:title="Equivalent or cross&#45;listed: MATH100: Calculus I | MATH102: Calculus for Students in the Social and Biological Sciences | MATH109: Introduction to Calculus" target="_top" href="MATH100.html">
+<path fill="#dfe3f4" stroke="#7e8d96" d="M100.5,-92C100.5,-92 13.5,-92 13.5,-92 7.5,-92 1.5,-86 1.5,-80 1.5,-80 1.5,-68 1.5,-68 1.5,-62 7.5,-56 13.5,-56 13.5,-56 100.5,-56 100.5,-56 106.5,-56 112.5,-62 112.5,-68 112.5,-68 112.5,-80 112.5,-80 112.5,-86 106.5,-92 100.5,-92"/>
+<text text-anchor="middle" x="57" y="-76.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH100 / MATH102</text>
+<text text-anchor="middle" x="57" y="-66.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">MATH109</text>
+</a>
+</g>
+</g>
+<!-- course__MATH100&#45;&gt;course__CHEM102 -->
+<g id="edge5" class="edge">
+<title>course__MATH100&#45;&gt;course__CHEM102</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M112.69,-74C130.83,-74 150.63,-74 167.31,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="167.73,-76.45 174.73,-74 167.73,-71.55 167.73,-76.45"/>
+</g>
+<!-- course__CHEM234 -->
+<g id="node6" class="node">
+<title>course__CHEM234</title>
+<g id="a_node6"><a xlink:href="CHEM234.html" xlink:title="CHEM234: Organic Chemistry with Biological Applications" target="_top" href="CHEM234.html">
+<path fill="#ead9b8" stroke="#1f4f66" stroke-width="2" d="M533,-64C533,-64 312,-64 312,-64 306,-64 300,-58 300,-52 300,-52 300,-40 300,-40 300,-34 306,-28 312,-28 312,-28 533,-28 533,-28 539,-28 545,-34 545,-40 545,-40 545,-52 545,-52 545,-58 539,-64 533,-64"/>
+<text text-anchor="middle" x="422.5" y="-49" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM234</text>
+<text text-anchor="middle" x="422.5" y="-38" font-family="Avenir Next" font-size="10.00" fill="#17232b">Organic Chemistry with Biological Applications</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM102&#45;&gt;course__CHEM234 -->
+<g id="edge7" class="edge">
+<title>course__CHEM102&#45;&gt;course__CHEM234</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M239.04,-69.93C253.84,-67.99 272.63,-65.52 292.5,-62.92"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="292.94,-65.33 299.56,-61.99 292.3,-60.47 292.94,-65.33"/>
+</g>
+<!-- course__CHEM231&#45;&gt;course__CHEM234 -->
+<g id="edge8" class="edge">
+<title>course__CHEM231&#45;&gt;course__CHEM234</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M239.04,-22.07C253.84,-24.01 272.63,-26.48 292.5,-29.08"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="292.3,-31.53 299.56,-30.01 292.94,-26.67 292.3,-31.53"/>
+</g>
+<!-- course__BIOC300A -->
+<g id="node7" class="node">
+<title>course__BIOC300A</title>
+<g id="a_node7"><a xlink:href="BIOC300A.html" xlink:title="BIOC300A: General Biochemistry I" target="_top" href="BIOC300A.html">
+<path fill="#e2e8d5" stroke="#1b2730" stroke-width="1.6" d="M659,-92C659,-92 618,-92 618,-92 612,-92 606,-86 606,-80 606,-80 606,-68 606,-68 606,-62 612,-56 618,-56 618,-56 659,-56 659,-56 665,-56 671,-62 671,-68 671,-68 671,-80 671,-80 671,-86 665,-92 659,-92"/>
+<text text-anchor="middle" x="638.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOC300A</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM234&#45;&gt;course__BIOC300A -->
+<g id="edge1" class="edge">
+<title>course__CHEM234&#45;&gt;course__BIOC300A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M545.19,-61.92C564.44,-64.44 583.04,-66.87 598.44,-68.89"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="598.47,-71.36 605.73,-69.84 599.11,-66.51 598.47,-71.36"/>
+</g>
+<!-- course__CHEM363 -->
+<g id="node8" class="node">
+<title>course__CHEM363</title>
+<g id="a_node8"><a xlink:href="CHEM363.html" xlink:title="CHEM363: Organic Chemistry Laboratory" target="_top" href="CHEM363.html">
+<path fill="#ead9b8" stroke="#1b2730" stroke-width="1.6" d="M658.5,-36C658.5,-36 618.5,-36 618.5,-36 612.5,-36 606.5,-30 606.5,-24 606.5,-24 606.5,-12 606.5,-12 606.5,-6 612.5,0 618.5,0 618.5,0 658.5,0 658.5,0 664.5,0 670.5,-6 670.5,-12 670.5,-12 670.5,-24 670.5,-24 670.5,-30 664.5,-36 658.5,-36"/>
+<text text-anchor="middle" x="638.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">CHEM363</text>
+</a>
+</g>
+</g>
+<!-- course__CHEM234&#45;&gt;course__CHEM363 -->
+<g id="edge9" class="edge">
+<title>course__CHEM234&#45;&gt;course__CHEM363</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M545.19,-30.08C564.6,-27.54 583.35,-25.08 598.82,-23.06"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="599.52,-25.44 606.15,-22.1 598.89,-20.58 599.52,-25.44"/>
+</g>
+<!-- course__BIOL435 -->
+<g id="node9" class="node">
+<title>course__BIOL435</title>
+<g id="a_node9"><a xlink:href="BIOL435.html" xlink:title="BIOL435: Molecular Evolution" target="_top" href="BIOL435.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M776,-92C776,-92 744,-92 744,-92 738,-92 732,-86 732,-80 732,-80 732,-68 732,-68 732,-62 738,-56 744,-56 744,-56 776,-56 776,-56 782,-56 788,-62 788,-68 788,-68 788,-80 788,-80 788,-86 782,-92 776,-92"/>
+<text text-anchor="middle" x="760" y="-71.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL435</text>
+</a>
+</g>
+</g>
+<!-- course__BIOC300A&#45;&gt;course__BIOL435 -->
+<g id="edge2" class="edge">
+<title>course__BIOC300A&#45;&gt;course__BIOL435</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M671.21,-74C687.52,-74 707.43,-74 724.17,-74"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="724.61,-76.45 731.61,-74 724.61,-71.55 724.61,-76.45"/>
+</g>
+</g>
+</svg></template>
+        </div>
+      </div>
+      
+    </div>
+    
+    </section>
+
+    <section class="section">
       <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Chemistry</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">200-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">2</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">2</p><p class="metric-card__label">Published prerequisite links</p></article></div>
     </section>
 
     <section class="section">
       <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/HJWiWKp7N">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>The continuation of CHEM 231. Completion of the survey of functional groups with examples from aromatic and biological molecules, with emphasis on mechanisms and synthesis. In the tutorials, examples illustrate concepts and relevant spectroscopy.</p></div></article><article class="detail-card"><p class="detail-card__eyebrow">Supplemental Notes</p><h3>Catalog notes</h3><div class="rich-text"><ul> <li>Credit will be granted for only one of CHEM 232, CHEM 234, CHEM 235.</li> <li>Students with credit in CHEM 222 should register in CHEM 232.</li> </ul></div></article></div>
-    </section>
-
-    <section class="section">
-      
-    <div class="graph-shell" id="course-graph" data-graph-switcher>
-      <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
-      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
-      <div class="graph-toolbar">
-        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
-          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/CHEM234--simplified.svg" data-graph-download="../assets/graphs/courses/CHEM234--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/CHEM234.svg" data-graph-download="../assets/graphs/courses/CHEM234.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
-        </div>
-        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
-      </div>
-      
-      <div class="graph-frame">
-        <object data="../assets/graphs/courses/CHEM234--simplified.svg" data-graph-object type="image/svg+xml" aria-label="CHEM234 course graph">
-          <img src="../assets/graphs/courses/CHEM234--simplified.svg" data-graph-fallback alt="CHEM234 course graph">
-        </object>
-      </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="../assets/graphs/courses/CHEM234--simplified.svg">Open current SVG</a></p>
-      
-    </div>
-    
     </section>
 
     <section class="section">

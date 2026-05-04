@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../program-guide.css">
   <script defer src="../program-guide.js"></script>
 </head>
-<body>
+<body class="page--course-detail">
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="../index.html">SEOS Curriculum Atlas</a>
@@ -30,35 +30,436 @@
     </section>
     
     <section class="section section--tight">
+      
+    <div class="graph-shell" id="course-graph" data-graph-switcher>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">Course Graph</p>
+          <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+          <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="../assets/graphs/courses/BIOL321--simplified.svg">Open SVG</a>
+      </div>
+      <div class="graph-toolbar">
+        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
+          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/BIOL321--simplified.svg" data-graph-download="../assets/graphs/courses/BIOL321--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/BIOL321.svg" data-graph-download="../assets/graphs/courses/BIOL321.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
+        </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
+        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
+      </div>
+      
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">Graph key and legend</span>
+          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
+        </span>
+        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">BIOL321</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
+      </summary>
+      <div class="graph-guide__body">
+        <div class="legend"><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #dbe8d2"></span>Biology</span></div>
+        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
+      </div>
+    </details>
+      <div class="graph-frame">
+        <div class="graph-svg-stage" data-graph-stage aria-label="BIOL321 course graph">
+          <!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: BIOL321 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="BIOL321 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="667pt" height="135pt"
+ viewBox="0.00 0.00 667.20 135.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 113.6)">
+<title>BIOL321</title>
+<!-- course__BIOL186 -->
+<g id="node1" class="node">
+<title>course__BIOL186</title>
+<g id="a_node1"><a xlink:href="BIOL186.html" xlink:title="BIOL186: Physiology and Cell Biology" target="_top" href="BIOL186.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M45,-89C45,-89 12,-89 12,-89 6,-89 0,-83 0,-77 0,-77 0,-65 0,-65 0,-59 6,-53 12,-53 12,-53 45,-53 45,-53 51,-53 57,-59 57,-65 57,-65 57,-77 57,-77 57,-83 51,-89 45,-89"/>
+<text text-anchor="middle" x="28.5" y="-68.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL186</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL150A -->
+<g id="node2" class="node">
+<title>course__BIOL150A</title>
+<g id="a_node2"><a xlink:href="BIOL150A.html" xlink:title="Collapsed in simplified view: BIOL150A: Modern Biology | BIOL184: Evolution and Biodiversity" target="_top" href="BIOL150A.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M184,-89C184,-89 130,-89 130,-89 124,-89 118,-83 118,-77 118,-77 118,-65 118,-65 118,-59 124,-53 130,-53 130,-53 184,-53 184,-53 190,-53 196,-59 196,-65 196,-65 196,-77 196,-77 196,-83 190,-89 184,-89"/>
+<text text-anchor="middle" x="157" y="-68.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intro biology</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL186&#45;&gt;course__BIOL150A -->
+<g id="edge1" class="edge">
+<title>course__BIOL186&#45;&gt;course__BIOL150A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M57.26,-64.67C72.79,-63.52 92.54,-63.22 110.28,-63.76"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="110.66,-66.23 117.75,-64.05 110.85,-61.33 110.66,-66.23"/>
+</g>
+<!-- course__BIOL225 -->
+<g id="node3" class="node">
+<title>course__BIOL225</title>
+<g id="a_node3"><a xlink:href="BIOL225.html" xlink:title="BIOL225: Principles of Cell Biology" target="_top" href="BIOL225.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M302,-64C302,-64 269,-64 269,-64 263,-64 257,-58 257,-52 257,-52 257,-40 257,-40 257,-34 263,-28 269,-28 269,-28 302,-28 302,-28 308,-28 314,-34 314,-40 314,-40 314,-52 314,-52 314,-58 308,-64 302,-64"/>
+<text text-anchor="middle" x="285.5" y="-43.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL225</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL186&#45;&gt;course__BIOL225 -->
+<g id="edge3" class="edge">
+<title>course__BIOL186&#45;&gt;course__BIOL225</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M57.27,-59.8C74.45,-53.48 97.14,-46.22 118,-43 163.02,-36.05 215.71,-38.79 249.56,-41.93"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="249.7,-44.4 256.91,-42.64 250.18,-39.53 249.7,-44.4"/>
+</g>
+<!-- course__BIOL150A&#45;&gt;course__BIOL186 -->
+<g id="edge2" class="edge">
+<title>course__BIOL150A&#45;&gt;course__BIOL186</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M117.75,-77.95C100.85,-78.73 81.12,-78.68 64.6,-77.8"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="64.4,-75.33 57.26,-77.33 64.09,-80.22 64.4,-75.33"/>
+</g>
+<!-- course__BIOL150A&#45;&gt;course__BIOL225 -->
+<g id="edge4" class="edge">
+<title>course__BIOL150A&#45;&gt;course__BIOL225</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M196.3,-63.43C213.35,-60.06 233.28,-56.12 249.88,-52.84"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="250.38,-55.24 256.78,-51.48 249.43,-50.43 250.38,-55.24"/>
+</g>
+<!-- course__BIOL321 -->
+<g id="node4" class="node">
+<title>course__BIOL321</title>
+<g id="a_node4"><a xlink:href="BIOL321.html" xlink:title="BIOL321: Survey of Invertebrates" target="_top" href="BIOL321.html">
+<path fill="#dbe8d2" stroke="#1f4f66" stroke-width="2" d="M494,-64C494,-64 387,-64 387,-64 381,-64 375,-58 375,-52 375,-52 375,-40 375,-40 375,-34 381,-28 387,-28 387,-28 494,-28 494,-28 500,-28 506,-34 506,-40 506,-40 506,-52 506,-52 506,-58 500,-64 494,-64"/>
+<text text-anchor="middle" x="440.5" y="-49" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL321</text>
+<text text-anchor="middle" x="440.5" y="-38" font-family="Avenir Next" font-size="10.00" fill="#17232b">Survey of Invertebrates</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL225&#45;&gt;course__BIOL321 -->
+<g id="edge6" class="edge">
+<title>course__BIOL225&#45;&gt;course__BIOL321</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M314.21,-46C329.25,-46 348.61,-46 367.6,-46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="367.84,-48.45 374.84,-46 367.84,-43.55 367.84,-48.45"/>
+</g>
+<!-- course__BIOL319 -->
+<g id="node5" class="node">
+<title>course__BIOL319</title>
+<g id="a_node5"><a xlink:href="BIOL319.html" xlink:title="BIOL319: Marine Ecology" target="_top" href="BIOL319.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M612,-92C612,-92 579,-92 579,-92 573,-92 567,-86 567,-80 567,-80 567,-68 567,-68 567,-62 573,-56 579,-56 579,-56 612,-56 612,-56 618,-56 624,-62 624,-68 624,-68 624,-80 624,-80 624,-86 618,-92 612,-92"/>
+<text text-anchor="middle" x="595.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL319</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL321&#45;&gt;course__BIOL319 -->
+<g id="edge5" class="edge">
+<title>course__BIOL321&#45;&gt;course__BIOL319</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M506.39,-57.87C524.75,-61.24 544.03,-64.76 559.85,-67.66"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="559.54,-70.09 566.86,-68.94 560.42,-65.27 559.54,-70.09"/>
+</g>
+<!-- course__BIOL322 -->
+<g id="node6" class="node">
+<title>course__BIOL322</title>
+<g id="a_node6"><a xlink:href="BIOL322.html" xlink:title="BIOL322: Biology of Marine Invertebrates" target="_top" href="BIOL322.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M612,-36C612,-36 579,-36 579,-36 573,-36 567,-30 567,-24 567,-24 567,-12 567,-12 567,-6 573,0 579,0 579,0 612,0 612,0 618,0 624,-6 624,-12 624,-12 624,-24 624,-24 624,-30 618,-36 612,-36"/>
+<text text-anchor="middle" x="595.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL322</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL321&#45;&gt;course__BIOL322 -->
+<g id="edge7" class="edge">
+<title>course__BIOL321&#45;&gt;course__BIOL322</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M506.39,-34.13C524.75,-30.76 544.03,-27.24 559.85,-24.34"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="560.42,-26.73 566.86,-23.06 559.54,-21.91 560.42,-26.73"/>
+</g>
+</g>
+</svg>
+        </div>
+        <div class="graph-template-bank" hidden>
+          <template data-graph-template="simplified"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: BIOL321 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="BIOL321 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="667pt" height="135pt"
+ viewBox="0.00 0.00 667.20 135.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 113.6)">
+<title>BIOL321</title>
+<!-- course__BIOL186 -->
+<g id="node1" class="node">
+<title>course__BIOL186</title>
+<g id="a_node1"><a xlink:href="BIOL186.html" xlink:title="BIOL186: Physiology and Cell Biology" target="_top" href="BIOL186.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M45,-89C45,-89 12,-89 12,-89 6,-89 0,-83 0,-77 0,-77 0,-65 0,-65 0,-59 6,-53 12,-53 12,-53 45,-53 45,-53 51,-53 57,-59 57,-65 57,-65 57,-77 57,-77 57,-83 51,-89 45,-89"/>
+<text text-anchor="middle" x="28.5" y="-68.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL186</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL150A -->
+<g id="node2" class="node">
+<title>course__BIOL150A</title>
+<g id="a_node2"><a xlink:href="BIOL150A.html" xlink:title="Collapsed in simplified view: BIOL150A: Modern Biology | BIOL184: Evolution and Biodiversity" target="_top" href="BIOL150A.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M184,-89C184,-89 130,-89 130,-89 124,-89 118,-83 118,-77 118,-77 118,-65 118,-65 118,-59 124,-53 130,-53 130,-53 184,-53 184,-53 190,-53 196,-59 196,-65 196,-65 196,-77 196,-77 196,-83 190,-89 184,-89"/>
+<text text-anchor="middle" x="157" y="-68.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">Intro biology</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL186&#45;&gt;course__BIOL150A -->
+<g id="edge1" class="edge">
+<title>course__BIOL186&#45;&gt;course__BIOL150A</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M57.26,-64.67C72.79,-63.52 92.54,-63.22 110.28,-63.76"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="110.66,-66.23 117.75,-64.05 110.85,-61.33 110.66,-66.23"/>
+</g>
+<!-- course__BIOL225 -->
+<g id="node3" class="node">
+<title>course__BIOL225</title>
+<g id="a_node3"><a xlink:href="BIOL225.html" xlink:title="BIOL225: Principles of Cell Biology" target="_top" href="BIOL225.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M302,-64C302,-64 269,-64 269,-64 263,-64 257,-58 257,-52 257,-52 257,-40 257,-40 257,-34 263,-28 269,-28 269,-28 302,-28 302,-28 308,-28 314,-34 314,-40 314,-40 314,-52 314,-52 314,-58 308,-64 302,-64"/>
+<text text-anchor="middle" x="285.5" y="-43.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL225</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL186&#45;&gt;course__BIOL225 -->
+<g id="edge3" class="edge">
+<title>course__BIOL186&#45;&gt;course__BIOL225</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M57.27,-59.8C74.45,-53.48 97.14,-46.22 118,-43 163.02,-36.05 215.71,-38.79 249.56,-41.93"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="249.7,-44.4 256.91,-42.64 250.18,-39.53 249.7,-44.4"/>
+</g>
+<!-- course__BIOL150A&#45;&gt;course__BIOL186 -->
+<g id="edge2" class="edge">
+<title>course__BIOL150A&#45;&gt;course__BIOL186</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M117.75,-77.95C100.85,-78.73 81.12,-78.68 64.6,-77.8"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="64.4,-75.33 57.26,-77.33 64.09,-80.22 64.4,-75.33"/>
+</g>
+<!-- course__BIOL150A&#45;&gt;course__BIOL225 -->
+<g id="edge4" class="edge">
+<title>course__BIOL150A&#45;&gt;course__BIOL225</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M196.3,-63.43C213.35,-60.06 233.28,-56.12 249.88,-52.84"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="250.38,-55.24 256.78,-51.48 249.43,-50.43 250.38,-55.24"/>
+</g>
+<!-- course__BIOL321 -->
+<g id="node4" class="node">
+<title>course__BIOL321</title>
+<g id="a_node4"><a xlink:href="BIOL321.html" xlink:title="BIOL321: Survey of Invertebrates" target="_top" href="BIOL321.html">
+<path fill="#dbe8d2" stroke="#1f4f66" stroke-width="2" d="M494,-64C494,-64 387,-64 387,-64 381,-64 375,-58 375,-52 375,-52 375,-40 375,-40 375,-34 381,-28 387,-28 387,-28 494,-28 494,-28 500,-28 506,-34 506,-40 506,-40 506,-52 506,-52 506,-58 500,-64 494,-64"/>
+<text text-anchor="middle" x="440.5" y="-49" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL321</text>
+<text text-anchor="middle" x="440.5" y="-38" font-family="Avenir Next" font-size="10.00" fill="#17232b">Survey of Invertebrates</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL225&#45;&gt;course__BIOL321 -->
+<g id="edge6" class="edge">
+<title>course__BIOL225&#45;&gt;course__BIOL321</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M314.21,-46C329.25,-46 348.61,-46 367.6,-46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="367.84,-48.45 374.84,-46 367.84,-43.55 367.84,-48.45"/>
+</g>
+<!-- course__BIOL319 -->
+<g id="node5" class="node">
+<title>course__BIOL319</title>
+<g id="a_node5"><a xlink:href="BIOL319.html" xlink:title="BIOL319: Marine Ecology" target="_top" href="BIOL319.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M612,-92C612,-92 579,-92 579,-92 573,-92 567,-86 567,-80 567,-80 567,-68 567,-68 567,-62 573,-56 579,-56 579,-56 612,-56 612,-56 618,-56 624,-62 624,-68 624,-68 624,-80 624,-80 624,-86 618,-92 612,-92"/>
+<text text-anchor="middle" x="595.5" y="-71.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL319</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL321&#45;&gt;course__BIOL319 -->
+<g id="edge5" class="edge">
+<title>course__BIOL321&#45;&gt;course__BIOL319</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M506.39,-57.87C524.75,-61.24 544.03,-64.76 559.85,-67.66"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="559.54,-70.09 566.86,-68.94 560.42,-65.27 559.54,-70.09"/>
+</g>
+<!-- course__BIOL322 -->
+<g id="node6" class="node">
+<title>course__BIOL322</title>
+<g id="a_node6"><a xlink:href="BIOL322.html" xlink:title="BIOL322: Biology of Marine Invertebrates" target="_top" href="BIOL322.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M612,-36C612,-36 579,-36 579,-36 573,-36 567,-30 567,-24 567,-24 567,-12 567,-12 567,-6 573,0 579,0 579,0 612,0 612,0 618,0 624,-6 624,-12 624,-12 624,-24 624,-24 624,-30 618,-36 612,-36"/>
+<text text-anchor="middle" x="595.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL322</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL321&#45;&gt;course__BIOL322 -->
+<g id="edge7" class="edge">
+<title>course__BIOL321&#45;&gt;course__BIOL322</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M506.39,-34.13C524.75,-30.76 544.03,-27.24 559.85,-24.34"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="560.42,-26.73 566.86,-23.06 559.54,-21.91 560.42,-26.73"/>
+</g>
+</g>
+</svg></template><template data-graph-template="full"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: BIOL321 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="BIOL321 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="883pt" height="208pt"
+ viewBox="0.00 0.00 883.20 208.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 186.6)">
+<title>BIOL321</title>
+<!-- course__BIOL150A -->
+<g id="node1" class="node">
+<title>course__BIOL150A</title>
+<g id="a_node1"><a xlink:href="BIOL150A.html" xlink:title="BIOL150A: Modern Biology" target="_top" href="BIOL150A.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M50,-36C50,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 50,0 50,0 56,0 62,-6 62,-12 62,-12 62,-24 62,-24 62,-30 56,-36 50,-36"/>
+<text text-anchor="middle" x="31" y="-15.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL150A</text>
+</a>
+</g>
+</g>
+<!-- choice_BIOL184_0_0 -->
+<g id="node9" class="node">
+<title>choice_BIOL184_0_0</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M165,-64C165,-64 135,-64 135,-64 129,-64 123,-58 123,-52 123,-52 123,-40 123,-40 123,-34 129,-28 135,-28 135,-28 165,-28 165,-28 171,-28 177,-34 177,-40 177,-40 177,-52 177,-52 177,-58 171,-64 165,-64"/>
+<text text-anchor="middle" x="150" y="-43.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__BIOL150A&#45;&gt;choice_BIOL184_0_0 -->
+<g id="edge1" class="edge">
+<title>course__BIOL150A&#45;&gt;choice_BIOL184_0_0</title>
+<path fill="none" stroke="#7a8389" d="M62.13,-25.21C78.6,-29.15 99.03,-34.04 115.94,-38.09"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="115.57,-40.52 122.95,-39.76 116.71,-35.75 115.57,-40.52"/>
+</g>
+<!-- choice_BIOL186_0_0 -->
+<g id="node10" class="node">
+<title>choice_BIOL186_0_0</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M399.5,-64C399.5,-64 369.5,-64 369.5,-64 363.5,-64 357.5,-58 357.5,-52 357.5,-52 357.5,-40 357.5,-40 357.5,-34 363.5,-28 369.5,-28 369.5,-28 399.5,-28 399.5,-28 405.5,-28 411.5,-34 411.5,-40 411.5,-40 411.5,-52 411.5,-52 411.5,-58 405.5,-64 399.5,-64"/>
+<text text-anchor="middle" x="384.5" y="-43.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__BIOL150A&#45;&gt;choice_BIOL186_0_0 -->
+<g id="edge4" class="edge">
+<title>course__BIOL150A&#45;&gt;choice_BIOL186_0_0</title>
+<path fill="none" stroke="#7a8389" d="M62.2,-15.03C111.35,-10.85 211.52,-5.11 295,-18 313.81,-20.91 334.11,-27.09 350.51,-32.91"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="349.87,-35.29 357.29,-35.37 351.54,-30.68 349.87,-35.29"/>
+</g>
+<!-- course__BIOL186 -->
+<g id="node2" class="node">
+<title>course__BIOL186</title>
+<g id="a_node2"><a xlink:href="BIOL186.html" xlink:title="BIOL186: Physiology and Cell Biology" target="_top" href="BIOL186.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M47.5,-113C47.5,-113 14.5,-113 14.5,-113 8.5,-113 2.5,-107 2.5,-101 2.5,-101 2.5,-89 2.5,-89 2.5,-83 8.5,-77 14.5,-77 14.5,-77 47.5,-77 47.5,-77 53.5,-77 59.5,-83 59.5,-89 59.5,-89 59.5,-101 59.5,-101 59.5,-107 53.5,-113 47.5,-113"/>
+<text text-anchor="middle" x="31" y="-92.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL186</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL225 -->
+<g id="node4" class="node">
+<title>course__BIOL225</title>
+<g id="a_node4"><a xlink:href="BIOL225.html" xlink:title="BIOL225: Principles of Cell Biology" target="_top" href="BIOL225.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M401,-137C401,-137 368,-137 368,-137 362,-137 356,-131 356,-125 356,-125 356,-113 356,-113 356,-107 362,-101 368,-101 368,-101 401,-101 401,-101 407,-101 413,-107 413,-113 413,-113 413,-125 413,-125 413,-131 407,-137 401,-137"/>
+<text text-anchor="middle" x="384.5" y="-116.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL225</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL186&#45;&gt;course__BIOL225 -->
+<g id="edge7" class="edge">
+<title>course__BIOL186&#45;&gt;course__BIOL225</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M59.73,-100.94C77.69,-104.52 101.62,-108.8 123,-111 203.44,-119.26 298.52,-119.89 348.6,-119.51"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="348.68,-121.96 355.65,-119.45 348.63,-117.06 348.68,-121.96"/>
+</g>
+<!-- course__BIOL186&#45;&gt;choice_BIOL184_0_0 -->
+<g id="edge2" class="edge">
+<title>course__BIOL186&#45;&gt;choice_BIOL184_0_0</title>
+<path fill="none" stroke="#7a8389" d="M59.73,-83.39C76.55,-76.34 98.12,-67.31 115.84,-59.89"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="117.17,-61.99 122.68,-57.02 115.27,-57.47 117.17,-61.99"/>
+</g>
+<!-- course__BIOL184 -->
+<g id="node3" class="node">
+<title>course__BIOL184</title>
+<g id="a_node3"><a xlink:href="BIOL184.html" xlink:title="BIOL184: Evolution and Biodiversity" target="_top" href="BIOL184.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M283,-64C283,-64 250,-64 250,-64 244,-64 238,-58 238,-52 238,-52 238,-40 238,-40 238,-34 244,-28 250,-28 250,-28 283,-28 283,-28 289,-28 295,-34 295,-40 295,-40 295,-52 295,-52 295,-58 289,-64 283,-64"/>
+<text text-anchor="middle" x="266.5" y="-43.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL184</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL184&#45;&gt;course__BIOL225 -->
+<g id="edge8" class="edge">
+<title>course__BIOL184&#45;&gt;course__BIOL225</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M295.28,-63.49C311.64,-73.78 332.45,-86.87 349.74,-97.76"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="348.71,-100 355.94,-101.66 351.32,-95.86 348.71,-100"/>
+</g>
+<!-- course__BIOL184&#45;&gt;choice_BIOL186_0_0 -->
+<g id="edge5" class="edge">
+<title>course__BIOL184&#45;&gt;choice_BIOL186_0_0</title>
+<path fill="none" stroke="#7a8389" d="M295.28,-46C311.71,-46 332.61,-46 349.95,-46"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="350.14,-48.45 357.14,-46 350.14,-43.55 350.14,-48.45"/>
+</g>
+<!-- course__BIOL321 -->
+<g id="node5" class="node">
+<title>course__BIOL321</title>
+<g id="a_node5"><a xlink:href="BIOL321.html" xlink:title="BIOL321: Survey of Invertebrates" target="_top" href="BIOL321.html">
+<path fill="#dbe8d2" stroke="#1f4f66" stroke-width="2" d="M593,-137C593,-137 486,-137 486,-137 480,-137 474,-131 474,-125 474,-125 474,-113 474,-113 474,-107 480,-101 486,-101 486,-101 593,-101 593,-101 599,-101 605,-107 605,-113 605,-113 605,-125 605,-125 605,-131 599,-137 593,-137"/>
+<text text-anchor="middle" x="539.5" y="-122" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL321</text>
+<text text-anchor="middle" x="539.5" y="-111" font-family="Avenir Next" font-size="10.00" fill="#17232b">Survey of Invertebrates</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL225&#45;&gt;course__BIOL321 -->
+<g id="edge10" class="edge">
+<title>course__BIOL225&#45;&gt;course__BIOL321</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M413.21,-119C428.25,-119 447.61,-119 466.6,-119"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="466.84,-121.45 473.84,-119 466.84,-116.55 466.84,-121.45"/>
+</g>
+<!-- course__BIOL319 -->
+<g id="node6" class="node">
+<title>course__BIOL319</title>
+<g id="a_node6"><a xlink:href="BIOL319.html" xlink:title="BIOL319: Marine Ecology" target="_top" href="BIOL319.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M711,-165C711,-165 678,-165 678,-165 672,-165 666,-159 666,-153 666,-153 666,-141 666,-141 666,-135 672,-129 678,-129 678,-129 711,-129 711,-129 717,-129 723,-135 723,-141 723,-141 723,-153 723,-153 723,-159 717,-165 711,-165"/>
+<text text-anchor="middle" x="694.5" y="-144.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL319</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL321&#45;&gt;course__BIOL319 -->
+<g id="edge9" class="edge">
+<title>course__BIOL321&#45;&gt;course__BIOL319</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M605.39,-130.87C623.75,-134.24 643.03,-137.76 658.85,-140.66"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="658.54,-143.09 665.86,-141.94 659.42,-138.27 658.54,-143.09"/>
+</g>
+<!-- course__BIOL322 -->
+<g id="node7" class="node">
+<title>course__BIOL322</title>
+<g id="a_node7"><a xlink:href="BIOL322.html" xlink:title="BIOL322: Biology of Marine Invertebrates" target="_top" href="BIOL322.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M711,-109C711,-109 678,-109 678,-109 672,-109 666,-103 666,-97 666,-97 666,-85 666,-85 666,-79 672,-73 678,-73 678,-73 711,-73 711,-73 717,-73 723,-79 723,-85 723,-85 723,-97 723,-97 723,-103 717,-109 711,-109"/>
+<text text-anchor="middle" x="694.5" y="-88.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL322</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL321&#45;&gt;course__BIOL322 -->
+<g id="edge11" class="edge">
+<title>course__BIOL321&#45;&gt;course__BIOL322</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M605.39,-107.13C623.75,-103.76 643.03,-100.24 658.85,-97.34"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="659.42,-99.73 665.86,-96.06 658.54,-94.91 659.42,-99.73"/>
+</g>
+<!-- course__BIOL466 -->
+<g id="node8" class="node">
+<title>course__BIOL466</title>
+<g id="a_node8"><a xlink:href="BIOL466.html" xlink:title="BIOL466: Frontiers in Marine Biology" target="_top" href="BIOL466.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M828,-165C828,-165 796,-165 796,-165 790,-165 784,-159 784,-153 784,-153 784,-141 784,-141 784,-135 790,-129 796,-129 796,-129 828,-129 828,-129 834,-129 840,-135 840,-141 840,-141 840,-153 840,-153 840,-159 834,-165 828,-165"/>
+<text text-anchor="middle" x="812" y="-144.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL466</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL319&#45;&gt;course__BIOL466 -->
+<g id="edge12" class="edge">
+<title>course__BIOL319&#45;&gt;course__BIOL466</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M723.17,-147C739.28,-147 759.74,-147 776.85,-147"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="776.96,-149.45 783.96,-147 776.96,-144.55 776.96,-149.45"/>
+</g>
+<!-- choice_BIOL184_0_0&#45;&gt;course__BIOL184 -->
+<g id="edge3" class="edge">
+<title>choice_BIOL184_0_0&#45;&gt;course__BIOL184</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M177.27,-46C193.1,-46 213.45,-46 230.62,-46"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="230.76,-48.45 237.76,-46 230.76,-43.55 230.76,-48.45"/>
+</g>
+<!-- choice_BIOL186_0_0&#45;&gt;course__BIOL186 -->
+<g id="edge6" class="edge">
+<title>choice_BIOL186_0_0&#45;&gt;course__BIOL186</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M357.19,-56.06C339.79,-62.27 316.35,-69.83 295,-74 214.23,-89.79 117.29,-93.76 66.66,-94.72"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="66.49,-92.28 59.54,-94.84 66.58,-97.18 66.49,-92.28"/>
+</g>
+</g>
+</svg></template>
+        </div>
+      </div>
+      
+    </div>
+    
+    </section>
+
+    <section class="section">
       <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Biology</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">300-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">0</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">5</p><p class="metric-card__label">Published prerequisite links</p></article></div>
     </section>
 
     <section class="section">
       <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJI4RD6mV">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Invertebrate diversity in an evolutionary perspective. Morphology, life histories, phylogeny and upper level systematics; selected aspects of behaviour and physiology. Laboratory exercises include study of live and preserved specimens.</p></div></article><article class="detail-card"><p class="detail-card__eyebrow">Supplemental Notes</p><h3>Catalog notes</h3><div class="rich-text"><ul><li>Credit will be granted for only one of BIOL 321, BIOL 206.</li></ul></div></article></div>
-    </section>
-
-    <section class="section">
-      
-    <div class="graph-shell" id="course-graph" data-graph-switcher>
-      <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
-      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
-      <div class="graph-toolbar">
-        <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
-          <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/BIOL321--simplified.svg" data-graph-download="../assets/graphs/courses/BIOL321--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/BIOL321.svg" data-graph-download="../assets/graphs/courses/BIOL321.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
-        </div>
-        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
-      </div>
-      
-      <div class="graph-frame">
-        <object data="../assets/graphs/courses/BIOL321--simplified.svg" data-graph-object type="image/svg+xml" aria-label="BIOL321 course graph">
-          <img src="../assets/graphs/courses/BIOL321--simplified.svg" data-graph-fallback alt="BIOL321 course graph">
-        </object>
-      </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="../assets/graphs/courses/BIOL321--simplified.svg">Open current SVG</a></p>
-      
-    </div>
-    
     </section>
 
     <section class="section">

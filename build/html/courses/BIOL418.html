@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../program-guide.css">
   <script defer src="../program-guide.js"></script>
 </head>
-<body>
+<body class="page--course-detail">
   <header class="site-header">
     <div class="nav-shell">
       <a class="site-mark" href="../index.html">SEOS Curriculum Atlas</a>
@@ -30,40 +30,239 @@
     </section>
     
     <section class="section section--tight">
-      <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Biology</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">400-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">0</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">1</p><p class="metric-card__label">Published prerequisite links</p></article></div>
-    </section>
-
-    <section class="section">
-      <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJl8RPamN">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Structure and function of forest ecosystems at the tree, stand and landscape scale, including: effects of the environment upon plant abundance, distribution and diversity; nutrient, carbon and water cycles; population and community ecology; disturbance; forest conservation; climate change and global forests.</p></div></article></div>
-    </section>
-
-    <section class="section">
       
     <div class="graph-shell" id="course-graph" data-graph-switcher>
-      <p class="section-kicker">Course Graph</p>
-      <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
-      <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+      <div class="graph-shell__head">
+        <div>
+          <p class="section-kicker">Course Graph</p>
+          <h2>Prerequisite flow into the course, and dependencies flow out from it.</h2>
+          <p class="graph-note">Co-requisites are treated as prerequisite links, and equivalent or cross-listed courses are merged into shared course nodes. The simplified view shows one prerequisite level above the course and one dependency level downstream.</p>
+        </div>
+        <a class="text-link graph-open-link" data-graph-link href="../assets/graphs/courses/BIOL418--simplified.svg">Open SVG</a>
+      </div>
       <div class="graph-toolbar">
         <div class="segmented-control" role="group" aria-label="Prerequisite flow into the course, and dependencies flow out from it. graph mode">
           <button class="toggle-button is-active" type="button" data-graph-mode="simplified" data-graph-src="../assets/graphs/courses/BIOL418--simplified.svg" data-graph-download="../assets/graphs/courses/BIOL418--simplified.svg" data-graph-copy="Simplified view: direct prerequisites for the course, then one dependency step downstream.">Simplified view</button><button class="toggle-button" type="button" data-graph-mode="full" data-graph-src="../assets/graphs/courses/BIOL418.svg" data-graph-download="../assets/graphs/courses/BIOL418.svg" data-graph-copy="Full view: the entire connected prerequisite and dependency progression captured in the last UVic calendar sync.">Full view</button>
         </div>
+        <label class="search-field graph-search">
+          <span>Find a course in this graph</span>
+          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
+        </label>
+        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
         <p class="panel-note graph-toolbar__note" data-graph-mode-copy>Simplified view: direct prerequisites for the course, then one dependency step downstream.</p>
+        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
       </div>
       
-      <div class="graph-frame">
-        <object data="../assets/graphs/courses/BIOL418--simplified.svg" data-graph-object type="image/svg+xml" aria-label="BIOL418 course graph">
-          <img src="../assets/graphs/courses/BIOL418--simplified.svg" data-graph-fallback alt="BIOL418 course graph">
-        </object>
+    <details class="graph-guide">
+      <summary class="graph-guide__summary">
+        <span class="graph-guide__summary-copy">
+          <span class="graph-guide__title">Graph key and legend</span>
+          <span class="graph-guide__caption">Expand for department colours, choice nodes, and merged-course labels used in the course map.</span>
+        </span>
+        <span class="graph-guide__preview"><span class="graph-key__sample graph-key__sample--focus">BIOL418</span><span class="graph-key__sample graph-key__sample--choice">1 of</span><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><span class="graph-key__sample graph-key__sample--merged">Merged</span></span>
+      </summary>
+      <div class="graph-guide__body">
+        <div class="legend"><span class="legend-item"><span class="legend-swatch" style="--swatch-color: #dbe8d2"></span>Biology</span></div>
+        <div class="graph-key"><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--focus">EOS311</span><div><p class="graph-key__title">Focus course</p><p class="graph-key__copy">The course page you are viewing.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--named">CHEM102</span><div><p class="graph-key__title">Connected course</p><p class="graph-key__copy">A prerequisite or downstream course included in the current view.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--choice">2 of</span><div><p class="graph-key__title">Choice point</p><p class="graph-key__copy">A shared requirement such as choose 1 of, 2 of, or 3 of.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--junction">&nbsp;</span><div><p class="graph-key__title">Grouping junction</p><p class="graph-key__copy">A small circular join keeps shared requirement branches tidy.</p></div></article><article class="graph-key__item"><span class="graph-key__sample graph-key__sample--merged">BIOL311 / EOS311</span><div><p class="graph-key__title">Merged course node</p><p class="graph-key__copy">Equivalent or cross-listed courses are collapsed into one shared node.</p></div></article></div>
       </div>
-      <p class="graph-actions"><a class="text-link" data-graph-link href="../assets/graphs/courses/BIOL418--simplified.svg">Open current SVG</a></p>
+    </details>
+      <div class="graph-frame">
+        <div class="graph-svg-stage" data-graph-stage aria-label="BIOL418 course graph">
+          <!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: BIOL418 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="BIOL418 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="249pt" height="79pt"
+ viewBox="0.00 0.00 249.20 79.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 57.6)">
+<title>BIOL418</title>
+<!-- course__BIOL215 -->
+<g id="node1" class="node">
+<title>course__BIOL215</title>
+<g id="a_node1"><a xlink:href="BIOL215.html" xlink:title="BIOL215: Principles of Ecology" target="_top" href="BIOL215.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M45,-36C45,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 45,0 45,0 51,0 57,-6 57,-12 57,-12 57,-24 57,-24 57,-30 51,-36 45,-36"/>
+<text text-anchor="middle" x="28.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL215</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL418 -->
+<g id="node2" class="node">
+<title>course__BIOL418</title>
+<g id="a_node2"><a xlink:href="BIOL418.html" xlink:title="BIOL418: Forest Ecology" target="_top" href="BIOL418.html">
+<path fill="#dbe8d2" stroke="#1f4f66" stroke-width="2" d="M194,-36C194,-36 130,-36 130,-36 124,-36 118,-30 118,-24 118,-24 118,-12 118,-12 118,-6 124,0 130,0 130,0 194,0 194,0 200,0 206,-6 206,-12 206,-12 206,-24 206,-24 206,-30 200,-36 194,-36"/>
+<text text-anchor="middle" x="162" y="-21" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL418</text>
+<text text-anchor="middle" x="162" y="-10" font-family="Avenir Next" font-size="10.00" fill="#17232b">Forest Ecology</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL215&#45;&gt;course__BIOL418 -->
+<g id="edge1" class="edge">
+<title>course__BIOL215&#45;&gt;course__BIOL418</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M57.07,-18C72.62,-18 92.55,-18 110.78,-18"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="110.94,-20.45 117.94,-18 110.94,-15.55 110.94,-20.45"/>
+</g>
+</g>
+</svg>
+        </div>
+        <div class="graph-template-bank" hidden>
+          <template data-graph-template="simplified"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: BIOL418 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="BIOL418 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="249pt" height="79pt"
+ viewBox="0.00 0.00 249.20 79.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 57.6)">
+<title>BIOL418</title>
+<!-- course__BIOL215 -->
+<g id="node1" class="node">
+<title>course__BIOL215</title>
+<g id="a_node1"><a xlink:href="BIOL215.html" xlink:title="BIOL215: Principles of Ecology" target="_top" href="BIOL215.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M45,-36C45,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 45,0 45,0 51,0 57,-6 57,-12 57,-12 57,-24 57,-24 57,-30 51,-36 45,-36"/>
+<text text-anchor="middle" x="28.5" y="-15.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL215</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL418 -->
+<g id="node2" class="node">
+<title>course__BIOL418</title>
+<g id="a_node2"><a xlink:href="BIOL418.html" xlink:title="BIOL418: Forest Ecology" target="_top" href="BIOL418.html">
+<path fill="#dbe8d2" stroke="#1f4f66" stroke-width="2" d="M194,-36C194,-36 130,-36 130,-36 124,-36 118,-30 118,-24 118,-24 118,-12 118,-12 118,-6 124,0 130,0 130,0 194,0 194,0 200,0 206,-6 206,-12 206,-12 206,-24 206,-24 206,-30 200,-36 194,-36"/>
+<text text-anchor="middle" x="162" y="-21" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL418</text>
+<text text-anchor="middle" x="162" y="-10" font-family="Avenir Next" font-size="10.00" fill="#17232b">Forest Ecology</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL215&#45;&gt;course__BIOL418 -->
+<g id="edge1" class="edge">
+<title>course__BIOL215&#45;&gt;course__BIOL418</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M57.07,-18C72.62,-18 92.55,-18 110.78,-18"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="110.94,-20.45 117.94,-18 110.94,-15.55 110.94,-20.45"/>
+</g>
+</g>
+</svg></template><template data-graph-template="full"><!-- Generated by graphviz version 2.43.0 (0)
+ -->
+<!-- Title: BIOL418 Pages: 1 -->
+<svg class="atlas-graph-svg" role="img" aria-label="BIOL418 course graph" focusable="false" preserveAspectRatio="xMidYMid meet" width="486pt" height="217pt"
+ viewBox="0.00 0.00 486.20 217.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(21.6 195.6)">
+<title>BIOL418</title>
+<!-- course__BIOL150A -->
+<g id="node1" class="node">
+<title>course__BIOL150A</title>
+<g id="a_node1"><a xlink:href="BIOL150A.html" xlink:title="BIOL150A: Modern Biology" target="_top" href="BIOL150A.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M50,-109C50,-109 12,-109 12,-109 6,-109 0,-103 0,-97 0,-97 0,-85 0,-85 0,-79 6,-73 12,-73 12,-73 50,-73 50,-73 56,-73 62,-79 62,-85 62,-85 62,-97 62,-97 62,-103 56,-109 50,-109"/>
+<text text-anchor="middle" x="31" y="-88.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL150A</text>
+</a>
+</g>
+</g>
+<!-- choice_BIOL184_0_0 -->
+<g id="node6" class="node">
+<title>choice_BIOL184_0_0</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M182,-76C182,-76 152,-76 152,-76 146,-76 140,-70 140,-64 140,-64 140,-52 140,-52 140,-46 146,-40 152,-40 152,-40 182,-40 182,-40 188,-40 194,-46 194,-52 194,-52 194,-64 194,-64 194,-70 188,-76 182,-76"/>
+<text text-anchor="middle" x="167" y="-55.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__BIOL150A&#45;&gt;choice_BIOL184_0_0 -->
+<g id="edge1" class="edge">
+<title>course__BIOL150A&#45;&gt;choice_BIOL184_0_0</title>
+<path fill="none" stroke="#7a8389" d="M62.07,-83.59C83.01,-78.44 110.94,-71.56 132.58,-66.23"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="133.44,-68.54 139.65,-64.49 132.27,-63.78 133.44,-68.54"/>
+</g>
+<!-- choice_BIOL186_0_0 -->
+<g id="node7" class="node">
+<title>choice_BIOL186_0_0</title>
+<path fill="#fff7ee" stroke="#b7793f" stroke-width="1.1" d="M431,-76C431,-76 401,-76 401,-76 395,-76 389,-70 389,-64 389,-64 389,-52 389,-52 389,-46 395,-40 401,-40 401,-40 431,-40 431,-40 437,-40 443,-46 443,-52 443,-52 443,-64 443,-64 443,-70 437,-76 431,-76"/>
+<text text-anchor="middle" x="416" y="-55.8" font-family="Avenir Next" font-size="9.00">1 of</text>
+</g>
+<!-- course__BIOL150A&#45;&gt;choice_BIOL186_0_0 -->
+<g id="edge4" class="edge">
+<title>course__BIOL150A&#45;&gt;choice_BIOL186_0_0</title>
+<path fill="none" stroke="#7a8389" d="M62.09,-93.38C115.89,-97.01 231.91,-101.91 328,-86 346.35,-82.96 366.15,-76.83 382.21,-71.08"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="383.12,-73.36 388.85,-68.65 381.43,-68.76 383.12,-73.36"/>
+</g>
+<!-- course__BIOL186 -->
+<g id="node2" class="node">
+<title>course__BIOL186</title>
+<g id="a_node2"><a xlink:href="BIOL186.html" xlink:title="BIOL186: Physiology and Cell Biology" target="_top" href="BIOL186.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M47,-36C47,-36 15,-36 15,-36 9,-36 3,-30 3,-24 3,-24 3,-12 3,-12 3,-6 9,0 15,0 15,0 47,0 47,0 53,0 59,-6 59,-12 59,-12 59,-24 59,-24 59,-30 53,-36 47,-36"/>
+<text text-anchor="middle" x="31" y="-15.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL186</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL186&#45;&gt;choice_BIOL184_0_0 -->
+<g id="edge2" class="edge">
+<title>course__BIOL186&#45;&gt;choice_BIOL184_0_0</title>
+<path fill="none" stroke="#7a8389" d="M59.12,-26.09C80.46,-32.47 110.3,-41.37 133.03,-48.16"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="132.43,-50.53 139.84,-50.19 133.83,-45.84 132.43,-50.53"/>
+</g>
+<!-- course__BIOL184 -->
+<g id="node3" class="node">
+<title>course__BIOL184</title>
+<g id="a_node3"><a xlink:href="BIOL184.html" xlink:title="BIOL184: Evolution and Biodiversity" target="_top" href="BIOL184.html">
+<path fill="#dbe8d2" stroke="#7e8d96" d="M316,-76C316,-76 284,-76 284,-76 278,-76 272,-70 272,-64 272,-64 272,-52 272,-52 272,-46 278,-40 284,-40 284,-40 316,-40 316,-40 322,-40 328,-46 328,-52 328,-52 328,-64 328,-64 328,-70 322,-76 316,-76"/>
+<text text-anchor="middle" x="300" y="-55.8" font-family="Avenir Next" font-size="9.00" fill="#41515b">BIOL184</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL184&#45;&gt;choice_BIOL186_0_0 -->
+<g id="edge5" class="edge">
+<title>course__BIOL184&#45;&gt;choice_BIOL186_0_0</title>
+<path fill="none" stroke="#7a8389" d="M328.02,-58C344.15,-58 364.76,-58 381.87,-58"/>
+<polygon fill="#7a8389" stroke="#7a8389" points="381.96,-60.45 388.96,-58 381.96,-55.55 381.96,-60.45"/>
+</g>
+<!-- course__BIOL215 -->
+<g id="node4" class="node">
+<title>course__BIOL215</title>
+<g id="a_node4"><a xlink:href="BIOL215.html" xlink:title="BIOL215: Principles of Ecology" target="_top" href="BIOL215.html">
+<path fill="#dbe8d2" stroke="#1b2730" stroke-width="1.6" d="M47.5,-174C47.5,-174 14.5,-174 14.5,-174 8.5,-174 2.5,-168 2.5,-162 2.5,-162 2.5,-150 2.5,-150 2.5,-144 8.5,-138 14.5,-138 14.5,-138 47.5,-138 47.5,-138 53.5,-138 59.5,-144 59.5,-150 59.5,-150 59.5,-162 59.5,-162 59.5,-168 53.5,-174 47.5,-174"/>
+<text text-anchor="middle" x="31" y="-153.5" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL215</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL418 -->
+<g id="node5" class="node">
+<title>course__BIOL418</title>
+<g id="a_node5"><a xlink:href="BIOL418.html" xlink:title="BIOL418: Forest Ecology" target="_top" href="BIOL418.html">
+<path fill="#dbe8d2" stroke="#1f4f66" stroke-width="2" d="M199,-174C199,-174 135,-174 135,-174 129,-174 123,-168 123,-162 123,-162 123,-150 123,-150 123,-144 129,-138 135,-138 135,-138 199,-138 199,-138 205,-138 211,-144 211,-150 211,-150 211,-162 211,-162 211,-168 205,-174 199,-174"/>
+<text text-anchor="middle" x="167" y="-159" font-family="Avenir Next" font-size="10.00" fill="#17232b">BIOL418</text>
+<text text-anchor="middle" x="167" y="-148" font-family="Avenir Next" font-size="10.00" fill="#17232b">Forest Ecology</text>
+</a>
+</g>
+</g>
+<!-- course__BIOL215&#45;&gt;course__BIOL418 -->
+<g id="edge7" class="edge">
+<title>course__BIOL215&#45;&gt;course__BIOL418</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M59.76,-156C75.94,-156 96.83,-156 115.8,-156"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="115.97,-158.45 122.96,-156 115.96,-153.55 115.97,-158.45"/>
+</g>
+<!-- choice_BIOL184_0_0&#45;&gt;course__BIOL184 -->
+<g id="edge3" class="edge">
+<title>choice_BIOL184_0_0&#45;&gt;course__BIOL184</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M194.19,-58C214.45,-58 242.67,-58 264.73,-58"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="264.95,-60.45 271.95,-58 264.95,-55.55 264.95,-60.45"/>
+</g>
+<!-- choice_BIOL186_0_0&#45;&gt;course__BIOL186 -->
+<g id="edge6" class="edge">
+<title>choice_BIOL186_0_0&#45;&gt;course__BIOL186</title>
+<path fill="none" stroke="#5d6972" stroke-width="1.2" d="M388.82,-47.52C371.79,-41.22 348.93,-33.72 328,-30 234.47,-13.37 121.81,-14.49 66.32,-16.4"/>
+<polygon fill="#5d6972" stroke="#5d6972" stroke-width="1.2" points="66.11,-13.96 59.2,-16.67 66.28,-18.86 66.11,-13.96"/>
+</g>
+</g>
+</svg></template>
+        </div>
+      </div>
       
     <div class="graph-followup">
       <p class="detail-card__eyebrow">Additional course requirements</p>
       <ul class="graph-followup__list"><li>minimum third year standing</li></ul>
     </div>
-    
     </div>
     
+    </section>
+
+    <section class="section">
+      <div class="metric-grid"><article class="metric-card"><p class="metric-card__value">Biology</p><p class="metric-card__label">Subject area</p></article><article class="metric-card"><p class="metric-card__value">400-level</p><p class="metric-card__label">Course level</p></article><article class="metric-card"><p class="metric-card__value">0</p><p class="metric-card__label">Programs that name this course</p></article><article class="metric-card"><p class="metric-card__value">1</p><p class="metric-card__label">Published prerequisite links</p></article></div>
+    </section>
+
+    <section class="section">
+      <div class="detail-grid"><article class="detail-card"><p class="detail-card__eyebrow">Official Source</p><h3>Calendar entry</h3><p><a class="text-link" href="https://www.uvic.ca/calendar/undergrad/index.php#/courses/SJl8RPamN">Open the UVic calendar entry</a></p></article><article class="detail-card"><p class="detail-card__eyebrow">Description</p><h3>Catalog description</h3><div class="rich-text"><p>Structure and function of forest ecosystems at the tree, stand and landscape scale, including: effects of the environment upon plant abundance, distribution and diversity; nutrient, carbon and water cycles; population and community ecology; disturbance; forest conservation; climate change and global forests.</p></div></article></div>
     </section>
 
     <section class="section">
