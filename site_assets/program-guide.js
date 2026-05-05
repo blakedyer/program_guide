@@ -134,23 +134,81 @@ document.addEventListener("DOMContentLoaded", () => {
     const graphLink = shell.querySelector("[data-graph-link]");
     const modeCopy = shell.querySelector("[data-graph-mode-copy]");
     const graphSearchInput = shell.querySelector("[data-graph-search-input]");
+    const graphSearchDockBody = graphSearchInput?.closest(".graph-search-dock__body");
     const graphSearchStatus = shell.querySelector("[data-graph-search-status]");
     const resetButton = shell.querySelector("[data-graph-reset]");
     const buttons = Array.from(shell.querySelectorAll("[data-graph-mode]"));
     const templates = Array.from(shell.querySelectorAll("[data-graph-template]"));
+    const analyticsShell = shell.querySelector("[data-graph-analytics]");
+    const analyticsDataScript = analyticsShell?.querySelector("[data-graph-analytics-data]");
+    const analyticsButtons = Array.from(analyticsShell?.querySelectorAll("[data-analytics-mode]") || []);
+    const analyticsSelect = analyticsShell?.querySelector("[data-analytics-mode-select]");
+    const analyticsSummary = analyticsShell?.querySelector("[data-analytics-summary]");
+    const overlayLegend = shell.querySelector("[data-graph-overlay-legend]");
+    const overlayLegendBody = overlayLegend?.querySelector("[data-graph-overlay-legend-body]") || overlayLegend;
+    const overlayLegendSummary = overlayLegend?.querySelector("[data-graph-overlay-legend-summary]");
+    const baseLegendDataScript = shell.querySelector("[data-graph-overlay-legend-data]");
 
     if (!graphStage || buttons.length === 0) {
       return;
     }
 
+    const analyticsLayerPalette = {
+      bottleneck: [
+        { label: "Low", detail: "Smaller SEOS downstream reach", color: "oklch(93% 0.045 86)" },
+        { label: "Moderate", detail: "Growing SEOS dependency reach", color: "oklch(85% 0.08 78)" },
+        { label: "High", detail: "Large SEOS dependency reach", color: "oklch(73% 0.13 64)" },
+        { label: "Very high", detail: "Highest SEOS blocking factor", color: "oklch(60% 0.16 48)" },
+      ],
+      delay: [
+        { label: "Start", detail: "No or few prerequisite steps before this course", color: "oklch(93% 0.035 245)" },
+        { label: "Building", detail: "Some prerequisite sequence before this course", color: "oklch(82% 0.07 255)" },
+        { label: "Deep", detail: "Long prerequisite sequence before this course", color: "oklch(70% 0.11 270)" },
+        { label: "Deepest", detail: "Largest prerequisite chain depth in this graph", color: "oklch(58% 0.15 286)" },
+      ],
+      cleanup: [
+        { label: "Course with cleanup flag", detail: "Direct prerequisite list can be simplified", color: "oklch(87% 0.11 82)" },
+      ],
+      year: [
+        { token: "year-1", label: "Year 1", detail: "Courses placed in the first program year", color: "oklch(84% 0.1 190)" },
+        { token: "year-2", label: "Year 2", detail: "Courses placed in the second program year", color: "oklch(86% 0.13 92)" },
+        { token: "years-3-4", label: "Years 3 + 4", detail: "Courses placed in the upper-year program band", color: "oklch(79% 0.15 28)" },
+      ],
+    };
+
     const graphViewState = new WeakMap();
     const getActiveSvg = () => graphStage.querySelector("svg");
-    const autocompleteList = document.createElement("datalist");
+    const autocompletePanel = document.createElement("div");
+    let graphAutocompleteOptions = [];
+    let activeAutocompleteIndex = -1;
+    let activeAnalyticsMode = "base";
+    let analyticsData = null;
+    let baseLegendData = null;
+
+    if (analyticsDataScript?.textContent) {
+      try {
+        analyticsData = JSON.parse(analyticsDataScript.textContent);
+      } catch {
+        analyticsData = null;
+      }
+    }
+
+    if (baseLegendDataScript?.textContent) {
+      try {
+        baseLegendData = JSON.parse(baseLegendDataScript.textContent);
+      } catch {
+        baseLegendData = null;
+      }
+    }
 
     if (graphSearchInput) {
-      autocompleteList.id = `${shell.id || "graph"}-course-options`;
-      graphSearchInput.setAttribute("list", autocompleteList.id);
-      shell.appendChild(autocompleteList);
+      autocompletePanel.id = `${shell.id || "graph"}-course-autocomplete`;
+      autocompletePanel.className = "graph-search-autocomplete";
+      autocompletePanel.setAttribute("role", "listbox");
+      autocompletePanel.hidden = true;
+      graphSearchInput.setAttribute("aria-autocomplete", "list");
+      graphSearchInput.setAttribute("aria-controls", autocompletePanel.id);
+      graphSearchInput.closest(".graph-search")?.insertAdjacentElement("afterend", autocompletePanel);
     }
 
     const parseViewBox = (svg) => {
@@ -386,6 +444,96 @@ document.addEventListener("DOMContentLoaded", () => {
           fill: #0f2630 !important;
           font-weight: 700;
         }
+        svg.atlas-analytics-active g.node.analytics-muted {
+          opacity: 0.34;
+        }
+        svg.is-analytics-bottleneck g.node.is-analytics-level-1 path,
+        svg.is-analytics-bottleneck g.node.is-analytics-level-1 polygon,
+        svg.is-analytics-bottleneck g.node.is-analytics-level-1 ellipse {
+          fill: oklch(93% 0.045 86) !important;
+          stroke: oklch(51% 0.09 58) !important;
+          stroke-width: 1.8px !important;
+        }
+        svg.is-analytics-bottleneck g.node.is-analytics-level-2 path,
+        svg.is-analytics-bottleneck g.node.is-analytics-level-2 polygon,
+        svg.is-analytics-bottleneck g.node.is-analytics-level-2 ellipse {
+          fill: oklch(85% 0.08 78) !important;
+          stroke: oklch(45% 0.12 54) !important;
+          stroke-width: 2.2px !important;
+        }
+        svg.is-analytics-bottleneck g.node.is-analytics-level-3 path,
+        svg.is-analytics-bottleneck g.node.is-analytics-level-3 polygon,
+        svg.is-analytics-bottleneck g.node.is-analytics-level-3 ellipse {
+          fill: oklch(73% 0.13 64) !important;
+          stroke: oklch(38% 0.13 48) !important;
+          stroke-width: 2.8px !important;
+        }
+        svg.is-analytics-bottleneck g.node.is-analytics-level-4 {
+          filter: drop-shadow(0 0 7px oklch(60% 0.16 48 / 0.32));
+        }
+        svg.is-analytics-bottleneck g.node.is-analytics-level-4 path,
+        svg.is-analytics-bottleneck g.node.is-analytics-level-4 polygon,
+        svg.is-analytics-bottleneck g.node.is-analytics-level-4 ellipse {
+          fill: oklch(60% 0.16 48) !important;
+          stroke: oklch(30% 0.12 42) !important;
+          stroke-width: 3.4px !important;
+        }
+        svg.is-analytics-delay g.node.is-analytics-level-1 path,
+        svg.is-analytics-delay g.node.is-analytics-level-1 polygon,
+        svg.is-analytics-delay g.node.is-analytics-level-1 ellipse {
+          fill: oklch(92% 0.04 245) !important;
+          stroke: oklch(50% 0.09 252) !important;
+          stroke-width: 1.8px !important;
+        }
+        svg.is-analytics-delay g.node.is-analytics-level-2 path,
+        svg.is-analytics-delay g.node.is-analytics-level-2 polygon,
+        svg.is-analytics-delay g.node.is-analytics-level-2 ellipse {
+          fill: oklch(82% 0.07 255) !important;
+          stroke: oklch(45% 0.11 260) !important;
+          stroke-width: 2.2px !important;
+        }
+        svg.is-analytics-delay g.node.is-analytics-level-3 path,
+        svg.is-analytics-delay g.node.is-analytics-level-3 polygon,
+        svg.is-analytics-delay g.node.is-analytics-level-3 ellipse {
+          fill: oklch(70% 0.11 270) !important;
+          stroke: oklch(37% 0.13 275) !important;
+          stroke-width: 2.8px !important;
+        }
+        svg.is-analytics-delay g.node.is-analytics-level-4 {
+          filter: drop-shadow(0 0 7px oklch(58% 0.15 286 / 0.32));
+        }
+        svg.is-analytics-delay g.node.is-analytics-level-4 path,
+        svg.is-analytics-delay g.node.is-analytics-level-4 polygon,
+        svg.is-analytics-delay g.node.is-analytics-level-4 ellipse {
+          fill: oklch(58% 0.15 286) !important;
+          stroke: oklch(30% 0.13 286) !important;
+          stroke-width: 3.4px !important;
+        }
+        g.node.is-analytics-themed path,
+        g.node.is-analytics-themed polygon,
+        g.node.is-analytics-themed ellipse {
+          stroke: #40515b !important;
+          stroke-width: 1.8px !important;
+        }
+        g.node.is-analytics-year-coded path,
+        g.node.is-analytics-year-coded polygon,
+        g.node.is-analytics-year-coded ellipse {
+          stroke: #40515b !important;
+          stroke-width: 2px !important;
+        }
+        g.node.is-analytics-path path,
+        g.node.is-analytics-path polygon,
+        g.node.is-analytics-path ellipse {
+          stroke: oklch(28% 0.06 80) !important;
+          stroke-width: 3.2px !important;
+        }
+        g.node.is-analytics-flag path,
+        g.node.is-analytics-flag polygon,
+        g.node.is-analytics-flag ellipse {
+          fill: oklch(87% 0.11 82) !important;
+          stroke: oklch(45% 0.12 52) !important;
+          stroke-width: 3px !important;
+        }
       `;
       svg.appendChild(style);
     };
@@ -451,6 +599,309 @@ document.addEventListener("DOMContentLoaded", () => {
       return { nodeMap, incoming, outgoing, edges };
     };
 
+    const getActiveGraphModeKey = () => graphStage.dataset.graphMode || "simplified";
+
+    const getActiveAnalyticsModeData = () => {
+      if (!analyticsData?.modes) {
+        return null;
+      }
+      return analyticsData.modes[getActiveGraphModeKey()] || analyticsData.modes.simplified || analyticsData.modes.full || null;
+    };
+
+    const formatAnalyticsItems = (items, formatter) => {
+      if (!items || items.length === 0) {
+        return "none detected";
+      }
+      return items.slice(0, 3).map(formatter).join(", ");
+    };
+
+    const updateAnalyticsSummary = (modeData) => {
+      if (!analyticsSummary || !modeData?.metrics) {
+        return;
+      }
+      const topText = formatAnalyticsItems(
+        modeData.topBottlenecks,
+        (item) => `${item.label} (${item.blockingFactor})`,
+      );
+      analyticsSummary.textContent = `${modeData.metrics.seosNodes} SEOS course nodes inside ${modeData.metrics.nodes} total graph nodes. SEOS bottlenecks: ${topText}.`;
+    };
+
+    const clearAnalyticsLegend = () => {
+      if (!overlayLegend) {
+        return;
+      }
+      overlayLegend.hidden = true;
+      if ("open" in overlayLegend) {
+        overlayLegend.open = false;
+      }
+      if (overlayLegendSummary) {
+        overlayLegendSummary.textContent = "Legend";
+        overlayLegendSummary.removeAttribute("title");
+        overlayLegendSummary.removeAttribute("aria-label");
+      }
+      overlayLegendBody?.replaceChildren();
+    };
+
+    const appendAnalyticsLegendItem = (list, item) => {
+      const row = document.createElement("div");
+      row.className = "graph-overlay-legend__item";
+
+      const swatch = document.createElement("span");
+      swatch.className = "graph-overlay-legend__swatch";
+      swatch.style.setProperty("--legend-color", item.color);
+      if (item.borderColor) {
+        swatch.style.setProperty("--legend-border", item.borderColor);
+      }
+
+      const copy = document.createElement("span");
+      copy.className = "graph-overlay-legend__copy";
+
+      const label = document.createElement("span");
+      label.className = "graph-overlay-legend__label";
+      label.textContent = item.label;
+      copy.appendChild(label);
+
+      if (item.detail) {
+        const detail = document.createElement("span");
+        detail.className = "graph-overlay-legend__detail";
+        detail.textContent = item.detail;
+        copy.appendChild(detail);
+      }
+
+      row.append(swatch, copy);
+      list.appendChild(row);
+    };
+
+    const setAnalyticsLegend = ({ title, items }) => {
+      if (!overlayLegend || !items?.length) {
+        clearAnalyticsLegend();
+        return;
+      }
+
+      overlayLegendBody?.replaceChildren();
+
+      if (overlayLegendSummary) {
+        overlayLegendSummary.textContent = "Legend";
+        overlayLegendSummary.setAttribute("title", title);
+        overlayLegendSummary.setAttribute("aria-label", `Open ${title} legend`);
+      }
+
+      const list = document.createElement("div");
+      list.className = "graph-overlay-legend__list";
+      items.forEach((item) => appendAnalyticsLegendItem(list, item));
+      overlayLegendBody?.appendChild(list);
+      overlayLegend.hidden = false;
+    };
+
+    const setBaseLegend = ({ items }) => {
+      if (!overlayLegend || !items?.length) {
+        clearAnalyticsLegend();
+        return;
+      }
+
+      overlayLegendBody?.replaceChildren();
+
+      if (overlayLegendSummary) {
+        overlayLegendSummary.textContent = "Legend";
+        overlayLegendSummary.setAttribute("title", "Graph legend");
+        overlayLegendSummary.setAttribute("aria-label", "Open graph legend");
+      }
+
+      const list = document.createElement("div");
+      list.className = "graph-overlay-legend__list";
+      items.forEach((item) => appendAnalyticsLegendItem(list, item));
+      overlayLegendBody?.appendChild(list);
+      overlayLegend.hidden = false;
+    };
+
+    const showBaseLegend = () => {
+      if (baseLegendData) {
+        setBaseLegend(baseLegendData);
+      } else {
+        clearAnalyticsLegend();
+      }
+    };
+
+    const buildThemeLegendItems = (modeData) => {
+      const themeCounts = modeData?.themeCounts || {};
+      const paletteByToken = new Map((analyticsData?.themePalette || []).map((item) => [item.token, item]));
+      return Object.entries(themeCounts).map(([token, countRecord]) => {
+        const paletteRecord = paletteByToken.get(token) || {};
+        const count = countRecord.count || 0;
+        return {
+          label: countRecord.label || paletteRecord.label || token,
+          detail: `${count} node${count === 1 ? "" : "s"}`,
+          color: countRecord.color || paletteRecord.color || "oklch(72% 0.03 85)",
+        };
+      });
+    };
+
+    const buildYearLegendItems = (modeData) => {
+      const yearCounts = modeData?.yearCounts || {};
+      return analyticsLayerPalette.year.map((item) => {
+        const count = yearCounts[item.token]?.count || 0;
+        return {
+          ...item,
+          detail: `${item.detail}; ${count} visible node${count === 1 ? "" : "s"}`,
+        };
+      });
+    };
+
+    const getYearColor = (token) =>
+      analyticsLayerPalette.year.find((item) => item.token === token)?.color || "";
+
+    const updateAnalyticsLegend = (modeData) => {
+      if (!modeData || activeAnalyticsMode === "base") {
+        showBaseLegend();
+        return;
+      }
+
+      if (activeAnalyticsMode === "bottleneck") {
+        setAnalyticsLegend({
+          title: "SEOS Bottleneck Scale",
+          items: analyticsLayerPalette.bottleneck,
+        });
+      } else if (activeAnalyticsMode === "year") {
+        setAnalyticsLegend({
+          title: "Program Year",
+          items: buildYearLegendItems(modeData),
+        });
+      } else if (activeAnalyticsMode === "delay") {
+        setAnalyticsLegend({
+          title: "Prerequisite Chain Depth",
+          items: analyticsLayerPalette.delay,
+        });
+      } else if (activeAnalyticsMode === "theme") {
+        setAnalyticsLegend({
+          title: "Subject Themes",
+          items: buildThemeLegendItems(modeData),
+        });
+      } else if (activeAnalyticsMode === "cleanup") {
+        setAnalyticsLegend({
+          title: "Cleanup Flags",
+          items: analyticsLayerPalette.cleanup,
+        });
+      } else {
+        clearAnalyticsLegend();
+      }
+    };
+
+    const clearAnalyticsOverlay = (svg, graphIndex) => {
+      if (!svg || !graphIndex) {
+        return;
+      }
+      svg.classList.remove(
+        "atlas-analytics-active",
+        "is-analytics-bottleneck",
+        "is-analytics-delay",
+        "is-analytics-year",
+        "is-analytics-theme",
+        "is-analytics-cleanup",
+      );
+      graphIndex.nodeMap.forEach((node) => {
+        node.classList.remove(
+          "analytics-muted",
+          "is-analytics-level-1",
+          "is-analytics-level-2",
+          "is-analytics-level-3",
+          "is-analytics-level-4",
+          "is-analytics-themed",
+          "is-analytics-year-coded",
+          "is-analytics-path",
+          "is-analytics-flag",
+        );
+        node.querySelectorAll("path, polygon, ellipse").forEach((shape) => {
+          shape.style.removeProperty("fill");
+          shape.style.removeProperty("stroke");
+          shape.style.removeProperty("stroke-width");
+        });
+      });
+      graphIndex.edges.forEach(({ edge }) => edge.classList.remove("is-analytics-path"));
+    };
+
+    const applyAnalyticsOverlay = (svg = getActiveSvg()) => {
+      if (!svg || !analyticsData) {
+        showBaseLegend();
+        return;
+      }
+      prepareGraphSvg(svg);
+      const modeData = getActiveAnalyticsModeData();
+      const graphIndex = buildGraphIndex(svg);
+      clearAnalyticsOverlay(svg, graphIndex);
+      updateAnalyticsSummary(modeData);
+      updateAnalyticsLegend(modeData);
+
+      if (!modeData || activeAnalyticsMode === "base") {
+        return;
+      }
+
+      const analyticsNodes = new Map((modeData.nodes || []).map((node) => [node.id, node]));
+      svg.classList.add("atlas-analytics-active", `is-analytics-${activeAnalyticsMode}`);
+
+      graphIndex.nodeMap.forEach((node, nodeId) => {
+        const record = analyticsNodes.get(nodeId);
+        if (!record) {
+          node.classList.add("analytics-muted");
+          return;
+        }
+
+        if (activeAnalyticsMode === "bottleneck" || activeAnalyticsMode === "delay") {
+          const levelKey = activeAnalyticsMode === "bottleneck" ? "blocking" : "delay";
+          const level = record.levels?.[levelKey] || 0;
+          if (level > 0) {
+            node.classList.add(`is-analytics-level-${level}`);
+          } else {
+            node.classList.add("analytics-muted");
+          }
+          if (
+            (activeAnalyticsMode === "bottleneck" && record.onLongestPath) ||
+            (activeAnalyticsMode === "delay" && record.onDeepestPrerequisiteChain)
+          ) {
+            node.classList.add("is-analytics-path");
+          }
+        }
+
+        if (activeAnalyticsMode === "theme") {
+          const color = record.themeColor;
+          if (!color) {
+            node.classList.add("analytics-muted");
+            return;
+          }
+          node.classList.add("is-analytics-themed");
+          node.querySelectorAll("path, polygon, ellipse").forEach((shape) => {
+            shape.style.setProperty("fill", color);
+          });
+        }
+
+        if (activeAnalyticsMode === "year") {
+          const color = getYearColor(record.year);
+          if (!color) {
+            node.classList.add("analytics-muted");
+            return;
+          }
+          node.classList.add("is-analytics-year-coded");
+          node.querySelectorAll("path, polygon, ellipse").forEach((shape) => {
+            shape.style.setProperty("fill", color);
+          });
+        }
+      });
+
+      if (activeAnalyticsMode === "cleanup") {
+        const flaggedIds = new Set();
+        (modeData.redundantPrerequisites || []).forEach((check) => {
+          flaggedIds.add(`course__${check.courseGroup}`);
+        });
+        graphIndex.nodeMap.forEach((node, nodeId) => {
+          if (flaggedIds.has(nodeId)) {
+            node.classList.add("is-analytics-flag");
+          } else {
+            node.classList.add("analytics-muted");
+          }
+        });
+      }
+
+    };
+
     const collectBranchContext = (index, matchedNodes) => {
       const contextNodes = new Set(matchedNodes);
       const terminalNodes = new Set();
@@ -501,12 +952,104 @@ document.addEventListener("DOMContentLoaded", () => {
       return { contextNodes, terminalNodes, branchEdges };
     };
 
-    const updateGraphAutocomplete = (svg) => {
-      if (!graphSearchInput || !autocompleteList) {
+    const hideGraphAutocomplete = () => {
+      if (!autocompletePanel) {
+        return;
+      }
+      autocompletePanel.hidden = true;
+      autocompletePanel.replaceChildren();
+      activeAutocompleteIndex = -1;
+      graphSearchInput?.removeAttribute("aria-activedescendant");
+    };
+
+    const setActiveAutocompleteOption = (index) => {
+      const options = Array.from(autocompletePanel.querySelectorAll("[data-graph-autocomplete-option]"));
+      if (options.length === 0) {
+        activeAutocompleteIndex = -1;
+        return;
+      }
+      activeAutocompleteIndex = Math.max(0, Math.min(index, options.length - 1));
+      options.forEach((option, optionIndex) => {
+        const isActive = optionIndex === activeAutocompleteIndex;
+        option.classList.toggle("is-active", isActive);
+        option.setAttribute("aria-selected", String(isActive));
+      });
+      graphSearchInput?.setAttribute("aria-activedescendant", options[activeAutocompleteIndex]?.id || "");
+      options[activeAutocompleteIndex]?.scrollIntoView({ block: "nearest" });
+    };
+
+    const selectAutocompleteOption = (option) => {
+      if (!graphSearchInput || !option) {
+        return;
+      }
+      graphSearchInput.value = option.value;
+      hideGraphAutocomplete();
+      updateGraphSearch();
+      graphSearchInput.focus();
+    };
+
+    const renderGraphAutocomplete = () => {
+      if (!graphSearchInput || !autocompletePanel) {
         return;
       }
 
-      const options = Array.from(svg.querySelectorAll("g.node"))
+      const query = graphSearchInput.value.trim().toLowerCase();
+      if (!query) {
+        hideGraphAutocomplete();
+        return;
+      }
+
+      const matches = graphAutocompleteOptions
+        .filter((option) => option.searchText.includes(query))
+        .slice(0, 8);
+
+      if (matches.length === 0) {
+        hideGraphAutocomplete();
+        return;
+      }
+
+      autocompletePanel.replaceChildren(
+        ...matches.map((option, index) => {
+          const button = document.createElement("button");
+          button.className = "graph-search-autocomplete__option";
+          button.type = "button";
+          button.id = `${autocompletePanel.id}-option-${index}`;
+          button.setAttribute("role", "option");
+          button.setAttribute("aria-selected", "false");
+          button.dataset.graphAutocompleteOption = "true";
+          button.setAttribute("aria-label", option.label ? `${option.value}: ${option.label}` : option.value);
+
+          const value = document.createElement("span");
+          value.className = "graph-search-autocomplete__value";
+          value.textContent = option.value;
+          button.appendChild(value);
+
+          if (option.label) {
+            const detail = document.createElement("span");
+            detail.className = "graph-search-autocomplete__detail";
+            detail.textContent = option.label;
+            button.appendChild(detail);
+          }
+
+          button.addEventListener("pointerdown", (event) => {
+            event.preventDefault();
+          });
+          button.addEventListener("mouseenter", () => setActiveAutocompleteOption(index));
+          button.addEventListener("click", () => selectAutocompleteOption(option));
+          return button;
+        }),
+      );
+
+      autocompletePanel.hidden = false;
+      setActiveAutocompleteOption(0);
+    };
+
+    const updateGraphAutocomplete = (svg) => {
+      if (!graphSearchInput) {
+        return;
+      }
+
+      graphAutocompleteOptions = Array.from(svg.querySelectorAll("g.node"))
         .map((node) => {
           const nodeId = getDirectTitle(node);
           if (!isCourseNodeId(nodeId)) {
@@ -517,7 +1060,11 @@ document.addEventListener("DOMContentLoaded", () => {
           const label = [visibleLines.slice(1).join(" "), getNodeLinkTitle(node)]
             .filter(Boolean)
             .join(" | ");
-          return { value, label };
+          return {
+            value,
+            label,
+            searchText: [value, label, nodeId.replace(/^course__/, "")].filter(Boolean).join(" ").toLowerCase(),
+          };
         })
         .filter(Boolean)
         .filter(
@@ -526,16 +1073,7 @@ document.addEventListener("DOMContentLoaded", () => {
         )
         .sort((a, b) => a.value.localeCompare(b.value, undefined, { numeric: true }));
 
-      autocompleteList.replaceChildren(
-        ...options.map((option) => {
-          const element = document.createElement("option");
-          element.value = option.value;
-          if (option.label) {
-            element.label = option.label;
-          }
-          return element;
-        }),
-      );
+      renderGraphAutocomplete();
     };
 
     const getNodePrimaryLabel = (node) => {
@@ -690,11 +1228,33 @@ document.addEventListener("DOMContentLoaded", () => {
           const link = event.target.closest?.("a");
           const node = event.target.closest?.("g.node");
           const href = getLinkHref(link);
-          if (!link || !node || !href || !document.body.classList.contains("page--program-detail")) {
+          if (!document.body.classList.contains("page--program-detail")) {
             return;
           }
 
           const graphIndex = buildGraphIndex(svg);
+          if (!node) {
+            if (svg.dataset.atlasSelectedNodeId || svg.classList.contains("atlas-searching")) {
+              event.preventDefault();
+              event.stopPropagation();
+              clearGraphHighlight(svg, graphIndex);
+              restoreGraphView(svg);
+              if (graphSearchInput) {
+                graphSearchInput.value = "";
+              }
+              hideGraphAutocomplete();
+              if (graphSearchStatus) {
+                graphSearchStatus.textContent =
+                  "Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.";
+              }
+            }
+            return;
+          }
+
+          if (!link || !href) {
+            return;
+          }
+
           const nodeId = node.dataset.atlasNodeId || getDirectTitle(node);
           const selectedNodeId = svg.dataset.atlasSelectedNodeId || "";
           if (
@@ -777,7 +1337,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const svg = template.content.firstElementChild?.cloneNode(true);
         if (svg) {
           graphStage.replaceChildren(svg);
+          graphStage.dataset.graphMode = modeKey || "";
           prepareGraphSvg(svg);
+          applyAnalyticsOverlay(svg);
         }
       }
 
@@ -796,6 +1358,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       updateGraphSearch();
+      applyAnalyticsOverlay();
     };
 
     buttons.forEach((button) => {
@@ -803,7 +1366,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     if (graphSearchInput) {
-      graphSearchInput.addEventListener("input", updateGraphSearch);
+      graphSearchInput.addEventListener("input", () => {
+        updateGraphSearch();
+        renderGraphAutocomplete();
+      });
+      graphSearchInput.addEventListener("focus", renderGraphAutocomplete);
+      graphSearchInput.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          hideGraphAutocomplete();
+          return;
+        }
+
+        const options = Array.from(autocompletePanel.querySelectorAll("[data-graph-autocomplete-option]"));
+        if ((event.key === "ArrowDown" || event.key === "ArrowUp") && autocompletePanel.hidden) {
+          renderGraphAutocomplete();
+        }
+
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          setActiveAutocompleteOption(activeAutocompleteIndex + 1);
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          setActiveAutocompleteOption(activeAutocompleteIndex - 1);
+        } else if (event.key === "Enter" && options[activeAutocompleteIndex]) {
+          event.preventDefault();
+          options[activeAutocompleteIndex].click();
+        }
+      });
+      document.addEventListener("pointerdown", (event) => {
+        if (graphSearchDockBody?.contains(event.target)) {
+          return;
+        }
+        hideGraphAutocomplete();
+      });
     }
 
     if (resetButton) {
@@ -811,8 +1406,35 @@ document.addEventListener("DOMContentLoaded", () => {
         if (graphSearchInput) {
           graphSearchInput.value = "";
         }
+        hideGraphAutocomplete();
         restoreGraphView();
         updateGraphSearch();
+        applyAnalyticsOverlay();
+      });
+    }
+
+    const setActiveAnalyticsMode = (mode) => {
+      activeAnalyticsMode = mode || "base";
+      if (analyticsSelect && analyticsSelect.value !== activeAnalyticsMode) {
+        analyticsSelect.value = activeAnalyticsMode;
+      }
+      analyticsButtons.forEach((candidate) => {
+        const isActive = (candidate.getAttribute("data-analytics-mode") || "base") === activeAnalyticsMode;
+        candidate.classList.toggle("is-active", isActive);
+        candidate.setAttribute("aria-pressed", String(isActive));
+      });
+      applyAnalyticsOverlay();
+    };
+
+    analyticsButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setActiveAnalyticsMode(button.getAttribute("data-analytics-mode") || "base");
+      });
+    });
+
+    if (analyticsSelect) {
+      analyticsSelect.addEventListener("change", () => {
+        setActiveAnalyticsMode(analyticsSelect.value || "base");
       });
     }
 

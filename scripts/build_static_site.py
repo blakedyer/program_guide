@@ -7,7 +7,7 @@ import json
 import re
 import shutil
 import textwrap
-from collections import deque
+from collections import Counter, deque
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
@@ -166,8 +166,8 @@ COURSE_THEME_RULES = (
     ("geophysics", "Geophysics", ("geophys", "seism", "gravity", "geomagnet", "paleomagnet", "heat flow")),
     ("chemistry", "Chemistry", ("chemistry", "chemical", "geochem", "isotope", "aqueous", "ore", "mining")),
     ("biology", "Biology", ("biology", "biological", "ecolog", "ecosystem", "biodivers", "organism")),
-    ("programming", "Programming", ("program", "coding", "software", "algorithm")),
-    ("data", "Data and Modelling", ("data", "model", "modelling", "numerical", "statistic", "analysis", "comput", "gis", "remote sensing")),
+    ("math", "Mathematics", ()),
+    ("programming", "Computing", ("program", "coding", "software", "algorithm", "data", "model", "modelling", "numerical", "statistic", "analysis", "comput", "gis", "remote sensing")),
     ("environment", "Environment and Resources", ("environment", "environmental", "hazard", "sustainab", "resource", "pollution")),
     ("physics", "Physics", ("physics", "mechanic", "dynamics", "thermodynam", "optics", "quantum", "fluid")),
 )
@@ -177,6 +177,27 @@ CONTACT_SUMMARY_BUCKETS = (
     ("year-2", "Year 2"),
     ("years-3-4", "Years 3 + 4"),
 )
+
+THEME_COLORS = {
+    "field": "oklch(76% 0.13 73)",
+    "climate": "oklch(76% 0.12 206)",
+    "ocean": "oklch(57% 0.16 255)",
+    "earth": "oklch(62% 0.11 47)",
+    "geophysics": "oklch(62% 0.15 286)",
+    "chemistry": "oklch(68% 0.15 28)",
+    "biology": "oklch(65% 0.14 142)",
+    "math": "oklch(72% 0.15 120)",
+    "programming": "oklch(66% 0.15 325)",
+    "environment": "oklch(61% 0.13 178)",
+    "physics": "oklch(64% 0.16 16)",
+}
+
+COURSE_THEME_OVERRIDES = {
+    "EOS300": ("earth",),
+    "EOS330": ("earth",),
+    "EOS400": ("earth",),
+    "EOS401": ("ocean",),
+}
 
 
 @dataclass
@@ -2062,6 +2083,548 @@ def compute_relative_group_depths(
     return depths
 
 
+def compute_group_dependent_closure(dependent_map: dict[str, set[str]]) -> dict[str, set[str]]:
+    memo: dict[str, set[str]] = {}
+    visiting: set[str] = set()
+
+    def closure(group_code: str) -> set[str]:
+        if group_code in memo:
+            return memo[group_code]
+        if group_code in visiting:
+            return set()
+        visiting.add(group_code)
+        reachable: set[str] = set()
+        for dependent_group in dependent_map.get(group_code, set()):
+            reachable.add(dependent_group)
+            reachable.update(closure(dependent_group))
+        visiting.remove(group_code)
+        memo[group_code] = reachable
+        return reachable
+
+    for group_code in dependent_map:
+        closure(group_code)
+
+    return memo
+
+
+def compute_group_downstream_depths(dependent_map: dict[str, set[str]]) -> dict[str, int]:
+    memo: dict[str, int] = {}
+    visiting: set[str] = set()
+
+    def depth(node: str) -> int:
+        if node in memo:
+            return memo[node]
+        if node in visiting:
+            return 0
+        visiting.add(node)
+        dependents = dependent_map.get(node, set())
+        value = 0 if not dependents else 1 + max(depth(dependent) for dependent in dependents)
+        visiting.remove(node)
+        memo[node] = value
+        return value
+
+    for node in dependent_map:
+        depth(node)
+
+    return memo
+
+
+def compute_longest_group_path(
+    prereq_map: dict[str, set[str]],
+    dependent_map: dict[str, set[str]],
+) -> list[str]:
+    memo: dict[str, list[str]] = {}
+    visiting: set[str] = set()
+
+    def best_from(node: str) -> list[str]:
+        if node in memo:
+            return memo[node]
+        if node in visiting:
+            return [node]
+        visiting.add(node)
+        dependents = sorted(dependent_map.get(node, set()), key=course_sort_key)
+        if not dependents:
+            result = [node]
+        else:
+            result = max(
+                ([node, *best_from(dependent)] for dependent in dependents),
+                key=lambda path: (len(path), tuple(reversed([course_sort_key(code) for code in path]))),
+            )
+        visiting.remove(node)
+        memo[node] = result
+        return result
+
+    sources = sorted(
+        (node for node in prereq_map if not prereq_map.get(node)),
+        key=course_sort_key,
+    )
+    candidates = sources or sorted(prereq_map, key=course_sort_key)
+    if not candidates:
+        return []
+    return max(
+        (best_from(node) for node in candidates),
+        key=lambda path: (len(path), tuple(reversed([course_sort_key(code) for code in path]))),
+    )
+
+
+def parse_requirement_count(count: str | None) -> float | None:
+    if not count:
+        return None
+    try:
+        return float(count)
+    except ValueError:
+        return None
+
+
+def required_course_codes_from_rule_node(node: dict) -> set[str]:
+    if node["kind"] == "course":
+        return {node["code"]}
+    if node["kind"] == "text":
+        return set()
+
+    child_sets = [required_course_codes_from_rule_node(child) for child in node.get("children", [])]
+    kind, count = requirement_group_kind(node.get("label", ""))
+    if kind == "choose":
+        numeric_count = parse_requirement_count(count)
+        if numeric_count is not None and numeric_count >= len(child_sets):
+            return set().union(*child_sets) if child_sets else set()
+        nonempty_sets = [child_set for child_set in child_sets if child_set]
+        return set.intersection(*nonempty_sets) if nonempty_sets else set()
+
+    return set().union(*child_sets) if child_sets else set()
+
+
+def required_course_codes_from_rule_nodes(nodes: Iterable[dict]) -> set[str]:
+    required_codes: set[str] = set()
+    for node in nodes:
+        required_codes.update(required_course_codes_from_rule_node(node))
+    return required_codes
+
+
+def find_required_prereq_path(
+    start_code: str,
+    target_code: str,
+    *,
+    required_prereq_lookup: dict[str, set[str]],
+    course_group_lookup: dict[str, str],
+) -> list[str] | None:
+    target_group = course_group_lookup.get(target_code, target_code)
+    queue = deque([(start_code, [start_code])])
+    visited = {start_code}
+
+    while queue:
+        current_code, path = queue.popleft()
+        for prereq_code in sorted(required_prereq_lookup.get(current_code, set()), key=course_sort_key):
+            if prereq_code in visited:
+                continue
+            next_path = [*path, prereq_code]
+            if course_group_lookup.get(prereq_code, prereq_code) == target_group:
+                return next_path
+            visited.add(prereq_code)
+            queue.append((prereq_code, next_path))
+    return None
+
+
+def find_redundant_prerequisite_checks(
+    courses: dict[str, CourseRecord],
+    course_group_lookup: dict[str, str],
+) -> list[dict]:
+    required_prereq_lookup = {
+        code: required_course_codes_from_rule_nodes(course.rule_nodes)
+        for code, course in courses.items()
+    }
+    checks: list[dict] = []
+    seen: set[tuple[str, str, str]] = set()
+
+    for course in sorted(courses.values(), key=lambda item: course_sort_key(item.code)):
+        direct_codes = sorted(
+            (code for code in required_prereq_lookup.get(course.code, set()) if code in courses),
+            key=course_sort_key,
+        )
+        for redundant_code in direct_codes:
+            redundant_group = course_group_lookup.get(redundant_code, redundant_code)
+            for implied_by_code in direct_codes:
+                if implied_by_code == redundant_code:
+                    continue
+                implied_by_group = course_group_lookup.get(implied_by_code, implied_by_code)
+                if implied_by_group == redundant_group:
+                    continue
+                chain = find_required_prereq_path(
+                    implied_by_code,
+                    redundant_code,
+                    required_prereq_lookup=required_prereq_lookup,
+                    course_group_lookup=course_group_lookup,
+                )
+                if not chain:
+                    continue
+                key = (course.code, redundant_group, implied_by_group)
+                if key in seen:
+                    continue
+                seen.add(key)
+                checks.append(
+                    {
+                        "course": course.code,
+                        "courseName": course.name,
+                        "courseGroup": course_group_lookup.get(course.code, course.code),
+                        "redundant": redundant_code,
+                        "redundantGroup": redundant_group,
+                        "impliedBy": implied_by_code,
+                        "impliedByGroup": implied_by_group,
+                        "chain": chain,
+                        "message": (
+                            f"{course.code} names {redundant_code}, but {implied_by_code} already requires "
+                            f"{redundant_code} through {' -> '.join(chain)}."
+                        ),
+                    }
+                )
+                break
+
+    return checks
+
+
+def group_display_label(group_code: str, course_groups: dict[str, CourseGroupRecord]) -> str:
+    group = course_groups.get(group_code)
+    if group is None:
+        return group_code
+    return group.label.replace("\\n", " / ")
+
+
+def group_course_codes(group_code: str, course_groups: dict[str, CourseGroupRecord]) -> tuple[str, ...]:
+    group = course_groups.get(group_code)
+    return group.codes if group is not None else (group_code,)
+
+
+def group_has_eos_code(group_code: str, course_groups: dict[str, CourseGroupRecord]) -> bool:
+    return any(subject_from_code(code) == "EOS" for code in group_course_codes(group_code, course_groups))
+
+
+def filter_dependency_maps_to_groups(
+    prereq_map: dict[str, set[str]],
+    dependent_map: dict[str, set[str]],
+    included_groups: set[str],
+) -> tuple[dict[str, set[str]], dict[str, set[str]]]:
+    filtered_prereq_map = {
+        group_code: {
+            prereq_group
+            for prereq_group in prereq_map.get(group_code, set())
+            if prereq_group in included_groups
+        }
+        for group_code in included_groups
+    }
+    filtered_dependent_map = {
+        group_code: {
+            dependent_group
+            for dependent_group in dependent_map.get(group_code, set())
+            if dependent_group in included_groups
+        }
+        for group_code in included_groups
+    }
+    return filtered_prereq_map, filtered_dependent_map
+
+
+def group_theme_tokens(group_code: str, course_groups: dict[str, CourseGroupRecord], courses: dict[str, CourseRecord]) -> list[str]:
+    counts: Counter[str] = Counter()
+    for code in group_course_codes(group_code, course_groups):
+        if code not in courses:
+            continue
+        for token, score in course_theme_scores(courses[code]):
+            counts[token] += score
+    if not counts:
+        return []
+    return [token for token, _count in counts.most_common(3)]
+
+
+def theme_label(token: str) -> str:
+    return next((label for current_token, label, _keywords in COURSE_THEME_RULES if current_token == token), token.title())
+
+
+def theme_color(token: str) -> str:
+    return THEME_COLORS.get(token, "oklch(72% 0.03 85)")
+
+
+def theme_palette_items() -> list[dict[str, str]]:
+    return [
+        {
+            "token": token,
+            "label": label,
+            "color": theme_color(token),
+        }
+        for token, label, _keywords in COURSE_THEME_RULES
+    ]
+
+
+def analytics_score_level(value: int, maximum: int) -> int:
+    if maximum <= 0 or value <= 0:
+        return 0
+    return min(4, max(1, int(round((value / maximum) * 4))))
+
+
+def program_path_codes(program: ProgramRecord, stream: ProgramStreamRecord | None = None) -> set[str]:
+    return {
+        code
+        for code in unique_ordered(program_named_codes(program, stream) + program_support_codes(program, stream))
+    }
+
+
+def build_program_mode_analytics(
+    program: ProgramRecord,
+    courses: dict[str, CourseRecord],
+    course_groups: dict[str, CourseGroupRecord],
+    course_group_lookup: dict[str, str],
+    redundant_checks: list[dict],
+    *,
+    stream: ProgramStreamRecord | None = None,
+) -> dict:
+    explicit_codes = {code for code in program_named_codes(program, stream) if code in courses}
+    visible_codes = explicit_codes | {code for code in program_support_codes(program, stream) if code in courses}
+    prereq_map, dependent_map = build_group_dependency_maps(visible_codes, courses, course_group_lookup)
+    prereq_closure = compute_group_prereq_closure(prereq_map)
+    dependent_closure = compute_group_dependent_closure(dependent_map)
+    upstream_depths = compute_group_depths(prereq_map)
+    downstream_depths = compute_group_downstream_depths(dependent_map)
+    seos_groups = {
+        group_code
+        for group_code in prereq_map
+        if group_has_eos_code(group_code, course_groups)
+    }
+    seos_prereq_map, seos_dependent_map = filter_dependency_maps_to_groups(
+        prereq_map,
+        dependent_map,
+        seos_groups,
+    )
+    seos_dependent_closure = compute_group_dependent_closure(seos_dependent_map)
+    seos_upstream_depths = compute_group_depths(seos_prereq_map)
+    seos_downstream_depths = compute_group_downstream_depths(seos_dependent_map)
+    longest_path = compute_longest_group_path(seos_prereq_map, seos_dependent_map)
+    longest_prerequisite_chain = compute_longest_group_path(prereq_map, dependent_map)
+    explicit_groups = {course_group_lookup.get(code, code) for code in explicit_codes}
+    support_groups = {course_group_lookup.get(code, code) for code in program_support_codes(program, stream)}
+    required_groups, option_sets = build_program_option_sets(
+        program_graph_sections(program, stream),
+        explicit_groups=explicit_groups,
+        course_group_lookup=course_group_lookup,
+    )
+    option_group_labels = {
+        group_code: option_set["label"]
+        for option_set in option_sets
+        for group_code in option_set["groups"]
+    }
+    year_group_lookup = build_program_year_group_lookup(program, course_group_lookup, stream)
+    year_labels = dict(CONTACT_SUMMARY_BUCKETS)
+    relevant_redundant_checks = [
+        check
+        for check in redundant_checks
+        if check["courseGroup"] in prereq_map
+    ]
+    redundant_count_by_group: Counter[str] = Counter()
+    for check in relevant_redundant_checks:
+        redundant_count_by_group[check["courseGroup"]] += 1
+        redundant_count_by_group[check["redundantGroup"]] += 1
+        redundant_count_by_group[check["impliedByGroup"]] += 1
+
+    raw_nodes: list[dict] = []
+    for group_code in sorted(prereq_map, key=course_sort_key):
+        blocking_factor = len(dependent_closure.get(group_code, set()))
+        prerequisite_chain_depth = upstream_depths.get(group_code, 0)
+        chain_depth = prerequisite_chain_depth + 1
+        delay_factor = upstream_depths.get(group_code, 0) + downstream_depths.get(group_code, 0) + 1
+        is_seos_course = group_code in seos_groups
+        seos_blocking_factor = len(seos_dependent_closure.get(group_code, set())) if is_seos_course else 0
+        seos_delay_factor = (
+            seos_upstream_depths.get(group_code, 0) + seos_downstream_depths.get(group_code, 0) + 1
+            if is_seos_course
+            else 0
+        )
+        complexity = blocking_factor + delay_factor
+        role = "support"
+        role_label = "Related prerequisite"
+        if group_code in required_groups:
+            role = "required"
+            role_label = "Required program course"
+        elif group_code in option_group_labels:
+            role = "option"
+            role_label = option_group_labels[group_code]
+        elif group_code in explicit_groups:
+            role = "named"
+            role_label = "Named program course"
+        elif group_code in support_groups:
+            role = "support"
+
+        themes = group_theme_tokens(group_code, course_groups, courses)
+        raw_nodes.append(
+            {
+                "id": course_group_id(group_code),
+                "group": group_code,
+                "label": group_display_label(group_code, course_groups),
+                "role": role,
+                "roleLabel": role_label,
+                "subject": subject_from_code(group_code),
+                "themes": themes,
+                "themeLabels": [theme_label(token) for token in themes],
+                "themeColor": theme_color(themes[0]) if themes else subject_color(group_code),
+                "year": year_group_lookup.get(group_code, ""),
+                "yearLabel": year_labels.get(year_group_lookup.get(group_code, ""), ""),
+                "isSeosCourse": is_seos_course,
+                "prereqCount": len(prereq_map.get(group_code, set())),
+                "dependentCount": len(dependent_map.get(group_code, set())),
+                "blockingFactor": blocking_factor,
+                "seosBlockingFactor": seos_blocking_factor,
+                "prerequisiteChainDepth": prerequisite_chain_depth,
+                "chainDepth": chain_depth,
+                "delayFactor": delay_factor,
+                "seosDelayFactor": seos_delay_factor,
+                "centrality": len(prereq_closure.get(group_code, set())) * len(dependent_closure.get(group_code, set())),
+                "complexity": complexity,
+                "onLongestPath": group_code in longest_path,
+                "onDeepestPrerequisiteChain": group_code in longest_prerequisite_chain,
+                "redundantFlagCount": redundant_count_by_group.get(group_code, 0),
+            }
+        )
+
+    max_blocking = max((node["seosBlockingFactor"] for node in raw_nodes), default=0)
+    max_delay = max((node["chainDepth"] for node in raw_nodes), default=0)
+    max_complexity = max((node["complexity"] for node in raw_nodes), default=0)
+    for node in raw_nodes:
+        node["levels"] = {
+            "blocking": analytics_score_level(node["seosBlockingFactor"], max_blocking),
+            "delay": analytics_score_level(node["chainDepth"], max_delay),
+            "complexity": analytics_score_level(node["complexity"], max_complexity),
+        }
+
+    theme_counts: Counter[str] = Counter(
+        token
+        for node in raw_nodes
+        for token in node["themes"][:1]
+    )
+    year_counts: Counter[str] = Counter(
+        node["year"]
+        for node in raw_nodes
+        if node["year"]
+    )
+    top_bottlenecks = sorted(
+        (node for node in raw_nodes if node["isSeosCourse"]),
+        key=lambda node: (-node["seosBlockingFactor"], -node["seosDelayFactor"], course_sort_key(node["group"])),
+    )[:6]
+    top_chain_depths = sorted(
+        raw_nodes,
+        key=lambda node: (-node["chainDepth"], -node["blockingFactor"], course_sort_key(node["group"])),
+    )[:6]
+    return {
+        "metrics": {
+            "nodes": len(prereq_map),
+            "edges": sum(len(prereqs) for prereqs in prereq_map.values()),
+            "seosNodes": len(seos_groups),
+            "maxDepth": max(upstream_depths.values(), default=0),
+            "seosMaxDepth": max(seos_upstream_depths.values(), default=0),
+            "maxDelay": max_delay,
+            "maxPrerequisiteChainDepth": max_delay,
+            "totalBlocking": sum(node["blockingFactor"] for node in raw_nodes),
+            "totalSeosBlocking": sum(node["seosBlockingFactor"] for node in raw_nodes),
+            "totalDelay": sum(node["delayFactor"] for node in raw_nodes),
+            "totalSeosDelay": sum(node["seosDelayFactor"] for node in raw_nodes),
+            "totalPrerequisiteChainDepth": sum(node["chainDepth"] for node in raw_nodes),
+            "totalComplexity": sum(node["complexity"] for node in raw_nodes),
+            "redundantPrerequisiteFlags": len(relevant_redundant_checks),
+        },
+        "nodes": raw_nodes,
+        "longestPath": [
+            {
+                "group": group_code,
+                "id": course_group_id(group_code),
+                "label": group_display_label(group_code, course_groups),
+            }
+            for group_code in longest_path
+        ],
+        "longestPrerequisiteChain": [
+            {
+                "group": group_code,
+                "id": course_group_id(group_code),
+                "label": group_display_label(group_code, course_groups),
+            }
+            for group_code in longest_prerequisite_chain
+        ],
+        "topBottlenecks": [
+            {
+                "group": node["group"],
+                "id": node["id"],
+                "label": node["label"],
+                "blockingFactor": node["seosBlockingFactor"],
+                "delayFactor": node["seosDelayFactor"],
+                "allCourseBlockingFactor": node["blockingFactor"],
+                "allCourseDelayFactor": node["delayFactor"],
+                "complexity": node["complexity"],
+            }
+            for node in top_bottlenecks
+            if node["seosBlockingFactor"] > 0
+        ],
+        "topChainDepths": [
+            {
+                "group": node["group"],
+                "id": node["id"],
+                "label": node["label"],
+                "chainDepth": node["chainDepth"],
+                "prerequisiteChainDepth": node["prerequisiteChainDepth"],
+                "isSeosCourse": node["isSeosCourse"],
+            }
+            for node in top_chain_depths
+            if node["chainDepth"] > 1
+        ],
+        "themeCounts": {
+            token: {
+                "label": theme_label(token),
+                "count": count,
+                "color": theme_color(token),
+            }
+            for token, count in theme_counts.most_common()
+        },
+        "yearCounts": {
+            token: {
+                "label": year_labels.get(token, token),
+                "count": count,
+            }
+            for token, count in year_counts.items()
+        },
+        "redundantPrerequisites": relevant_redundant_checks,
+    }
+
+
+def build_program_analytics_bundle(
+    program: ProgramRecord,
+    courses: dict[str, CourseRecord],
+    redundant_checks: list[dict],
+    *,
+    stream: ProgramStreamRecord | None = None,
+) -> dict:
+    course_groups, course_group_lookup = build_course_groups(courses, aggressive=False)
+    simplified_course_groups, simplified_course_group_lookup = build_course_groups(courses, aggressive=True)
+    title = f"{program.name}: {stream.title}" if stream is not None else program.name
+    return {
+        "programCode": program.code,
+        "programName": program.name,
+        "pathTitle": title,
+        "streamSlug": stream.slug if stream is not None else "",
+        "themePalette": theme_palette_items(),
+        "modes": {
+            "simplified": build_program_mode_analytics(
+                program,
+                courses,
+                simplified_course_groups,
+                simplified_course_group_lookup,
+                redundant_checks,
+                stream=stream,
+            ),
+            "full": build_program_mode_analytics(
+                program,
+                courses,
+                course_groups,
+                course_group_lookup,
+                redundant_checks,
+                stream=stream,
+            ),
+        },
+    }
+
+
 def collect_related_groups(
     start_group: str,
     adjacency_map: dict[str, set[str]],
@@ -2669,6 +3232,27 @@ def render_subject_pill(code: str) -> str:
     return (
         f'<span class="subject-pill" style="--pill-color: {subject_color(code)}">'
         f"{e(subject_name(code))}</span>"
+    )
+
+
+def render_theme_swatch(token: str) -> str:
+    return f'<span class="theme-swatch" style="--theme-color: {e(theme_color(token))}"></span>'
+
+
+def render_theme_pill(token: str) -> str:
+    return (
+        f'<span class="theme-pill" style="--theme-color: {e(theme_color(token))}">'
+        f"{render_theme_swatch(token)}{e(theme_label(token))}</span>"
+    )
+
+
+def render_theme_filter_button(label: str, *, group: str, value: str, active: bool = False) -> str:
+    class_name = "filter-chip filter-chip--theme is-active" if active else "filter-chip filter-chip--theme"
+    pressed = "true" if active else "false"
+    swatch = "" if value == "all" else render_theme_swatch(value)
+    return (
+        f'<button class="{class_name}" type="button" data-filter-group="{e(group)}" '
+        f'data-filter-value="{e(value)}" aria-pressed="{pressed}">{swatch}<span>{e(label)}</span></button>'
     )
 
 
@@ -3526,6 +4110,43 @@ def render_program_role_legend(items: list[tuple[str, dict[str, str]]]) -> str:
     )
 
 
+def graph_overlay_legend_data(
+    *,
+    title: str,
+    note: str,
+    items: list[tuple[str, dict[str, str]]],
+) -> dict:
+    return {
+        "title": title,
+        "note": note,
+        "items": [
+            {
+                "label": label,
+                "color": style["fillcolor"],
+                "borderColor": style["color"],
+            }
+            for label, style in items
+        ],
+    }
+
+
+def render_graph_overlay_legend_body(legend: dict | None) -> str:
+    if not legend:
+        return ""
+    items_html = "".join(
+        (
+            '<div class="graph-overlay-legend__item">'
+            f'<span class="graph-overlay-legend__swatch" style="--legend-color: {e(str(item.get("color") or ""))}; --legend-border: {e(str(item.get("borderColor") or ""))}"></span>'
+            '<span class="graph-overlay-legend__copy">'
+            f'<span class="graph-overlay-legend__label">{e(str(item.get("label") or ""))}</span>'
+            "</span>"
+            "</div>"
+        )
+        for item in legend.get("items", [])
+    )
+    return f'<div class="graph-overlay-legend__list">{items_html}</div>'
+
+
 def render_graph_guide(
     *,
     summary: str,
@@ -3647,6 +4268,29 @@ def inline_graph_svg(svg_path: str, aria_label: str, *, course_href_prefix: str)
     return svg_markup
 
 
+def json_for_script(data: dict | list) -> str:
+    return json.dumps(data, ensure_ascii=False).replace("<", "\\u003c").replace("</", "<\\/")
+
+
+def render_program_graph_analytics(analytics: dict) -> str:
+    return f"""
+      <div class="graph-analytics" data-graph-analytics>
+        <script type="application/json" data-graph-analytics-data>{json_for_script(analytics)}</script>
+        <label class="graph-overlay-select">
+          <span>Overlay</span>
+          <select data-analytics-mode-select aria-label="Graph analytics overlay">
+            <option value="base" selected>No overlay</option>
+            <option value="year">Program year</option>
+            <option value="theme">Subject themes</option>
+            <option value="bottleneck">Bottlenecks</option>
+            <option value="delay">Chain depth</option>
+            <option value="cleanup">Cleanup</option>
+          </select>
+        </label>
+      </div>
+    """
+
+
 def render_graph_shell(
     *,
     shell_id: str,
@@ -3659,12 +4303,22 @@ def render_graph_shell(
     graph_modes: list[tuple[GraphModeRecord, str]],
     course_href_prefix: str,
     footer_html: str = "",
+    analytics_html: str = "",
+    overlay_legend: dict | None = None,
 ) -> str:
     toolbar_buttons = []
     graph_templates = []
     default_graph_markup = ""
     guide_html = guide_html.rstrip()
     footer_html = footer_html.rstrip()
+    analytics_html = analytics_html.rstrip()
+    overlay_legend_html = (
+        f'<script type="application/json" data-graph-overlay-legend-data>{json_for_script(overlay_legend)}</script>'
+        if overlay_legend
+        else ""
+    )
+    overlay_legend_body_html = render_graph_overlay_legend_body(overlay_legend)
+    overlay_legend_hidden = "" if overlay_legend_body_html else " hidden"
     for index, (mode, svg_path) in enumerate(graph_modes):
         active_class = " is-active" if index == 0 else ""
         toolbar_buttons.append(
@@ -3675,7 +4329,6 @@ def render_graph_shell(
         graph_templates.append(f'<template data-graph-template="{e(mode.key)}">{graph_markup}</template>')
         if index == 0:
             default_graph_markup = graph_markup
-    default_copy = graph_modes[0][0].copy_text
     return f"""
     <div class="graph-shell" id="{e(shell_id)}" data-graph-switcher>
       <div class="graph-shell__head">
@@ -3686,20 +4339,40 @@ def render_graph_shell(
         </div>
         <a class="text-link graph-open-link" data-graph-link href="{default_svg}">Open SVG</a>
       </div>
-      <div class="graph-toolbar">
-        <div class="segmented-control" role="group" aria-label="{e(heading)} graph mode">
-          {"".join(toolbar_buttons)}
-        </div>
-        <label class="search-field graph-search">
-          <span>Find a course in this graph</span>
-          <input type="search" data-graph-search-input placeholder="Type a course code or title" autocomplete="off">
-        </label>
-        <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
-        <p class="panel-note graph-toolbar__note" data-graph-mode-copy>{e(default_copy)}</p>
-        <p class="panel-note graph-search__status" data-graph-search-status>Search highlights the matched course and its connected prerequisite branches. Scroll to zoom, drag to pan.</p>
-      </div>
       {guide_html}
       <div class="graph-frame">
+        {overlay_legend_html}
+        <div class="graph-frame__left-rail">
+          <details class="graph-search-dock">
+            <summary class="graph-overlay-summary">Find</summary>
+            <div class="graph-search-dock__body">
+              <label class="search-field graph-search graph-search--overlay">
+                <span>Find a course</span>
+                <input type="search" data-graph-search-input placeholder="Course code or title" autocomplete="off">
+              </label>
+              <button class="filter-clear graph-reset" type="button" data-graph-reset>Reset view</button>
+              <p class="panel-note graph-search__status" data-graph-search-status>Search highlights matching branches.</p>
+            </div>
+          </details>
+        </div>
+        <div class="graph-frame__right-rail">
+          <details class="graph-control-dock">
+            <summary class="graph-overlay-summary">Overlays</summary>
+            <div class="graph-control-dock__body">
+              <div class="graph-control-dock__group">
+                <p class="detail-card__eyebrow">View</p>
+                <div class="segmented-control" role="group" aria-label="{e(heading)} graph mode">
+                  {"".join(toolbar_buttons)}
+                </div>
+              </div>
+              {analytics_html}
+            </div>
+          </details>
+          <details class="graph-overlay-legend" data-graph-overlay-legend{overlay_legend_hidden}>
+            <summary class="graph-overlay-summary" data-graph-overlay-legend-summary>Legend</summary>
+            <div class="graph-overlay-legend__body" data-graph-overlay-legend-body>{overlay_legend_body_html}</div>
+          </details>
+        </div>
         <div class="graph-svg-stage" data-graph-stage aria-label="{e(aria_label)}">
           {default_graph_markup}
         </div>
@@ -3804,11 +4477,19 @@ def theme_keyword_hits(text: str, keyword: str) -> int:
 
 
 def course_theme_scores(course: CourseRecord) -> list[tuple[str, int]]:
+    if course.code in COURSE_THEME_OVERRIDES:
+        override_tokens = COURSE_THEME_OVERRIDES[course.code]
+        override_rank = {token: len(override_tokens) - index for index, token in enumerate(override_tokens)}
+        return [(token, override_rank[token]) for token in override_tokens]
     plain_description = BeautifulSoup(course.detail.get("description") or "", "html.parser").get_text(" ", strip=True)
     text = normalize_text(f"{course.name} {plain_description}").lower()
     scored: list[tuple[str, int, int]] = []
     for index, (token, _label, keywords) in enumerate(COURSE_THEME_RULES):
         score = sum(theme_keyword_hits(text, keyword) for keyword in keywords)
+        if token == "math" and course.code in {"MATH248", "PHYS248"}:
+            score = 0
+        elif token == "math" and course.code.startswith("MATH"):
+            score = max(score, 100)
         if score > 0:
             scored.append((token, score, index))
     scored.sort(key=lambda item: (-item[1], item[2]))
@@ -3949,23 +4630,24 @@ def render_program_overview_row(program: ProgramRecord, courses: dict[str, Cours
 def render_course_card(course: CourseRecord, base: str, *, support: bool = False) -> str:
     card_type = "Partner-department course" if support else "EOS course"
     level_label = course_level_label(course.code)
-    theme_labels = course_theme_labels(course)
+    theme_tokens = course_theme_tokens(course)
+    theme_labels = [theme_label(token) for token in theme_tokens]
     search_text = " ".join(unique_ordered([course.code, course.name, subject_name(course.code), *theme_labels]))
     official_link = (
         f'<a class="text-link" href="{e(course.catalog_url)}">Official calendar</a>'
         if course.catalog_url
         else ""
     )
-    tag_pills = "".join(
-        f'<span class="meta-pill">{e(label)}</span>'
-        for label in [level_label] + theme_labels[:3]
+    tag_pills = f'<span class="meta-pill">{e(level_label)}</span>' + "".join(
+        render_theme_pill(token)
+        for token in theme_tokens[:3]
     )
     return (
         '<article class="directory-card"'
         f' data-filter-track="{e("support" if support else "eos")}"'
         f' data-filter-subject="{e(subject_from_code(course.code).lower())}"'
         f' data-filter-level="{e(course_level_token(course.code))}"'
-        f' data-filter-theme="{e(filter_token_string(course_theme_tokens(course)))}"'
+        f' data-filter-theme="{e(filter_token_string(theme_tokens))}"'
         f' data-filter-search="{e(search_text.lower())}">'
         f'<p class="directory-card__eyebrow">{e(card_type)} | {e(course.code)}</p>'
         f'<h3><a href="{base}{course.code}.html">{e(course.name)}</a></h3>'
@@ -4606,7 +5288,11 @@ def render_contact_hours_section(program: ProgramRecord, courses: dict[str, Cour
     )
 
 
-def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]) -> str:
+def render_program_page(
+    program: ProgramRecord,
+    courses: dict[str, CourseRecord],
+    redundant_checks: list[dict],
+) -> str:
     named_codes = program_named_codes(program)
     metric_items = [
         render_metric_card(program_primary_category_label(program), "Program type"),
@@ -4687,10 +5373,10 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
                 stream,
                 course_group_lookup=simplified_program_group_lookup,
             )
-            guide_html = render_graph_preview(
+            overlay_legend = graph_overlay_legend_data(
                 title="Program legend",
-                summary=f"Node colours show required courses, related prerequisites, and distinct option sets used in the {stream.title.lower()} map.",
-                preview_html=render_program_role_legend(stream_legend_items),
+                note=f"Node colours show required courses, related prerequisites, and distinct option sets used in the {stream.title.lower()} map.",
+                items=stream_legend_items,
             )
             stream_heading = stream.title
             if stream.description:
@@ -4714,10 +5400,19 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
                     note=stream_note,
                     default_svg=stream_graph_modes[0][1],
                     aria_label=f"{program.name} {stream.title} graph",
-                    guide_html=guide_html,
+                    guide_html="",
                     graph_modes=stream_graph_modes,
                     course_href_prefix="../courses/",
                     footer_html=additional_requirements_html,
+                    overlay_legend=overlay_legend,
+                    analytics_html=render_program_graph_analytics(
+                        build_program_analytics_bundle(
+                            program,
+                            courses,
+                            redundant_checks,
+                            stream=stream,
+                        )
+                    ),
                 )
             )
         graphs_html = (
@@ -4730,10 +5425,10 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
             None,
             course_group_lookup=simplified_program_group_lookup,
         )
-        guide_html = render_graph_preview(
+        overlay_legend = graph_overlay_legend_data(
             title="Program legend",
-            summary="Node colours show required courses, related prerequisites, and distinct option sets used in the program map.",
-            preview_html=render_program_role_legend(program_legend_items),
+            note="Node colours show required courses, related prerequisites, and distinct option sets used in the program map.",
+            items=program_legend_items,
         )
         additional_requirements_html = render_additional_requirements(
             program_graph_note_lines(program, None),
@@ -4750,10 +5445,14 @@ def render_program_page(program: ProgramRecord, courses: dict[str, CourseRecord]
             note="The graph is driven by prerequisites from left to right (instead of year suggestions). The simplified view keeps the sequence readable while the full view is closer to the real data structure.",
             default_svg=page_graph_modes[0][1],
             aria_label=f"{program.name} program graph",
-            guide_html=guide_html,
+            guide_html="",
             graph_modes=page_graph_modes,
             course_href_prefix="../courses/",
             footer_html=additional_requirements_html,
+            overlay_legend=overlay_legend,
+            analytics_html=render_program_graph_analytics(
+                build_program_analytics_bundle(program, courses, redundant_checks)
+            ),
         )
         graph_anchor = "#program-graph"
 
@@ -5123,9 +5822,9 @@ def render_course_overview(courses: dict[str, CourseRecord], generated_at: str) 
     )
     theme_filters = render_filter_group(
         "Theme",
-        [render_filter_button("All", group="theme", value="all", active=True)]
+        [render_theme_filter_button("All", group="theme", value="all", active=True)]
         + [
-            render_filter_button(label, group="theme", value=token)
+            render_theme_filter_button(label, group="theme", value=token)
             for token, label, _ in COURSE_THEME_RULES
         ],
     )
@@ -5335,6 +6034,7 @@ def write_site(
     manifest: dict,
     course_groups: dict[str, CourseGroupRecord],
     course_group_lookup: dict[str, str],
+    redundant_checks: list[dict],
 ) -> None:
     (BUILD_DIR / "programs").mkdir(parents=True, exist_ok=True)
     (BUILD_DIR / "courses").mkdir(parents=True, exist_ok=True)
@@ -5358,7 +6058,7 @@ def write_site(
 
     for program in programs.values():
         (BUILD_DIR / "programs" / f"PR_{program.code}.html").write_text(
-            render_program_page(program, courses),
+            render_program_page(program, courses, redundant_checks),
             encoding="utf-8",
         )
 
@@ -5383,6 +6083,7 @@ def main() -> None:
     course_groups, course_group_lookup = build_course_groups(courses, aggressive=False)
     simplified_course_groups, simplified_course_group_lookup = build_course_groups(courses, aggressive=True)
     enrich_relationships(programs, courses)
+    redundant_checks = find_redundant_prerequisite_checks(courses, course_group_lookup)
 
     prepare_output_directory()
 
@@ -5428,6 +6129,7 @@ def main() -> None:
         manifest,
         course_groups,
         course_group_lookup,
+        redundant_checks,
     )
 
     print(
